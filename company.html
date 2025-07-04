@@ -3,31 +3,45 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>회사소개 - SoMa</title>
+  <title>SoMa - 통합 AI SaaS 솔루션</title>
   <style>
     :root { --accent: #95DCF8; }
+    /* Reset & Base */
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { font-family: 'Inter', sans-serif; color: #000; background: #fff; line-height: 1.6; }
     a { text-decoration: none; color: inherit; }
     ul { list-style: none; }
 
+    /* Header */
     .header { display: flex; justify-content: space-between; align-items: center; padding: 1rem 2rem; }
     .logo { height: 40px; }
-    .nav ul { display: flex; gap: 1.5rem; }
-    .nav a { font-weight: 500; transition: color 0.2s; color: #000; }
-    .nav a:hover { color: var(--accent); }
+    .nav ul { display: flex; gap: 0.5rem; align-items: center; }
+    .nav a { font-weight: 500; padding: 0.25rem 0.5rem; transition: color 0.2s; color: #000; }
+    .nav a.active { color: var(--accent); }
+    .divider { color: #aaa; }
 
-    main { max-width: 800px; margin: 3rem auto; padding: 0 1rem; }
-    h1 { font-size: 2.5rem; margin-bottom: 1rem; }
-    h2 { font-size: 2rem; margin-bottom: 1rem; color: #000; }
-    p { margin-bottom: 1.5rem; }
+    /* Hero */
+    .hero { display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 4rem 1rem; }
+    .hero h1 { font-size: 3rem; margin-bottom: 1rem; color: #000; }
+    .hero p { font-size: 1.25rem; margin-bottom: 1.5rem; color: #000; }
+    .cta { display: inline-block; background: var(--accent); color: #fff; padding: 1rem 2rem; font-size: 1.125rem; border-radius: 9999px; font-weight: 600; border: none; cursor: pointer; }
+    .cta:hover { opacity: 0.85; }
 
-    .company-overview ul li { margin-bottom: 0.5rem; }
+    /* Features */
+    .features { max-width: 1200px; margin: 4rem auto; padding: 0 1rem; }
+    .features h2 { text-align: center; font-size: 2rem; margin-bottom: 2rem; color: #000; }
+    .feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 2rem; }
+    .feature { background: #fff; padding: 2rem; border-radius: 1rem; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
+    .feature h3 { font-size: 1.25rem; margin-bottom: 0.75rem; color: var(--accent); }
+    .feature p { color: #333; }
 
-    .ai-technology p { margin-bottom: 1.5rem; }
-
+    /* Footer */
     footer { text-align: center; padding: 2rem 1rem; background: #f9f9f9; }
-    footer a { color: var(--accent); }
+    .company-info { font-size: 0.875rem; color: #555; line-height: 1.4; margin-bottom: 0.5rem; }
+    .policy-links { margin-bottom: 1rem; }
+    .policy-links a { color: var(--accent); margin: 0 0.25rem; }
+    .policy-links a:hover { text-decoration: underline; }
+    footer p { font-size: 0.75rem; color: #777; }
   </style>
 </head>
 <body>
@@ -37,38 +51,53 @@
     </div>
     <nav class="nav">
       <ul>
-        <li><a href="company.html">KOR</a></li>
-        <li><span>|</span></li>
-        <li><a href="company_en.html">ENG</a></li>
+        <li><a href="index.html" class="active">KOR</a></li>
+        <li><span class="divider">|</span></li>
+        <li><a href="index_en.html">ENG</a></li>
       </ul>
     </nav>
   </header>
 
-  <main>
-    <section class="company-intro">
-      <h1>회사소개</h1>
-      <p>SoMa Inc.는 피트니스 센터 운영을 혁신하기 위해 AI 기반 솔루션을 개발하는 기업입니다. 고객의 운영 효율성과 사용자 경험을 극대화하기 위해 최신 인공지능 기술을 적극 활용합니다.</p>
-    </section>
+  <section class="hero">
+    <h1>통합 AI SaaS 솔루션</h1>
+    <p>자동화된 워크플로우와 AI 인사이트로 센터 운영을 혁신하세요.</p>
+    <a href="company.html" class="cta">회사소개</a>
+  </section>
 
-    <section class="company-overview">
-      <h2>회사 개요</h2>
-      <ul>
-        <li><strong>회사명</strong>: 주식회사 소마 (SoMa Inc.)</li>
-        <li><strong>설립일</strong>: 2025년</li>
-        <li><strong>주요 기술</strong>: 머신러닝, 컴퓨터 비전, 자연어 처리 등 AI 전 영역</li>
-        <li><strong>주요 서비스</strong>: 회원 예약 자동화, AI 기반 운영 인사이트, 실시간 운영 분석 리포트</li>
-      </ul>
-    </section>
-
-    <section class="ai-technology">
-      <h2>AI 기술 활용</h2>
-      <p>SoMa의 플랫폼은 딥러닝 모델을 통해 예약 패턴을 예측하며, 컴퓨터 비전 기술로 출석 인식을 자동화합니다.</p>
-      <p>또한 자연어 처리 기반 챗봇을 통해 회원 문의를 실시간으로 답변하고, 대시보드에 시각화된 분석 데이터를 제공하여 운영 최적화를 지원합니다.</p>
-    </section>
-  </main>
+  <section class="features">
+    <h2>주요 기능</h2>
+    <div class="feature-grid">
+      <div class="feature">
+        <h3>자동 예약</h3>
+        <p>원스톱 예약 및 출석 관리 기능 제공</p>
+      </div>
+      <div class="feature">
+        <h3>AI 인사이트</h3>
+        <p>스케줄, 매출, 회원 참여도 최적화를 위한 분석 제공</p>
+      </div>
+      <div class="feature">
+        <h3>회원 메시징</h3>
+        <p>실시간 채팅으로 강사와 회원 간 소통 강화</p>
+      </div>
+      <div class="feature">
+        <h3>성과 보고</h3>
+        <p>센터 성과, 강사 정산 등 상세 리포트 제공</p>
+      </div>
+    </div>
+  </section>
 
   <footer>
-    <a href="index.html">← 메인으로 돌아가기</a>
+    <div class="company-info">
+      (주)소마<br>
+      사업자 등록번호 : 805-88-03448 | 대표 : 이창재<br>
+      호스팅 서비스 : 주식회사 소마<br>
+      04617 서울특별시 중구 동호로 298 (장충동, 이성빌딩)
+    </div>
+    <div class="policy-links">
+      <a href="SoMa_이용약관.pdf" target="_blank">서비스 이용약관</a> |
+      <a href="SoMa_개인정보 처리방침.pdf" target="_blank">개인정보 처리방침</a>
+    </div>
+    <p>&copy; 2025 SoMa Inc. All rights reserved.</p>
   </footer>
 </body>
 </html>
