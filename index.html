@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SoMa - Integrated AI SaaS Solutions</title>
+  <title>SoMa - 통합 AI SaaS 솔루션</title>
   <style>
     /* Reset & Base */
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -15,8 +15,7 @@
     .header { display: flex; justify-content: space-between; align-items: center; padding: 1rem 2rem; }
     .logo { height: 40px; }
     .nav ul { display: flex; gap: 1.5rem; }
-    .nav a { font-weight: 500; transition: color 0.2s; }
-    .nav a:hover { color: #7B61FF; }
+    .nav span { font-weight: 500; }
 
     /* Hero */
     .hero { display: flex; flex-direction: column; justify-content: center; align-items: center;
@@ -26,7 +25,7 @@
     .hero h1 { font-size: 3rem; margin-bottom: 1rem; }
     .hero p { font-size: 1.25rem; margin-bottom: 1.5rem; }
     .cta { background: #fff; color: #4A4AFF; padding: 0.75rem 1.5rem; border-radius: 9999px;
-      font-weight: 600; transition: background 0.2s;
+      font-weight: 600; transition: background 0.2s; border: none; cursor: pointer;
     }
     .cta:hover { background: #f0f0f0; }
 
@@ -44,49 +43,48 @@
 <body>
   <header class="header">
     <div class="logo-container">
-      <img src="logo.pdf" alt="SoMa Logo" class="logo">
+      <img src="로고.pdf" alt="SoMa 로고" class="logo">
     </div>
     <nav class="nav">
       <ul>
-        <li><a href="#features">Features</a></li>
-        <li><a href="#pricing">Pricing</a></li>
-        <li><a href="#contact">Contact</a></li>
+        <li><span>기능</span></li>
+        <li><span>요금제</span></li>
+        <li><span>문의</span></li>
       </ul>
     </nav>
   </header>
 
   <section class="hero">
-    <h1>Integrated AI SaaS Solutions</h1>
-    <p>Transform your fitness center operations with automated workflows and AI insights.</p>
-    <a href="#pricing" class="cta">Get Started</a>
+    <h1>통합 AI SaaS 솔루션</h1>
+    <p>자동화된 워크플로우와 AI 인사이트로 센터 운영을 혁신하세요.</p>
+    <button class="cta">시작하기</button>
   </section>
 
-  <section id="features" class="features">
-    <h2>Key Features</h2>
+  <section class="features">
+    <h2>주요 기능</h2>
     <div class="feature-grid">
       <div class="feature">
-        <h3>Automated Booking</h3>
-        <p>Seamless reservation and attendance tracking integrated in one platform.</p>
+        <h3>자동 예약</h3>
+        <p>원스톱 예약 및 출석 관리 기능 제공</p>
       </div>
       <div class="feature">
-        <h3>AI Insights</h3>
-        <p>Advanced analytics to optimize schedules, revenue, and member engagement.</p>
+        <h3>AI 인사이트</h3>
+        <p>스케줄, 매출, 회원 참여도 최적화를 위한 분석 제공</p>
       </div>
       <div class="feature">
-        <h3>Member Messaging</h3>
-        <p>Integrated chat for real-time communication between staff and members.</p>
+        <h3>회원 메시징</h3>
+        <p>실시간 채팅으로 강사와 회원 간 소통 강화</p>
       </div>
       <div class="feature">
-        <h3>Performance Reports</h3>
-        <p>Detailed reports on center performance, instructor payouts, and more.</p>
+        <h3>성과 보고</h3>
+        <p>센터 성과, 강사 정산 등 상세 리포트 제공</p>
       </div>
     </div>
   </section>
-
-  <!-- Pricing & Contact sections can be added here -->
 
   <footer>
     <p>&copy; 2025 SoMa Inc. All rights reserved.</p>
   </footer>
 </body>
 </html>
+
