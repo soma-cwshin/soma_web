@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us - SoMa</title>
+  <style>
+    :root { --accent: #95DCF8; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', sans-serif; color: #000; background: #fff; line-height: 1.6; }
+    a { text-decoration: none; color: inherit; }
+    ul { list-style: none; }
+
+    .header { display: flex; justify-content: space-between; align-items: center; padding: 1rem 2rem; }
+    .logo { height: 40px; }
+    .nav ul { display: flex; gap: 0.5rem; align-items: center; }
+    .nav a { font-weight: 500; padding: 0.25rem 0.5rem; transition: color 0.2s; color: #000; }
+    .nav a.active { color: var(--accent); }
+    .divider { color: #aaa; }
+
+    main { max-width: 800px; margin: 3rem auto; padding: 0 1rem; }
+    h1 { font-size: 2.5rem; margin-bottom: 1rem; }
+    h2 { font-size: 2rem; margin-bottom: 1rem; color: #000; }
+    p { margin-bottom: 1.5rem; }
+
+    footer { text-align: center; padding: 2rem 1rem; background: #f9f9f9; }
+    footer a { color: var(--accent); }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="logo-container">
+      <img src="logo.png" alt="SoMa Logo" class="logo">
+    </div>
+    <nav class="nav">
+      <ul>
+        <li><a href="index.html">KOR</a></li>
+        <li><span class="divider">|</span></li>
+        <li><a href="company_en.html" class="active">ENG</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="company-intro">
+      <h1>About Us</h1>
+      <p>SoMa Inc. is a company that develops AI-powered solutions to revolutionize fitness center operations. We actively leverage cutting-edge artificial intelligence technologies to maximize operational efficiency and user experience.</p>
+    </section>
+
+    <section class="company-overview">
+      <h2>Company Overview</h2>
+      <ul>
+        <li><strong>Company</strong>: SoMa Inc.</li>
+        <li><strong>Founded</strong>: 2025</li>
+        <li><strong>Core Technologies</strong>: Machine Learning, Computer Vision, Natural Language Processing</li>
+        <li><strong>Key Services</strong>: Automated Booking, AI-driven Operational Insights, Real-time Analytics Dashboard</li>
+      </ul>
+    </section>
+
+    <section class="ai-technology">
+      <h2>AI Technology</h2>
+      <p>Our platform uses deep learning models to predict booking patterns and automate attendance recognition through computer vision.</p>
+      <p>We also employ NLP-based chatbots for real-time member support and provide visualized analytics on a dashboard to aid in operational optimization.</p>
+    </section>
+  </main>
+
+  <footer>
+    <a href="index_en.html">← Back to Home</a>
+  </footer>
+</body>
+</html>
