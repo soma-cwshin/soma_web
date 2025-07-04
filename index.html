@@ -5,9 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SoMa - 통합 AI SaaS 솔루션</title>
   <style>
+    :root { --accent: #95DCF8; }
     /* Reset & Base */
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'Inter', sans-serif; color: #333; line-height: 1.6; }
+    body { font-family: 'Inter', sans-serif; color: #000; background: #fff; line-height: 1.6; }
     a { text-decoration: none; color: inherit; }
     ul { list-style: none; }
 
@@ -15,32 +16,32 @@
     .header { display: flex; justify-content: space-between; align-items: center; padding: 1rem 2rem; }
     .logo { height: 40px; }
     .nav ul { display: flex; gap: 1.5rem; }
-    .nav span { font-weight: 500; }
+    .nav span { font-weight: 500; cursor: default; }
+    .nav span:hover { color: var(--accent); }
 
     /* Hero */
     .hero { display: flex; flex-direction: column; justify-content: center; align-items: center;
-      text-align: center; height: 100vh; background: linear-gradient(135deg, #7B61FF 0%, #4A4AFF 100%);
-      color: #fff; padding: 0 1rem;
+      text-align: center; padding: 4rem 1rem;
     }
-    .hero h1 { font-size: 3rem; margin-bottom: 1rem; }
-    .hero p { font-size: 1.25rem; margin-bottom: 1.5rem; }
-    .cta { background: #fff; color: #4A4AFF; padding: 0.75rem 1.5rem; border-radius: 9999px;
-      font-weight: 600; transition: background 0.2s; border: none; cursor: pointer;
-    }
-    .cta:hover { background: #f0f0f0; }
+    .hero h1 { font-size: 3rem; margin-bottom: 1rem; color: #000; }
+    .hero p { font-size: 1.25rem; margin-bottom: 1.5rem; color: #000; }
+    .cta { background: var(--accent); color: #fff; padding: 0.75rem 1.5rem; border-radius: 9999px;
+      font-weight: 600; border: none; cursor: pointer; }
+    .cta:hover { opacity: 0.85; }
 
     /* Features */
     .features { max-width: 1200px; margin: 4rem auto; padding: 0 1rem; }
-    .features h2 { text-align: center; font-size: 2rem; margin-bottom: 2rem; }
+    .features h2 { text-align: center; font-size: 2rem; margin-bottom: 2rem; color: #000; }
     .feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 2rem; }
     .feature { background: #fff; padding: 2rem; border-radius: 1rem; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
-    .feature h3 { font-size: 1.25rem; margin-bottom: 0.75rem; color: #4A4AFF; }
+    .feature h3 { font-size: 1.25rem; margin-bottom: 0.75rem; color: var(--accent); }
+    .feature p { color: #333; }
 
     /* Footer */
     footer { text-align: center; padding: 2rem 1rem; background: #f9f9f9; }
     .company-info { font-size: 0.875rem; color: #555; line-height: 1.4; margin-bottom: 0.5rem; }
     .policy-links { margin-bottom: 1rem; }
-    .policy-links a { color: #4A4AFF; margin: 0 0.25rem; }
+    .policy-links a { color: var(--accent); margin: 0 0.25rem; }
     .policy-links a:hover { text-decoration: underline; }
     footer p { font-size: 0.75rem; color: #777; }
   </style>
@@ -102,5 +103,3 @@
   </footer>
 </body>
 </html>
-
-
