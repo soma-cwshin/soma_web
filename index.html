@@ -1,19 +1,92 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
-  <meta charset="UTF-8" />
-  <title>SoMa</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SoMa - Integrated AI SaaS Solutions</title>
   <style>
-    body{margin:0;height:100vh;display:flex;flex-direction:column;
-         align-items:center;justify-content:center;font-family:Inter,sans-serif;
-         background:#f9fafb;color:#111}
-    h1{font-size:2.5rem;margin:0}
-    p{font-size:1.25rem;margin:.5rem 0 0}
+    /* Reset & Base */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', sans-serif; color: #333; line-height: 1.6; }
+    a { text-decoration: none; color: inherit; }
+    ul { list-style: none; }
+
+    /* Header */
+    .header { display: flex; justify-content: space-between; align-items: center; padding: 1rem 2rem; }
+    .logo { height: 40px; }
+    .nav ul { display: flex; gap: 1.5rem; }
+    .nav a { font-weight: 500; transition: color 0.2s; }
+    .nav a:hover { color: #7B61FF; }
+
+    /* Hero */
+    .hero { display: flex; flex-direction: column; justify-content: center; align-items: center;
+      text-align: center; height: 100vh; background: linear-gradient(135deg, #7B61FF 0%, #4A4AFF 100%);
+      color: #fff; padding: 0 1rem;
+    }
+    .hero h1 { font-size: 3rem; margin-bottom: 1rem; }
+    .hero p { font-size: 1.25rem; margin-bottom: 1.5rem; }
+    .cta { background: #fff; color: #4A4AFF; padding: 0.75rem 1.5rem; border-radius: 9999px;
+      font-weight: 600; transition: background 0.2s;
+    }
+    .cta:hover { background: #f0f0f0; }
+
+    /* Features */
+    .features { max-width: 1200px; margin: 4rem auto; padding: 0 1rem; }
+    .features h2 { text-align: center; font-size: 2rem; margin-bottom: 2rem; }
+    .feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 2rem; }
+    .feature { background: #fff; padding: 2rem; border-radius: 1rem; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
+    .feature h3 { font-size: 1.25rem; margin-bottom: 0.75rem; color: #4A4AFF; }
+
+    /* Footer */
+    footer { text-align: center; padding: 2rem 1rem; font-size: 0.875rem; color: #777; }
   </style>
 </head>
 <body>
-  <h1>SoMa</h1>
-  <p>Integrated AI SaaS Solutions</p>
+  <header class="header">
+    <div class="logo-container">
+      <img src="logo.pdf" alt="SoMa Logo" class="logo">
+    </div>
+    <nav class="nav">
+      <ul>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h1>Integrated AI SaaS Solutions</h1>
+    <p>Transform your fitness center operations with automated workflows and AI insights.</p>
+    <a href="#pricing" class="cta">Get Started</a>
+  </section>
+
+  <section id="features" class="features">
+    <h2>Key Features</h2>
+    <div class="feature-grid">
+      <div class="feature">
+        <h3>Automated Booking</h3>
+        <p>Seamless reservation and attendance tracking integrated in one platform.</p>
+      </div>
+      <div class="feature">
+        <h3>AI Insights</h3>
+        <p>Advanced analytics to optimize schedules, revenue, and member engagement.</p>
+      </div>
+      <div class="feature">
+        <h3>Member Messaging</h3>
+        <p>Integrated chat for real-time communication between staff and members.</p>
+      </div>
+      <div class="feature">
+        <h3>Performance Reports</h3>
+        <p>Detailed reports on center performance, instructor payouts, and more.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing & Contact sections can be added here -->
+
+  <footer>
+    <p>&copy; 2025 SoMa Inc. All rights reserved.</p>
+  </footer>
 </body>
 </html>
