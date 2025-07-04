@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SoMa - Integrated AI SaaS Solutions</title>
+  <style>
+    :root { --accent: #95DCF8; }
+    /* Reset & Base */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', sans-serif; color: #000; background: #fff; line-height: 1.6; }
+    a { text-decoration: none; color: inherit; }
+    ul { list-style: none; }
+
+    /* Header */
+    .header { display: flex; justify-content: space-between; align-items: center; padding: 1rem 2rem; }
+    .logo { height: 40px; }
+    .nav ul { display: flex; gap: 0.5rem; align-items: center; }
+    .nav a { font-weight: 500; padding: 0.25rem 0.5rem; transition: color 0.2s; color: #000; }
+    .nav a.active { color: var(--accent); }
+    .divider { color: #aaa; }
+
+    /* Hero */
+    .hero { display: flex; flex-direction: column; justify-content: center; align-items: center;
+      text-align: center; padding: 4rem 1rem;
+    }
+    .hero h1 { font-size: 3rem; margin-bottom: 1rem; color: #000; }
+    .hero p { font-size: 1.25rem; margin-bottom: 1.5rem; color: #000; }
+    .cta { display: inline-block; background: var(--accent); color: #fff; padding: 0.75rem 1.5rem; border-radius: 9999px;
+      font-weight: 600; border: none; cursor: pointer; }
+    .cta:hover { opacity: 0.85; }
+
+    /* Features */
+    .features { max-width: 1200px; margin: 4rem auto; padding: 0 1rem; }
+    .features h2 { text-align: center; font-size: 2rem; margin-bottom: 2rem; color: #000; }
+    .feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 2rem; }
+    .feature { background: #fff; padding: 2rem; border-radius: 1rem; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
+    .feature h3 { font-size: 1.25rem; margin-bottom: 0.75rem; color: var(--accent); }
+    .feature p { color: #333; }
+
+    /* Footer */
+    footer { text-align: center; padding: 2rem 1rem; background: #f9f9f9; }
+    .company-info { font-size: 0.875rem; color: #555; line-height: 1.4; margin-bottom: 0.5rem; }
+    .policy-links { margin-bottom: 1rem; }
+    .policy-links a { color: var(--accent); margin: 0 0.25rem; }
+    .policy-links a:hover { text-decoration: underline; }
+    footer p { font-size: 0.75rem; color: #777; }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="logo-container">
+      <img src="logo.png" alt="SoMa Logo" class="logo">
+    </div>
+    <nav class="nav">
+      <ul>
+        <li><a href="index.html">KOR</a></li>
+        <li><span class="divider">|</span></li>
+        <li><a href="index_en.html" class="active">ENG</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h1>Integrated AI SaaS Solutions</h1>
+    <p>Revolutionize your center operations with automated workflows and AI insights.</p>
+    <a href="company_en.html" class="cta">About Us</a>
+  </section>
+
+  <section class="features">
+    <h2>Key Features</h2>
+    <div class="feature-grid">
+      <div class="feature">
+        <h3>Automated Booking</h3>
+        <p>All-in-one reservation and attendance tracking.</p>
+      </div>
+      <div class="feature">
+        <h3>AI Insights</h3>
+        <p>Analyze schedules, revenue, and engagement for optimization.</p>
+      </div>
+      <div class="feature">
+        <h3>Member Messaging</h3>
+        <p>Real-time chat to enhance communication between staff and members.</p>
+      </div>
+      <div class="feature">
+        <h3>Performance Reports</h3>
+        <p>Comprehensive analytics on center performance and instructor payouts.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="company-info">
+      SoMa Inc.<br>
+      Business Registration No.: 805-88-03448 | CEO: Changjae Lee<br>
+      Hosting Service: SoMa Inc.<br>
+      04617 298, Dongho-ro, Jung-gu, Seoul, Republic of Korea
+    </div>
+    <div class="policy-links">
+      <a href="SoMa_Terms.pdf" target="_blank">Terms of Service</a> |
+      <a href="SoMa_Privacy.pdf" target="_blank">Privacy Policy</a>
+    </div>
+    <p>&copy; 2025 SoMa Inc. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>
