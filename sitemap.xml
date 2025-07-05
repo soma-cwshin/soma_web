@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  
+  <!-- 메인 페이지 -->
+  <url>
+    <loc>https://soma.ai.kr/</loc>
+    <lastmod>2025-07-05</lastmod>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- 국문 회사소개 -->
+  <url>
+    <loc>https://soma.ai.kr/company.html</loc>
+    <lastmod>2025-07-05</lastmod>
+    <priority>0.8</priority>
+  </url>
+  
+  <!-- 영어 About Us -->
+  <url>
+    <loc>https://soma.ai.kr/company_en.html</loc>
+    <lastmod>2025-07-05</lastmod>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- 국문 서비스 이용약관 -->
+  <url>
+    <loc>https://soma.ai.kr/terms.html</loc>
+    <lastmod>2025-07-05</lastmod>
+    <priority>0.5</priority>
+  </url>
+
+  <!-- 영어 Terms of Use -->
+  <url>
+    <loc>https://soma.ai.kr/terms_en.html</loc>
+    <lastmod>2025-07-05</lastmod>
+    <priority>0.5</priority>
+  </url>
+
+  <!-- 국문 개인정보 처리방침 -->
+  <url>
+    <loc>https://soma.ai.kr/privacy.html</loc>
+    <lastmod>2025-07-05</lastmod>
+    <priority>0.5</priority>
+  </url>
+
+  <!-- 영어 Privacy Policy -->
+  <url>
+    <loc>https://soma.ai.kr/privacy_en.html</loc>
+    <lastmod>2025-07-05</lastmod>
+    <priority>0.5</priority>
+  </url>
+
+</urlset>
