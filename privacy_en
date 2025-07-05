@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy Policy - SoMa</title>
+  <style>
+    :root { --accent: #95DCF8; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', sans-serif; color: #000; background: #fff; line-height: 1.6; padding: 2rem; }
+    a { text-decoration: none; color: inherit; }
+    h1 { font-size: 2rem; margin-bottom: 1rem; }
+    h2 { font-size: 1.5rem; margin-top: 2rem; margin-bottom: 1rem; }
+    p, li { margin-bottom: 0.75rem; }
+    ol, ul { margin-left: 1rem; margin-bottom: 1rem; }
+    .header { display: flex; justify-content: space-between; align-items: center; }
+    .nav ul { display: flex; gap: 0.5rem; }
+    .nav a { font-weight: 500; padding: 0.25rem 0.5rem; color: #000; }
+    .nav a.active { color: var(--accent); }
+    .divider { color: #aaa; }
+    footer { text-align: center; margin-top: 2rem; }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="logo-container">
+      <img src="logo.png" alt="SoMa Logo" style="height:40px;" />
+    </div>
+    <nav class="nav">
+      <ul>
+        <li><a href="privacy.html">KOR</a></li>
+        <li><span class="divider">|</span></li>
+        <li><a href="privacy_en.html" class="active">ENG</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <h1>SoMa Privacy Policy</h1>
+    <p>SoMa Inc. (hereinafter “the Company”) fully complies with the Personal Information Protection Act and related statutes, and strives to protect the personal information of data subjects. This Privacy Policy applies to the processing of personal information of members who use the SoMa service platform (including website and mobile app) operated by the Company, and sets forth the following:</p>
+    <hr />
+    <h2>Article 1 (Items of Personal Information Collected and Collection Methods)</h2>
+    <ol>
+      <li><strong>Items collected:</strong> The Company collects only the minimum personal information necessary for membership registration and service provision:
+        <ul>
+          <li>Registration: Mobile phone number (required)</li>
+          <li>Service use & consultations: Name, date of birth, gender, age, contact details, occupation, address, referral source; exercise goals, medical history, preferences, consultation details; preferred day/time, session count & duration, payment date & method, tuition, installment status, ticket usage & cancellation deadlines; membership tier, digital rewards, physical data (weight, muscle mass, BMI, body fat %); instructor assignment, assessment results, satisfaction ratings, session history, InBody trends, etc.</li>
+        </ul>
+      </li>
+      <li><strong>Collection methods:</strong> Direct user input at registration; OCR extraction from consultation forms; additional web/app inputs; information provided via customer support; automatic log creation via cookies and log analysis.</li>
+      <li><strong>Sensitive & unique identifiers:</strong> Sensitive data (race, creed, political views, criminal records) not collected. Health data collected with explicit consent; unique identifiers collected only when legally required with separate consent.</li>
+      <li><strong>User rights protection:</strong> Members may refuse optional data without affecting basic service use. Personal information used only for stated purposes; any changes require separate consent.</li>
+    </ol>
+
+    <h2>Article 2 (Purposes of Personal Information Collection and Use)</h2>
+    <ol>
+      <li>Membership registration & management: identity verification, age check, account management, withdrawal processing.</li>
+      <li>Consultation & personalized services: member consultations, tailored exercise programs, scheduling, instructor assignment.</li>
+      <li>Member benefits & analytics: tier & reward management, satisfaction surveys, exercise & body data analysis, AI-driven reports.</li>
+      <li>Payments & settlements: billing, payment processing, refunds, instructor compensation.</li>
+      <li>Customer support: inquiry response, complaint resolution, notice delivery.</li>
+      <li>Marketing & events: new service/event information, promotional messages (consented members only).</li>
+      <li>Legal compliance & risk management: usage restrictions, fraud prevention, security, record retention.</li>
+    </ol>
+
+    <h2>Article 3 (Retention and Use Period of Personal Information)</h2>
+    <ol>
+      <li>General deletion: data deleted upon withdrawal; may retain up to 3 years post-withdrawal for re-registration convenience and analysis, then destroyed or moved to secure storage.</li>
+      <li>Statutory retention: contracts & withdrawal records – 5 years; payment & supply records – 5 years; complaints & disputes – 3 years; access logs – 3 months.</li>
+      <li>Dormant accounts: data of inactive members (1+ year) moved to secure storage, destroyed after retention period; members notified 30 days prior.</li>
+    </ol>
+
+    <h2>Article 4 (Provision of Personal Information to Third Parties)</h2>
+    <ol>
+      <li>Principle: no third-party provision without consent; if required, notify purpose, recipient, items, retention period, and obtain consent.</li>
+      <li>Exceptions: lawful requests by authorities; urgent life/safety protection; other legal exceptions.</li>
+      <li>Current status: no third-party sharing; policy will be updated and consent obtained if this changes.</li>
+    </ol>
+
+    <h2>Article 5 (Commissioned Processing of Personal Information)</h2>
+    <ol>
+      <li>Tasks such as development, maintenance, payment processing, SMS/LMS, and cloud hosting may be outsourced to specialized providers.</li>
+      <li>Contracts ensure prohibition of secondary use, technical & managerial safeguards, restriction on subcontracting, oversight, and liability.</li>
+      <li>Commissioned provider list not currently disclosed; policy will be updated and published upon changes.</li>
+    </ol>
+
+    <h2>Article 6 (Procedures and Methods for Data Destruction)</h2>
+    <ol>
+      <li>Destruction procedures: data selected and destroyed upon retention expiry or purpose fulfillment, with Data Protection Officer approval. Deleted immediately or moved for legal retention then destroyed.</li>
+      <li>Destruction methods: electronic files permanently deleted (data wiping/overwriting); paper records shredded or incinerated.</li>
+    </ol>
+
+    <h2>Article 7 (Rights of Data Subjects and How to Exercise Them)</h2>
+    <ol>
+      <li>Member rights: access, correction/deletion, processing suspension, consent withdrawal & account deletion. Requests processed without delay, identity verification required.</li>
+      <li>Exercise methods: via website/app menu, customer support email, written request or fax.</li>
+      <li>Representation: legal representatives or authorized agents may act with power of attorney.</li>
+      <li>Limitations: may refuse requests for legal compliance, protection of others, or unreasonably repetitive requests.</li>
+      <li>Correction handling: inaccurate data not used or provided until corrected; third parties notified if necessary.</li>
+    </ol>
+
+    <h2>Article 8 (Protection of Personal Information of Children Under Age 14)</h2>
+    <p>Services target ages 14 and above. Under-14 users require guardian consent. Guardians may exercise all rights on behalf of children. Minimum data is collected; no unjust sharing or outsourcing.</p>
+
+    <h2>Article 9 (Measures to Ensure Data Security)</h2>
+    <ul>
+      <li>Access control & authorization management; firewalls for external threats.</li>
+      <li>Encryption: passwords one-way encrypted; SSL for data transmission.</li>
+      <li>Access logging & review: logs retained and monitored for at least 6 months.</li>
+      <li>Internal policies & training: Data Protection Officer appointed; regular staff training.</li>
+      <li>Physical security: controlled facility access; locked server rooms & CCTV.</li>
+      <li>Continuous updates: regular security patches and system updates.</li>
+    </ul>
+
+    <h2>Article 10 (Data Protection Officer and Responsible Department)</h2>
+    <ul>
+      <li>Data Protection Officer: Changjae Lee, CEO</li>
+      <li>Responsible Department: SoMa Service Operations Team</li>
+      <li>Contact: cjlee@soma.ai.kr / 010-8583-5972</li>
+      <li>Address: 4F, Room 406, 198 Heojeon-ro, Gangseo-gu, Seoul</li>
+    </ul>
+
+    <h2>Article 11 (Policy Change Notification)</h2>
+    <p>This Policy may be amended due to legal or policy changes or security improvements. Significant changes will be notified at least 7 days in advance; those affecting rights materially will be notified 30 days in advance. Effective as of June 16, 2025.</p>
+  </main>
+
+  <footer>
+    <a href="index_en.html">← Back to Home</a>
+  </footer>
+</body>
+</html>
