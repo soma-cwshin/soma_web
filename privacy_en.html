@@ -13,27 +13,47 @@
     h2 { font-size: 1.5rem; margin-top: 2rem; margin-bottom: 1rem; }
     p, li { margin-bottom: 0.75rem; }
     ol, ul { margin-left: 1rem; margin-bottom: 1rem; }
-    .header { display: flex; justify-content: space-between; align-items: center; }
-    .nav ul { display: flex; gap: 0.5rem; }
-    .nav a { font-weight: 500; padding: 0.25rem 0.5rem; color: #000; }
-    .nav a.active { color: var(--accent); }
-    .divider { color: #aaa; }
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  border-bottom: 1px solid #eee;
+}
+.logo { height: 40px; }
+.nav ul {
+  display: flex;
+  gap: 0.5rem;
+  font-weight: 500;
+}
+.nav a {
+  padding: 0.25rem 0.5rem;
+  transition: color .2s;
+}
+.nav a:hover, .nav a.active {
+  color: var(--accent);
+}
+.divider {
+  color: #aaa;
+}
     footer { text-align: center; margin-top: 2rem; }
   </style>
 </head>
 <body>
-  <header class="header">
-    <div class="logo-container">
-      <img src="logo.png" alt="SoMa Logo" style="height:40px;" />
-    </div>
-    <nav class="nav">
-      <ul>
-        <li><a href="privacy.html">KOR</a></li>
-        <li><span class="divider">|</span></li>
-        <li><a href="privacy_en.html" class="active">ENG</a></li>
-      </ul>
-    </nav>
-  </header>
+<header class="header">
+  <div class="logo-container">
+    <a href="index.html">
+      <img src="logo.png" alt="SoMa Logo" class="logo">
+    </a>
+  </div>
+  <nav class="nav">
+    <ul>
+      <li><a href="privacy.html">KOR</a></li>
+      <li><span class="divider">|</span></li>
+      <li><a href="privacy_en.html" class="active">ENG</a></li>
+    </ul>
+  </nav>
+</header>
 
   <main>
     <h1>SoMa Privacy Policy</h1>
