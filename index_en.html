@@ -1,259 +1,111 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Terms of Service - SoMa</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SoMa - Integrated AI SaaS Solution</title>
 
-    <!-- Favicon Start -->
+  <link rel="canonical" href="https://soma.ai.kr/" />
+
+  <link rel="alternate" href="https://soma.ai.kr/" hreflang="ko" />
+  <link rel="alternate" href="https://soma.ai.kr/index_en.html" hreflang="en" />
+  <link rel="alternate" href="https://soma.ai.kr/" hreflang="x-default" />
+
   <link rel="icon" href="favicon.ico" type="image/x-icon" />
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png" />
-  <!-- Favicon End -->
-  
-  <style>
-    :root { --accent: #95DCF8; --text-main: #333; --text-light: #555; }
-    /* Reset & Base */
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'Inter', sans-serif; color: var(--text-main); background: #fff; line-height: 1.6; }
-    a { text-decoration: none; color: inherit; }
-    ul, ol { list-style: none; }
 
-    /* Header */
-    .header { display: flex; justify-content: space-between; align-items: center; padding: 1rem 2rem; border-bottom: 1px solid #eee; }
+  <meta name="description" content="SoMa is an AI-based management SaaS integrated with reservations, payments, settlements, and reporting. Enhance operational efficiency with automated workflows and insights.">
+
+  <style>
+    :root { --accent: #95DCF8; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', sans-serif; color: #000; background: #fff; line-height: 1.6; }
+    a { text-decoration: none; color: inherit; }
+    ul { list-style: none; }
+
+    .header { display: flex; justify-content: space-between; align-items: center; padding: 1rem 2rem; }
     .logo { height: 40px; }
     .nav ul { display: flex; gap: 0.5rem; align-items: center; }
     .nav a { font-weight: 500; padding: 0.25rem 0.5rem; transition: color 0.2s; color: #000; }
     .nav a.active { color: var(--accent); }
     .divider { color: #aaa; }
 
-    /* Terms Content Container */
-    .terms-container { max-width: 800px; margin: 4rem auto; padding: 0 1.5rem; }
-    .terms-container h1 { font-size: 2.5rem; margin-bottom: 2rem; border-bottom: 3px solid var(--accent); padding-bottom: 1rem; color: #000; }
-    
-    .terms-section { margin-bottom: 2rem; }
-    .terms-section h3 { font-size: 1.25rem; margin: 2rem 0 1rem; color: #000; font-weight: 700; }
-    .terms-section p { margin-bottom: 1rem; color: var(--text-light); text-align: justify; }
-    
-    /* Lists within Terms */
-    .terms-section ol { list-style-type: decimal; padding-left: 1.5rem; margin-bottom: 1rem; color: var(--text-light); }
-    .terms-section ol li { margin-bottom: 0.75rem; padding-left: 0.5rem; }
-    .terms-section ul { list-style-type: disc; padding-left: 1.5rem; margin-top: 0.5rem; }
-    .terms-section ul li { margin-bottom: 0.5rem; }
-    
-    /* Sub-list styling (a, b, c...) */
-    .sub-list { list-style-type: none !important; padding-left: 0 !important; }
-    .sub-list li { display: flex; align-items: flex-start; }
-    .sub-list li::before { content: attr(data-marker); margin-right: 0.5rem; font-weight: 600; min-width: 20px; }
+    .hero { display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 4rem 1rem; }
+    .hero h1 { font-size: 3rem; margin-bottom: 1rem; color: #000; word-break: keep-all; overflow-wrap: normal; }
+    .hero p { font-size: 1.25rem; margin-bottom: 1.5rem; color: #000; }
+    .cta { display: inline-block; background: var(--accent); color: #fff; padding: 1rem 2rem; font-size: 1.5rem; border-radius: 9999px; font-weight: 600; border: none; cursor: pointer; }
+    .cta:hover { opacity: 0.85; }
 
-    strong { color: #000; font-weight: 600; }
+    .features { max-width: 1200px; margin: 4rem auto; padding: 0 1rem; }
+    .features h2 { text-align: center; font-size: 2rem; margin-bottom: 2rem; color: #000; }
+    .feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 2rem; }
+    .feature { background: #fff; padding: 2rem; border-radius: 1rem; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
+    .feature h3 { font-size: 1.25rem; margin-bottom: 0.75rem; color: var(--accent); }
+    .feature p { color: #333; }
 
-    /* Footer */
-    footer { text-align: center; padding: 3rem 1rem; background: #f9f9f9; border-top: 1px solid #eee; margin-top: 4rem; }
-    .company-info { font-size: 0.875rem; color: #555; line-height: 1.6; margin-bottom: 1rem; }
-    .policy-links { margin-bottom: 1.5rem; }
-    .policy-links a { color: var(--accent); margin: 0 0.5rem; font-weight: 500; }
+    footer { text-align: center; padding: 2rem 1rem; background: #f9f9f9; }
+    .company-info { font-size: 0.875rem; color: #555; line-height: 1.4; margin-bottom: 0.5rem; }
+    .policy-links { margin-bottom: 1rem; }
+    .policy-links a { color: var(--accent); margin: 0 0.25rem; }
     .policy-links a:hover { text-decoration: underline; }
-    footer p { font-size: 0.75rem; color: #999; }
+    footer p { font-size: 0.75rem; color: #777; }
   </style>
 </head>
 <body>
   <header class="header">
     <div class="logo-container">
-      <!-- Assuming logo file exists as per your snippet -->
-      <img src="logo.png" alt="SoMa Logo" class="logo">
+      <img src="logo.png" alt="SoMa Logo" class="logo" />
     </div>
     <nav class="nav">
       <ul>
-        <li><a href="index.html">KOR</a></li>
+        <li><a href="/">KOR</a></li>
         <li><span class="divider">|</span></li>
-        <li><a href="index_en.html" class="active">ENG</a></li>
+        <li><a href="/index_en.html" class="active">ENG</a></li>
       </ul>
     </nav>
   </header>
 
-  <section class="terms-container">
-    <h1>Terms of Service</h1>
+  <section class="hero">
+    <h1>Integrated AI SaaS Solution</h1>
+    <p>Experience innovation in your management environment with automated workflows and AI insights.</p>
+    <a href="/company.html" class="cta">About Us</a>
+  </section>
 
-    <div class="terms-section">
-      <h3>Article 1 (Purpose)</h3>
-      <p>The purpose of these Terms of Service (hereinafter referred to as the "Terms") is to stipulate the rights, obligations, and responsibilities of SoMa Inc. (hereinafter referred to as the "Company") and the users utilizing the SoMa AI service (hereinafter referred to as the "Service"). These Terms apply to all members utilizing the Service.</p>
-
-      <h3>Article 2 (Definitions)</h3>
-      <p>The definitions of terms used in these Terms are as follows:</p>
-      <ol>
-        <li><strong>Service</strong>: Refers to the online platform, including mobile applications and related web services provided by the Company, which offers features such as class reservation management, membership registration, and chatting.</li>
-        <li><strong>User</strong>: Refers to any person who accesses the Service and utilizes the services provided by the Company in accordance with these Terms, including both Members and Non-Members. However, the main features of the Service are provided only to those who have registered as Members.</li>
-        <li><strong>Member</strong>: Refers to a person who has registered for the Service according to the procedures set by the Company and has created an ID and password to use the Service continuously. Members are classified as follows:
-          <ul>
-            <li><strong>Instructor Member</strong>: A member who registers as an instructor, opens and operates their own classes through subscription payments provided by the Company, and issues invitation codes to invite and manage Student Members.</li>
-            <li><strong>Student Member</strong>: A member who joins the Service via an invitation code from an Instructor Member, uses the Service to reserve classes of the specific instructor, check attendance, and chat with the instructor.</li>
-          </ul>
-        </li>
-        <li><strong>Invitation Code</strong>: A unique code issued by an Instructor Member to invite Student Members to the Service. Student Members must enter this code to sign up.</li>
-        <li><strong>Subscription Fee</strong>: Refers to the recurring payment fee paid by the Instructor Member to the Company to use the paid features of the Service. Details such as the monthly subscription fee are subject to separate announcements by the Company.</li>
-        <li><strong>Chatting</strong>: Refers to the 1:1 messaging function provided within the Service for communication between Instructor Members and Student Members.</li>
-      </ol>
-
-      <h3>Article 3 (Posting and Revision of Terms)</h3>
-      <ol>
-        <li>The Company shall post the contents of these Terms, company name, representative name, contact information (email address, etc.), and business registration number on the initial screen or settings menu of the Service so that users can easily check them.</li>
-        <li>The Company may revise these Terms to the extent that it does not violate relevant laws such as the 「Act on the Consumer Protection in Electronic Commerce」, 「Act on the Regulation of Terms and Conditions」, and the 「Personal Information Protection Act」.</li>
-        <li>If the Company revises the Terms, it shall specify the effective date and the reason for the revision and announce it along with the current Terms on the Service notice board at least 7 days prior to the effective date. In the case of changes unfavorable to the Member, notice shall be given at least 30 days prior to the effective date, along with individual notifications via email or other means.</li>
-        <li>If a Member continues to use the Company's Service after the effective date announced pursuant to Paragraph 3, they shall be deemed to have agreed to the revised Terms. Members who do not agree to the revised Terms may terminate the Service use contract at any time. If a Member using paid services terminates the contract due to disagreement with the revision of the Terms, the refund policy set by the Company shall apply.</li>
-      </ol>
-
-      <h3>Article 4 (Contents of Service)</h3>
-      <ol>
-        <li>The Company provides the following services for the smooth class operation of Instructor Members and Student Members:
-          <ul class="sub-list">
-            <li data-marker="a)">Reservation Management Platform: A system where Instructor Members register their class times and Student Members can reserve those classes.</li>
-            <li data-marker="b)">Membership Registration and Management: A function for Instructor Members to register class passes (vouchers) for Student Members and manage usage counts.</li>
-            <li data-marker="c)">Attendance Check: A function for Instructor Members to check and record the attendance of Student Members during classes.</li>
-            <li data-marker="d)">Member Invitation and Management: A function for Instructor Members to issue invitation codes to invite new Student Members and manage their member list.</li>
-            <li data-marker="e)">1:1 Chat Service: A chat function allowing individual communication between Instructor Members and Student Members (consultation, schedule coordination, feedback, etc.).</li>
-            <li data-marker="f)">Other Additional Services: Other services determined by the Company (announcements, customer support, etc.).</li>
-          </ul>
-        </li>
-        <li>The Company may add or change the contents of the Service if necessary for operation. In this case, the contents of the changed service and the date of provision will be announced in advance through Service notices.</li>
-        <li>The Service is provided 24 hours a day, 365 days a year, in principle. However, it may be temporarily suspended in case of maintenance, replacement or breakdown of information and communication facilities, loss of communication, or significant operational reasons. In this case, the Company shall notify Members in advance or without delay to minimize damage.</li>
-      </ol>
-
-      <h3>Article 5 (Sign-up Application and Approval)</h3>
-      <ol>
-        <li><strong>Instructor Member Sign-up</strong>: Users wishing to join as Instructor Members shall provide necessary information such as name and contact information according to the sign-up form provided by the Company, agree to these Terms and the Personal Information Consent Form, and apply for membership by paying the subscription fee or applying for a free trial. The Company grants Instructor Member status to users who complete the payment or free trial verification according to the set procedures and complete any necessary additional procedures (e.g., qualification verification).</li>
-        <li><strong>Student Member Sign-up</strong>: Users wishing to join as Student Members shall enter the invitation code received from an Instructor Member in the Service app, provide member information such as name, and apply for membership by agreeing to the Terms and collection/use of personal information. The Company approves the registration if the invitation code is valid and there are no errors in the application information. The invitation code is for one-time use and cannot be transferred to others or used fraudulently.</li>
-        <li><strong>Refusal and Reservation of Application</strong>: The Company may refuse or reserve membership registration for applications falling under any of the following subparagraphs:
-          <ul class="sub-list">
-            <li data-marker="a)">If the applicant has previously lost membership qualification due to violation of these Terms (except where re-approval has been obtained from the Company).</li>
-            <li data-marker="b)">If there is falsehood, omission, or error in the registration details.</li>
-            <li data-marker="c)">If the application uses another person's name or is made for other fraudulent purposes.</li>
-            <li data-marker="d)">If it is difficult to provide the Service due to technical reasons or lack of facility capacity.</li>
-            <li data-marker="e)">If the Company deems it difficult to approve the application based on reasonable judgment.</li>
-          </ul>
-        </li>
-        <li>The membership contract is established when the Company's approval reaches the applicant (e.g., when the sign-up completion screen is displayed on the Service app).</li>
-      </ol>
-
-      <h3>Article 6 (Withdrawal and Loss of Qualification)</h3>
-      <ol>
-        <li><strong>Withdrawal</strong>: Members may request withdrawal at any time through the menu provided within the Service or Customer Center. The Company shall process the withdrawal promptly in accordance with relevant laws, and delete the Member's personal information within 7 days from the withdrawal request date unless there are special provisions in the laws.</li>
-        <li><strong>Restriction and Loss of Qualification</strong>: If a Member falls under any of the following reasons, the Company may suspend or revoke (force withdraw) membership qualification after prior notice. In this case, the Company will notify the Member via email, text, or other appropriate means and may provide an opportunity for explanation for a certain period if necessary.
-          <ul class="sub-list">
-            <li data-marker="a)">Registering false information upon sign-up.</li>
-            <li data-marker="b)">Failing to pay service-related fees (subscription fees, etc.) or debts borne by the Member by the due date.</li>
-            <li data-marker="c)">Threatening electronic transaction order, such as interfering with others' use of the Service or stealing information.</li>
-            <li data-marker="d)">Committing illegal acts contrary to laws or public order and morals using the chat function within the Service.</li>
-            <li data-marker="e)">Committing acts prohibited by these Terms or contrary to social order.</li>
-            <li data-marker="f)">Causing significant disruption to Service operation through other inappropriate acts as a Member.</li>
-          </ul>
-        </li>
-        <li>When a Member loses qualification or withdraws, the Company processes the Member's information and records in accordance with relevant laws and the Privacy Policy.</li>
-      </ol>
-
-      <h3>Article 7 (Notification to Members)</h3>
-      <ol>
-        <li>If individual notification to a Member is required, the Company may notify via the email address provided by the Member or through in-service notification messages.</li>
-        <li>For notifications to unspecified numbers of Members, the Company may substitute individual notifications by posting on the notice board within the Service. However, matters having a significant impact on the Member's own rights or obligations shall be notified individually.</li>
-      </ol>
-
-      <h3>Article 8 (Service Use and Obligations of Members)</h3>
-      <ol>
-        <li><strong>Account Management</strong>: The Member is responsible for managing their ID and password. Members shall not transfer or allow third parties to use their account information. In particular, Student Members shall not arbitrarily share the received invitation code with third parties to allow them to sign up fraudulently.</li>
-        <li><strong>Compliance with Laws and Prohibited Acts</strong>: Members shall comply with relevant laws, these Terms, user guides, and precautions notified on the Service, and shall not engage in the following acts:
-          <ul class="sub-list">
-            <li data-marker="a)">Stealing or fraudulently using another person's name or payment information.</li>
-            <li data-marker="b)">Reproducing, distributing, or commercially using information obtained from the Service without prior consent from the Company.</li>
-            <li data-marker="c)">Infringing on the intellectual property rights, such as copyrights, of the Company or third parties.</li>
-            <li data-marker="d)">Intentionally interfering with Service operation or accessing the Company's servers and systems by improper means.</li>
-            <li data-marker="e)">Abuse of chat function: Sending chats containing profanity, slander, obscenity, or violence that cause displeasure or harm to the other party.</li>
-            <li data-marker="f)">Other acts deemed illegal or unreasonable.</li>
-          </ul>
-        </li>
-        <li><strong>Chat Record Management</strong>: The chat function is provided for smooth communication between Members. Members should be careful not to share unnecessary personal information via chat. The Company may check chat records within the necessary scope based on user consent or laws only when there are legitimate reasons such as dispute mediation between users or reports of violations. If illegal acts through the chat function are detected, the Company may take necessary measures such as providing the contents to investigative agencies according to relevant laws.</li>
-        <li><strong>Liability for Violation</strong>: The Member bears all legal responsibilities arising from violating the obligations of this Article, and the Company is not responsible for damages caused by the Member's violation. If the Company suffers damages due to the Member's violation, the Company may claim damages from the Member.</li>
-      </ol>
-
-      <h3>Article 9 (Paid Services and Subscription)</h3>
-      <ol>
-        <li><strong>Use of Subscription Service</strong>: To use the professional features of the Service, Instructor Members must pay the subscription fee determined by the Company and join the paid service. Subscription payments may be made through regular payment methods such as monthly subscriptions, and unless a separate cancellation request is made, it is automatically renewed in the next billing cycle. Details on plan types, prices, and payment methods follow the information on the Service screen.</li>
-        <li><strong>Payment Information</strong>: The Company does not directly store the Member's financial information (credit card number, etc.) during the subscription payment process and uses services of professional payment agencies for safe payment.</li>
-        <li><strong>Change and Cancellation of Subscription</strong>: Instructor Members may apply for a change (e.g., upgrade to a higher plan) or cancellation of the subscription service through the settings menu within the Service. If cancellation is requested, billing will stop from the next billing cycle, and refunds for subscription fees already paid up to the point of cancellation shall follow the withdrawal of subscription and refund regulations of these Terms.</li>
-        <li><strong>Non-payment of Subscription Fee</strong>: If an Instructor Member fails to pay the subscription fee on time or payment is overdue due to failure, the Company may temporarily suspend the use of paid features. If the unpaid subscription fee is not paid within the grace period set by the Company, the Company may terminate the Instructor Member's paid service use, and the Company is not responsible for any disadvantages arising from this.</li>
-      </ol>
-
-      <h3>Article 10 (Withdrawal of Subscription and Refund Policy)</h3>
-      <ol>
-        <li><strong>Right of Withdrawal</strong>: Users of paid services, such as Instructor Members, may request withdrawal of subscription (cancellation of payment) for the paid use contract (subscription) within 7 days from the payment date within the scope determined by relevant laws. However, if the Service has already been used (e.g., issuing an invitation code to register a Student Member or using the class reservation management function) even within that period, withdrawal may be restricted.</li>
-        <li><strong>Refund Conditions</strong>: If a refund is requested within 7 days of payment without using any paid features of the Service, the Company will refund the full subscription fee paid. If 7 days have passed since the start of the subscription or any part of the Service has been used, refunds are generally not possible. This is a measure considering the reduction in economic value upon use due to the nature of the Service as digital content.</li>
-        <li><strong>Refund Application and Processing</strong>: Members wishing for a refund must apply through the Customer Center or the procedure guided by the Company. The Company will check the request within 3 business days from the receipt of the refund request and proceed with payment cancellation or refund if the reason for refund complies with this clause. If the refund is approved, the Company will pay the refund amount to the means used for payment within 7 business days from the approval date. However, it may take some time to complete the refund depending on the processing schedule of the payment provider (e.g., card company, app market).</li>
-        <li><strong>Exceptions to Refund</strong>: Withdrawal of subscription may be restricted in accordance with relevant laws in any of the following cases:
-          <ul class="sub-list">
-            <li data-marker="a)">If the benefits generated or obtained by the Member through the paid service (subscription) exist at the time of the refund request (e.g., remaining service benefits already issued).</li>
-            <li data-marker="b)">If there is a justifiable reason why a refund is impossible due to the Member's fault.</li>
-          </ul>
-        </li>
-      </ol>
-
-      <h3>Article 11 (Privacy Protection)</h3>
-      <ol>
-        <li>The Company collects and uses personal information of Members to provide the Service and manages it safely in accordance with relevant laws. Specific details such as items collected, purpose, and retention period can be found in the Personal Information Collection and Use Agreement and Privacy Policy, and Members must agree to them to use the Service.</li>
-        <li>The Company does not provide Members' personal information to third parties without consent, and details regarding personal information processing follow the separately disclosed Privacy Policy. The Company takes administrative and technical safety measures to prevent unauthorized leakage or misuse of personal information.</li>
-        <li>For smooth operation, minimum personal information (name, contact, etc.) necessary for service use may be mutually provided between Members. Instructor Members can check information necessary for class proceedings, such as names and reservation status of invited Student Members, and Student Members can also check necessary information such as the profile and contact of the participating Instructor. Such provision is made within the purpose of Service provision, and Members can use the Service only if they agree to this.</li>
-        <li>To protect the personal information of children under 14, the Company notifies that sign-up for users under 14 requires the consent of a legal representative. If the Company becomes aware that a child under 14 has signed up without such consent, it will immediately suspend the account and delete personal information.</li>
-      </ol>
-
-      <h3>Article 12 (Copyright and Restrictions)</h3>
-      <ol>
-        <li>Copyright and intellectual property rights for the Service and its components (text, images, logos, etc.) belong to the Company. However, the copyright of content uploaded by Members during Service use (profile photos, posts, etc.) belongs to the respective Member.</li>
-        <li>Members shall not reproduce, transmit, publish, distribute, broadcast, or use for commercial purposes or allow third parties to use information obtained through Service use that belongs to the Company or provider without prior consent.</li>
-        <li>If a Member uploads materials for which they do not own the copyright or infringes on another's copyright, the Member bears legal responsibility, and the Company is not responsible. If the Company is notified or becomes aware of such infringement, it may take necessary measures such as suspending or deleting the content.</li>
-      </ol>
-
-      <h3>Article 13 (Limitation of Liability and Indemnification)</h3>
-      <ol>
-        <li><strong>Indemnification for Transactions between Instructor and Member</strong>: The Company is not directly responsible for actual offline or online class activities, such as class proceedings and guidance, between Instructor Members and Student Members. The Service only provides a platform for communication and schedule management, and final responsibility for class content, schedule, and quality lies with the Instructor and Member.</li>
-        <li><strong>Reliability of Information</strong>: The Company does not guarantee the accuracy or authenticity of information provided by Members or chat contents exchanged between Members, and is not responsible for disputes or damages caused by such contents. Members are encouraged to exchange information based on trust but verify sufficiently if suspicious.</li>
-        <li><strong>Indemnification for Service Suspension</strong>: The Company is exempted from liability for damages caused to Members if the Service is temporarily suspended or usage is hindered due to force majeure such as natural disasters, emergencies, or technical defects, within the scope permitted by law. However, this does not apply to damages caused by the Company's intentional or gross negligence.</li>
-        <li><strong>Indemnification for Member's Fault</strong>: The Company is not responsible for damages caused by Member's intent or negligence, damages arising from negligence in managing accounts and invitation codes, or damages from claims raised by third parties due to Member's violation of these Terms.</li>
-        <li><strong>Indemnification for Indirect Damages</strong>: The Company is not responsible for indirect or incidental damages such as loss of expected profit from Service use or damage from personal information exposure (except in cases of Company's violation of law or negligence).</li>
-      </ol>
-
-      <h3>Article 14 (Dispute Resolution)</h3>
-      <ol>
-        <li>The Company operates a Customer Center to handle Member complaints or dispute mediation. Users can submit inquiries or complaints via the app menu or disclosed contact information. The Company strives to process legitimate opinions or complaints promptly and will notify the reason and schedule if processing is delayed.</li>
-        <li>If a dispute arises between the Company and a Member regarding these Terms, they shall strive to resolve it through mutual consultation. If not resolved, they may follow procedures under relevant laws and apply for dispute resolution to the Personal Information Dispute Mediation Committee, KISA Counseling Center, etc., if necessary.</li>
-      </ol>
-
-      <h3>Article 15 (Governing Law and Jurisdiction)</h3>
-      <ol>
-        <li>Republic of Korea law applies to all legal disputes between the Company and Members regarding these Terms and Service use.</li>
-        <li>If a lawsuit is filed regarding a dispute related to Service use, the court having jurisdiction over the location of the Company's head office shall be the exclusive competent court, within the scope permitted by the Civil Procedure Act.</li>
-        <li>Even for Members residing overseas, disputes with the Company are subject to Republic of Korea law, and the competent court is determined according to the Act on Private International Law and relevant laws.</li>
-      </ol>
-
-      <h3>Addendum</h3>
-      <ol>
-        <li>These Terms are effective from December 3, 2025. Existing terms are replaced by these Terms.</li>
-        <li>The Company may apply the new provisions to subscribers before the effective date, and Members who do not agree may choose to withdraw from membership.</li>
-      </ol>
-
+  <section class="features">
+    <h2>Key Features</h2>
+    <div class="feature-grid">
+      <div class="feature">
+        <h3>Automated Scheduling</h3>
+        <p>One-stop reservation and attendance management.</p>
+      </div>
+      <div class="feature">
+        <h3>AI Insights</h3>
+        <p>Analytics for optimizing schedules, revenue, and user engagement.</p>
+      </div>
+      <div class="feature">
+        <h3>Messaging</h3>
+        <p>Real-time chat to enhance user communication.</p>
+      </div>
+      <div class="feature">
+        <h3>Performance Reports</h3>
+        <p>Support for user performance, settlements, and detailed reporting.</p>
+      </div>
     </div>
   </section>
 
   <footer>
     <div class="company-info">
-      SoMa Inc.<br>
-      Business Registration No.: 805-88-03448 | CEO: Changjae Lee<br>
-      Hosting Service: SoMa Inc.<br>
-      04617 298, Dongho-ro, Jung-gu, Seoul, Republic of Korea
+      SoMa Inc.<br />
+      Registration No.: 805-88-03448 | CEO: Changjae Lee<br />
+      Hosting Service: SoMa Inc.<br />
+      298, Dongho-ro, Jung-gu, Seoul, Republic of Korea (04617)
     </div>
     <div class="policy-links">
-      <a href="terms_en.html" class="active">Terms of Service</a> |
-      <a href="privacy_en.html" target="_blank">Privacy Policy</a>
+      <a href="/terms_en.html" target="_blank">Terms of Service</a> |
+      <a href="/privacy_en.html" target="_blank">Privacy Policy</a>
     </div>
     <p>&copy; 2025 SoMa Inc. All rights reserved.</p>
   </footer>
-
 </body>
 </html>
