@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SoMa AI - 앱 다운로드</title>
+<script>
+    function redirect() {
+        var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+        
+        // iOS 감지 (아이폰, 아이패드, 아이팟)
+        if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+            window.location.href = "https://apps.apple.com/kr/app/%EC%86%8C%EB%A7%88/id6753277300";
+        } 
+        // Android 감지
+        else if (/android/i.test(userAgent)) {
+            window.location.href = "https://play.google.com/store/apps/details?id=com.somaai.somaai&pcampaignid=web_share&pli=1";
+        } 
+        // 그 외 (PC 등) -> 회사 홈페이지 메인으로 이동
+        else {
+            window.location.href = "https://www.soma.ai.kr"; 
+        }
+    }
+    // 페이지 로드 시 즉시 리다이렉트 실행
+    window.onload = redirect;
+</script>
+</head>
+<body>
+    <p>스토어로 이동 중입니다...</p>
+</body>
+</html>
