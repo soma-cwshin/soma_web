@@ -5,160 +5,219 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Privacy Policy - SoMa</title>
 
-    <!-- 파비콘 설정 시작 -->
+    <!-- Favicon Settings -->
   <link rel="icon" href="favicon.ico" type="image/x-icon" />
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png" />
-  <!-- 파비콘 설정 끝 -->
+  <!-- Favicon Settings End -->
   
   <style>
-    :root { --accent: #95DCF8; }
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'Inter', sans-serif; color: #000; background: #fff; line-height: 1.6; padding: 2rem; }
-    a { text-decoration: none; color: inherit; }
-    h1 { font-size: 2rem; margin-bottom: 1rem; }
-    h2 { font-size: 1.5rem; margin-top: 2rem; margin-bottom: 1rem; }
-    p, li { margin-bottom: 0.75rem; }
-    ol, ul { margin-left: 1rem; margin-bottom: 1rem; }
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem 2rem;
-  border-bottom: 1px solid #eee;
-}
-.logo { height: 40px; }
-.nav ul {
-  display: flex;
-  gap: 0.5rem;
-  font-weight: 500;
-}
-.nav a {
-  padding: 0.25rem 0.5rem;
-  transition: color .2s;
-}
-.nav a:hover, .nav a.active {
-  color: var(--accent);
-}
-.divider {
-  color: #aaa;
-}
-    footer { text-align: center; margin-top: 2rem; }
- <style>
-  /* 1) 모든 ul 에서 기본 불릿 없애기 */
-  ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
+    body { font-family: 'Inter', sans-serif; padding:2rem; line-height:1.6; color: #333; }
+    h1 { font-size:2rem; margin-bottom:2rem; border-bottom: 2px solid #333; padding-bottom: 1rem; }
+    h3 { margin-top:2rem; font-size:1.3rem; color: #000; }
+    p, li { margin-bottom:0.5rem; font-size: 1rem; word-break: keep-all; }
+    ol, ul { padding-left: 1.5rem; }
+    ul { list-style-type: disc; }
+    strong { color: #000; }
+    
+    /* Sub-list Styles */
+    .sub-list { list-style-type: none; padding-left: 0; }
+    .sub-list li::before { content: attr(data-marker); margin-right: 0.5rem; font-weight: bold; }
 
-  /* 기존에 쓰던 nav ul 대신 이렇게 덮어쓰기 해주세요 */
-  .nav ul {
-    display: flex;
-    align-items: center;
-    gap: 1rem;           /* 토글 사이 간격을 좀 더 넉넉히 */
-  }
+    /* Table Styles */
+    table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.95rem; border-top: 2px solid #333; }
+    th, td { border-bottom: 1px solid #ddd; padding: 0.75rem; text-align: left; vertical-align: top; }
+    th { background-color: #f9f9f9; font-weight: bold; color: #000; white-space: nowrap; width: 20%; }
+    
+    .terms { max-width: 800px; margin: 0 auto; }
+    footer { max-width: 800px; margin: 3rem auto 0; text-align: left; }
+    a { text-decoration: none; color: #555; font-weight: bold; }
+    a:hover { text-decoration: underline; }
+    
+    /* Responsive Table */
+    @media (max-width: 600px) {
+      th, td { display: block; width: 100%; }
+      th { background-color: #f0f0f0; border-bottom: none; }
+      td { margin-bottom: 0.5rem; border-bottom: 1px solid #eee; }
+    }
+  </style>
+</head>
+<body>
+<section class="terms">
+  <h1>SoMa Privacy Policy</h1>
 
-  /* 2) 헤더 좌우 패딩을 줄여서 로고가 더 왼쪽에 붙도록 조정 */
-  .header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem 1rem;  /* 기존 1rem 2rem 에서 우측 패딩을 1rem 으로 */
-    border-bottom: 1px solid #eee;
-  }
-</style>
+  <h3>Article 1 (General Provisions)</h3>
+  <p>SoMa Inc. (hereinafter referred to as the "Company"), which operates the SoMa service (hereinafter referred to as the "Service"), values the personal information of users and complies with relevant laws and regulations, such as the "Personal Information Protection Act" and the "Act on Promotion of Information and Communications Network Utilization and Information Protection." This Privacy Policy explains what personal information the Company collects, for what purpose it is used, and how it is protected. It also stipulates the users' rights and how to exercise them, provision to third parties, and outsourcing matters, so please read it carefully before using the Service.</p>
 
-  <main>
-    <h1>SoMa Privacy Policy</h1>
-    <p>SoMa Inc. (hereinafter “the Company”) fully complies with the Personal Information Protection Act and related statutes, and strives to protect the personal information of data subjects. This Privacy Policy applies to the processing of personal information of members who use the SoMa service platform (including website and mobile app) operated by the Company, and sets forth the following:</p>
-    <hr />
-    <h2>Article 1 (Items of Personal Information Collected and Collection Methods)</h2>
-    <ol>
-      <li><strong>Items collected:</strong> The Company collects only the minimum personal information necessary for membership registration and service provision:
-        <ul>
-          <li>Registration: Mobile phone number (required)</li>
-          <li>Service use & consultations: Name, date of birth, gender, age, contact details, occupation, address, referral source; exercise goals, medical history, preferences, consultation details; preferred day/time, session count & duration, payment date & method, tuition, installment status, ticket usage & cancellation deadlines; membership tier, digital rewards, physical data (weight, muscle mass, BMI, body fat %); instructor assignment, assessment results, satisfaction ratings, session history, InBody trends, etc.</li>
-        </ul>
-      </li>
-      <li><strong>Collection methods:</strong> Direct user input at registration; OCR extraction from consultation forms; additional web/app inputs; information provided via customer support; automatic log creation via cookies and log analysis.</li>
-      <li><strong>Sensitive & unique identifiers:</strong> Sensitive data (race, creed, political views, criminal records) not collected. Health data collected with explicit consent; unique identifiers collected only when legally required with separate consent.</li>
-      <li><strong>User rights protection:</strong> Members may refuse optional data without affecting basic service use. Personal information used only for stated purposes; any changes require separate consent.</li>
-    </ol>
+  <h3>Article 2 (Purpose of Collection and Use)</h3>
+  <p>The Company uses the collected personal information within the scope of the following purposes. If the purpose changes, we will notify the user in advance and obtain consent.</p>
+  <ol>
+    <li><strong>Member Management</strong>: Confirmation of intent to sign up, identification and authentication of users, verification of sign-up and age (procedure for legal representative consent if necessary), maintenance and management of membership status, prevention of fraudulent use, identity verification upon password loss, delivery of notices, etc.</li>
+    <li><strong>Service Provision and Operation</strong>: Class connection and reservation management between Instructors and Members, provision of core functions such as membership vouchers and attendance checks, 1:1 chat service support for consultation/communication, sending notifications (reservation schedules or announcements, etc.).</li>
+    <li><strong>Paid Service Processing</strong>: Payment of subscription fees, management of payment history and usage period, refund processing, and other e-commerce related services.</li>
+    <li><strong>Customer Support and Dispute Resolution</strong>: Handling inquiries or complaints, checking records and responding for dispute mediation, delivering notices, and supporting consultations related to service use.</li>
+    <li><strong>Service Improvement and New Development</strong>: Analysis of user service usage patterns and satisfaction, development of new features and provision of personalized services, provision of event and advertising information (only if separately consented).</li>
+    <li><strong>Legal Compliance and Safety Management</strong>: Preservation of transaction records according to e-commerce laws, provision of data upon lawful request or order from investigative/administrative agencies, prevention and response to violations of terms and laws, monitoring for system safety and security.</li>
+  </ol>
 
-    <h2>Article 2 (Purposes of Personal Information Collection and Use)</h2>
-    <ol>
-      <li>Membership registration & management: identity verification, age check, account management, withdrawal processing.</li>
-      <li>Consultation & personalized services: member consultations, tailored exercise programs, scheduling, instructor assignment.</li>
-      <li>Member benefits & analytics: tier & reward management, satisfaction surveys, exercise & body data analysis, AI-driven reports.</li>
-      <li>Payments & settlements: billing, payment processing, refunds, instructor compensation.</li>
-      <li>Customer support: inquiry response, complaint resolution, notice delivery.</li>
-      <li>Marketing & events: new service/event information, promotional messages (consented members only).</li>
-      <li>Legal compliance & risk management: usage restrictions, fraud prevention, security, record retention.</li>
-    </ol>
+  <h3>Article 3 (Items Collected and Retention Period)</h3>
+  <ol>
+    <li><strong>Collected Items</strong>: The Company processes the following personal information items with the consent of the data subject and retains/processes them within the period stipulated by law or the period agreed upon by the data subject at the time of collection.</li>
+  </ol>
+  <table>
+    <thead>
+      <tr>
+        <th>Category</th>
+        <th>Purpose</th>
+        <th>Items</th>
+        <th>Retention Period</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Required</strong></td>
+        <td>Sign-up & Management</td>
+        <td>Name, Contact (Phone Number), Email, (For Student Members) Instructor ID of the inviting instructor</td>
+        <td>1 year after withdrawal</td>
+      </tr>
+      <tr>
+        <td><strong>Required</strong></td>
+        <td>Service Provision</td>
+        <td>Membership info, Class schedule/reservation/attendance info, Chat messages between Instructor and Student</td>
+        <td>1 year after withdrawal</td>
+      </tr>
+      <tr>
+        <td><strong>Required<br>(Sensitive)</strong></td>
+        <td>Personalized Service</td>
+        <td>Body composition test info (height, weight, analysis data), Photos, Medical history</td>
+        <td>1 year after withdrawal</td>
+      </tr>
+      <tr>
+        <td><strong>Optional</strong></td>
+        <td>Marketing</td>
+        <td>Name, Contact (Phone Number), Email</td>
+        <td>Until withdrawal or consent withdrawal</td>
+      </tr>
+    </tbody>
+  </table>
 
-    <h2>Article 3 (Retention and Use Period of Personal Information)</h2>
-    <ol>
-      <li>General deletion: data deleted upon withdrawal; may retain up to 3 years post-withdrawal for re-registration convenience and analysis, then destroyed or moved to secure storage.</li>
-      <li>Statutory retention: contracts & withdrawal records – 5 years; payment & supply records – 5 years; complaints & disputes – 3 years; access logs – 3 months.</li>
-      <li>Dormant accounts: data of inactive members (1+ year) moved to secure storage, destroyed after retention period; members notified 30 days prior.</li>
-    </ol>
+  <ol start="2">
+    <li><strong>Collection Methods</strong>: The Company collects personal information in the following ways:
+      <ul>
+        <li>Information directly entered by the user during the sign-up or service usage process.</li>
+        <li>Collection through automatic data collection tools during service usage.</li>
+        <li>Information entered by an Instructor Member on behalf of a Student Member with their consent.</li>
+      </ul>
+    </li>
+    <li><strong>Retention by Law</strong>: The Company retains the following information for a certain period in accordance with relevant laws such as the Act on Consumer Protection in Electronic Commerce.</li>
+  </ol>
+  <table>
+    <thead>
+      <tr>
+        <th>Items</th>
+        <th>Period</th>
+        <th>Legal Basis</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Records on contract or withdrawal of subscription</td>
+        <td>5 years</td>
+        <td>E-Commerce Act</td>
+      </tr>
+      <tr>
+        <td>Records on payment and supply of goods</td>
+        <td>5 years</td>
+        <td>E-Commerce Act</td>
+      </tr>
+      <tr>
+        <td>Records on consumer complaints or dispute handling</td>
+        <td>3 years</td>
+        <td>E-Commerce Act</td>
+      </tr>
+      <tr>
+        <td>Records on login</td>
+        <td>3 months</td>
+        <td>Communication Privacy Act</td>
+      </tr>
+    </tbody>
+  </table>
 
-    <h2>Article 4 (Provision of Personal Information to Third Parties)</h2>
-    <ol>
-      <li>Principle: no third-party provision without consent; if required, notify purpose, recipient, items, retention period, and obtain consent.</li>
-      <li>Exceptions: lawful requests by authorities; urgent life/safety protection; other legal exceptions.</li>
-      <li>Current status: no third-party sharing; policy will be updated and consent obtained if this changes.</li>
-    </ol>
+  <h3>Article 4 (Provision to Third Parties)</h3>
+  <ol>
+    <li><strong>Provision upon User Request or Consent</strong>: Personal information is provided to third parties within the agreed scope when the user consents to provision for external service linkage or specific service usage.</li>
+    <li><strong>Provision under Law</strong>: Personal information may be provided without user consent exceptionally if there are special provisions in the law or if requested by investigative agencies according to lawful procedures and methods for investigation purposes.</li>
+    <li><strong>Provision Necessary for Service Use</strong>: Due to the nature of the Service, some personal information may be provided between Members. Student Member's name and reservation info are provided to the Instructor Member, and the Instructor's profile and contact info are provided to the Student Member. This is essential for service fulfillment, and users agree to this upon sign-up.</li>
+    <li><strong>Exceptions</strong>: Limited provision is allowed without consent within the scope permitted by law, such as when it is deemed urgently necessary for the safety of the user's life or body.</li>
+  </ol>
 
-    <h2>Article 5 (Commissioned Processing of Personal Information)</h2>
-    <ol>
-      <li>Tasks such as development, maintenance, payment processing, SMS/LMS, and cloud hosting may be outsourced to specialized providers.</li>
-      <li>Contracts ensure prohibition of secondary use, technical & managerial safeguards, restriction on subcontracting, oversight, and liability.</li>
-      <li>Commissioned provider list not currently disclosed; policy will be updated and published upon changes.</li>
-    </ol>
+  <h3>Article 5 (Outsourcing of Personal Information Processing)</h3>
+  <ol>
+    <li>The Company may outsource some of the tasks necessary for service operation to external specialized companies. When outsourcing, the Company clarifies and supervises the trustee's obligation to safely manage personal information in accordance with the Personal Information Protection Act.</li>
+    <li>The status of the Company's personal information processing outsourcing is as follows:
+      <ul>
+        <li><strong>KG Inicis</strong>: Payment processing and settlement for paid services</li>
+        <li><strong>Kakao</strong>: Sending information via AlimTalk, etc.</li>
+      </ul>
+    </li>
+    <li>If the contents of the outsourced work or the trustee change, we will disclose it through this Privacy Policy without delay.</li>
+  </ol>
 
-    <h2>Article 6 (Procedures and Methods for Data Destruction)</h2>
-    <ol>
-      <li>Destruction procedures: data selected and destroyed upon retention expiry or purpose fulfillment, with Data Protection Officer approval. Deleted immediately or moved for legal retention then destroyed.</li>
-      <li>Destruction methods: electronic files permanently deleted (data wiping/overwriting); paper records shredded or incinerated.</li>
-    </ol>
+  <h3>Article 6 (Rights of Users and Legal Representatives)</h3>
+  <ol>
+    <li><strong>Request for Access/Correction</strong>: Users and legal representatives may request access to their personal information held by the Company at any time and request correction if there are errors.</li>
+    <li><strong>Withdrawal of Consent and Deletion</strong>: Users may withdraw their consent to the collection and use of personal information at any time and have the right to request account deletion through membership withdrawal.</li>
+    <li><strong>Request for Suspension of Processing</strong>: Users may request a temporary suspension of processing for specific personal information. However, this may be refused in accordance with legal requirements.</li>
+    <li><strong>Method of Exercising Rights</strong>: Requests can be made in writing, via email, etc., and the Company will take action after verifying the identity of the requester.</li>
+    <li><strong>Protection of Minors' Rights</strong>: The legal representative of a child under the age of 14 may exercise rights regarding the child's personal information.</li>
+  </ol>
 
-    <h2>Article 7 (Rights of Data Subjects and How to Exercise Them)</h2>
-    <ol>
-      <li>Member rights: access, correction/deletion, processing suspension, consent withdrawal & account deletion. Requests processed without delay, identity verification required.</li>
-      <li>Exercise methods: via website/app menu, customer support email, written request or fax.</li>
-      <li>Representation: legal representatives or authorized agents may act with power of attorney.</li>
-      <li>Limitations: may refuse requests for legal compliance, protection of others, or unreasonably repetitive requests.</li>
-      <li>Correction handling: inaccurate data not used or provided until corrected; third parties notified if necessary.</li>
-    </ol>
+  <h3>Article 7 (Security Measures)</h3>
+  <p>The Company implements the following measures to safely manage users' personal information:</p>
+  <ul>
+    <li><strong>Administrative Measures</strong>: Establishment of internal management plans, employee training, minimization of handling staff.</li>
+    <li><strong>Technical Measures</strong>: Access control management, encryption of important information, installation and renewal of security programs.</li>
+    <li><strong>Physical Measures</strong>: Access control to computer rooms and data storage rooms.</li>
+  </ul>
 
-    <h2>Article 8 (Protection of Personal Information of Children Under Age 14)</h2>
-    <p>Services target ages 14 and above. Under-14 users require guardian consent. Guardians may exercise all rights on behalf of children. Minimum data is collected; no unjust sharing or outsourcing.</p>
+  <h3>Article 8 (Destruction Procedures and Methods)</h3>
+  <ol>
+    <li>The Company destroys personal information without delay when it becomes unnecessary, such as when the retention period expires or the purpose of processing is achieved.</li>
+    <li><strong>Destruction Procedure</strong>: Personal information subject to destruction is selected and destroyed with the approval of the Data Protection Officer (CPO).</li>
+    <li><strong>Destruction Method</strong>: Electronic files are destroyed so that they cannot be reproduced, and paper documents are shredded or incinerated.</li>
+  </ol>
 
-    <h2>Article 9 (Measures to Ensure Data Security)</h2>
-    <ul>
-      <li>Access control & authorization management; firewalls for external threats.</li>
-      <li>Encryption: passwords one-way encrypted; SSL for data transmission.</li>
-      <li>Access logging & review: logs retained and monitored for at least 6 months.</li>
-      <li>Internal policies & training: Data Protection Officer appointed; regular staff training.</li>
-      <li>Physical security: controlled facility access; locked server rooms & CCTV.</li>
-      <li>Continuous updates: regular security patches and system updates.</li>
-    </ul>
+  <h3>Article 9 (Automatic Collection of Personal Information)</h3>
+  <ol>
+    <li>The Company may use cookies to provide user convenience.</li>
+    <li><strong>Purpose</strong>: Maintaining login sessions, saving personalized settings, traffic analysis, etc.</li>
+    <li><strong>Refusal Method</strong>: You can refuse to save cookies through your browser settings. (e.g., Settings menu in Edge, Chrome)</li>
+  </ol>
 
-    <h2>Article 10 (Data Protection Officer and Responsible Department)</h2>
-    <ul>
-      <li>Data Protection Officer: Changjae Lee, CEO</li>
-      <li>Responsible Department: SoMa Service Operations Team</li>
-      <li>Contact: cjlee@soma.ai.kr / 010-8583-5972</li>
-      <li>Address: 4F, Room 406, 198 Heojeon-ro, Gangseo-gu, Seoul</li>
-    </ul>
+  <h3>Article 10 (Data Protection Officer and Department)</h3>
+  <p>The Company oversees personal information processing duties and designates the following officer to handle complaints and damage relief.</p>
+  <ul>
+    <li><strong>Data Protection Officer (CPO)</strong>: Lee Chang-jae (CEO) (cjlee@soma.ai.kr, 0502-1935-5034)</li>
+    <li><strong>Department</strong>: Customer Support Team (Weekdays 09:00~18:00)</li>
+  </ul>
 
-    <h2>Article 11 (Policy Change Notification)</h2>
-    <p>This Policy may be amended due to legal or policy changes or security improvements. Significant changes will be notified at least 7 days in advance; those affecting rights materially will be notified 30 days in advance. Effective as of June 16, 2025.</p>
-  </main>
+  <h3>Article 11 (Remedies for Infringement of Rights)</h3>
+  <p>Users may contact the following organizations for remedies regarding personal information infringement:</p>
+  <ul>
+    <li>Personal Information Infringement Report Center (privacy.kisa.or.kr / 118)</li>
+    <li>Personal Information Dispute Mediation Committee (www.kopico.go.kr / 1833-6972)</li>
+    <li>Cybercrime Investigation Division, Supreme Prosecutors' Office (www.spo.go.kr / 1301)</li>
+    <li>Cyber Bureau, National Police Agency (cyberbureau.police.go.kr / 182)</li>
+  </ul>
 
-  <footer>
+  <h3>Article 12 (Addendum)</h3>
+  <ol>
+    <li>This Privacy Policy applies from December 3, 2025.</li>
+    <li>If this policy is modified to reflect changes in laws or services, we will announce it through notices at least 7 days prior to the revision.</li>
+  </ol>
+
+</section>
+  <footer style="margin-top:2rem;">
     <a href="index_en.html">← Back to Home</a>
   </footer>
 </body>
