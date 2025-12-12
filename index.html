@@ -1,681 +1,631 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>소마 (SoMa AI) - 나만의 피트니스 AI</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>소마 (SoMa AI) - 나만의 피트니스 AI</title>
 
-    <link rel="icon" href="favicon.ico" type="image/x-icon" />
-    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
-    
-    <style>
-        /* 1. 기본 설정 (Reset) */
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
-        }
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+    
+    <style>
+        /* 1. 기본 설정 (Reset) */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+        }
 
-        body {
-            background-color: #FFFFFF;
-            color: #000000;
-            overflow-x: hidden;
-            line-height: 1.5;
-        }
+        body {
+            background-color: #FFFFFF;
+            color: #000000;
+            overflow-x: hidden;
+            line-height: 1.5;
+        }
 
-        a { text-decoration: none; color: inherit; transition: opacity 0.2s; }
-        a:hover { opacity: 0.8; }
-        img { max-width: 100%; display: block; }
+        a { text-decoration: none; color: inherit; transition: opacity 0.2s; }
+        a:hover { opacity: 0.8; }
+        img { max-width: 100%; display: block; }
+        ul { list-style: none; }
 
-        /* 2. 유틸리티 클래스 */
-        .reveal {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 1s ease; 
-        }
+        /* 2. 공통 클래스 */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
 
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 1s ease; 
+        }
 
-        .text-blue { color: #2E8CD5; }
-        .bg-sky { background-color: #E7F8FF; }
-        .bg-white { background-color: #FFFFFF; }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
 
-        /* 3. 헤더 (Blur Effect) */
-        header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 90px;
-            background: rgba(255, 255, 255, 0.7);
-            backdrop-filter: blur(35px);
-            z-index: 1000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-        }
+        .text-blue { color: #2E8CD5; }
+        .bg-sky { background-color: #E7F8FF; }
+        .bg-white { background-color: #FFFFFF; }
 
-        .header-inner {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            width: 100%;
-            max-width: 1440px; /* PC 기준 */
-            padding: 0 40px;   /* PC 좌우 패딩 */
-        }
+        /* 3. 헤더 (Blur Effect) */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 90px;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(35px);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
 
-        .logo img { height: 34px; width: auto; }
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            max-width: 1440px;
+            padding: 0 40px;
+        }
 
-        /* 다운로드 버튼 */
-        .dropdown { position: relative; display: inline-block; }
-        .btn-download {
-            background-color: #2E8CD5;
-            color: #FFFFFF;
-            padding: 0 24px;
-            height: 48px; /* Figma: 48px */
-            border-radius: 27px;
-            font-size: 18px;
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            border: none;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-        .btn-download:hover { background-color: #2370ad; }
-        
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            right: 0;
-            top: 120%;
-            background-color: #ffffff;
-            min-width: 160px;
-            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
-            border-radius: 10px;
-            border: 1.5px solid #2E8CD5;
-            overflow: hidden;
-            z-index: 100;
-        }
-        .dropdown-content a {
-            padding: 12px 16px;
-            display: block;
-            font-size: 16px;
-            font-weight: 500;
-            color: #000;
-        }
-        .dropdown:hover .dropdown-content { display: block; }
+        .logo img { height: 34px; width: auto; }
 
-        /* =========================================
-           4. [PC/Desktop] 스타일 (Figma: Desktop - 1)
-           ========================================= */
-        
-        .container {
-            /* Figma Frame 25 Width: 1046px */
-            max-width: 1046px; 
-            margin: 0 auto;
-            padding: 0; /* Figma 상 padding 없음, width로 제어 */
-        }
+        /* 헤더 다운로드 버튼 */
+        .dropdown { position: relative; display: inline-block; }
+        .btn-download {
+            background-color: #2E8CD5;
+            color: #FFFFFF;
+            padding: 10px 24px;
+            border-radius: 27px;
+            font-size: 18px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .btn-download:hover { background-color: #2370ad; }
+        
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            right: 0;
+            top: 120%;
+            background-color: #ffffff;
+            min-width: 160px;
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            border: 1.5px solid #2E8CD5;
+            overflow: hidden;
+            z-index: 100;
+        }
+        .dropdown-content a {
+            padding: 12px 16px;
+            display: block;
+            font-size: 16px;
+            font-weight: 500;
+            color: #000;
+        }
+        .dropdown-content a:hover { background-color: #f5f5f5; }
+        .dropdown:hover .dropdown-content { display: block; }
 
-        /* Hero Section */
-        .hero-wrapper {
-            /* Figma Frame 5: Radial Gradient */
-            background: radial-gradient(65.39% 45.83% at 50% 100%, #2F8DD5 14.78%, #5FCDF9 59.4%, #FFFFFF 90.82%);
-            width: 100%;
-            min-height: 100vh;
-            /* Layout: 하단 정렬, 패딩 73px */
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-            align-items: center;
-            padding-bottom: 73px; 
-        }
+        /* =========================================
+           4. [PC/Desktop] 스타일 (MD: Desktop - 1 기준)
+           ========================================= */
+        
+        .hero-wrapper {
+            /* MD: Frame 5 배경 */
+            background: radial-gradient(65.39% 45.83% at 50% 100%, #2F8DD5 14.78%, #5FCDF9 59.4%, #FFFFFF 90.82%);
+            
+            /* MD: Frame 5 Layout -> flex-end, gap 260px */
+            min-height: 100vh; /* 화면 꽉 채움 */
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end; /* 하단 정렬 */
+            align-items: center;
+            padding-bottom: 73px; /* MD: padding-bottom 73px */
+        }
 
-        .hero-content {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            /* Figma: Gap 260px (타이틀 그룹 <-> 하단 텍스트 그룹) */
-            gap: 260px; 
-            width: 100%;
-        }
+        .hero-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            /* MD: Frame 5 gap 260px (타이틀 그룹과 하단 그룹 사이 간격) */
+            gap: 260px; 
+            width: 100%;
+        }
 
-        .hero-title-row {
-            display: flex;
-            align-items: flex-start;
-            /* Figma: Gap 50px */
-            gap: 50px; 
-        }
+        /* PC 상단 타이틀 그룹 */
+        .hero-title-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 50px; /* MD: Frame 4 gap 50px */
+        }
 
-        .hero-title-row h1 {
-            /* Figma: 50px / 64px */
-            font-size: 50px;
-            font-weight: 700;
-            line-height: 64px;
-            color: #000000;
-            text-align: left;
-            white-space: nowrap; /* 줄바꿈 방지 */
-        }
-        
-        .hero-big-logo img { 
-            /* Figma: Width 529px */
-            width: 529px; 
-            height: auto; 
-        }
+        .hero-title-row h1 {
+            /* MD: Font 50px */
+            font-size: 50px;
+            font-weight: 700;
+            line-height: 1.28; /* 64px */
+            color: #000000;
+            text-align: left;
+        }
+        
+        .hero-big-logo img { 
+            width: 529px; /* MD: Logo width */
+            height: auto; 
+        }
 
-        .hero-bottom-group {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            /* Figma: Gap 36px */
-            gap: 36px; 
-        }
+        /* PC 하단 텍스트 및 버튼 그룹 */
+        .hero-bottom-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 36px; /* MD: Frame 8 gap 36px */
+        }
 
-        .hero-sub-text {
-            /* Figma: 36px / 46px */
-            font-size: 36px;
-            font-weight: 500;
-            line-height: 46px;
-            color: #FFFFFF;
-            text-align: center;
-        }
+        .hero-sub-text {
+            /* MD: Font 36px */
+            font-size: 36px;
+            font-weight: 500;
+            line-height: 1.28; /* 46px */
+            color: #FFFFFF;
+            text-align: center;
+            text-shadow: 0px 2px 10px rgba(0,0,0,0.1);
+        }
 
-        .store-buttons {
-            display: flex;
-            gap: 12px; /* Figma Frame 7 Gap */
-        }
-        
-        .store-buttons img {
-            width: 210px; /* Figma Button */
-            height: 70px;
-            border-radius: 10px;
-            object-fit: contain;
-        }
+        .store-buttons {
+            display: flex;
+            gap: 12px; /* MD: Frame 7 gap 12px */
+        }
+        
+        .store-buttons img {
+            width: 210px; /* MD: Button width 210px */
+            height: 70px; /* MD: Button height 70px */
+            border-radius: 10px;
+            object-fit: contain;
+        }
 
-        /* Feature Section */
-        .section-padding { 
-            /* Figma Frame 23, 26 Padding: 195px */
-            padding: 195px 0; 
-        }
-        
-        .feature-row {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            /* Figma Frame 25 Gap: 179px */
-            gap: 179px; 
-            width: 100%;
-        }
+        /* PC 기능 소개 섹션 */
+        .section-padding { padding: 195px 0; }
+        
+        .feature-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1046px;
+            margin: 0 auto;
+            gap: 100px; /* MD: Frame 25 gap */
+        }
 
-        .feature-text { 
-            /* Figma Frame 24 Width: 579px */
-            flex: 1; 
-            text-align: left; 
-            max-width: 579px; 
-        }
-        
-        .feature-text h2 {
-            /* Figma: 36px / 64px (Black) */
-            font-size: 36px;
-            font-weight: 700;
-            line-height: 64px;
-            margin-bottom: 24px;
-            color: #000;
-            word-break: keep-all;
-        }
-        
-        .feature-text p {
-            /* Figma: 26px / 40px */
-            font-size: 26px;
-            font-weight: 500;
-            line-height: 40px;
-            color: #000;
-            word-break: keep-all;
-        }
+        .feature-text { flex: 1; text-align: left; }
+        
+        .feature-text h2 {
+            /* MD: Font 36px */
+            font-size: 36px;
+            font-weight: 700;
+            line-height: 1.78; /* 64px */
+            margin-bottom: 24px;
+            color: #000;
+            word-break: keep-all;
+        }
+        
+        .feature-text p {
+            /* MD: Font 26px */
+            font-size: 26px;
+            font-weight: 500;
+            line-height: 1.54; /* 40px */
+            color: #000;
+            word-break: keep-all;
+        }
 
-        .feature-img { 
-            flex: none; /* 크기 고정 */
-        }
-        
-        .feature-img img {
-            /* Figma Image Width: 281px */
-            width: 281px; 
-            height: auto;
-        }
-        
-        .feature-row.reverse { flex-direction: row-reverse; }
+        .feature-img { flex: 1; display: flex; justify-content: flex-end; }
+        
+        .feature-img img {
+            width: 281px; /* MD Image width */
+            border: none;
+        }
+        
+        .feature-row.reverse { flex-direction: row-reverse; }
+        .feature-row.reverse .feature-img { justify-content: flex-start; }
 
-        /* Bottom CTA */
-        .bottom-cta {
-            background: radial-gradient(67.6% 55.45% at 50% 100%, #2F8DD5 17.63%, #5FCDF9 55%, #FFFFFF 100%);
-            height: 356px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            gap: 62px; /* Figma Frame 8 Gap */
-        }
+        /* PC 하단 CTA */
+        .bottom-cta {
+            background: radial-gradient(67.6% 55.45% at 50% 100%, #2F8DD5 17.63%, #5FCDF9 55%, #FFFFFF 100%);
+            height: 356px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 62px; /* MD: Frame 8 gap */
+        }
 
-        .bottom-cta h2 {
-            font-size: 36px;
-            font-weight: 500;
-            text-align: center;
-            color: #000000; 
-            line-height: 46px;
-        }
+        .bottom-cta h2 {
+            font-size: 36px;
+            font-weight: 500;
+            text-align: center;
+            color: #000000; 
+        }
 
-        /* Footer */
-        footer {
-            background-color: #2C2C2C;
-            padding: 50px 0;
-            color: #979797;
-        }
+        /* 7. 푸터 (Footer) */
+        footer {
+            background-color: #2C2C2C;
+            padding: 50px 0;
+            color: #979797;
+        }
 
-        .footer-content {
-            max-width: 1440px;
-            margin: 0 auto;
-            padding: 0 40px; /* Figma 좌우 여백 반영 */
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
+        .footer-content {
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 0 40px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
 
-        .footer-logo img {
-            height: 42px;
-            /* 로고 색상 변경 필터 (흰색/회색 계열로) */
-            filter: brightness(0) saturate(100%) invert(66%) sepia(0%) saturate(0%) hue-rotate(159deg) brightness(92%) contrast(85%);
-        }
+        .footer-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            border-bottom: 1px solid #444;
+            padding-bottom: 20px;
+            margin-bottom: 20px;
+        }
 
-        .footer-main-info {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-end;
-            width: 100%;
-        }
+        .footer-logo img {
+            height: 42px;
+            filter: brightness(0) saturate(100%) invert(66%) sepia(0%) saturate(0%) hue-rotate(159deg) brightness(92%) contrast(85%);
+        }
 
-        .footer-left {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
+        .footer-main-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            width: 100%;
+        }
 
-        .info-row {
-            display: flex;
-            gap: 16px;
-            /* Figma: 20px */
-            font-size: 20px;
-            font-weight: 400;
-        }
+        .footer-left {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
 
-        .footer-links {
-            display: flex;
-            gap: 20px;
-            align-items: center;
-        }
-        .footer-links a {
-            font-size: 20px;
-            font-weight: 500;
-            color: #979797;
-        }
-        .divider { width: 1px; height: 16px; background: #777777; }
+        .info-row {
+            display: flex;
+            gap: 16px;
+            font-size: 20px;
+            font-weight: 400;
+        }
 
-        .copyright {
-            font-size: 18px;
-            font-weight: 400;
-            color: #979797;
-            margin-top: 20px;
-        }
-        
-        .mobile-only { display: none; }
+        .footer-links {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+        .footer-links a {
+            font-size: 20px;
+            font-weight: 500;
+            color: #979797;
+        }
+        .divider { width: 1px; height: 16px; background: #777777; }
 
-        /* =========================================
-           5. [Mobile] 반응형 (Figma: iPhone 14 & 15 Pro - 393px)
-           ========================================= */
-        @media (max-width: 768px) {
-            .container { max-width: 100%; padding: 0 20px; }
-            .pc-only { display: none; }
-            .mobile-only { display: inline; }
+        .copyright {
+            font-size: 18px;
+            font-weight: 400;
+            color: #979797;
+            margin-top: 20px;
+        }
 
-            header { height: 64px; padding: 0 16px; } /* Figma Frame 2 */
-            .header-inner { padding: 0; }
-            .logo img { height: 28px; width: 114px; }
-            
-            .btn-download { 
-                height: 36px; 
-                padding: 0 14px;
-                font-size: 14px; 
-                background-color: transparent;
-                border: 1px solid #2E8CD5;
-                color: #2E8CD5;
-            }
-            .btn-download svg path { fill: #2E8CD5; } /* 아이콘 색상 변경 */
+        /* =========================================
+           5. [Mobile] 반응형 (MD: iPhone 14 & 15 Pro 기준)
+           ========================================= */
+        @media (max-width: 768px) {
+            header { height: 64px; }
+            .header-inner { padding: 0 20px; }
+            .btn-download { font-size: 14px; padding: 8px 16px; height: 36px; }
+            .logo img { height: 28px; }
 
-            /* Mobile Hero */
-            .hero-wrapper {
-                min-height: 100vh;
-                height: auto;
-                background: radial-gradient(133.61% 50.12% at 50% 89.96%, #2F8DD5 39.9%, #5FCDF9 69.23%, #FFFFFF 92.79%);
-                
-                /* Figma Frame 4 Layout */
-                padding-top: 160px;
-                padding-bottom: 70px;
-                justify-content: space-between; /* Gap 358px 대응 */
-                align-items: center;
-            }
+            /* Mobile Hero */
+            .hero-wrapper {
+                /* MD: Frame 4 Layout */
+                min-height: 100vh; /* 화면 전체 사용 */
+                height: auto;
+                justify-content: flex-start; /* 초기화: space-between은 hero-content에서 처리 */
+                background: radial-gradient(133.61% 50.12% at 50% 89.96%, #2F8DD5 39.9%, #5FCDF9 69.23%, #FFFFFF 92.79%);
+                padding-bottom: 0; /* padding reset */
+            }
 
-            .hero-content {
-                gap: 40px; /* 기본 갭 */
-                height: 100%;
-                justify-content: space-between; /* 상단(로고/타이틀)과 하단(텍스트/버튼) 분리 */
-            }
+            .hero-content {
+                height: 100vh;
+                min-height: 800px; /* 너무 작아짐 방지 */
+                
+                /* MD: Frame 4 -> justify-content: space-between */
+                justify-content: space-between;
+                gap: 0; /* PC gap 제거 */
+                
+                /* MD: Padding Top 160px, Bottom 70px */
+                padding-top: 160px;
+                padding-bottom: 70px;
+            }
 
-            .hero-title-row {
-                flex-direction: column;
-                gap: 40px;
-                align-items: center;
-            }
-            
-            .hero-title-row h1 { 
-                /* Figma: 24px / 32px */
-                font-size: 24px; 
-                line-height: 32px;
-                text-align: center; 
-                white-space: normal;
-                order: 0; /* 순서 */
-            }
-            
-            .hero-big-logo img { 
-                /* Figma: 241px */
-                width: 241px; 
-                order: 1;
-            }
+            /* Mobile 상단 타이틀 그룹 */
+            .hero-title-row {
+                flex-direction: column; /* 세로 정렬 */
+                gap: 20px;
+                align-items: center;
+            }
+            
+            .hero-title-row h1 { 
+                /* MD: Font 24px */
+                font-size: 24px; 
+                line-height: 1.33; /* 32px */
+                text-align: center; 
+            }
+            
+            .hero-big-logo img { 
+                width: 241px; /* MD: Mobile Logo Width */
+            }
 
-            .hero-bottom-group {
-                gap: 30px; /* Figma Frame 9 Gap */
-            }
+            /* Mobile 하단 텍스트 및 버튼 그룹 */
+            .hero-bottom-group {
+                gap: 30px; /* MD: Frame 9 gap */
+            }
 
-            .hero-sub-text {
-                /* Figma: 20px / 28px */
-                font-size: 20px;
-                line-height: 28px;
-                width: 256px; /* 줄바꿈 유도 */
-                margin: 0 auto;
-            }
-            
-            .store-buttons img { 
-                /* Figma: 150px / 50px */
-                width: 150px; 
-                height: 50px; 
-            }
+            .hero-sub-text {
+                /* MD: Font 20px */
+                font-size: 20px;
+                line-height: 1.4; /* 28px */
+                margin-bottom: 0; /* 그룹 gap으로 처리 */
+            }
+            
+            .store-buttons img { 
+                width: 150px; /* MD: Mobile Button Width */
+                height: 50px; /* MD: Mobile Button Height */
+            }
 
-            /* Mobile Feature Section */
-            .section-padding { 
-                /* Figma: 70px 0px */
-                padding: 70px 0; 
-            }
-            
-            .feature-row { 
-                flex-direction: column; 
-                /* Figma: Gap 70px */
-                gap: 70px; 
-            }
-            .feature-row.reverse { flex-direction: column; }
-            
-            .feature-text { 
-                max-width: 100%;
-                text-align: left; /* Figma Frame 29 정렬 */
-                padding: 0 20px; /* 좌우 여백 */
-            }
-            
-            .feature-text h2 { 
-                display: flex; 
-                flex-direction: column; 
-                align-items: flex-start; 
-                /* Figma Black Text: 22px / 40px */
-                font-size: 22px; 
-                line-height: 40px;
-                margin-bottom: 24px;
-            }
+            /* Mobile 기능 소개 섹션 */
+            .section-padding { padding: 70px 0; }
+            .feature-row { flex-direction: column; gap: 40px; }
+            .feature-row.reverse { flex-direction: column; }
+            
+            .feature-text { 
+                text-align: center; 
+                padding: 0 20px; 
+            }
+            
+            .feature-text h2 { 
+                display: flex; 
+                flex-direction: column; 
+                align-items: center; 
+                /* MD: 일반 텍스트는 22px */
+                font-size: 22px; 
+                line-height: 1.8; /* 40px */
+            }
 
-            /* 모바일에서 파란색 텍스트가 훨씬 큼 */
-            .feature-text h2 span.text-blue {
-                /* Figma Blue Text: 36px / 44px */
-                font-size: 36px;
-                line-height: 44px;
-                display: block; 
-                margin-top: 0px;
-            }
+            /* MD: 모바일에서 강조 텍스트(Blue)는 36px로 커짐 (Frame 29 참조) */
+            .feature-text h2 span.text-blue {
+                font-size: 36px;
+                line-height: 1.22; /* 44px */
+                display: block; /* 줄바꿈 */
+                margin-top: 5px;
+            }
 
-            .feature-text p { 
-                /* Figma: 18px / 30px */
-                font-size: 18px; 
-                line-height: 30px;
-            }
-            
-            .feature-img img {
-                /* 모바일에서도 이미지는 281px */
-                width: 281px;
-            }
+            .feature-text p { 
+                /* MD: Font 18px */
+                font-size: 18px; 
+                line-height: 1.67; /* 30px */
+            }
+            
+            .feature-img { justify-content: center; }
 
-            /* Mobile Bottom CTA */
-            .bottom-cta {
-                background: radial-gradient(79.39% 55.45% at 50% 100%, #2F8DD5 17.63%, #5FCDF9 55%, #FFFFFF 100%);
-                height: 356px; /* 높이 고정 */
-                padding: 0;
-                gap: 62px;
-            }
-            .bottom-cta h2 {
-                /* Figma: 24px / 32px */
-                font-size: 24px;
-                line-height: 32px;
-                width: 307px; /* 줄바꿈 유도 */
-            }
+            /* Mobile 하단 CTA */
+            .bottom-cta {
+                background: radial-gradient(79.39% 55.45% at 50% 100%, #2F8DD5 17.63%, #5FCDF9 55%, #FFFFFF 100%);
+                height: auto;
+                padding: 80px 20px;
+                gap: 40px;
+            }
+            .bottom-cta h2 {
+                color: #000000;
+                /* MD: Font 24px */
+                font-size: 24px;
+                line-height: 1.33;
+            }
 
-            /* Mobile Footer */
-            footer { padding: 30px 20px; }
-            .footer-content { padding: 0; gap: 40px; }
-            .footer-main-info { flex-direction: column; align-items: flex-start; gap: 40px; }
-            .footer-logo img { width: 124px; height: 30px; margin-bottom: 0; }
-            
-            .footer-left { gap: 20px; } /* Frame 22 gap */
-            .info-row { 
-                flex-direction: column; 
-                gap: 2px; 
-                /* Figma: 14px */
-                font-size: 14px; 
-            }
-            
-            .footer-links { 
-                /* Figma: 14px */
-                font-size: 14px; 
-                gap: 12px;
-            }
-            .footer-links a { font-size: 14px; }
-            
-            .copyright { 
-                /* Figma: 12px */
-                font-size: 12px; 
-                margin-top: 0; 
-            }
-        }
-    </style>
+            /* Mobile Footer */
+            footer { padding: 30px 20px; text-align: left; }
+            .footer-content { padding: 0; gap: 40px; }
+            .footer-main-info { flex-direction: column; align-items: flex-start; gap: 30px; }
+            .footer-logo img { width: 124px; height: auto; margin-bottom: 10px; }
+            
+            .info-row { flex-direction: column; gap: 2px; font-size: 14px; }
+            .footer-links { font-size: 14px; }
+            .footer-links a { font-size: 14px; }
+            .copyright { font-size: 12px; margin-top: 0; }
+            
+            .pc-only { display: none; }
+        }
+    </style>
 </head>
 <body>
 
-    <header>
-        <div class="header-inner">
-            <a href="#" class="logo">
-                <img src="logo.png" alt="SoMa Logo">
-            </a>
-            
-            <div class="dropdown">
-                <button class="btn-download">
-                    지금 다운로드
-                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                         <path d="M6 9L1 4H11L6 9Z" fill="white"/>
-                    </svg>
-                </button>
-                <div class="dropdown-content">
-                    <a href="https://apps.apple.com/kr/app/%EC%86%8C%EB%A7%88/id6753277300" target="_blank">iOS 다운로드하기</a>
-                    <a href="https://play.google.com/store/apps/details?id=com.somaai.somaai&pcampaignid=web_share&pli=1" target="_blank">AOS 다운로드하기</a>
-                </div>
-            </div>
-        </div>
-    </header>
+    <header>
+        <div class="header-inner">
+            <a href="#" class="logo">
+                <img src="logo.png" alt="SoMa Logo">
+            </a>
+            
+            <div class="dropdown">
+                <button class="btn-download">
+                    지금 다운로드
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                         <path d="M6 9L1 4H11L6 9Z" fill="white"/>
+                    </svg>
+                </button>
+                <div class="dropdown-content">
+                    <a href="https://apps.apple.com/kr/app/%EC%86%8C%EB%A7%88/id6753277300" target="_blank">iOS 다운로드하기</a>
+                    <a href="https://play.google.com/store/apps/details?id=com.somaai.somaai&pcampaignid=web_share&pli=1" target="_blank">AOS 다운로드하기</a>
+                </div>
+            </div>
+        </div>
+    </header>
 
-    <section class="hero-wrapper reveal">
-        <div class="container hero-content">
-            <div class="hero-title-row">
-                <h1>운동에만 집중하도록,<br>나만의 피트니스 AI</h1>
-                <div class="hero-big-logo">
-                    <img src="logo.png" alt="SoMa AI Big Logo">
-                </div>
-            </div>
-            
-            <div class="hero-bottom-group">
-                <p class="hero-sub-text">수업의 진심이 온전히 닿게, 필라테스/PT 강사 필수 앱. ‘소마’</p>
-                <div class="store-buttons">
-                    <a href="https://apps.apple.com/kr/app/%EC%86%8C%EB%A7%88/id6753277300" target="_blank">
-                        <img src="btn-appstore.png" alt="App Store">
-                    </a>
-                    <a href="https://play.google.com/store/apps/details?id=com.somaai.somaai&pcampaignid=web_share&pli=1" target="_blank">
-                        <img src="btn-googleplay.png" alt="Google Play">
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
+    <section class="hero-wrapper reveal">
+        <div class="container hero-content">
+            <div class="hero-title-row">
+                <h1>운동에만 집중하도록,<br>나만의 피트니스 AI</h1>
+                <div class="hero-big-logo">
+                    <img src="logo.png" alt="SoMa AI Big Logo">
+                </div>
+            </div>
+            
+            <div class="hero-bottom-group">
+                <p class="hero-sub-text">수업의 진심이 온전히 닿게, 필라테스/PT 강사 필수 앱. ‘소마’</p>
+                <div class="store-buttons">
+                    <a href="https://apps.apple.com/kr/app/%EC%86%8C%EB%A7%88/id6753277300" target="_blank">
+                        <img src="btn-appstore.png" alt="App Store">
+                    </a>
+                    <a href="https://play.google.com/store/apps/details?id=com.somaai.somaai&pcampaignid=web_share&pli=1" target="_blank">
+                        <img src="btn-googleplay.png" alt="Google Play">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    <section class="section-padding bg-white">
-        <div class="container feature-row">
-            <div class="feature-text reveal">
-                <h2>수업 관리부터 정산까지,<br><span class="text-blue">강사님의 하루를 AI로 완벽하게</span></h2>
-                <p>출석 체크부터 스케줄 조정, 강사료 정산까지 귀찮은 '강사 잡무'를 AI가 다 처리해주니, 이제 몸과 마음은 오직 회원님 케어에만 집중하세요!</p>
-            </div>
-            <div class="feature-img reveal">
-                <img src="feature-1.png" alt="수업 관리 화면">
-            </div>
-        </div>
-    </section>
+    <section class="section-padding bg-white">
+        <div class="container feature-row">
+            <div class="feature-text reveal">
+                <h2>수업 관리부터 정산까지,<br><span class="text-blue">강사님의 하루를 AI로 완벽하게</span></h2>
+                <p>출석 체크부터 스케줄 조정, 강사료 정산까지 귀찮은 '강사 잡무'를 AI가 다 처리해주니, 이제 몸과 마음은 오직 회원님 케어에만 집중하세요!</p>
+            </div>
+            <div class="feature-img reveal">
+                <img src="feature-1.png" alt="수업 관리 화면">
+            </div>
+        </div>
+    </section>
 
-    <section class="section-padding bg-sky">
-        <div class="container feature-row reverse">
-            <div class="feature-text reveal">
-                <h2>비포애프터 눈대중은 그만.<br><span class="text-blue">AI가 분석하는 회원 체형 리포트</span></h2>
-                <p>그냥 ‘좋아졌네요’ 대신, AI가 회원님 체형 변화를 객관적인 수치와 이미지로 정밀 분석해줘요. 비포/애프터 리포트 퀄리티가 확 올라가서 프로페셔널함이 남달라집니다.</p>
-            </div>
-            <div class="feature-img reveal">
-                <img src="feature-2.png" alt="체형 분석 화면">
-            </div>
-        </div>
-    </section>
+    <section class="section-padding bg-sky">
+        <div class="container feature-row reverse">
+            <div class="feature-text reveal">
+                <h2>비포애프터 눈대중은 그만.<br><span class="text-blue">AI가 분석하는 회원 체형 리포트</span></h2>
+                <p>그냥 ‘좋아졌네요’ 대신, AI가 회원님 체형 변화를 객관적인 수치와 이미지로 정밀 분석해줘요. 비포/애프터 리포트 퀄리티가 확 올라가서 프로페셔널함이 남달라집니다.</p>
+            </div>
+            <div class="feature-img reveal">
+                <img src="feature-2.png" alt="체형 분석 화면">
+            </div>
+        </div>
+    </section>
 
-    <section class="section-padding bg-white">
-        <div class="container feature-row">
-            <div class="feature-text reveal">
-                <h2>매월 기다려지는 투명한 급여 명세서,<br><span class="text-blue">복잡한 페이롤 계산, 소마가 1초 만에</span></h2>
-                <p>내 페이, 계산기 두드릴 필요 없어요! 복잡한 페이롤 계산, 전부 소마 AI에 맡기세요. 투명하고 정확한 급여 명세서가 1초 만에 PDF로 생성됩니다.</p>
-            </div>
-            <div class="feature-img reveal">
-                <img src="feature-3.png" alt="급여 명세서 화면">
-            </div>
-        </div>
-    </section>
+    <section class="section-padding bg-white">
+        <div class="container feature-row">
+            <div class="feature-text reveal">
+                <h2>매월 기다려지는 투명한 급여 명세서,<br><span class="text-blue">복잡한 페이롤 계산, 소마가 1초 만에</span></h2>
+                <p>내 페이, 계산기 두드릴 필요 없어요! 복잡한 페이롤 계산, 전부 소마 AI에 맡기세요. 투명하고 정확한 급여 명세서가 1초 만에 PDF로 생성됩니다.</p>
+            </div>
+            <div class="feature-img reveal">
+                <img src="feature-3.png" alt="급여 명세서 화면">
+            </div>
+        </div>
+    </section>
 
-    <section class="section-padding bg-sky">
-        <div class="container feature-row reverse">
-            <div class="feature-text reveal">
-                <h2>종이장부, 엑셀파일?<br><span class="text-blue">업로드 한 번이면 회원 등록 끝</span></h2>
-                <p>종이 장부, 복잡한 엑셀 파일에 흩어진 회원 정보들, 그냥 사진 찍듯 소마앱에 한 번만 올리면 끝! 모든 정보가 AI로 깔끔하게 정리되어 관리 시간이 반으로 줄어듭니다.</p>
-            </div>
-            <div class="feature-img reveal">
-                <img src="feature-4.png" alt="회원 등록 화면">
-            </div>
-        </div>
-    </section>
+    <section class="section-padding bg-sky">
+        <div class="container feature-row reverse">
+            <div class="feature-text reveal">
+                <h2>종이장부, 엑셀파일?<br><span class="text-blue">업로드 한 번이면 회원 등록 끝</span></h2>
+                <p>종이 장부, 복잡한 엑셀 파일에 흩어진 회원 정보들, 그냥 사진 찍듯 소마앱에 한 번만 올리면 끝! 모든 정보가 AI로 깔끔하게 정리되어 관리 시간이 반으로 줄어듭니다.</p>
+            </div>
+            <div class="feature-img reveal">
+                <img src="feature-4.png" alt="회원 등록 화면">
+            </div>
+        </div>
+    </section>
 
-    <section class="section-padding bg-white">
-        <div class="container feature-row">
-            <div class="feature-text reveal">
-                <h2>놓치는 회원 없이 꽉 잡으세요.<br><span class="text-blue">재등록 확률 예측으로 매출 상승</span></h2>
-                <p>곧 이탈할 것 같은 회원님, 재등록 시기 놓칠 것 같은 회원님을 AI가 똑똑하게 미리 알려줘요. 놓치는 회원 없이 싹 다 관리해서 내 레슨 매출도 안정적으로 Up!</p>
-            </div>
-            <div class="feature-img reveal">
-                <img src="feature-5.png" alt="재등록 예측 화면">
-            </div>
-        </div>
-    </section>
+    <section class="section-padding bg-white">
+        <div class="container feature-row">
+            <div class="feature-text reveal">
+                <h2>놓치는 회원 없이 꽉 잡으세요.<br><span class="text-blue">재등록 확률 예측으로 매출 상승</span></h2>
+                <p>곧 이탈할 것 같은 회원님, 재등록 시기 놓칠 것 같은 회원님을 AI가 똑똑하게 미리 알려줘요. 놓치는 회원 없이 싹 다 관리해서 내 레슨 매출도 안정적으로 Up!</p>
+            </div>
+            <div class="feature-img reveal">
+                <img src="feature-5.png" alt="재등록 예측 화면">
+            </div>
+        </div>
+    </section>
 
-    <section class="bottom-cta reveal">
-        <h2>수업의 진심이 온전히 닿게,<br>필라테스/PT 강사 필수 앱. ‘소마’</h2>
+    <section class="bottom-cta reveal">
+        <h2>수업의 진심이 온전히 닿게,<br>필라테스/PT 강사 필수 앱. ‘소마’</h2>
 
-        <div class="store-buttons">
-            <a href="https://apps.apple.com/kr/app/%EC%86%8C%EB%A7%88/id6753277300" target="_blank">
-                <img src="btn-appstore.png" alt="App Store">
-            </a>
-            <a href="https://play.google.com/store/apps/details?id=com.somaai.somaai&pcampaignid=web_share&pli=1" target="_blank">
-                <img src="btn-googleplay.png" alt="Google Play">
-            </a>
-        </div>
-    </section>
+        <div class="store-buttons">
+            <a href="https://apps.apple.com/kr/app/%EC%86%8C%EB%A7%88/id6753277300" target="_blank">
+                <img src="btn-appstore.png" alt="App Store">
+            </a>
+            <a href="https://play.google.com/store/apps/details?id=com.somaai.somaai&pcampaignid=web_share&pli=1" target="_blank">
+                <img src="btn-googleplay.png" alt="Google Play">
+            </a>
+        </div>
+    </section>
 
-    <footer>
-        <div class="footer-content">
-            <div class="footer-logo">
-                <img src="logo.png" alt="SoMa Logo">
-            </div>
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <img src="logo.png" alt="SoMa Logo">
+            </div>
 
-            <div class="footer-main-info">
-                <div class="footer-left">
-                    <div class="info-row">
-                        <span>대표: 이창재</span>
-                        <span class="pc-only">|</span>
-                        <span>호스팅 서비스: 주식회사 소마</span>
-                    </div>
-                    <div class="info-row">
-                        <span>사업자 등록번호: 805-88-03448</span>
-                    </div>
-                    <div class="info-row">
-                        <span>주소: 04617 서울특별시 중구 동호로 298 (장충동, 이성빌딩)</span>
-                    </div>
-                </div>
+            <div class="footer-main-info">
+                <div class="footer-left">
+                    <div class="info-row">
+                        <span>대표: 이창재</span>
+                        <span class="pc-only">|</span>
+                        <span>호스팅 서비스: 주식회사 소마</span>
+                    </div>
+                    <div class="info-row">
+                        <span>사업자 등록번호: 805-88-03448</span>
+                    </div>
+                    <div class="info-row">
+                        <span>주소: 04617 서울특별시 중구 동호로 298 (장충동, 이성빌딩)</span>
+                    </div>
+                </div>
 
-                <div class="footer-links">
-                    <a href="/terms.html" target="_blank">서비스 이용약관</a>
-                    <div class="divider"></div>
-                    <a href="/privacy.html" target="_blank">개인정보 처리방침</a>
-                </div>
-            </div>
+                <div class="footer-links">
+                    <a href="/terms.html" target="_blank">서비스 이용약관</a>
+                    <div class="divider"></div>
+                    <a href="/privacy.html" target="_blank">개인정보 처리방침</a>
+                </div>
+            </div>
 
-            <p class="copyright">© 2025 SoMa Inc. All rights reserved.</p>
-        </div>
-    </footer>
+            <p class="copyright">© 2025 SoMa Inc. All rights reserved.</p>
+        </div>
+    </footer>
 
-    <script>
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
-                }
-            });
-        }, {
-            threshold: 0.1
-        });
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
 
-        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-        
-        window.addEventListener('load', () => {
-            const heroElements = document.querySelectorAll('.hero-wrapper.reveal');
-            heroElements.forEach(el => el.classList.add('active'));
-        });
-    </script>
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+        
+        window.addEventListener('load', () => {
+            const heroElements = document.querySelectorAll('.hero-wrapper.reveal');
+            heroElements.forEach(el => el.classList.add('active'));
+        });
+    </script>
 
 </body>
 </html>
