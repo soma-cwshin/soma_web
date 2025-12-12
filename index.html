@@ -59,7 +59,7 @@
             width: 100%;
             height: 90px;
             background: rgba(255, 255, 255, 0.7);
-            backdrop-filter: blur(35px); /* 피그마 수치 반영 */
+            backdrop-filter: blur(35px);
             z-index: 1000;
             display: flex;
             align-items: center;
@@ -119,9 +119,8 @@
         .dropdown-content a:hover { background-color: #f5f5f5; }
         .dropdown:hover .dropdown-content { display: block; }
 
-        /* 4. 메인 히어로 & 배너 (통합 Gradient) */
+        /* 4. 메인 히어로 & 배너 */
         .hero-wrapper {
-            /* Desktop Frame 5 Gradient 적용 */
             background: radial-gradient(65.39% 45.83% at 50% 100%, #2F8DD5 14.78%, #5FCDF9 59.4%, #FFFFFF 90.82%);
             padding-top: 180px; 
             padding-bottom: 100px;
@@ -129,14 +128,14 @@
             flex-direction: column;
             align-items: center;
             justify-content: flex-end;
-            min-height: 80vh; /* 화면 꽉 차게 */
+            min-height: 80vh;
         }
 
         .hero-title-row {
             display: flex;
             align-items: center;
             gap: 50px;
-            margin-bottom: 200px; /* 로고와 하단 텍스트 사이 간격 */
+            margin-bottom: 200px;
         }
 
         .hero-title-row h1 {
@@ -150,7 +149,7 @@
         .hero-sub-text {
             font-size: 36px;
             font-weight: 500;
-            color: #FFFFFF; /* 피그마: Title/Medium 36, White */
+            color: #FFFFFF;
             margin-bottom: 36px;
             text-align: center;
         }
@@ -172,7 +171,7 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            max-width: 1046px; /* 피그마 Frame 25 Width */
+            max-width: 1046px;
             margin: 0 auto;
             gap: 100px;
         }
@@ -194,40 +193,43 @@
         }
 
         .feature-img { flex: 1; display: flex; justify-content: flex-end; }
+        
+        /* [수정됨] 휴대폰 목업 이미지 스타일: 테두리 제거 및 원본 유지 */
         .feature-img img {
-            width: 281px; /* 피그마 아이폰 목업 사이즈 */
-            border-radius: 26px;
-            border: 7px solid #000;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            width: 281px;
+            border: none; /* 기존 border 제거 */
+            border-radius: 0; /* 이미지 자체에 라운드가 있으므로 CSS 라운드 제거 혹은 유지 (이미지 스타일에 따라 조정) */
+            /* box-shadow: 0 20px 40px rgba(0,0,0,0.1); -> 필요시 제거 가능 */
         }
+        
         .feature-row.reverse { flex-direction: row-reverse; }
         .feature-row.reverse .feature-img { justify-content: flex-start; }
 
         /* 6. 하단 CTA (Bottom) */
         .bottom-cta {
-            /* Desktop Frame 8 Gradient */
             background: radial-gradient(67.6% 55.45% at 50% 100%, #2F8DD5 17.63%, #5FCDF9 55%, #FFFFFF 100%);
             height: 356px;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            gap: 36px; /* 피그마 gap */
+            gap: 36px;
         }
 
+        /* [수정됨] 하단 CTA 텍스트 색상 검은색으로 변경 */
         .bottom-cta h2 {
             font-size: 36px;
             font-weight: 500;
             line-height: 1.28;
             text-align: center;
-            color: #FFFFFF; /* [Desktop] 피그마 Frame 8: White */
+            color: #000000; 
         }
 
         /* 7. 푸터 (Footer) - Dark Theme */
         footer {
-            background-color: #2C2C2C; /* Gray/Gray 800 */
+            background-color: #2C2C2C;
             padding: 50px 0;
-            color: #979797; /* Gray/Gray 400 */
+            color: #979797;
         }
 
         .footer-content {
@@ -243,14 +245,13 @@
             display: flex;
             justify-content: space-between;
             align-items: flex-end;
-            border-bottom: 1px solid #444; /* 시각적 분리감 추가 (선택사항) */
+            border-bottom: 1px solid #444;
             padding-bottom: 20px;
             margin-bottom: 20px;
         }
 
         .footer-logo img {
             height: 42px;
-            /* 로고를 회색(#979797)으로 변경하는 필터 */
             filter: brightness(0) saturate(100%) invert(66%) sepia(0%) saturate(0%) hue-rotate(159deg) brightness(92%) contrast(85%);
         }
 
@@ -270,7 +271,7 @@
         .info-row {
             display: flex;
             gap: 16px;
-            font-size: 20px; /* 피그마 Title/Regular 20 */
+            font-size: 20px;
             font-weight: 400;
         }
 
@@ -302,13 +303,12 @@
 
             /* Mobile Hero */
             .hero-wrapper {
-                /* Mobile Frame 4 Gradient */
                 background: radial-gradient(133.61% 50.12% at 50% 89.96%, #2F8DD5 39.9%, #5FCDF9 69.23%, #FFFFFF 92.79%);
                 padding-top: 120px;
                 padding-bottom: 70px;
                 min-height: auto;
-                height: 852px; /* 피그마 높이 반영 */
-                justify-content: space-between; /* 상하 분배 */
+                height: 852px;
+                justify-content: space-between;
             }
 
             .hero-title-row {
@@ -318,6 +318,8 @@
                 margin-top: 40px;
             }
             .hero-title-row h1 { font-size: 24px; line-height: 1.33; text-align: center; }
+            
+            /* 모바일에서도 로고 변경 적용 */
             .hero-big-logo img { width: 241px; }
 
             .hero-sub-text {
@@ -338,13 +340,12 @@
 
             /* Mobile Bottom CTA */
             .bottom-cta {
-                /* Mobile Frame 8 Gradient */
                 background: radial-gradient(79.39% 55.45% at 50% 100%, #2F8DD5 17.63%, #5FCDF9 55%, #FFFFFF 100%);
                 height: auto;
                 padding: 80px 20px;
             }
             .bottom-cta h2 {
-                color: #000000; /* [Mobile] 피그마 Frame 8: Black */
+                color: #000000;
                 font-size: 24px;
                 line-height: 1.33;
             }
@@ -360,7 +361,6 @@
             .footer-links a { font-size: 14px; }
             .copyright { font-size: 12px; margin-top: 0; }
             
-            /* 모바일에서 숨길 요소나 정렬 변경 */
             .pc-only { display: none; }
         }
     </style>
@@ -393,7 +393,7 @@
             <div class="hero-title-row">
                 <h1>운동에만 집중하도록,<br>나만의 피트니스 AI</h1>
                 <div class="hero-big-logo">
-                    <img src="logo_big.png" alt="SoMa AI Big Logo">
+                    <img src="logo.png" alt="SoMa AI Big Logo">
                 </div>
             </div>
             
