@@ -42,6 +42,30 @@
             padding: 120px 0;
         }
 
+        /* [추가] 애니메이션용 클래스: 처음에는 투명하고 아래로 내려가 있음 */
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 1s ease; /* 1초 동안 부드럽게 변함 */
+        }
+
+        /* [추가] 화면에 보일 때 붙는 클래스: 투명도 1, 제자리로 이동 */
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* [추가] 둥둥 떠다니는 애니메이션 정의 */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); } /* 위로 15px 이동 */
+            100% { transform: translateY(0px); }
+        }
+
+        .floating-anim {
+            animation: float 4s ease-in-out infinite; /* 4초 동안 무한 반복 */
+        }
+
         /* 텍스트 스타일 */
         h1 { font-size: 50px; font-weight: 700; line-height: 1.28; }
         h2 { font-size: 36px; font-weight: 700; line-height: 1.3; margin-bottom: 24px; }
@@ -67,6 +91,7 @@
             align-items: center;
             justify-content: center;
             border-bottom: 1px solid rgba(0,0,0,0.05);
+            transition: all 0.3s;
         }
 
         .header-inner {
@@ -80,7 +105,7 @@
 
         .logo img { height: 34px; width: auto; }
 
-        /* [추가] 드롭다운 버튼 스타일 */
+        /* 드롭다운 버튼 스타일 */
         .dropdown {
             position: relative;
             display: inline-block;
@@ -96,13 +121,16 @@
             display: flex;
             align-items: center;
             gap: 10px;
-            transition: background 0.3s;
+            transition: all 0.3s ease; /* 부드러운 전환 */
             cursor: pointer;
             border: none;
         }
-        .btn-download:hover { background-color: #2370ad; }
+        /* [추가] 마우스 올리면 살짝 커짐 */
+        .btn-download:hover { 
+            background-color: #2370ad; 
+            transform: scale(1.05);
+        }
 
-        /* 드롭다운 내용 (숨김 상태) */
         .dropdown-content {
             display: none;
             position: absolute;
@@ -114,9 +142,14 @@
             border-radius: 10px;
             overflow: hidden;
             border: 1px solid #ddd;
+            animation: fadeIn 0.3s; /* 메뉴 나타날 때 효과 */
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        /* 드롭다운 링크 스타일 */
         .dropdown-content a {
             color: black;
             padding: 12px 16px;
@@ -124,11 +157,10 @@
             display: block;
             font-size: 16px;
             font-weight: 500;
+            transition: background 0.2s;
         }
 
         .dropdown-content a:hover {background-color: #f1f1f1;}
-
-        /* 마우스 올렸을 때 보이기 */
         .dropdown:hover .dropdown-content {display: block;}
 
 
@@ -153,15 +185,20 @@
             flex-wrap: wrap;
         }
 
-        /* [수정] 스토어 버튼 분리 및 배치 */
         .store-buttons {
             display: flex;
             gap: 12px;
             margin-top: 36px;
             justify-content: center;
         }
-        /* 버튼 이미지 크기 최적화 */
-        .store-buttons img { height: 60px; width: auto; cursor: pointer; transition: transform 0.2s; }
+        
+        /* [추가] 스토어 버튼 마우스 올리면 커지는 효과 */
+        .store-buttons img { 
+            height: 60px; 
+            width: auto; 
+            cursor: pointer; 
+            transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+        }
         .store-buttons img:hover { transform: scale(1.05); }
 
         .hero-sub {
@@ -193,7 +230,18 @@
 
         .feature-text { flex: 1; max-width: 579px; }
         .feature-img { flex: 1; max-width: 281px; } 
-        .feature-img img { width: 100%; border-radius: 26px; border: 7px solid #000; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+        
+        /* [추가] 기능 소개 이미지에 마우스 올리면 살짝 떠오름 */
+        .feature-img img { 
+            width: 100%; 
+            border-radius: 26px; 
+            border: 7px solid #000; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1); 
+            transition: transform 0.3s ease;
+        }
+        .feature-img img:hover {
+            transform: translateY(-10px);
+        }
 
         .feature-row.reverse { flex-direction: row-reverse; }
 
@@ -246,7 +294,6 @@
         @media (max-width: 768px) {
             header { height: 64px; }
             .header-inner { padding: 0 16px; }
-            /* 모바일에서 드롭다운 버튼 크기 조정 */
             .btn-download { font-size: 14px; padding: 8px 16px; }
             .logo img { height: 28px; }
 
@@ -259,7 +306,6 @@
             .hero-title { flex-direction: column; gap: 10px; margin-bottom: 30px; }
             .hero-sub { margin-top: 60px; font-size: 20px; color: #000; margin-bottom: 20px;} 
             
-            /* 모바일에서 스토어 버튼 크기 조정 */
             .store-buttons img { height: 50px; }
 
             .hero-phone-img { width: 200px; margin-bottom: -50px; }
@@ -309,12 +355,12 @@
 
     <section class="hero">
         <div class="container">
-            <div class="hero-title">
+            <div class="hero-title reveal">
                 <h1>운동에만 집중하도록,<br>나만의 피트니스 AI</h1>
                 <img src="logo.png" style="height: 50px; margin-left: 10px;" alt="SoMa">
             </div>
             
-            <div class="store-buttons">
+            <div class="store-buttons reveal">
                 <a href="https://apps.apple.com/kr/app/%EC%86%8C%EB%A7%88/id6753277300" target="_blank">
                     <img src="btn-appstore.png" alt="App Store">
                 </a>
@@ -323,20 +369,20 @@
                 </a>
             </div>
 
-            <p class="hero-sub" style="color: #000;">수업의 진심이 온전히 닿게, 필라테스/PT 강사 필수 앱. ‘소마’</p>
+            <p class="hero-sub reveal" style="color: #000;">수업의 진심이 온전히 닿게, 필라테스/PT 강사 필수 앱. ‘소마’</p>
             
-            <img src="hero-phone.png" class="hero-phone-img" alt="소마 앱 메인 화면">
+            <img src="hero-phone.png" class="hero-phone-img floating-anim" alt="소마 앱 메인 화면">
         </div>
     </section>
 
     <section class="section-padding bg-white">
         <div class="container feature-row">
-            <div class="feature-text">
+            <div class="feature-text reveal">
                 <h3>수업 관리부터 정산까지,<br><span class="text-blue">강사님의 하루를 AI로 완벽하게</span></h3>
                 <br>
                 <p>출석 체크부터 스케줄 조정, 강사료 정산까지 귀찮은 '강사 잡무'를 AI가 다 처리해주니, 이제 몸과 마음은 오직 회원님 케어에만 집중하세요!</p>
             </div>
-            <div class="feature-img">
+            <div class="feature-img reveal">
                 <img src="feature-1.png" alt="수업 관리 화면">
             </div>
         </div>
@@ -344,12 +390,12 @@
 
     <section class="section-padding bg-sky">
         <div class="container feature-row reverse">
-            <div class="feature-text">
+            <div class="feature-text reveal">
                 <h3>비포애프터 눈대중은 그만.<br><span class="text-blue">AI가 분석하는 회원 체형 리포트</span></h3>
                 <br>
                 <p>그냥 ‘좋아졌네요’ 대신, AI가 회원님 체형 변화를 객관적인 수치와 이미지로 정밀 분석해줘요. 비포/애프터 리포트 퀄리티가 확 올라가서 프로페셔널함이 남달라집니다.</p>
             </div>
-            <div class="feature-img">
+            <div class="feature-img reveal">
                 <img src="feature-2.png" alt="체형 분석 화면">
             </div>
         </div>
@@ -357,12 +403,12 @@
 
     <section class="section-padding bg-white">
         <div class="container feature-row">
-            <div class="feature-text">
+            <div class="feature-text reveal">
                 <h3>매월 기다려지는 투명한 급여 명세서,<br><span class="text-blue">복잡한 페이롤 계산, 소마가 1초 만에</span></h3>
                 <br>
                 <p>내 페이, 계산기 두드릴 필요 없어요! 복잡한 페이롤 계산, 전부 소마 AI에 맡기세요. 투명하고 정확한 급여 명세서가 1초 만에 PDF로 생성됩니다.</p>
             </div>
-            <div class="feature-img">
+            <div class="feature-img reveal">
                 <img src="feature-3.png" alt="급여 명세서 화면">
             </div>
         </div>
@@ -370,12 +416,12 @@
 
     <section class="section-padding bg-sky">
         <div class="container feature-row reverse">
-            <div class="feature-text">
+            <div class="feature-text reveal">
                 <h3>종이장부, 엑셀파일?<br><span class="text-blue">업로드 한 번이면 회원 등록 끝</span></h3>
                 <br>
                 <p>종이 장부, 복잡한 엑셀 파일에 흩어진 회원 정보들, 그냥 사진 찍듯 소마앱에 한 번만 올리면 끝! 모든 정보가 AI로 깔끔하게 정리되어 관리 시간이 반으로 줄어듭니다.</p>
             </div>
-            <div class="feature-img">
+            <div class="feature-img reveal">
                 <img src="feature-4.png" alt="회원 등록 화면">
             </div>
         </div>
@@ -383,26 +429,28 @@
 
     <section class="section-padding bg-white">
         <div class="container feature-row">
-            <div class="feature-text">
+            <div class="feature-text reveal">
                 <h3>놓치는 회원 없이 꽉 잡으세요.<br><span class="text-blue">재등록 확률 예측으로 매출 상승</span></h3>
                 <br>
                 <p>곧 이탈할 것 같은 회원님, 재등록 시기 놓칠 것 같은 회원님을 AI가 똑똑하게 미리 알려줘요. 놓치는 회원 없이 싹 다 관리해서 내 레슨 매출도 안정적으로 Up!</p>
             </div>
-            <div class="feature-img">
+            <div class="feature-img reveal">
                 <img src="feature-5.png" alt="재등록 예측 화면">
             </div>
         </div>
     </section>
 
     <section class="bottom-cta">
-        <h2>수업의 진심이 온전히 닿게,<br>필라테스/PT 강사 필수 앱. ‘소마’</h2>
-        <div class="store-buttons">
-            <a href="https://apps.apple.com/kr/app/%EC%86%8C%EB%A7%88/id6753277300" target="_blank">
-                <img src="btn-appstore.png" alt="App Store">
-            </a>
-            <a href="https://play.google.com/store/apps/details?id=com.somaai.somaai&pcampaignid=web_share&pli=1" target="_blank">
-                <img src="btn-googleplay.png" alt="Google Play">
-            </a>
+        <div class="reveal">
+            <h2>수업의 진심이 온전히 닿게,<br>필라테스/PT 강사 필수 앱. ‘소마’</h2>
+            <div class="store-buttons">
+                <a href="https://apps.apple.com/kr/app/%EC%86%8C%EB%A7%88/id6753277300" target="_blank">
+                    <img src="btn-appstore.png" alt="App Store">
+                </a>
+                <a href="https://play.google.com/store/apps/details?id=com.somaai.somaai&pcampaignid=web_share&pli=1" target="_blank">
+                    <img src="btn-googleplay.png" alt="Google Play">
+                </a>
+            </div>
         </div>
     </section>
 
@@ -433,6 +481,29 @@
             <p class="copyright">© 2025 SoMa Inc. All rights reserved.</p>
         </div>
     </footer>
+
+    <script>
+        // 화면에 요소가 나타나는지 감시하는 '관찰자' 생성
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // 화면에 보이면 'active' 클래스 추가 (나타남)
+                    entry.target.classList.add('active');
+                }
+            });
+        }, {
+            threshold: 0.1 // 요소가 10% 정도 보이면 작동
+        });
+
+        // 모든 'reveal' 클래스를 가진 요소들을 감시 시작
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+        
+        // 메인 히어로 섹션은 페이지 로드 즉시 보이게 처리
+        window.addEventListener('load', () => {
+            const heroElements = document.querySelectorAll('.hero .reveal');
+            heroElements.forEach(el => el.classList.add('active'));
+        });
+    </script>
 
 </body>
 </html>
