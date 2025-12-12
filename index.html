@@ -42,7 +42,7 @@
             padding: 120px 0;
         }
 
-        /* [추가] 애니메이션용 클래스 */
+        /* 애니메이션용 클래스 */
         .reveal {
             opacity: 0;
             transform: translateY(50px);
@@ -54,7 +54,7 @@
             transform: translateY(0);
         }
 
-        /* [추가] 둥둥 떠다니는 애니메이션 */
+        /* 둥둥 떠다니는 애니메이션 */
         @keyframes float {
             0% { transform: translateY(0px); }
             50% { transform: translateY(-15px); }
@@ -229,11 +229,10 @@
         .feature-text { flex: 1; max-width: 579px; }
         .feature-img { flex: 1; max-width: 281px; } 
         
-        /* [수정 완료] 테두리(border) 속성 제거 */
+        /* 기능 이미지 테두리 없음 */
         .feature-img img { 
             width: 100%; 
             border-radius: 26px; 
-            /* border: 7px solid #000;  <- 삭제됨 */
             box-shadow: 0 10px 30px rgba(0,0,0,0.1); 
             transition: transform 0.3s ease;
         }
@@ -243,20 +242,24 @@
 
         .feature-row.reverse { flex-direction: row-reverse; }
 
-        /* 6. 하단 다운로드 섹션 [수정됨] */
+        /* 6. 하단 다운로드 섹션 */
         .bottom-cta {
             background: radial-gradient(67.6% 55.45% at 50% 100%, #2F8DD5 17.63%, #5FCDF9 55%, #FFFFFF 100%);
-            padding: 80px 0 100px; /* 하단 여백 살짝 추가 */
+            padding: 80px 0;
             text-align: center;
         }
         
-        /* [수정] 하단 텍스트 크기 줄이고, 상단 여백 추가 (버튼 아래로 오므로) */
+        /* 하단 텍스트 스타일: 버튼 위쪽에 위치하므로 margin-bottom 필요 */
         .bottom-cta h2 { 
-            font-size: 30px; /* 36px -> 30px로 축소 */
+            font-size: 30px;
             font-weight: 700;
-            margin-top: 40px; /* 버튼과의 간격 */
-            margin-bottom: 0;
+            margin-bottom: 30px; /* 텍스트와 버튼 사이 간격 */
             line-height: 1.4;
+        }
+
+        /* 하단 섹션 내 버튼들: 상단 여백 제거 */
+        .bottom-cta .store-buttons {
+            margin-top: 0;
         }
 
         /* 7. 푸터 */
@@ -308,8 +311,7 @@
             h3 { font-size: 22px; line-height: 1.5; }
             p { font-size: 18px; line-height: 1.6; text-align: center; }
             
-            /* 모바일 하단 텍스트 크기 조정 */
-            .bottom-cta h2 { font-size: 22px; margin-top: 30px; }
+            .bottom-cta h2 { font-size: 22px; margin-bottom: 20px; }
 
             .hero { padding-top: 100px; padding-bottom: 0; }
             .hero-title { flex-direction: column; gap: 10px; margin-bottom: 30px; }
@@ -451,14 +453,16 @@
 
     <section class="bottom-cta">
         <div class="reveal">
-            <div class="store-buttons" style="margin-top: 0;"> <a href="https://apps.apple.com/kr/app/%EC%86%8C%EB%A7%88/id6753277300" target="_blank">
+            <h2>수업의 진심이 온전히 닿게,<br>필라테스/PT 강사 필수 앱. ‘소마’</h2>
+
+            <div class="store-buttons">
+                <a href="https://apps.apple.com/kr/app/%EC%86%8C%EB%A7%88/id6753277300" target="_blank">
                     <img src="btn-appstore.png" alt="App Store">
                 </a>
                 <a href="https://play.google.com/store/apps/details?id=com.somaai.somaai&pcampaignid=web_share&pli=1" target="_blank">
                     <img src="btn-googleplay.png" alt="Google Play">
                 </a>
             </div>
-            <h2>수업의 진심이 온전히 닿게,<br>필라테스/PT 강사 필수 앱. ‘소마’</h2>
         </div>
     </section>
 
@@ -491,22 +495,18 @@
     </footer>
 
     <script>
-        // 화면에 요소가 나타나는지 감시하는 '관찰자' 생성
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    // 화면에 보이면 'active' 클래스 추가 (나타남)
                     entry.target.classList.add('active');
                 }
             });
         }, {
-            threshold: 0.1 // 요소가 10% 정도 보이면 작동
+            threshold: 0.1
         });
 
-        // 모든 'reveal' 클래스를 가진 요소들을 감시 시작
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
         
-        // 메인 히어로 섹션은 페이지 로드 즉시 보이게 처리
         window.addEventListener('load', () => {
             const heroElements = document.querySelectorAll('.hero .reveal');
             heroElements.forEach(el => el.classList.add('active'));
