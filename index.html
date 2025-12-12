@@ -38,9 +38,15 @@
             padding: 0 20px;
         }
 
+        /* 섹션 패딩: 핸드폰이 겹치는 부분 고려하여 상단 패딩 조정 */
         .section-padding {
-            padding: 120px 0;
+            padding: 180px 0 120px; /* 상단 패딩을 늘려서 핸드폰과 텍스트가 겹치지 않게 함 */
         }
+        /* 첫 번째 기능 섹션은 핸드폰이 많이 덮으므로 패딩을 더 줌 */
+        .section-padding.first-feature {
+             padding-top: 220px;
+        }
+
 
         /* 애니메이션용 클래스 */
         .reveal {
@@ -172,7 +178,9 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            overflow: hidden; 
+            /* overflow: hidden; 제거 -> 이미지가 섹션 밖으로 튀어나오게 함 */
+            position: relative; /* z-index 관리를 위해 */
+            z-index: 2;
         }
 
         .hero-title {
@@ -207,13 +215,15 @@
             margin-bottom: 40px;
         }
 
+        /* [수정] 메인 핸드폰 이미지 스타일 */
         .hero-phone-img {
-            width: 280px; 
-            margin-bottom: -100px; 
-            border-radius: 30px 30px 0 0;
-            box-shadow: 0 -20px 40px rgba(0,0,0,0.1);
+            width: 320px; /* 크기 약간 키움 */
+            /* 마이너스 마진을 대폭 늘려서 아래 섹션과 많이 겹치게 함 */
+            margin-bottom: -250px; 
+            border-radius: 40px 40px 0 0;
+            box-shadow: 0 -30px 60px rgba(0,0,0,0.15); /* 그림자 강화 */
             position: relative;
-            z-index: 10;
+            z-index: 10; /* 다른 요소보다 위에 오도록 */
         }
 
         /* 5. 기능 소개 섹션 */
@@ -229,7 +239,6 @@
         .feature-text { flex: 1; max-width: 579px; }
         .feature-img { flex: 1; max-width: 281px; } 
         
-        /* 기능 이미지 테두리 없음 */
         .feature-img img { 
             width: 100%; 
             border-radius: 26px; 
@@ -242,22 +251,23 @@
 
         .feature-row.reverse { flex-direction: row-reverse; }
 
-        /* 6. 하단 다운로드 섹션 */
+        /* 6. 하단 다운로드 섹션 [수정됨] */
         .bottom-cta {
             background: radial-gradient(67.6% 55.45% at 50% 100%, #2F8DD5 17.63%, #5FCDF9 55%, #FFFFFF 100%);
-            padding: 80px 0;
+            padding: 100px 0 120px;
             text-align: center;
         }
         
-        /* 하단 텍스트 스타일: 버튼 위쪽에 위치하므로 margin-bottom 필요 */
+        /* [수정] 하단 텍스트 스타일: 흰색으로 변경 */
         .bottom-cta h2 { 
-            font-size: 30px;
+            font-size: 36px; /* 피그마에 맞춰 다시 키움 */
             font-weight: 700;
-            margin-bottom: 30px; /* 텍스트와 버튼 사이 간격 */
+            color: #FFFFFF; /* 텍스트 색상 흰색 */
+            margin-bottom: 40px; /* 버튼과 간격 */
             line-height: 1.4;
         }
 
-        /* 하단 섹션 내 버튼들: 상단 여백 제거 */
+        /* 하단 섹션 내 버튼들 */
         .bottom-cta .store-buttons {
             margin-top: 0;
         }
@@ -311,7 +321,7 @@
             h3 { font-size: 22px; line-height: 1.5; }
             p { font-size: 18px; line-height: 1.6; text-align: center; }
             
-            .bottom-cta h2 { font-size: 22px; margin-bottom: 20px; }
+            .bottom-cta h2 { font-size: 24px; margin-bottom: 30px; }
 
             .hero { padding-top: 100px; padding-bottom: 0; }
             .hero-title { flex-direction: column; gap: 10px; margin-bottom: 30px; }
@@ -319,9 +329,11 @@
             
             .store-buttons img { height: 50px; }
 
-            .hero-phone-img { width: 200px; margin-bottom: -50px; }
+            /* 모바일에서도 핸드폰 겹치는 정도 조정 */
+            .hero-phone-img { width: 220px; margin-bottom: -120px; }
 
-            .section-padding { padding: 70px 0; }
+            .section-padding { padding: 100px 0 60px; }
+            .section-padding.first-feature { padding-top: 140px; }
             
             .feature-row, .feature-row.reverse {
                 flex-direction: column; 
@@ -386,7 +398,7 @@
         </div>
     </section>
 
-    <section class="section-padding bg-white">
+    <section class="section-padding first-feature bg-white">
         <div class="container feature-row">
             <div class="feature-text reveal">
                 <h3>수업 관리부터 정산까지,<br><span class="text-blue">강사님의 하루를 AI로 완벽하게</span></h3>
