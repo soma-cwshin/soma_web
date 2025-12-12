@@ -80,6 +80,12 @@
 
         .logo img { height: 34px; width: auto; }
 
+        /* [추가] 드롭다운 버튼 스타일 */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
         .btn-download {
             background-color: #2E8CD5;
             color: #FFFFFF;
@@ -91,19 +97,51 @@
             align-items: center;
             gap: 10px;
             transition: background 0.3s;
+            cursor: pointer;
+            border: none;
         }
         .btn-download:hover { background-color: #2370ad; }
 
+        /* 드롭다운 내용 (숨김 상태) */
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            right: 0;
+            background-color: #f9f9f9;
+            min-width: 180px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid #ddd;
+        }
+
+        /* 드롭다운 링크 스타일 */
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        .dropdown-content a:hover {background-color: #f1f1f1;}
+
+        /* 마우스 올렸을 때 보이기 */
+        .dropdown:hover .dropdown-content {display: block;}
+
+
         /* 4. 메인 히어로 섹션 */
         .hero {
-            padding-top: 150px; /* 헤더 높이 고려 */
-            padding-bottom: 0; /* 하단 여백 제거 (휴대폰이 잘리지 않게) */
+            padding-top: 150px; 
+            padding-bottom: 0; 
             background: radial-gradient(65.39% 45.83% at 50% 100%, #2F8DD5 14.78%, #5FCDF9 59.4%, #FFFFFF 90.82%);
             text-align: center;
             display: flex;
             flex-direction: column;
             align-items: center;
-            overflow: hidden; /* 삐져나온 이미지 숨김 */
+            overflow: hidden; 
         }
 
         .hero-title {
@@ -115,35 +153,35 @@
             flex-wrap: wrap;
         }
 
-        /* 스토어 버튼 스타일 수정 (하나의 이미지로 통합) */
+        /* [수정] 스토어 버튼 분리 및 배치 */
         .store-buttons {
             display: flex;
             gap: 12px;
             margin-top: 36px;
             justify-content: center;
         }
-
-        .store-buttons img { height: 70px; width: auto; cursor: pointer; }
+        /* 버튼 이미지 크기 최적화 */
+        .store-buttons img { height: 60px; width: auto; cursor: pointer; transition: transform 0.2s; }
+        .store-buttons img:hover { transform: scale(1.05); }
 
         .hero-sub {
             color: white;
             font-size: 36px;
             font-weight: 500;
-            margin-top: 200px; /* 간격 조정 */
+            margin-top: 200px;
             margin-bottom: 40px;
         }
 
-        /* 메인 히어로 휴대폰 이미지 */
         .hero-phone-img {
-            width: 280px; /* 적절한 크기로 조정 */
-            margin-bottom: -100px; /* 아래 섹션과 자연스럽게 겹치거나 끝부분 처리 */
+            width: 280px; 
+            margin-bottom: -100px; 
             border-radius: 30px 30px 0 0;
             box-shadow: 0 -20px 40px rgba(0,0,0,0.1);
             position: relative;
             z-index: 10;
         }
 
-        /* 5. 기능 소개 섹션 (지그재그 레이아웃) */
+        /* 5. 기능 소개 섹션 */
         .feature-row {
             display: flex;
             align-items: center;
@@ -208,6 +246,7 @@
         @media (max-width: 768px) {
             header { height: 64px; }
             .header-inner { padding: 0 16px; }
+            /* 모바일에서 드롭다운 버튼 크기 조정 */
             .btn-download { font-size: 14px; padding: 8px 16px; }
             .logo img { height: 28px; }
 
@@ -219,6 +258,8 @@
             .hero { padding-top: 100px; padding-bottom: 0; }
             .hero-title { flex-direction: column; gap: 10px; margin-bottom: 30px; }
             .hero-sub { margin-top: 60px; font-size: 20px; color: #000; margin-bottom: 20px;} 
+            
+            /* 모바일에서 스토어 버튼 크기 조정 */
             .store-buttons img { height: 50px; }
 
             .hero-phone-img { width: 200px; margin-bottom: -50px; }
@@ -253,9 +294,16 @@
             <a href="#" class="logo">
                 <img src="logo.png" alt="SoMa Logo">
             </a>
-            <a href="#" class="btn-download">
-                지금 다운로드 <span style="font-size: 12px;">▼</span>
-            </a>
+            
+            <div class="dropdown">
+                <button class="btn-download">
+                    지금 다운로드 <span style="font-size: 12px;">▼</span>
+                </button>
+                <div class="dropdown-content">
+                    <a href="https://apps.apple.com/kr/app/%EC%86%8C%EB%A7%88/id6753277300" target="_blank">iOS 다운로드하기</a>
+                    <a href="https://play.google.com/store/apps/details?id=com.somaai.somaai&pcampaignid=web_share&pli=1" target="_blank">AOS 다운로드하기</a>
+                </div>
+            </div>
         </div>
     </header>
 
@@ -267,7 +315,12 @@
             </div>
             
             <div class="store-buttons">
-                <a href="#"><img src="store.png" alt="App Store & Google Play"></a>
+                <a href="https://apps.apple.com/kr/app/%EC%86%8C%EB%A7%88/id6753277300" target="_blank">
+                    <img src="btn-appstore.png" alt="App Store">
+                </a>
+                <a href="https://play.google.com/store/apps/details?id=com.somaai.somaai&pcampaignid=web_share&pli=1" target="_blank">
+                    <img src="btn-googleplay.png" alt="Google Play">
+                </a>
             </div>
 
             <p class="hero-sub" style="color: #000;">수업의 진심이 온전히 닿게, 필라테스/PT 강사 필수 앱. ‘소마’</p>
@@ -344,7 +397,12 @@
     <section class="bottom-cta">
         <h2>수업의 진심이 온전히 닿게,<br>필라테스/PT 강사 필수 앱. ‘소마’</h2>
         <div class="store-buttons">
-            <a href="#"><img src="store.png" alt="Download SoMa"></a>
+            <a href="https://apps.apple.com/kr/app/%EC%86%8C%EB%A7%88/id6753277300" target="_blank">
+                <img src="btn-appstore.png" alt="App Store">
+            </a>
+            <a href="https://play.google.com/store/apps/details?id=com.somaai.somaai&pcampaignid=web_share&pli=1" target="_blank">
+                <img src="btn-googleplay.png" alt="Google Play">
+            </a>
         </div>
     </section>
 
