@@ -1,115 +1,380 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SoMa - 통합 AI SaaS 솔루션</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>소마 (SoMa AI) - 나만의 피트니스 AI</title>
 
-  <!-- Canonical: 루트(/)를 대표 페이지로 지정 -->
-  <link rel="canonical" href="https://soma.ai.kr/" />
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png" />
 
-  <!-- Hreflang: 한/영 상호 연결 -->
-  <link rel="alternate" href="https://soma.ai.kr/" hreflang="ko" />
-  <link rel="alternate" href="https://soma.ai.kr/index_en.html" hreflang="en" />
-  <link rel="alternate" href="https://soma.ai.kr/" hreflang="x-default" />
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+    
+    <style>
+        /* 1. 기본 설정 (Reset) */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+        }
 
-  <!-- 파비콘 -->
-  <link rel="icon" href="favicon.ico" type="image/x-icon" />
-  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
-  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png" />
+        body {
+            background-color: #FFFFFF;
+            color: #000000;
+            overflow-x: hidden;
+            line-height: 1.5;
+        }
 
-  <meta name="description" content="SoMa는 예약·결제·정산·리포트까지 통합된 AI 기반 경영 SaaS입니다. 자동화된 워크플로우와 인사이트로 운영 효율을 높이세요.">
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+        img { max-width: 100%; display: block; }
 
-  <style>
-    :root { --accent: #95DCF8; }
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'Inter', sans-serif; color: #000; background: #fff; line-height: 1.6; }
-    a { text-decoration: none; color: inherit; }
-    ul { list-style: none; }
+        /* 2. 공통 클래스 */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
 
-    .header { display: flex; justify-content: space-between; align-items: center; padding: 1rem 2rem; }
-    .logo { height: 40px; }
-    .nav ul { display: flex; gap: 0.5rem; align-items: center; }
-    .nav a { font-weight: 500; padding: 0.25rem 0.5rem; transition: color 0.2s; color: #000; }
-    .nav a.active { color: var(--accent); }
-    .divider { color: #aaa; }
+        .section-padding {
+            padding: 120px 0;
+        }
 
-    .hero { display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 4rem 1rem; }
-    .hero h1 { font-size: 3rem; margin-bottom: 1rem; color: #000; word-break: keep-all; overflow-wrap: normal; }
-    .hero p { font-size: 1.25rem; margin-bottom: 1.5rem; color: #000; }
-    .cta { display: inline-block; background: var(--accent); color: #fff; padding: 1rem 2rem; font-size: 1.5rem; border-radius: 9999px; font-weight: 600; border: none; cursor: pointer; }
-    .cta:hover { opacity: 0.85; }
+        /* 텍스트 스타일 */
+        h1 { font-size: 50px; font-weight: 700; line-height: 1.28; }
+        h2 { font-size: 36px; font-weight: 700; line-height: 1.3; margin-bottom: 24px; }
+        h3 { font-size: 36px; font-weight: 700; line-height: 1.78; }
+        p { font-size: 26px; font-weight: 500; line-height: 1.54; color: #000; }
+        
+        .text-blue { color: #2E8CD5; }
+        .text-white { color: #FFFFFF; }
+        .bg-sky { background-color: #E7F8FF; }
+        .bg-white { background-color: #FFFFFF; }
 
-    .features { max-width: 1200px; margin: 4rem auto; padding: 0 1rem; }
-    .features h2 { text-align: center; font-size: 2rem; margin-bottom: 2rem; color: #000; }
-    .feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 2rem; }
-    .feature { background: #fff; padding: 2rem; border-radius: 1rem; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
-    .feature h3 { font-size: 1.25rem; margin-bottom: 0.75rem; color: var(--accent); }
-    .feature p { color: #333; }
+        /* 3. 헤더 (네비게이션) */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 90px;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(35px);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
 
-    footer { text-align: center; padding: 2rem 1rem; background: #f9f9f9; }
-    .company-info { font-size: 0.875rem; color: #555; line-height: 1.4; margin-bottom: 0.5rem; }
-    .policy-links { margin-bottom: 1rem; }
-    .policy-links a { color: var(--accent); margin: 0 0.25rem; }
-    .policy-links a:hover { text-decoration: underline; }
-    footer p { font-size: 0.75rem; color: #777; }
-  </style>
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            max-width: 1440px;
+            padding: 0 40px;
+        }
+
+        .logo img { height: 34px; width: auto; }
+
+        .btn-download {
+            background-color: #2E8CD5;
+            color: #FFFFFF;
+            padding: 12px 24px;
+            border-radius: 27px;
+            font-size: 18px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: background 0.3s;
+        }
+        .btn-download:hover { background-color: #2370ad; }
+
+        /* 4. 메인 히어로 섹션 */
+        .hero {
+            padding-top: 150px; /* 헤더 높이 고려 */
+            padding-bottom: 0; /* 하단 여백 제거 (휴대폰이 잘리지 않게) */
+            background: radial-gradient(65.39% 45.83% at 50% 100%, #2F8DD5 14.78%, #5FCDF9 59.4%, #FFFFFF 90.82%);
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow: hidden; /* 삐져나온 이미지 숨김 */
+        }
+
+        .hero-title {
+            margin-bottom: 50px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* 스토어 버튼 스타일 수정 (하나의 이미지로 통합) */
+        .store-buttons {
+            display: flex;
+            gap: 12px;
+            margin-top: 36px;
+            justify-content: center;
+        }
+
+        .store-buttons img { height: 70px; width: auto; cursor: pointer; }
+
+        .hero-sub {
+            color: white;
+            font-size: 36px;
+            font-weight: 500;
+            margin-top: 200px; /* 간격 조정 */
+            margin-bottom: 40px;
+        }
+
+        /* 메인 히어로 휴대폰 이미지 */
+        .hero-phone-img {
+            width: 280px; /* 적절한 크기로 조정 */
+            margin-bottom: -100px; /* 아래 섹션과 자연스럽게 겹치거나 끝부분 처리 */
+            border-radius: 30px 30px 0 0;
+            box-shadow: 0 -20px 40px rgba(0,0,0,0.1);
+            position: relative;
+            z-index: 10;
+        }
+
+        /* 5. 기능 소개 섹션 (지그재그 레이아웃) */
+        .feature-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 179px; 
+            max-width: 1440px;
+            margin: 0 auto;
+        }
+
+        .feature-text { flex: 1; max-width: 579px; }
+        .feature-img { flex: 1; max-width: 281px; } 
+        .feature-img img { width: 100%; border-radius: 26px; border: 7px solid #000; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+
+        .feature-row.reverse { flex-direction: row-reverse; }
+
+        /* 6. 하단 다운로드 섹션 */
+        .bottom-cta {
+            background: radial-gradient(67.6% 55.45% at 50% 100%, #2F8DD5 17.63%, #5FCDF9 55%, #FFFFFF 100%);
+            padding: 80px 0;
+            text-align: center;
+        }
+        .bottom-cta h2 { font-size: 36px; margin-bottom: 36px; }
+
+        /* 7. 푸터 */
+        footer {
+            background-color: #2C2C2C;
+            padding: 60px 0;
+            color: #979797;
+            font-size: 20px;
+        }
+
+        .footer-content {
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        .footer-logo { margin-bottom: 40px; filter: grayscale(100%); opacity: 0.7; }
+        .footer-logo img { height: 30px; }
+
+        .footer-info-row {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 8px;
+            flex-wrap: wrap;
+        }
+        
+        .footer-links {
+            display: flex;
+            gap: 20px;
+            margin-top: 20px;
+            align-items: center;
+        }
+        .footer-links a { transition: color 0.3s; }
+        .footer-links a:hover { color: #fff; }
+
+        .divider { width: 1px; height: 16px; background: #777; }
+        
+        .copyright { margin-top: 40px; font-size: 18px; }
+
+        /* --- 모바일 반응형 (max-width: 768px) --- */
+        @media (max-width: 768px) {
+            header { height: 64px; }
+            .header-inner { padding: 0 16px; }
+            .btn-download { font-size: 14px; padding: 8px 16px; }
+            .logo img { height: 28px; }
+
+            h1 { font-size: 24px; } 
+            h2 { font-size: 24px; text-align: center; }
+            h3 { font-size: 22px; line-height: 1.5; }
+            p { font-size: 18px; line-height: 1.6; text-align: center; }
+
+            .hero { padding-top: 100px; padding-bottom: 0; }
+            .hero-title { flex-direction: column; gap: 10px; margin-bottom: 30px; }
+            .hero-sub { margin-top: 60px; font-size: 20px; color: #000; margin-bottom: 20px;} 
+            .store-buttons img { height: 50px; }
+
+            .hero-phone-img { width: 200px; margin-bottom: -50px; }
+
+            .section-padding { padding: 70px 0; }
+            
+            .feature-row, .feature-row.reverse {
+                flex-direction: column; 
+                gap: 50px;
+                text-align: center;
+            }
+            .feature-text { text-align: center; }
+            
+            .feature-text h3 { 
+                display: flex; 
+                flex-direction: column; 
+                align-items: center; 
+            }
+
+            footer { padding: 40px 20px; font-size: 14px; }
+            .footer-content { padding: 0; }
+            .footer-info-row { flex-direction: column; gap: 4px; }
+            .footer-links { margin-top: 10px; }
+            .copyright { font-size: 12px; margin-top: 30px; }
+        }
+    </style>
 </head>
 <body>
-  <header class="header">
-    <div class="logo-container">
-      <img src="logo.png" alt="SoMa 로고" class="logo" />
-    </div>
-    <nav class="nav">
-      <ul>
-        <!-- KOR는 index.html이 아니라 루트(/)로 연결 -->
-        <li><a href="/" class="active">KOR</a></li>
-        <li><span class="divider">|</span></li>
-        <li><a href="/index_en.html">ENG</a></li>
-      </ul>
-    </nav>
-  </header>
 
-  <section class="hero">
-    <h1>통합 AI SaaS 솔루션</h1>
-    <p>자동화된 워크플로우와 AI 인사이트로 경영 환경의 혁신을 경험할 수 있습니다.</p>
-    <a href="/company.html" class="cta">회사소개</a>
-  </section>
+    <header>
+        <div class="header-inner">
+            <a href="#" class="logo">
+                <img src="logo.png" alt="SoMa Logo">
+            </a>
+            <a href="#" class="btn-download">
+                지금 다운로드 <span style="font-size: 12px;">▼</span>
+            </a>
+        </div>
+    </header>
 
-  <section class="features">
-    <h2>주요 기능</h2>
-    <div class="feature-grid">
-      <div class="feature">
-        <h3>자동 예약</h3>
-        <p>원스톱 예약 및 출석 관리 기능 제공</p>
-      </div>
-      <div class="feature">
-        <h3>AI 인사이트</h3>
-        <p>스케줄, 매출, 유저 참여도 최적화를 위한 분석 제공</p>
-      </div>
-      <div class="feature">
-        <h3>메시징</h3>
-        <p>실시간 채팅으로 유저간 커뮤니케이션 강화</p>
-      </div>
-      <div class="feature">
-        <h3>성과 보고</h3>
-        <p>유저의 성과, 정산, 상세 리포트 지원</p>
-      </div>
-    </div>
-  </section>
+    <section class="hero">
+        <div class="container">
+            <div class="hero-title">
+                <h1>운동에만 집중하도록,<br>나만의 피트니스 AI</h1>
+                <img src="logo.png" style="height: 50px; margin-left: 10px;" alt="SoMa">
+            </div>
+            
+            <div class="store-buttons">
+                <a href="#"><img src="store.png" alt="App Store & Google Play"></a>
+            </div>
 
-  <footer>
-    <div class="company-info">
-      (주)소마<br />
-      사업자 등록번호 : 805-88-03448 | 대표 : 이창재<br />
-      호스팅 서비스 : 주식회사 소마<br />
-      04617 서울특별시 중구 동호로 298 (장충동, 이성빌딩)
-    </div>
-    <div class="policy-links">
-      <a href="/terms.html" target="_blank">서비스 이용약관</a> |
-      <a href="/privacy.html" target="_blank">개인정보 처리방침</a>
-    </div>
-    <p>&copy; 2025 SoMa Inc. All rights reserved.</p>
-  </footer>
+            <p class="hero-sub" style="color: #000;">수업의 진심이 온전히 닿게, 필라테스/PT 강사 필수 앱. ‘소마’</p>
+            
+            <img src="hero-phone.png" class="hero-phone-img" alt="소마 앱 메인 화면">
+        </div>
+    </section>
+
+    <section class="section-padding bg-white">
+        <div class="container feature-row">
+            <div class="feature-text">
+                <h3>수업 관리부터 정산까지,<br><span class="text-blue">강사님의 하루를 AI로 완벽하게</span></h3>
+                <br>
+                <p>출석 체크부터 스케줄 조정, 강사료 정산까지 귀찮은 '강사 잡무'를 AI가 다 처리해주니, 이제 몸과 마음은 오직 회원님 케어에만 집중하세요!</p>
+            </div>
+            <div class="feature-img">
+                <img src="feature-1.png" alt="수업 관리 화면">
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding bg-sky">
+        <div class="container feature-row reverse">
+            <div class="feature-text">
+                <h3>비포애프터 눈대중은 그만.<br><span class="text-blue">AI가 분석하는 회원 체형 리포트</span></h3>
+                <br>
+                <p>그냥 ‘좋아졌네요’ 대신, AI가 회원님 체형 변화를 객관적인 수치와 이미지로 정밀 분석해줘요. 비포/애프터 리포트 퀄리티가 확 올라가서 프로페셔널함이 남달라집니다.</p>
+            </div>
+            <div class="feature-img">
+                <img src="feature-2.png" alt="체형 분석 화면">
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding bg-white">
+        <div class="container feature-row">
+            <div class="feature-text">
+                <h3>매월 기다려지는 투명한 급여 명세서,<br><span class="text-blue">복잡한 페이롤 계산, 소마가 1초 만에</span></h3>
+                <br>
+                <p>내 페이, 계산기 두드릴 필요 없어요! 복잡한 페이롤 계산, 전부 소마 AI에 맡기세요. 투명하고 정확한 급여 명세서가 1초 만에 PDF로 생성됩니다.</p>
+            </div>
+            <div class="feature-img">
+                <img src="feature-3.png" alt="급여 명세서 화면">
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding bg-sky">
+        <div class="container feature-row reverse">
+            <div class="feature-text">
+                <h3>종이장부, 엑셀파일?<br><span class="text-blue">업로드 한 번이면 회원 등록 끝</span></h3>
+                <br>
+                <p>종이 장부, 복잡한 엑셀 파일에 흩어진 회원 정보들, 그냥 사진 찍듯 소마앱에 한 번만 올리면 끝! 모든 정보가 AI로 깔끔하게 정리되어 관리 시간이 반으로 줄어듭니다.</p>
+            </div>
+            <div class="feature-img">
+                <img src="feature-4.png" alt="회원 등록 화면">
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding bg-white">
+        <div class="container feature-row">
+            <div class="feature-text">
+                <h3>놓치는 회원 없이 꽉 잡으세요.<br><span class="text-blue">재등록 확률 예측으로 매출 상승</span></h3>
+                <br>
+                <p>곧 이탈할 것 같은 회원님, 재등록 시기 놓칠 것 같은 회원님을 AI가 똑똑하게 미리 알려줘요. 놓치는 회원 없이 싹 다 관리해서 내 레슨 매출도 안정적으로 Up!</p>
+            </div>
+            <div class="feature-img">
+                <img src="feature-5.png" alt="재등록 예측 화면">
+            </div>
+        </div>
+    </section>
+
+    <section class="bottom-cta">
+        <h2>수업의 진심이 온전히 닿게,<br>필라테스/PT 강사 필수 앱. ‘소마’</h2>
+        <div class="store-buttons">
+            <a href="#"><img src="store.png" alt="Download SoMa"></a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <img src="logo.png" alt="SoMa Logo">
+            </div>
+            
+            <div class="footer-info-row">
+                <span>(주)소마</span>
+            </div>
+            <div class="footer-info-row">
+                <span>사업자 등록번호: 805-88-03448</span>
+                <span>대표: 이창재</span>
+                <span>호스팅 서비스: 주식회사 소마</span>
+            </div>
+            <div class="footer-info-row">
+                <span>주소: 04617 서울특별시 중구 동호로 298 (장충동, 이성빌딩)</span>
+            </div>
+
+            <div class="footer-links">
+                <a href="/terms.html" target="_blank">서비스 이용약관</a>
+                <div class="divider"></div>
+                <a href="/privacy.html" target="_blank">개인정보 처리방침</a>
+            </div>
+
+            <p class="copyright">© 2025 SoMa Inc. All rights reserved.</p>
+        </div>
+    </footer>
+
 </body>
 </html>
