@@ -121,21 +121,30 @@
 
         /* 4. 메인 히어로 & 배너 */
         .hero-wrapper {
+            /* 피그마 Frame 5 배경 참조 */
             background: radial-gradient(65.39% 45.83% at 50% 100%, #2F8DD5 14.78%, #5FCDF9 59.4%, #FFFFFF 90.82%);
             padding-top: 180px; 
-            padding-bottom: 100px;
+            padding-bottom: 73px; /* 피그마 하단 패딩 반영 */
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: flex-end;
-            min-height: 80vh;
+            justify-content: center; /* 내용을 중앙 정렬하되 gap으로 분리 */
+            min-height: 90vh; /* 화면을 꽉 채우도록 조정 */
+        }
+
+        .hero-content {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .hero-title-row {
             display: flex;
             align-items: center;
             gap: 50px;
-            margin-bottom: 200px;
+            /* 피그마의 260px gap 효과를 주기 위해 하단 그룹과 거리 벌림 */
+            margin-bottom: 10vh; 
         }
 
         .hero-title-row h1 {
@@ -146,22 +155,34 @@
         }
         .hero-big-logo img { width: 529px; height: auto; }
 
+        /* [수정됨] 하단 텍스트 및 버튼 그룹 */
+        .hero-bottom-group {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* [수정됨] 서브 텍스트 스타일: 피그마 Frame 8 참조 */
         .hero-sub-text {
             font-size: 36px;
             font-weight: 500;
+            line-height: 46px; /* 128% */
             color: #FFFFFF;
-            margin-bottom: 36px;
-            text-align: center;
+            margin-bottom: 36px; /* 텍스트와 버튼 사이 간격 */
+            word-break: keep-all;
         }
 
+        /* [수정됨] 스토어 버튼: 피그마 Frame 7 참조 */
         .store-buttons {
             display: flex;
             gap: 12px;
         }
         .store-buttons img {
-            height: 70px;
-            width: auto;
+            width: 210px; /* 피그마 Desktop 너비 고정 */
+            height: 70px; /* 피그마 Desktop 높이 고정 */
             border-radius: 10px;
+            object-fit: contain; /* 이미지 비율 유지 */
         }
 
         /* 5. 기능 소개 섹션 */
@@ -194,12 +215,10 @@
 
         .feature-img { flex: 1; display: flex; justify-content: flex-end; }
         
-        /* [수정됨] 휴대폰 목업 이미지 스타일: 테두리 제거 및 원본 유지 */
         .feature-img img {
             width: 281px;
-            border: none; /* 기존 border 제거 */
-            border-radius: 0; /* 이미지 자체에 라운드가 있으므로 CSS 라운드 제거 혹은 유지 (이미지 스타일에 따라 조정) */
-            /* box-shadow: 0 20px 40px rgba(0,0,0,0.1); -> 필요시 제거 가능 */
+            border: none;
+            border-radius: 0; 
         }
         
         .feature-row.reverse { flex-direction: row-reverse; }
@@ -216,7 +235,6 @@
             gap: 36px;
         }
 
-        /* [수정됨] 하단 CTA 텍스트 색상 검은색으로 변경 */
         .bottom-cta h2 {
             font-size: 36px;
             font-weight: 500;
@@ -304,10 +322,15 @@
             /* Mobile Hero */
             .hero-wrapper {
                 background: radial-gradient(133.61% 50.12% at 50% 89.96%, #2F8DD5 39.9%, #5FCDF9 69.23%, #FFFFFF 92.79%);
-                padding-top: 120px;
+                padding-top: 160px; /* 피그마 Mobile Top padding */
                 padding-bottom: 70px;
                 min-height: auto;
                 height: 852px;
+                justify-content: space-between; /* 상단 하단 분리 */
+            }
+
+            .hero-content {
+                height: 100%;
                 justify-content: space-between;
             }
 
@@ -315,19 +338,24 @@
                 flex-direction: column;
                 gap: 20px;
                 margin-bottom: 0;
-                margin-top: 40px;
+                margin-top: 0;
             }
             .hero-title-row h1 { font-size: 24px; line-height: 1.33; text-align: center; }
             
-            /* 모바일에서도 로고 변경 적용 */
             .hero-big-logo img { width: 241px; }
 
+            /* Mobile Sub Text */
             .hero-sub-text {
                 font-size: 20px;
-                line-height: 1.4;
-                margin-bottom: 30px;
+                line-height: 28px;
+                margin-bottom: 30px; /* 피그마 Mobile Frame 9 gap */
             }
-            .store-buttons img { height: 50px; }
+            
+            /* Mobile Buttons */
+            .store-buttons img { 
+                width: 150px; 
+                height: 50px; 
+            }
 
             /* Mobile Features */
             .section-padding { padding: 70px 0; }
@@ -389,7 +417,7 @@
     </header>
 
     <section class="hero-wrapper reveal">
-        <div class="container" style="width: 100%; display: flex; flex-direction: column; align-items: center;">
+        <div class="container hero-content">
             <div class="hero-title-row">
                 <h1>운동에만 집중하도록,<br>나만의 피트니스 AI</h1>
                 <div class="hero-big-logo">
@@ -397,9 +425,9 @@
                 </div>
             </div>
             
-            <div style="text-align: center;">
+            <div class="hero-bottom-group">
                 <p class="hero-sub-text">수업의 진심이 온전히 닿게, 필라테스/PT 강사 필수 앱. ‘소마’</p>
-                <div class="store-buttons" style="justify-content: center;">
+                <div class="store-buttons">
                     <a href="https://apps.apple.com/kr/app/%EC%86%8C%EB%A7%88/id6753277300" target="_blank">
                         <img src="btn-appstore.png" alt="App Store">
                     </a>
