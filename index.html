@@ -313,6 +313,18 @@
             gap: 16px;
             font-size: 20px;
             font-weight: 400;
+            flex-wrap: wrap; /* 내용이 많아지면 줄바꿈 허용 */
+        }
+
+        /* 고객센터 링크 스타일 */
+        .info-row a {
+            text-decoration: none;
+            color: #979797;
+            transition: color 0.2s;
+        }
+        .info-row a:hover {
+            color: #ffffff;
+            text-decoration: underline;
         }
 
         .footer-links {
@@ -599,15 +611,21 @@
                     </div>
                     <div class="info-row">
                         <span>사업자 등록번호: 805-88-03448</span>
+                        <span class="pc-only">|</span>
+                        <span>개인정보보호책임자: 이창재</span>
                     </div>
                     <div class="info-row">
                         <span>통신판매업 신고번호: 2025-서울강서-2775</span>
-                    </div>
-                    <div class="info-row">
+                        <span class="pc-only">|</span>
                         <span>특허출원번호: 10-2025-0189745</span>
                     </div>
                     <div class="info-row">
                         <span>주소: 04617 서울특별시 중구 동호로 298 (장충동, 이성빌딩)</span>
+                    </div>
+                    <div class="info-row" style="margin-top: 10px;">
+                        <span>고객센터: <a href="tel:0502-1935-5034">0502-1935-5034</a></span>
+                        <span class="pc-only">|</span>
+                        <span>이메일: <a href="mailto:support@soma.ai.kr">support@soma.ai.kr</a></span>
                     </div>
                 </div>
 
