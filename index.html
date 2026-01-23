@@ -1,21 +1,23 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+
     <title>소마 (SoMa AI) - 운동에만 집중하도록, 나만의 피트니스 AI</title>
-    
+
     <meta name="description" content="수업 관리부터 정산, 체형 분석까지. 강사님의 하루를 AI로 완벽하게 관리하세요. 필라테스/PT 강사 필수 앱 소마.">
-    
+
     <meta property="og:type" content="website">
     <meta property="og:title" content="소마 (SoMa AI) - 나만의 피트니스 AI">
     <meta property="og:description" content="복잡한 강사 업무는 AI에게 맡기고 수업에만 집중하세요.">
     <meta property="og:image" content="https://soma.ai.kr/og_image.png">
-    
+
     <link rel="icon" href="favicon.ico" type="image/x-icon" />
-    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
-    
+    <link rel="stylesheet" as="style" crossorigin
+        href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+
     <style>
         /* 1. 기본 설정 (Reset) */
         * {
@@ -32,10 +34,24 @@
             line-height: 1.5;
         }
 
-        a { text-decoration: none; color: inherit; transition: opacity 0.2s; }
-        a:hover { opacity: 0.8; }
-        img { max-width: 100%; display: block; }
-        ul { list-style: none; }
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: opacity 0.2s;
+        }
+
+        a:hover {
+            opacity: 0.8;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        ul {
+            list-style: none;
+        }
 
         /* 2. 공통 클래스 */
         .container {
@@ -47,7 +63,7 @@
         .reveal {
             opacity: 0;
             transform: translateY(30px);
-            transition: all 1s ease; 
+            transition: all 1s ease;
         }
 
         .reveal.active {
@@ -55,9 +71,25 @@
             transform: translateY(0);
         }
 
-        .text-blue { color: #2E8CD5; }
-        .bg-sky { background-color: #E7F8FF; }
-        .bg-white { background-color: #FFFFFF; }
+        .text-blue {
+            color: #2E8CD5;
+        }
+
+        .text-yellow {
+            color: #FFE100;
+        }
+
+        .mobile-only {
+            display: none;
+        }
+
+        .bg-sky {
+            background-color: #E7F8FF;
+        }
+
+        .bg-white {
+            background-color: #FFFFFF;
+        }
 
         /* 3. 헤더 (Blur Effect) */
         header {
@@ -72,7 +104,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .header-inner {
@@ -84,26 +116,44 @@
             padding: 0 40px;
         }
 
-        .logo img { height: 34px; width: auto; }
+        .logo img {
+            height: 34px;
+            width: auto;
+        }
 
         /* 헤더 다운로드 버튼 */
-        .dropdown { position: relative; display: inline-block; }
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
         .btn-download {
             background-color: #2E8CD5;
             color: #FFFFFF;
-            padding: 10px 24px;
+            height: 48px;
+            padding: 0 20px;
             border-radius: 27px;
+            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
             font-size: 18px;
             font-weight: 700;
+            line-height: 24px;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 4px;
             border: none;
             cursor: pointer;
             transition: background-color 0.3s;
         }
-        .btn-download:hover { background-color: #2370ad; }
-        
+
+        .btn-download svg {
+            width: 32px;
+            height: 32px;
+        }
+
+        .btn-download:hover {
+            background-color: #2370ad;
+        }
+
         .dropdown-content {
             display: none;
             position: absolute;
@@ -117,6 +167,7 @@
             overflow: hidden;
             z-index: 100;
         }
+
         .dropdown-content a {
             padding: 12px 16px;
             display: block;
@@ -124,24 +175,33 @@
             font-weight: 500;
             color: #000;
         }
-        .dropdown-content a:hover { background-color: #f5f5f5; }
-        .dropdown:hover .dropdown-content { display: block; }
+
+        .dropdown-content a:hover {
+            background-color: #f5f5f5;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
 
         /* =========================================
            4. [PC/Desktop] 스타일 (MD: Desktop - 1 기준)
            ========================================= */
-        
+
         .hero-wrapper {
             /* MD: Frame 5 배경 */
             background: radial-gradient(65.39% 45.83% at 50% 100%, #2F8DD5 14.78%, #5FCDF9 59.4%, #FFFFFF 90.82%);
-            
+
             /* MD: Frame 5 Layout -> flex-end, gap 260px */
-            min-height: 100vh; /* 화면 꽉 채움 */
+            min-height: 100vh;
+            /* 화면 꽉 채움 */
             display: flex;
             flex-direction: column;
-            justify-content: flex-end; /* 하단 정렬 */
+            justify-content: flex-end;
+            /* 하단 정렬 */
             align-items: center;
-            padding-bottom: 73px; /* MD: padding-bottom 73px */
+            padding-bottom: 150px;
+            /* 하단 고정바(90px) + 60px 여유 공간 */
         }
 
         .hero-content {
@@ -149,7 +209,7 @@
             flex-direction: column;
             align-items: center;
             /* MD: Frame 5 gap 260px (타이틀 그룹과 하단 그룹 사이 간격) */
-            gap: 260px; 
+            gap: 260px;
             width: 100%;
         }
 
@@ -157,21 +217,24 @@
         .hero-title-row {
             display: flex;
             align-items: flex-start;
-            gap: 50px; /* MD: Frame 4 gap 50px */
+            gap: 50px;
+            /* MD: Frame 4 gap 50px */
         }
 
         .hero-title-row h1 {
             /* MD: Font 50px */
             font-size: 50px;
             font-weight: 700;
-            line-height: 1.28; /* 64px */
+            line-height: 1.28;
+            /* 64px */
             color: #000000;
             text-align: left;
         }
-        
-        .hero-big-logo img { 
-            width: 529px; /* MD: Logo width */
-            height: auto; 
+
+        .hero-big-logo img {
+            width: 529px;
+            /* MD: Logo width */
+            height: auto;
         }
 
         /* PC 하단 텍스트 및 버튼 그룹 */
@@ -179,73 +242,112 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 36px; /* MD: Frame 8 gap 36px */
+            gap: 36px;
+            /* MD: Frame 8 gap 36px */
         }
 
         .hero-sub-text {
             /* MD: Font 36px */
             font-size: 36px;
             font-weight: 500;
-            line-height: 1.28; /* 46px */
+            line-height: 1.28;
+            /* 46px */
             color: #FFFFFF;
             text-align: center;
-            text-shadow: 0px 2px 10px rgba(0,0,0,0.1);
+            text-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
         }
 
         .store-buttons {
             display: flex;
-            gap: 12px; /* MD: Frame 7 gap 12px */
+            gap: 12px;
+            /* MD: Frame 7 gap 12px */
         }
-        
+
         .store-buttons img {
-            width: 210px; /* MD: Button width 210px */
-            height: 70px; /* MD: Button height 70px */
+            width: 210px;
+            /* MD: Button width 210px */
+            height: 70px;
+            /* MD: Button height 70px */
             border-radius: 10px;
             object-fit: contain;
         }
 
         /* PC 기능 소개 섹션 */
-        .section-padding { padding: 195px 0; }
-        
+        .section-padding {
+            padding: 195px 0;
+        }
+
         .feature-row {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            max-width: 1046px;
+            width: 1046px;
+            max-width: 100%;
+            height: 609px;
             margin: 0 auto;
-            gap: 100px; /* MD: Frame 25 gap */
+            gap: 186px;
+            /* 1046 - 281 - 579 = 186 */
         }
 
-        .feature-text { flex: 1; text-align: left; }
-        
+        .feature-text {
+            width: 579px;
+            flex-shrink: 0;
+            text-align: left;
+        }
+
         .feature-text h2 {
-            /* MD: Font 36px */
+            /* 첫번째 타이틀: Bold 36px, line-height 64px */
             font-size: 36px;
             font-weight: 700;
-            line-height: 1.78; /* 64px */
-            margin-bottom: 24px;
-            color: #000;
-            word-break: keep-all;
-        }
-        
-        .feature-text p {
-            /* MD: Font 26px */
-            font-size: 26px;
-            font-weight: 500;
-            line-height: 1.54; /* 40px */
+            line-height: 64px;
+            margin-bottom: 0;
             color: #000;
             word-break: keep-all;
         }
 
-        .feature-img { flex: 1; display: flex; justify-content: flex-end; }
-        
+        .feature-text h2 span.text-blue {
+            /* 두번째 타이틀: Bold 48px, line-height 64px */
+            font-size: 48px;
+            font-weight: 700;
+            line-height: 64px;
+            display: block;
+        }
+
+        .feature-text p {
+            /* 본문: 상단 36px 여백, Medium 26px */
+            margin-top: 36px;
+            font-size: 26px;
+            font-weight: 500;
+            line-height: 40px;
+            color: #000;
+            word-break: keep-all;
+        }
+
+        .feature-img {
+            width: 281px;
+            flex-shrink: 0;
+            display: flex;
+            justify-content: flex-end;
+        }
+
         .feature-img img {
-            width: 281px; /* MD Image width */
+            width: 281px;
+            height: 609px;
+            object-fit: contain;
             border: none;
         }
-        
-        .feature-row.reverse { flex-direction: row-reverse; }
-        .feature-row.reverse .feature-img { justify-content: flex-start; }
+
+        .feature-row.reverse {
+            flex-direction: row-reverse;
+        }
+
+        .feature-row.reverse .feature-img {
+            justify-content: flex-start;
+        }
+
+        .feature-row.reverse .feature-text {
+            text-align: left;
+        }
 
         /* PC 하단 CTA */
         .bottom-cta {
@@ -255,20 +357,22 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            gap: 62px; /* MD: Frame 8 gap */
+            gap: 62px;
+            /* MD: Frame 8 gap */
         }
 
         .bottom-cta h2 {
             font-size: 36px;
             font-weight: 500;
             text-align: center;
-            color: #000000; 
+            color: #000000;
         }
 
         /* 7. 푸터 (Footer) */
         footer {
             background-color: #2C2C2C;
-            padding: 50px 0;
+            padding: 50px 0 140px 0;
+            /* 하단 90px 고정바 + 여유 공간 */
             color: #979797;
         }
 
@@ -313,7 +417,8 @@
             gap: 16px;
             font-size: 20px;
             font-weight: 400;
-            flex-wrap: wrap; /* 내용이 많아지면 줄바꿈 허용 */
+            flex-wrap: wrap;
+            /* 내용이 많아지면 줄바꿈 허용 */
         }
 
         /* 고객센터 링크 스타일 */
@@ -322,6 +427,7 @@
             color: #979797;
             transition: color 0.2s;
         }
+
         .info-row a:hover {
             color: #ffffff;
             text-decoration: underline;
@@ -332,12 +438,18 @@
             gap: 20px;
             align-items: center;
         }
+
         .footer-links a {
             font-size: 20px;
             font-weight: 500;
             color: #979797;
         }
-        .divider { width: 1px; height: 16px; background: #777777; }
+
+        .divider {
+            width: 1px;
+            height: 16px;
+            background: #777777;
+        }
 
         .copyright {
             font-size: 18px;
@@ -346,107 +458,232 @@
             margin-top: 20px;
         }
 
+        /* 고객센터 바 (언제든지 상담) */
+        .contact-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: #0065B3;
+            height: 90px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 999;
+        }
+
+        .contact-bar-inner {
+            max-width: 1440px;
+            width: 100%;
+            padding: 0 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .contact-bar-text {
+            font-family: 'Pretendard', sans-serif;
+            font-weight: 700;
+            font-size: 28px;
+            line-height: 36px;
+            color: #FFFFFF;
+        }
+
+        .btn-contact {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            padding: 0 18px 0 20px;
+            gap: 4px;
+            height: 48px;
+            background: #FFFFFF;
+            border: 1px solid #5FCDF9;
+            border-radius: 27px;
+            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .btn-contact:hover {
+            background: #f0faff;
+            opacity: 1;
+        }
+
+        .btn-contact span {
+            font-family: 'Pretendard', sans-serif;
+            font-weight: 700;
+            font-size: 18px;
+            line-height: 24px;
+            color: #000000;
+        }
+
+        .btn-contact svg {
+            width: 32px;
+            height: 32px;
+        }
+
         /* =========================================
            5. [Mobile] 반응형 (MD: iPhone 14 & 15 Pro 기준)
            ========================================= */
         @media (max-width: 768px) {
-            header { height: 64px; }
-            .header-inner { padding: 0 20px; }
-            .btn-download { font-size: 14px; padding: 8px 16px; height: 36px; }
-            .logo img { height: 28px; }
+            header {
+                height: 64px;
+            }
+
+            .header-inner {
+                padding: 0 20px;
+            }
+
+            .btn-download {
+                font-size: 14px;
+                padding: 0 16px;
+                height: 36px;
+            }
+
+            .btn-download svg {
+                display: none;
+            }
+
+            .logo img {
+                height: 28px;
+            }
 
             /* Mobile Hero */
             .hero-wrapper {
                 /* MD: Frame 4 Layout */
-                min-height: 100vh; /* 화면 전체 사용 */
+                min-height: 100vh;
+                /* 화면 전체 사용 */
                 height: auto;
-                justify-content: flex-start; /* 초기화: space-between은 hero-content에서 처리 */
+                justify-content: flex-start;
+                /* 초기화: space-between은 hero-content에서 처리 */
                 background: radial-gradient(133.61% 50.12% at 50% 89.96%, #2F8DD5 39.9%, #5FCDF9 69.23%, #FFFFFF 92.79%);
-                padding-bottom: 0; /* padding reset */
+                padding-bottom: 0;
+                /* padding reset */
             }
 
             .hero-content {
                 height: 100vh;
-                min-height: 800px; /* 너무 작아짐 방지 */
-                
+                min-height: 800px;
+                /* 너무 작아짐 방지 */
+
                 /* MD: Frame 4 -> justify-content: space-between */
                 justify-content: space-between;
-                gap: 0; /* PC gap 제거 */
-                
-                /* MD: Padding Top 160px, Bottom 70px */
+                gap: 0;
+                /* PC gap 제거 */
+
+                /* MD: Padding Top 160px, Bottom = 고정바 + 60px */
                 padding-top: 160px;
-                padding-bottom: 70px;
+                padding-bottom: 160px;
             }
 
             /* Mobile 상단 타이틀 그룹 */
             .hero-title-row {
-                flex-direction: column; /* 세로 정렬 */
+                flex-direction: column;
+                /* 세로 정렬 */
                 gap: 20px;
                 align-items: center;
             }
-            
-            .hero-title-row h1 { 
+
+            .hero-title-row h1 {
                 /* MD: Font 24px */
-                font-size: 24px; 
-                line-height: 1.33; /* 32px */
-                text-align: center; 
+                font-size: 24px;
+                line-height: 1.33;
+                /* 32px */
+                text-align: center;
             }
-            
-            .hero-big-logo img { 
-                width: 241px; /* MD: Mobile Logo Width */
+
+            .hero-big-logo img {
+                width: 241px;
+                /* MD: Mobile Logo Width */
             }
 
             /* Mobile 하단 텍스트 및 버튼 그룹 */
             .hero-bottom-group {
-                gap: 30px; /* MD: Frame 9 gap */
+                gap: 30px;
+                /* MD: Frame 9 gap */
             }
 
             .hero-sub-text {
                 /* MD: Font 20px */
                 font-size: 20px;
-                line-height: 1.4; /* 28px */
-                margin-bottom: 0; /* 그룹 gap으로 처리 */
+                line-height: 1.4;
+                /* 28px */
+                margin-bottom: 0;
+                /* 그룹 gap으로 처리 */
             }
-            
-            .store-buttons img { 
-                width: 150px; /* MD: Mobile Button Width */
-                height: 50px; /* MD: Mobile Button Height */
+
+            .store-buttons img {
+                width: 150px;
+                /* MD: Mobile Button Width */
+                height: 50px;
+                /* MD: Mobile Button Height */
             }
 
             /* Mobile 기능 소개 섹션 */
-            .section-padding { padding: 70px 0; }
-            .feature-row { flex-direction: column; gap: 40px; }
-            .feature-row.reverse { flex-direction: column; }
-            
-            .feature-text { 
-                text-align: center; 
-                padding: 0 20px; 
-            }
-            
-            .feature-text h2 { 
-                display: flex; 
-                flex-direction: column; 
-                align-items: center; 
-                /* MD: 일반 텍스트는 22px */
-                font-size: 22px; 
-                line-height: 1.8; /* 40px */
+            .section-padding {
+                padding: 70px 0;
             }
 
-            /* MD: 모바일에서 강조 텍스트(Blue)는 36px로 커짐 (Frame 29 참조) */
+            .feature-row {
+                flex-direction: column;
+                width: 325px;
+                max-width: 100%;
+                height: auto;
+                gap: 40px;
+                margin: 0 auto;
+            }
+
+            .feature-row.reverse {
+                flex-direction: column;
+            }
+
+            .feature-row.reverse .feature-img {
+                justify-content: center;
+            }
+
+            .feature-text {
+                width: 325px;
+                text-align: left;
+                padding: 0;
+            }
+
+            .feature-img {
+                width: 325px;
+                display: flex;
+                justify-content: center;
+            }
+
+            .feature-img img {
+                width: 281px;
+                height: auto;
+                margin: 0 auto;
+            }
+
+            .feature-text h2 {
+                /* 첫번째 타이틀: Bold 22px */
+                font-size: 22px;
+                font-weight: 700;
+                line-height: 44px;
+                text-align: left;
+            }
+
             .feature-text h2 span.text-blue {
+                /* 두번째 타이틀: Bold 36px, line-height 44px */
                 font-size: 36px;
-                line-height: 1.22; /* 44px */
-                display: block; /* 줄바꿈 */
-                margin-top: 5px;
+                font-weight: 700;
+                line-height: 44px;
+                display: block;
             }
 
-            .feature-text p { 
-                /* MD: Font 18px */
-                font-size: 18px; 
-                line-height: 1.67; /* 30px */
+            .feature-text p {
+                /* 본문: 상단 24px, Medium 18px, line-height 30px */
+                margin-top: 24px;
+                font-size: 18px;
+                font-weight: 500;
+                line-height: 30px;
             }
-            
-            .feature-img { justify-content: center; }
 
             /* Mobile 하단 CTA */
             .bottom-cta {
@@ -455,6 +692,7 @@
                 padding: 80px 20px;
                 gap: 40px;
             }
+
             .bottom-cta h2 {
                 color: #000000;
                 /* MD: Font 24px */
@@ -463,20 +701,98 @@
             }
 
             /* Mobile Footer */
-            footer { padding: 30px 20px; text-align: left; }
-            .footer-content { padding: 0; gap: 40px; }
-            .footer-main-info { flex-direction: column; align-items: flex-start; gap: 30px; }
-            .footer-logo img { width: 124px; height: auto; margin-bottom: 10px; }
-            
-            .info-row { flex-direction: column; gap: 2px; font-size: 14px; }
-            .footer-links { font-size: 14px; }
-            .footer-links a { font-size: 14px; }
-            .copyright { font-size: 12px; margin-top: 0; }
-            
-            .pc-only { display: none; }
+            footer {
+                padding: 30px 20px 120px 20px;
+                /* 하단 고정바 공간 확보 */
+                text-align: left;
+            }
+
+            .footer-content {
+                padding: 0;
+                gap: 40px;
+            }
+
+            .footer-main-info {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 30px;
+            }
+
+            .footer-logo img {
+                width: 124px;
+                height: auto;
+                margin-bottom: 10px;
+            }
+
+            .info-row {
+                flex-direction: column;
+                gap: 2px;
+                font-size: 14px;
+            }
+
+            .footer-links {
+                font-size: 14px;
+            }
+
+            .footer-links a {
+                font-size: 14px;
+            }
+
+            .copyright {
+                font-size: 12px;
+                margin-top: 0;
+            }
+
+            .pc-only {
+                display: none;
+            }
+
+            .mobile-only {
+                display: block;
+            }
+
+            /* Mobile 고객센터 바 */
+            .contact-bar {
+                height: 90px;
+                padding: 0 16px;
+            }
+
+            .contact-bar-inner {
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+                gap: 0;
+                padding: 0;
+                width: 100%;
+            }
+
+            .contact-bar-text {
+                font-family: 'Pretendard', sans-serif;
+                font-size: 18px;
+                font-weight: 700;
+                line-height: 24px;
+                text-align: left;
+            }
+
+            .btn-contact {
+                width: 48px;
+                height: 48px;
+                padding: 0;
+                border-radius: 27px;
+            }
+
+            .btn-contact span {
+                display: none;
+            }
+
+            .btn-contact svg {
+                width: 32px;
+                height: 32px;
+            }
         }
     </style>
 </head>
+
 <body>
 
     <header>
@@ -484,17 +800,21 @@
             <a href="#" class="logo">
                 <img src="logo.png" alt="SoMa Logo">
             </a>
-            
+
             <div class="dropdown">
                 <button class="btn-download">
                     지금 다운로드
-                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                         <path d="M6 9L1 4H11L6 9Z" fill="white"/>
+                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M23.7778 16V23.7778H8.22222V16H6V23.7778C6 25 7 26 8.22222 26H23.7778C25 26 26 25 26 23.7778V16H23.7778ZM17.1111 16.7444L19.9889 13.8778L21.5556 15.4444L16 21L10.4444 15.4444L12.0111 13.8778L14.8889 16.7444V6H17.1111V16.7444Z"
+                            fill="white" />
                     </svg>
                 </button>
                 <div class="dropdown-content">
-                    <a href="https://apps.apple.com/kr/app/%EC%86%8C%EB%A7%88/id6753277300" target="_blank">iOS 다운로드하기</a>
-                    <a href="https://play.google.com/store/apps/details?id=com.somaai.somaai&pcampaignid=web_share&pli=1" target="_blank">AOS 다운로드하기</a>
+                    <a href="https://apps.apple.com/kr/app/%EC%86%8C%EB%A7%88/id6753277300" target="_blank">iOS
+                        다운로드하기</a>
+                    <a href="https://play.google.com/store/apps/details?id=com.somaai.somaai&pcampaignid=web_share&pli=1"
+                        target="_blank">AOS 다운로드하기</a>
                 </div>
             </div>
         </div>
@@ -508,14 +828,15 @@
                     <img src="logo.png" alt="SoMa AI Big Logo">
                 </div>
             </div>
-            
+
             <div class="hero-bottom-group">
                 <p class="hero-sub-text">수업의 진심이 온전히 닿게, 필라테스/PT 강사 필수 앱. ‘소마’</p>
                 <div class="store-buttons">
                     <a href="https://apps.apple.com/kr/app/%EC%86%8C%EB%A7%88/id6753277300" target="_blank">
                         <img src="btn-appstore.png" alt="App Store">
                     </a>
-                    <a href="https://play.google.com/store/apps/details?id=com.somaai.somaai&pcampaignid=web_share&pli=1" target="_blank">
+                    <a href="https://play.google.com/store/apps/details?id=com.somaai.somaai&pcampaignid=web_share&pli=1"
+                        target="_blank">
                         <img src="btn-googleplay.png" alt="Google Play">
                     </a>
                 </div>
@@ -526,8 +847,9 @@
     <section class="section-padding bg-white">
         <div class="container feature-row">
             <div class="feature-text reveal">
-                <h2>수업 관리부터 정산까지,<br><span class="text-blue">강사님의 하루를 AI로 완벽하게</span></h2>
-                <p>출석 체크부터 스케줄 조정, 강사료 정산까지 귀찮은 '강사 잡무'를 AI가 다 처리해주니, 이제 몸과 마음은 오직 회원님 케어에만 집중하세요!</p>
+                <h2>수업 관리부터 정산까지,<br><span class="text-blue">강사님의 하루를 AI로<br>완벽하게</span></h2>
+                <p>출석 체크부터 스케줄 조정, 강사료 정산까지<br class="mobile-only"> 귀찮은<br class="pc-only"> '강사 잡무'를 AI가 다 처리해주니, 이제<br
+                        class="mobile-only"> 몸과 마음은<br class="pc-only"> 오직 회원님 케어에만 집중하세요!</p>
             </div>
             <div class="feature-img reveal">
                 <img src="feature-1.png" alt="수업 관리 화면">
@@ -538,8 +860,10 @@
     <section class="section-padding bg-sky">
         <div class="container feature-row reverse">
             <div class="feature-text reveal">
-                <h2>비포애프터 눈대중은 그만.<br><span class="text-blue">AI가 분석하는 회원 체형 리포트</span></h2>
-                <p>그냥 ‘좋아졌네요’ 대신, AI가 회원님 체형 변화를 객관적인 수치와 이미지로 정밀 분석해줘요. 비포/애프터 리포트 퀄리티가 확 올라가서 프로페셔널함이 남달라집니다.</p>
+                <h2>비포애프터 눈대중은 그만.<br><span class="text-blue">AI가 분석하는<br>회원 체형 리포트</span></h2>
+                <p>그냥 '좋아졌네요' 대신, AI가 회원님 체형 변화<br class="mobile-only">를 객관적<br class="pc-only">인 수치와 이미지로 정밀 분석해줘요.<br
+                        class="mobile-only"> 비포/애프터 리포트<br class="pc-only"> 퀄리티가 확 올라가서 프로<br class="mobile-only">페셔널함이
+                    남달라집니다.</p>
             </div>
             <div class="feature-img reveal">
                 <img src="feature-2.png" alt="체형 분석 화면">
@@ -550,8 +874,9 @@
     <section class="section-padding bg-white">
         <div class="container feature-row">
             <div class="feature-text reveal">
-                <h2>매월 기다려지는 투명한 급여 명세서,<br><span class="text-blue">복잡한 페이롤 계산, 소마가 1초 만에</span></h2>
-                <p>내 페이, 계산기 두드릴 필요 없어요! 복잡한 페이롤 계산, 전부 소마 AI에 맡기세요. 투명하고 정확한 급여 명세서가 1초 만에 PDF로 생성됩니다.</p>
+                <h2>매월 기다려지는 투명한 급여 명세서,<br><span class="text-blue">복잡한 페이롤 계산,<br>소마가 1초 만에</span></h2>
+                <p>내 페이, 계산기 두드릴 필요 없어요!<br>복잡한 페이롤 계산, 전부 소마 AI에 맡기세요.<br class="mobile-only"> 투명하고<br class="pc-only">
+                    정확한 급여 명세서가 1초 만에 PDF<br class="mobile-only">로 생성됩니다.</p>
             </div>
             <div class="feature-img reveal">
                 <img src="feature-3.png" alt="급여 명세서 화면">
@@ -562,8 +887,10 @@
     <section class="section-padding bg-sky">
         <div class="container feature-row reverse">
             <div class="feature-text reveal">
-                <h2>종이장부, 엑셀파일?<br><span class="text-blue">업로드 한 번이면 회원 등록 끝</span></h2>
-                <p>종이 장부, 복잡한 엑셀 파일에 흩어진 회원 정보들, 그냥 사진 찍듯 소마앱에 한 번만 올리면 끝! 모든 정보가 AI로 깔끔하게 정리되어 관리 시간이 반으로 줄어듭니다.</p>
+                <h2>종이장부, 엑셀파일?<br><span class="text-blue">업로드 한 번이면<br>회원 등록 끝</span></h2>
+                <p>종이 장부, 복잡한 엑셀 파일에 흩어진 회원 정<br class="mobile-only">보들,<br class="pc-only"> 그냥 사진 찍듯 소마앱에 한 번만 올리면<br
+                        class="mobile-only"> 끝! 모든 정보가 AI로<br class="pc-only"> 깔끔하게 정리되어 관리<br class="mobile-only"> 시간이
+                    반으로 줄어듭니다.</p>
             </div>
             <div class="feature-img reveal">
                 <img src="feature-4.png" alt="회원 등록 화면">
@@ -574,8 +901,10 @@
     <section class="section-padding bg-white">
         <div class="container feature-row">
             <div class="feature-text reveal">
-                <h2>놓치는 회원 없이 꽉 잡으세요.<br><span class="text-blue">재등록 확률 예측으로 매출 상승</span></h2>
-                <p>곧 이탈할 것 같은 회원님, 재등록 시기 놓칠 것 같은 회원님을 AI가 똑똑하게 미리 알려줘요. 놓치는 회원 없이 싹 다 관리해서 내 레슨 매출도 안정적으로 Up!</p>
+                <h2>놓치는 회원 없이 꽉 잡으세요.<br><span class="text-blue">재등록 확률 예측으로<br>매출 상승</span></h2>
+                <p>곧 이탈할 것 같은 회원님, 재등록 시기 놓칠 것<br class="mobile-only"> 같은<br class="pc-only"> 회원님을 AI가 똑똑하게 미리 알려줘요.<br
+                        class="mobile-only"> 놓치는 회원<br class="pc-only"> 없이 싹 다 관리해서 내 레슨 매출<br class="mobile-only">도
+                    안정적으로 Up!</p>
             </div>
             <div class="feature-img reveal">
                 <img src="feature-5.png" alt="재등록 예측 화면">
@@ -584,14 +913,31 @@
     </section>
 
     <section class="bottom-cta reveal">
-        <h2>수업의 진심이 온전히 닿게,<br>필라테스/PT 강사 필수 앱. ‘소마’</h2>
+        <h2>수업의 진심이 온전히 닿게,<br>필라테스/PT 강사 필수 앱. '소마'</h2>
 
         <div class="store-buttons">
             <a href="https://apps.apple.com/kr/app/%EC%86%8C%EB%A7%88/id6753277300" target="_blank">
                 <img src="btn-appstore.png" alt="App Store">
             </a>
-            <a href="https://play.google.com/store/apps/details?id=com.somaai.somaai&pcampaignid=web_share&pli=1" target="_blank">
+            <a href="https://play.google.com/store/apps/details?id=com.somaai.somaai&pcampaignid=web_share&pli=1"
+                target="_blank">
                 <img src="btn-googleplay.png" alt="Google Play">
+            </a>
+        </div>
+    </section>
+
+    <!-- 언제든지 상담 바 -->
+    <section class="contact-bar">
+        <div class="contact-bar-inner">
+            <p class="contact-bar-text">언제든지 상담・문의<br class="mobile-only"><span class="text-yellow">24시간 고객센터</span>
+                0502-1935-5034</p>
+            <a href="tel:0502-1935-5034" class="btn-contact">
+                <span>고객센터 바로연결</span>
+                <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd"
+                        d="M9.27131 6.66303C9.60111 6.69952 9.92053 6.80105 10.2108 6.96186C10.5011 7.12277 10.7569 7.3401 10.9627 7.60053C11.421 8.09895 11.9809 8.61921 12.4403 9.09858L13.0721 9.71967C13.4431 10.0486 13.6726 10.5085 13.7137 11.0038C13.7136 11.4581 13.5458 11.8964 13.244 12.2363C13.0486 12.4739 12.8415 12.7015 12.6229 12.9179L12.4188 13.1318C12.3005 13.2421 12.2103 13.3788 12.1541 13.5302C12.1041 13.6792 12.0836 13.8319 12.0936 13.9882C12.255 14.4204 12.5089 14.8137 12.8358 15.1396C13.3462 15.8316 13.8563 16.433 14.3758 17.0849C15.3154 18.1757 16.43 19.1025 17.6746 19.8261C17.802 19.9194 17.9489 19.9817 18.1043 20.0087C18.2385 20.0187 18.3746 19.9982 18.5008 19.9482C18.8568 19.7386 19.1736 19.4701 19.4383 19.1533C19.7943 18.7173 20.3052 18.4362 20.8641 18.3691C21.4018 18.3765 21.9147 18.5961 22.2908 18.9804C22.4944 19.1529 22.7188 19.3876 22.9334 19.6122L23.2381 19.9267L23.5535 20.2333L24.0946 20.7822C24.4168 21.0683 24.7187 21.3746 25.0008 21.7001C25.2835 22.0911 25.4113 22.5754 25.3573 23.0546C25.2313 23.6192 24.9188 24.1255 24.4705 24.4912C23.9809 24.9878 23.3971 25.3821 22.7537 25.6513C22.1102 25.9206 21.4191 26.0595 20.7215 26.0595H20.3953C18.9313 25.98 17.4977 25.6096 16.1785 24.9697H16.1688C15.863 24.8273 15.5468 24.6851 15.241 24.5117C13.7011 23.6482 12.2883 22.5746 11.0438 21.3222C9.42874 19.8052 8.10341 18.0064 7.13264 16.0146C6.61686 14.9232 6.27277 13.7588 6.11213 12.5624C5.87593 11.3099 6.01809 10.0152 6.52034 8.84369C6.83744 8.31517 7.2248 7.83164 7.6717 7.40717C7.87275 7.1799 8.11826 6.9961 8.39338 6.86811C8.66861 6.74007 8.96785 6.67035 9.27131 6.66303ZM16.5457 9.3935C17.3233 9.39231 18.0937 9.54374 18.8123 9.84076C19.5309 10.1378 20.1834 10.5742 20.7332 11.124C21.2831 11.6738 21.7194 12.3272 22.0164 13.0458C22.3133 13.7643 22.4658 14.5341 22.4647 15.3115C22.4649 15.4118 22.4453 15.5117 22.4071 15.6044C22.3687 15.6973 22.312 15.7815 22.241 15.8525C22.17 15.9235 22.0858 15.9802 21.993 16.0185C21.9002 16.0568 21.8004 16.0764 21.7 16.0761C21.4981 16.0739 21.3047 15.9923 21.1619 15.8496C21.0193 15.7067 20.9384 15.5133 20.9364 15.3115C20.9373 14.7349 20.8244 14.1637 20.6043 13.6308C20.384 13.0976 20.0601 12.6129 19.6522 12.205C19.2444 11.7973 18.7603 11.4741 18.2274 11.2538C17.6942 11.0336 17.1226 10.9208 16.5457 10.9218C16.3431 10.9218 16.149 10.8405 16.0057 10.6972C15.8624 10.5539 15.7811 10.3598 15.7811 10.1572C15.7811 9.95451 15.8624 9.76044 16.0057 9.61713C16.149 9.47384 16.3431 9.3935 16.5457 9.3935ZM16.994 5.94037C18.1775 5.94037 19.3499 6.17369 20.4432 6.6269C21.5363 7.08008 22.5297 7.74381 23.366 8.581C24.2024 9.41832 24.8652 10.413 25.3172 11.5068C25.7692 12.6005 26.0011 13.7726 25.9998 14.956C26.0001 15.0564 25.9805 15.1562 25.9422 15.249C25.9039 15.3416 25.8481 15.4261 25.7772 15.497C25.7062 15.568 25.621 15.6237 25.5281 15.6621C25.4355 15.7003 25.3364 15.7189 25.2362 15.7187C25.0343 15.7166 24.8409 15.6358 24.6981 15.4931C24.5554 15.3505 24.4739 15.1577 24.4715 14.956C24.4731 13.9731 24.2812 12.9993 23.9061 12.0908C23.531 11.1823 22.9804 10.3566 22.286 9.66108C21.5915 8.96554 20.7662 8.41347 19.8582 8.03705C18.9504 7.66074 17.9767 7.46758 16.994 7.46772C16.8915 7.47138 16.789 7.45457 16.6932 7.41791C16.5974 7.38122 16.5102 7.32506 16.4364 7.25385C16.3625 7.18263 16.3036 7.09729 16.2635 7.00287C16.2234 6.90842 16.203 6.80667 16.203 6.70405C16.203 6.60139 16.2234 6.4997 16.2635 6.40522C16.3036 6.31076 16.3625 6.2255 16.4364 6.15424C16.5102 6.08303 16.5974 6.02688 16.6932 5.99018C16.789 5.95352 16.8915 5.93671 16.994 5.94037Z"
+                        fill="#11C711" />
+                </svg>
             </a>
         </div>
     </section>
@@ -652,7 +998,7 @@
         });
 
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-        
+
         window.addEventListener('load', () => {
             const heroElements = document.querySelectorAll('.hero-wrapper.reveal');
             heroElements.forEach(el => el.classList.add('active'));
@@ -660,4 +1006,5 @@
     </script>
 
 </body>
+
 </html>
