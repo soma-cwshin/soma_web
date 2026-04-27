@@ -556,6 +556,9 @@ ul,ol{list-style:none;}
   .layout{grid-template-columns:1fr;gap:12px;padding:12px;}
   .nav,.phone-col{position:static;}
   .phone-col{order:3;}
+  .step .phone-col{margin-top:10px;}
+  .step .phone{margin:0 auto;}
+  .step .phone-label{display:none;}
   .phone{
     width:min(94vw,360px);
     height:auto;
@@ -1546,10 +1549,15 @@ const imgScreenSrc = document.getElementById('img-screen-src');
 const phoneEl = document.querySelector('.phone');
 const phoneCol = document.querySelector('.phone-col');
 
-function relocatePhoneForViewport(){
+function relocatePhoneForViewport(stepEl){
   if(!phoneCol || !layoutEl || !mobilePhoneAnchor) return;
   const isMobile = window.matchMedia('(max-width: 960px)').matches;
   if(isMobile){
+    const anchor = stepEl ? stepEl.querySelector('.mobile-step-phone-anchor') : null;
+    if(anchor){
+      if(phoneCol.parentElement !== anchor) anchor.appendChild(phoneCol);
+      return;
+    }
     if(phoneCol.parentElement !== mobilePhoneAnchor) mobilePhoneAnchor.appendChild(phoneCol);
     return;
   }
@@ -1577,12 +1585,6 @@ function showMockScreen(sectionId){
   screens.forEach(s => s.classList.toggle('active', s.dataset.id === sectionId));
 }
 
-function scrollToPhonePreview(){
-  if(!phoneCol) return;
-  if(!window.matchMedia('(max-width: 960px)').matches) return;
-  phoneCol.scrollIntoView({ behavior:'smooth', block:'start' });
-}
-
 function renderContent(id){
   const g = GUIDE[id];
   if(!g) return;
@@ -1594,6 +1596,7 @@ function renderContent(id){
       <div class="step-body">
         <div class="step-title">${s.t}</div>
         <div class="step-desc">${s.d}</div>
+        <div class="mobile-step-phone-anchor"></div>
       </div>
     </div>`;
   }).join('');
@@ -1615,7 +1618,7 @@ function renderContent(id){
         const fallback = getSectionFallbackImage(id);
         if(fallback) showImage(fallback);
       }
-      scrollToPhonePreview();
+      relocatePhoneForViewport(el);
     });
   });
 }
@@ -1623,7 +1626,6 @@ function renderContent(id){
 function activate(id){
   navItems.forEach(n => n.classList.toggle('active', n.dataset.id === id));
   renderContent(id);
-  relocatePhoneForViewport();
   // Always prioritize real screenshots for the guide.
   const firstStep = GUIDE[id].steps[0];
   if(firstStep && firstStep.img) showImage(firstStep.img);
@@ -1636,7 +1638,8 @@ function activate(id){
   nextBtn.disabled = currentIdx === ORDER.length - 1;
   const activeNav = document.querySelector('.nav-item.active');
   if(activeNav) activeNav.scrollIntoView({block:'nearest',behavior:'smooth'});
-  scrollToPhonePreview();
+  const activeStep = contentArea.querySelector('.step.active');
+  relocatePhoneForViewport(activeStep);
 }
 
 navItems.forEach(item => {
@@ -1660,8 +1663,10 @@ function swapSeg(el, target){
 window.swapSeg = swapSeg;
 
 /* Init */
-window.addEventListener('resize', relocatePhoneForViewport);
-relocatePhoneForViewport();
+window.addEventListener('resize', () => {
+  const activeStep = contentArea.querySelector('.step.active');
+  relocatePhoneForViewport(activeStep);
+});
 activate('s1-1');
 </script>
 
