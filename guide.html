@@ -174,19 +174,8 @@ ul,ol{list-style:none;}
 }
 .step:hover .step-num,.step.active .step-num{background:var(--secondary);}
 .step-body{flex:1;}
-.step-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:4px;}
-.step-title{font-weight:600;font-size:15px;color:var(--gray01);}
+.step-title{font-weight:600;font-size:15px;color:var(--gray01);margin-bottom:4px;}
 .step-desc{font-size:14px;color:var(--gray06);line-height:1.55;}
-.step-view-btn{
-  flex-shrink:0;height:26px;padding:0 10px;
-  border-radius:999px;background:var(--secondary);color:white;
-  font-size:12px;font-weight:600;
-}
-.step-view-btn:hover{opacity:0.92;}
-.step-view-btn:focus-visible{
-  outline:2px solid var(--tertiary);
-  outline-offset:2px;
-}
 
 .tip{
   padding:14px 16px;background:var(--skyBlue6);
@@ -584,7 +573,11 @@ ul,ol{list-style:none;}
   }
   .nav::-webkit-scrollbar{display:none;}
   .nav-title,.nav-part-title{display:none;}
-  .nav-part{display:flex;gap:8px;margin:0;}
+  .nav-part{display:flex;gap:8px;margin:0;padding:4px;border-radius:12px;}
+  .nav-part.part-1{background:#EEF7FF;}
+  .nav-part.part-2{background:#F1F8F1;}
+  .nav-part.part-3{background:#FFF7EE;}
+  .nav-part.part-4{background:#F6F2FF;}
   .nav-item{
     min-width:max-content;
     padding:8px 12px;
@@ -600,7 +593,6 @@ ul,ol{list-style:none;}
   .step{padding:12px;gap:10px;}
   .step-title{font-size:14px;}
   .step-desc{font-size:13px;line-height:1.5;}
-  .step-view-btn{height:24px;padding:0 9px;font-size:11px;}
   .pager{
     position:sticky;
     bottom:8px;
@@ -629,14 +621,14 @@ ul,ol{list-style:none;}
   <aside class="nav">
     <div class="nav-title">빠른 이동</div>
 
-    <div class="nav-part">
+    <div class="nav-part part-1">
       <div class="nav-part-title">PART 1. 시작하기</div>
       <div class="nav-item active" data-id="s1-1"><span class="num">1-1</span><span>회원가입 &amp; 센터 연결</span></div>
       <div class="nav-item" data-id="s1-2"><span class="num">1-2</span><span>회원정보 등록하기 (필수)</span></div>
       <div class="nav-item" data-id="s1-3"><span class="num">1-3</span><span>첫 회원 연결 &amp; 예약 요청</span></div>
     </div>
 
-    <div class="nav-part">
+    <div class="nav-part part-2">
       <div class="nav-part-title">PART 2. 핵심 업무</div>
       <div class="nav-item" data-id="s2-1"><span class="num">2-1</span><span>회원 수락/거절 처리</span></div>
       <div class="nav-item" data-id="s2-2"><span class="num">2-2</span><span>채팅 목록 운영하기</span></div>
@@ -645,7 +637,7 @@ ul,ol{list-style:none;}
       <div class="nav-item" data-id="s2-5"><span class="num">2-5</span><span>회원 정보/수강권 관리</span></div>
     </div>
 
-    <div class="nav-part">
+    <div class="nav-part part-3">
       <div class="nav-part-title">PART 3. 관리자 강사 전용</div>
       <div class="nav-item" data-id="s3-1"><span class="num">3-1</span><span>센터 관리 &amp; 강사 관리</span></div>
       <div class="nav-item" data-id="s3-2"><span class="num">3-2</span><span>관리자 단톡방 기록 관리</span></div>
@@ -653,7 +645,7 @@ ul,ol{list-style:none;}
       <div class="nav-item" data-id="s3-4"><span class="num">3-4</span><span>센터 정보 설정</span></div>
     </div>
 
-    <div class="nav-part">
+    <div class="nav-part part-4">
       <div class="nav-part-title">PART 4. 유용한 기능</div>
       <div class="nav-item" data-id="s4-1"><span class="num">4-1</span><span>매출·페이롤 파일 출력</span></div>
       <div class="nav-item" data-id="s4-2"><span class="num">4-2</span><span>AI 리포트와 물방울 내역</span></div>
@@ -1352,7 +1344,7 @@ const GUIDE = {
   's1-3': {
     part: 'PART 1. 시작하기',
     title: '첫 회원 연결 &amp; 예약 요청',
-    lead: '처음 설치 직후에는 회원이 먼저 예약하지 않습니다. 강사가 먼저 예약을 생성하며, 회원 미가입 상태에서도 스케줄러처럼 즉시 확정 예약이 가능합니다.',
+    lead: '회원은 예약할 수 없습니다. 강사가 먼저 예약을 생성하며, 회원 미가입 상태에서도 스케줄러처럼 즉시 확정 예약이 가능합니다.',
     steps: [
       { t: '회원 초대/연결 선행', d: '미가입 회원에게 초대하기를 보내 회원 앱 가입 및 연결을 먼저 완료합니다.', img: 'images/guide/s2-2-2.png' },
       { t: '강사가 예약 생성', d: '채팅 입력 보조 메뉴에서 수업 예약을 만들고, 회원 상태에 따라 요청 전송 또는 즉시 확정으로 처리됩니다.', img: 'images/guide/s2-1-3.png' },
@@ -1551,16 +1543,12 @@ function renderContent(id){
   const g = GUIDE[id];
   if(!g) return;
   const steps = g.steps.map((s,i)=>{
-    const actionBtn = s.img ? '<button class="step-view-btn" type="button">화면 보기</button>' : '';
     const activeClass = i === 0 ? 'active' : '';
     return `
     <div class="step ${activeClass}" data-step="${i}" data-img="${s.img||''}">
       <div class="step-num">${i+1}</div>
       <div class="step-body">
-        <div class="step-head">
-          <div class="step-title">${s.t}</div>
-          ${actionBtn}
-        </div>
+        <div class="step-title">${s.t}</div>
         <div class="step-desc">${s.d}</div>
       </div>
     </div>`;
@@ -1584,13 +1572,6 @@ function renderContent(id){
         if(fallback) showImage(fallback);
       }
       scrollToPhonePreview();
-    });
-  });
-  contentArea.querySelectorAll('.step-view-btn').forEach(btn => {
-    btn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      const stepEl = btn.closest('.step');
-      if(stepEl) stepEl.click();
     });
   });
 }
