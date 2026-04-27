@@ -200,11 +200,18 @@ ul,ol{list-style:none;}
    Phone mockup
    ============================================================= */
 .phone-col{position:sticky;top:84px;}
+.phone-col.mobile-pop{
+  animation:phonePop .22s ease-out;
+}
 .phone{
   width:380px;height:780px;margin:0 auto;
   background:#1a1a1a;border-radius:48px;padding:10px;
   box-shadow:var(--shadow-phone);
   position:relative;
+}
+@keyframes phonePop{
+  from{opacity:0;transform:translateY(8px) scale(.985);}
+  to{opacity:1;transform:translateY(0) scale(1);}
 }
 .phone-screen{
   width:100%;height:100%;border-radius:40px;
@@ -560,11 +567,15 @@ ul,ol{list-style:none;}
   .step .phone{margin:0 auto;}
   .step .phone-label{display:none;}
   .phone{
-    width:min(94vw,360px);
+    width:min(72vw,280px);
     height:auto;
     aspect-ratio:380/780;
-    border-radius:40px;
+    border-radius:34px;
+    padding:8px;
   }
+  .phone-screen{border-radius:28px;}
+  .phone-notch{width:84px;height:20px;}
+  .status-bar{height:36px;padding:0 20px 5px;font-size:11px;}
   .phone-label{display:none;}
   .nav{
     display:flex;
@@ -1552,10 +1563,15 @@ const phoneCol = document.querySelector('.phone-col');
 function relocatePhoneForViewport(stepEl){
   if(!phoneCol || !layoutEl || !mobilePhoneAnchor) return;
   const isMobile = window.matchMedia('(max-width: 960px)').matches;
+  phoneCol.classList.remove('mobile-pop');
   if(isMobile){
     const anchor = stepEl ? stepEl.querySelector('.mobile-step-phone-anchor') : null;
     if(anchor){
-      if(phoneCol.parentElement !== anchor) anchor.appendChild(phoneCol);
+      if(phoneCol.parentElement !== anchor){
+        anchor.appendChild(phoneCol);
+        // Retrigger a short pop animation when moving to another step.
+        requestAnimationFrame(() => phoneCol.classList.add('mobile-pop'));
+      }
       return;
     }
     if(phoneCol.parentElement !== mobilePhoneAnchor) mobilePhoneAnchor.appendChild(phoneCol);
