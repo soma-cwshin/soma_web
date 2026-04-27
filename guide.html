@@ -689,6 +689,7 @@ ul,ol{list-style:none;}
   <main class="content">
     <!-- Content is swapped by JS -->
     <div id="content-area"></div>
+    <div id="mobile-phone-anchor"></div>
     <div class="pager">
       <button id="prev-btn">← 이전</button>
       <button id="next-btn">다음 →</button>
@@ -1533,6 +1534,8 @@ const screens = document.querySelectorAll('.screen');
 const contentArea = document.getElementById('content-area');
 const prevBtn = document.getElementById('prev-btn');
 const nextBtn = document.getElementById('next-btn');
+const layoutEl = document.querySelector('.layout');
+const mobilePhoneAnchor = document.getElementById('mobile-phone-anchor');
 
 const ORDER = ['s1-1','s1-2','s1-3','s2-1','s2-2','s2-3','s2-4','s2-5','s3-1','s3-2','s3-3','s3-4','s4-1','s4-2','s4-3','s4-4'];
 let currentIdx = 0;
@@ -1542,6 +1545,16 @@ const imgScreenSrc = document.getElementById('img-screen-src');
 
 const phoneEl = document.querySelector('.phone');
 const phoneCol = document.querySelector('.phone-col');
+
+function relocatePhoneForViewport(){
+  if(!phoneCol || !layoutEl || !mobilePhoneAnchor) return;
+  const isMobile = window.matchMedia('(max-width: 960px)').matches;
+  if(isMobile){
+    if(phoneCol.parentElement !== mobilePhoneAnchor) mobilePhoneAnchor.appendChild(phoneCol);
+    return;
+  }
+  if(phoneCol.parentElement !== layoutEl) layoutEl.appendChild(phoneCol);
+}
 
 function getSectionFallbackImage(id){
   const section = GUIDE[id];
@@ -1610,6 +1623,7 @@ function renderContent(id){
 function activate(id){
   navItems.forEach(n => n.classList.toggle('active', n.dataset.id === id));
   renderContent(id);
+  relocatePhoneForViewport();
   // Always prioritize real screenshots for the guide.
   const firstStep = GUIDE[id].steps[0];
   if(firstStep && firstStep.img) showImage(firstStep.img);
@@ -1646,6 +1660,8 @@ function swapSeg(el, target){
 window.swapSeg = swapSeg;
 
 /* Init */
+window.addEventListener('resize', relocatePhoneForViewport);
+relocatePhoneForViewport();
 activate('s1-1');
 </script>
 
