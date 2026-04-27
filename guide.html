@@ -94,7 +94,11 @@ ul,ol{list-style:none;}
 .logo{display:flex;align-items:center;gap:10px;font-weight:700;font-size:18px;}
 .logo img{height:30px;width:auto;display:block;}
 .header-actions{display:flex;gap:10px;align-items:center;font-size:14px;color:var(--gray06);}
-.header-actions a:hover{color:var(--secondary);}
+.header-actions .current-page{
+  padding:7px 12px;border-radius:999px;
+  border:1px solid var(--secondary);color:var(--secondary);
+  background:var(--skyBlue6);font-weight:700;font-size:13px;line-height:1;
+}
 .header-actions .btn-primary{
   padding:8px 16px;background:var(--secondary);color:white;
   border-radius:var(--r-pill);font-weight:600;
@@ -632,6 +636,9 @@ ul,ol{list-style:none;}
   }
   .nav-item .num{display:none;}
   .content{padding:16px;}
+  .page-header .inner{padding:12px 14px;}
+  .logo img{height:28px;}
+  .header-actions .current-page{padding:6px 10px;font-size:12px;}
   .section-title{font-size:24px;}
   .section-lead{font-size:15px;margin-bottom:18px;}
   .steps{gap:10px;margin-bottom:18px;}
@@ -655,7 +662,7 @@ ul,ol{list-style:none;}
   <div class="inner">
     <a href="/" class="logo"><img src="logo.png" alt="SoMa Logo"></a>
     <div class="header-actions">
-      <a href="/">홈</a>
+      <span class="current-page">사용 가이드</span>
     </div>
   </div>
 </header>
