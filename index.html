@@ -121,6 +121,32 @@
             width: auto;
         }
 
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-guide {
+            height: 48px;
+            padding: 0 18px;
+            border-radius: 27px;
+            border: 1.5px solid #2E8CD5;
+            color: #2E8CD5;
+            background: #FFFFFF;
+            font-size: 16px;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            white-space: nowrap;
+        }
+
+        .btn-guide:hover {
+            opacity: 1;
+            background: #E7F8FF;
+        }
+
         /* 헤더 다운로드 버튼 */
         .dropdown {
             position: relative;
@@ -558,6 +584,17 @@
                 height: 36px;
             }
 
+            .header-actions {
+                gap: 8px;
+            }
+
+            .btn-guide {
+                height: 36px;
+                padding: 0 12px;
+                font-size: 13px;
+                font-weight: 600;
+            }
+
             .btn-download svg {
                 display: none;
             }
@@ -871,20 +908,23 @@
                 <img src="logo.png" alt="SoMa Logo">
             </a>
 
-            <div class="dropdown">
-                <button class="btn-download">
-                    지금 다운로드
-                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path
-                            d="M23.7778 16V23.7778H8.22222V16H6V23.7778C6 25 7 26 8.22222 26H23.7778C25 26 26 25 26 23.7778V16H23.7778ZM17.1111 16.7444L19.9889 13.8778L21.5556 15.4444L16 21L10.4444 15.4444L12.0111 13.8778L14.8889 16.7444V6H17.1111V16.7444Z"
-                            fill="white" />
-                    </svg>
-                </button>
-                <div class="dropdown-content">
-                    <a href="https://apps.apple.com/kr/app/%EC%86%8C%EB%A7%88/id6753277300" target="_blank">iOS
-                        다운로드하기</a>
-                    <a href="https://play.google.com/store/apps/details?id=com.somaai.somaai&pcampaignid=web_share&pli=1"
-                        target="_blank">AOS 다운로드하기</a>
+            <div class="header-actions">
+                <a href="/guide.html" class="btn-guide">사용 가이드</a>
+                <div class="dropdown">
+                    <button class="btn-download">
+                        지금 다운로드
+                        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M23.7778 16V23.7778H8.22222V16H6V23.7778C6 25 7 26 8.22222 26H23.7778C25 26 26 25 26 23.7778V16H23.7778ZM17.1111 16.7444L19.9889 13.8778L21.5556 15.4444L16 21L10.4444 15.4444L12.0111 13.8778L14.8889 16.7444V6H17.1111V16.7444Z"
+                                fill="white" />
+                        </svg>
+                    </button>
+                    <div class="dropdown-content">
+                        <a href="https://apps.apple.com/kr/app/%EC%86%8C%EB%A7%88/id6753277300" target="_blank">iOS
+                            다운로드하기</a>
+                        <a href="https://play.google.com/store/apps/details?id=com.somaai.somaai&pcampaignid=web_share&pli=1"
+                            target="_blank">AOS 다운로드하기</a>
+                    </div>
                 </div>
             </div>
         </div>
