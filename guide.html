@@ -174,13 +174,18 @@ ul,ol{list-style:none;}
 }
 .step:hover .step-num,.step.active .step-num{background:var(--secondary);}
 .step-body{flex:1;}
-.step-title{font-weight:600;font-size:15px;margin-bottom:4px;color:var(--gray01);}
+.step-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:4px;}
+.step-title{font-weight:600;font-size:15px;color:var(--gray01);}
 .step-desc{font-size:14px;color:var(--gray06);line-height:1.55;}
-.step-has-img{
-  display:inline-block;margin-left:6px;font-size:10px;
-  padding:2px 6px;background:var(--secondary);color:white;
-  border-radius:10px;font-weight:600;letter-spacing:0.02em;
-  vertical-align:2px;
+.step-view-btn{
+  flex-shrink:0;height:26px;padding:0 10px;
+  border-radius:999px;background:var(--secondary);color:white;
+  font-size:12px;font-weight:600;
+}
+.step-view-btn:hover{opacity:0.92;}
+.step-view-btn:focus-visible{
+  outline:2px solid var(--tertiary);
+  outline-offset:2px;
 }
 
 .tip{
@@ -559,11 +564,50 @@ ul,ol{list-style:none;}
   .phone{width:340px;height:700px;}
 }
 @media (max-width:960px){
-  .layout{grid-template-columns:1fr;gap:20px;}
+  .layout{grid-template-columns:1fr;gap:12px;padding:12px;}
   .nav,.phone-col{position:static;}
   .phone-col{order:-1;}
-  .phone{width:320px;height:660px;}
-  .content{padding:24px;}
+  .phone{
+    width:min(94vw,360px);
+    height:auto;
+    aspect-ratio:380/780;
+    border-radius:40px;
+  }
+  .phone-label{display:none;}
+  .nav{
+    display:flex;
+    overflow-x:auto;
+    white-space:nowrap;
+    gap:10px;
+    padding:10px;
+    max-height:none;
+  }
+  .nav::-webkit-scrollbar{display:none;}
+  .nav-title,.nav-part-title{display:none;}
+  .nav-part{display:flex;gap:8px;margin:0;}
+  .nav-item{
+    min-width:max-content;
+    padding:8px 12px;
+    font-size:13px;
+    border:1px solid var(--gray17);
+    background:white;
+  }
+  .nav-item .num{display:none;}
+  .content{padding:16px;}
+  .section-title{font-size:24px;}
+  .section-lead{font-size:15px;margin-bottom:18px;}
+  .steps{gap:10px;margin-bottom:18px;}
+  .step{padding:12px;gap:10px;}
+  .step-title{font-size:14px;}
+  .step-desc{font-size:13px;line-height:1.5;}
+  .step-view-btn{height:24px;padding:0 9px;font-size:11px;}
+  .pager{
+    position:sticky;
+    bottom:8px;
+    background:white;
+    margin-top:16px;
+    padding-top:12px;
+  }
 }
 </style>
 </head>
@@ -1507,13 +1551,16 @@ function renderContent(id){
   const g = GUIDE[id];
   if(!g) return;
   const steps = g.steps.map((s,i)=>{
-    const hasImg = s.img ? '<span class="step-has-img">실제 화면</span>' : '';
+    const actionBtn = s.img ? '<button class="step-view-btn" type="button">화면 보기</button>' : '';
     const activeClass = i === 0 ? 'active' : '';
     return `
     <div class="step ${activeClass}" data-step="${i}" data-img="${s.img||''}">
       <div class="step-num">${i+1}</div>
       <div class="step-body">
-        <div class="step-title">${s.t}${hasImg}</div>
+        <div class="step-head">
+          <div class="step-title">${s.t}</div>
+          ${actionBtn}
+        </div>
         <div class="step-desc">${s.d}</div>
       </div>
     </div>`;
@@ -1537,6 +1584,13 @@ function renderContent(id){
         if(fallback) showImage(fallback);
       }
       scrollToPhonePreview();
+    });
+  });
+  contentArea.querySelectorAll('.step-view-btn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const stepEl = btn.closest('.step');
+      if(stepEl) stepEl.click();
     });
   });
 }
