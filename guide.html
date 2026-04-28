@@ -200,6 +200,66 @@ ul,ol{list-style:none;}
 .pager button:hover{background:var(--gray18);color:var(--gray01);}
 .pager button:disabled{opacity:0.3;cursor:not-allowed;}
 
+/* Paginated sub-sections (e.g. 예약 프로세스 파트) */
+.subpager{
+  border:1px solid var(--gray17);
+  border-radius:var(--r-md);
+  background:var(--gray19);
+  padding:14px 16px 18px;
+  margin-bottom:20px;
+}
+.subpager-top{
+  display:flex;align-items:center;justify-content:space-between;gap:10px;
+  flex-wrap:wrap;
+  margin-bottom:12px;
+}
+.subpager-meta{
+  font-size:12px;font-weight:700;color:var(--tertiary);
+  text-align:center;flex:1;min-width:0;
+}
+.subpager-which{letter-spacing:0.02em;}
+.subpager-count{opacity:0.75;font-weight:600;}
+.subpager-top button{
+  padding:8px 12px;font-size:13px;font-weight:600;
+  color:var(--secondary);
+  background:white;border:1px solid var(--gray17);
+  border-radius:var(--r-sm);
+  transition:background .15s,color .15s;
+  white-space:nowrap;
+}
+.subpager-top button:hover:not(:disabled){
+  background:var(--gray18);
+  color:var(--tertiary);
+}
+.subpager-top button:disabled{opacity:0.35;cursor:not-allowed;}
+.subpager-dots{
+  display:flex;flex-wrap:wrap;gap:6px;justify-content:center;
+  margin-bottom:14px;
+}
+.subpager-dot{
+  min-width:32px;padding:5px 10px;font-size:11px;font-weight:600;
+  border-radius:var(--r-pill);
+  border:1px solid var(--gray17);
+  background:white;color:var(--gray07);
+  cursor:pointer;transition:all .15s;
+}
+.subpager-dot:hover{background:var(--gray18);}
+.subpager-dot.active{
+  background:var(--secondary);border-color:var(--secondary);
+  color:white;
+}
+.subpage-title{
+  font-size:17px;font-weight:700;color:var(--gray01);
+  margin:0 0 8px;
+  line-height:1.35;
+}
+.subpage-lead{
+  font-size:14px;color:var(--gray07);
+  line-height:1.55;
+  margin:0 0 14px;
+}
+.subpager-body .steps{margin-bottom:0;}
+
 /* =============================================================
    Phone mockup
    ============================================================= */
@@ -652,6 +712,11 @@ ul,ol{list-style:none;}
     margin-top:16px;
     padding-top:12px;
   }
+  .subpager{padding:12px;}
+  .subpager-top{gap:8px;}
+  .subpager-top button{font-size:12px;padding:7px 10px;}
+  .subpage-title{font-size:16px;}
+  .subpage-lead{font-size:13px;}
 }
 </style>
 </head>
@@ -677,7 +742,8 @@ ul,ol{list-style:none;}
       <div class="nav-part-title">PART 1. 시작하기</div>
       <div class="nav-item active" data-id="s1-1"><span class="num">1-1</span><span>회원가입 &amp; 센터 연결</span></div>
       <div class="nav-item" data-id="s1-2"><span class="num">1-2</span><span>회원정보 등록하기 (필수)</span></div>
-      <div class="nav-item" data-id="s1-3"><span class="num">1-3</span><span>첫 회원 연결 &amp; 예약 요청</span></div>
+      <div class="nav-item" data-id="s1-3"><span class="num">1-3</span><span>첫 회원 연결</span></div>
+      <div class="nav-item" data-id="s1-4"><span class="num">1-4</span><span>수업 예약 프로세스 (상세)</span></div>
     </div>
 
     <div class="nav-part part-2">
@@ -1396,14 +1462,89 @@ const GUIDE = {
   },
   's1-3': {
     part: 'PART 1. 시작하기',
-    title: '첫 회원 연결 &amp; 예약 요청',
-    lead: '회원은 예약할 수 없습니다. 강사가 먼저 예약을 생성하며, 회원 미가입 상태에서도 스케줄러처럼 즉시 확정 예약이 가능합니다.',
+    title: '첫 회원 연결',
+    lead: '예약과 수업 흐름을 함께 쓰려면 회원이 앱에 가입·연결되면 가장 수월합니다. 다만 미가입·미연결 상태에서도 강사는 스케줄에 맞춰 예약을 단독으로 잡을 수 있고, 이 경우 별도 응답 대기 없이 확정에 가깝게 쓰는 느낌으로 운용할 수 있습니다. 예약이 홈·캘린더·채팅에서 어떻게 이어지는지는 1-4절을 참고하세요.',
     steps: [
-      { t: '회원 초대/연결 선행', d: '미가입 회원에게 초대하기를 보내 회원 앱 가입 및 연결을 먼저 완료합니다.', img: 'images/guide/s2-2-2.png' },
-      { t: '강사가 예약 생성', d: '채팅 입력 보조 메뉴에서 수업 예약을 만들고, 회원 상태에 따라 요청 전송 또는 즉시 확정으로 처리됩니다.', img: 'images/guide/s2-1-3.png' },
-      { t: '즉시 확정/응답 대기 확인', d: '회원 미가입 상태는 즉시 확정, 가입 회원은 수락/거절 응답 대기로 홈 카드에 표시됩니다.', img: 'images/guide/s1-2-7.png' }
+      { t: '초대로 앱 가입·연결', d: '채팅 등에서 초대를 보내 회원이 앱에 가입하고 센터에 연결되면, 이후 수업 예약 요청과 수락/거절 응답이 같은 흐름에서 처리됩니다.', img: 'images/guide/s2-2-2.png' },
+      { t: '연결 전에도 예약 생성 가능', d: '회원이 아직 앱에 없어도 강사는 일정·룸·수업 유형을 맞춰 예약을 만들고, 팀 캘린더에 반영하는 용도로 쓸 수 있습니다.', img: 'images/guide/s2-1-3.png' },
+      { t: '예약 절차 상세는 1-4', d: '프라이빗(메인)과 그룹(정기/비정기) 예약, 홈·캘린더·채팅별 진입은 「수업 예약 프로세스(상세)」에서 화면별로 단계를 나눴습니다.', img: 'images/guide/s1-2-7.png' }
     ],
-    tip: '<strong>Tip</strong> · 강사가 먼저 예약을 잡고 필요 시 회원 초대를 이어가는 순서로 안내하면 초기 사용 장벽이 낮아집니다.'
+    tip: '<strong>Tip</strong> · 먼저 일정을 잡고, 이후에 회원을 초대해 연결해도 운영 순서는 자연스럽습니다.'
+  },
+  's1-4': {
+    part: 'PART 1. 시작하기',
+    title: '수업 예약 프로세스 (상세)',
+    lead: '예약은 강사 측에서 생성하는 것이 기본이며, 회원이 가입·연결된 경우 수업 요청 카드에 수락/거절로 응답합니다. <strong>프라이빗 수업(1:1·소수)</strong> 흐름을 먼저 익힌 뒤, <strong>그룹 수업(정기/비정기)</strong>과 센터 단톡에 가까운 참여 방식을 이해하면 전체가 연결됩니다. 아래는 <strong>파트(페이지) 단위</strong>로 나눴으며, 하단/위 화살로 파트를 넘깁니다.',
+    tip: '<strong>Tip</strong> · 그룹은 개설 방식(정기·비정기)에 따라 캘린더와 채팅 흐름이 달라질 수 있으니, 수업을 만드는 쪽과 참여하는 회원 모두 파트 ⑤⑥을 함께 보시면 수월합니다.',
+    pages: [
+      {
+        label: '① 예약의 기본 · 어느 화면에서 열 수 있나',
+        lead: '강사만이 수업 예약을 <em>생성</em>합니다. 회원은 강사가 보낸 요청에 <em>응답</em>하는 구조이며(미가입/미연결 시 강사 단독·즉시 반영 케이스는 1-3), 예약 UI는 <strong>홈 리스트뷰, 캘린더(센터 캘린더/시간표), 회원 채팅</strong> 등에서 이어갈 수 있습니다.',
+        steps: [
+          { t: '강사가 수업 ‘예약’을 생성', d: '소마에는 회원이 강사 스케줄을 찔러 ‘예약 요청’만 보내는 구조가 아니고, 강사가 먼저 수업을 잡는 쪽이 기본입니다. 예약·요청 화면에서 일정·수업 유형·룸·대상을 정합니다.', img: 'images/guide/s1-4-1.png' },
+          { t: '같은 예약을 홈 / 캘린더 / 채팅에서', d: '이미 쓰고 있는 화면이 홈(리스트뷰)이면 거기서, 캘린더로 잡는 게 익숙하면 센터 캘린더(시간표)에서, 대화하다 잡는 게 빠르면 채팅의 입력창 메뉴(+) 쪽 흐름을 쓰면 됩니다. 세 경로는 서로 끊기지 않고 이어집니다.', img: 'images/guide/s1-4-2.png' },
+          { t: '프라이빗이 메인, 그룹은 정기·비정기', d: '일상 운영의 중심은 1:1·2:1 등 <strong>프라이빗</strong> 수업입니다. <strong>그룹</strong> 수업은 센터·강사에 따라 <strong>정기</strong> 수업(매주 같은 슬롯)으로 열릴 수도, <strong>비정기</strong>로 열릴 수도 있으며, ⑤⑥에서 흐름이 이어집니다.', img: 'images/guide/s1-4-3.png' },
+          { t: '미가입/미연결 vs 가입·연결', d: '대상이 아직 앱·연결 전이면 강사 쪽에서 일정만 먼저 잡는 식(즉시 반영에 가깝게)이 가능하고, 가입·연결된 회원에게는 요청 카드가 가서 <strong>수락/거절</strong> 응답을 보냅니다. 홈 카드와 채팅에 ‘대기/확정’이 풀리는 방식으로 보시면 됩니다.', img: 'images/guide/s1-4-4.png' }
+        ]
+      },
+      {
+        label: '② 프라이빗 수업 — 홈 · 리스트뷰',
+        lead: '홈에서 <strong>「내 수업」</strong>이나 <strong>리스트뷰</strong>로 당일·이후 일정을 볼 때, 여기서 바로 예약·추가 흐름에 들어가는 경우가 많습니다.',
+        steps: [
+          { t: '홈에서 ‘내 수업’ 리스트로 흐름 잡기', d: '오늘과 다가올 수업이 카드/리스트로 정리됩니다. 어디가 비는지, 어떤 회원·유형이 이어지는지 한눈에 둡니다.', img: 'images/guide/s1-4-5.png' },
+          { t: '‘수업 추가’ or + 로 새 예약', d: '리스트뷰 상단·하단(디바이스/버전에 따라)에서 새 수업 예약 흐름에 들어갈 수 있습니다. 먼저 <strong>프라이빗</strong>·룸·시간·회원(또는 임의 일정)을 맞춥니다.', img: 'images/guide/s1-4-6.png' },
+          { t: '날짜·시간·룸·인원(1:1, 2:1 등) 지정', d: '프라이빗 수업은 1:1, 듀엣(2:1) 등 룸과 인원 구성이 메인이므로, 리스트뷰에서 뽑은 뒤 예약을 확정하거나(회원 연결 시) 요청을 보내면 됩니다.', img: 'images/guide/s1-4-7.png' },
+          { t: '화면에 예정/요청 대기로 반영', d: '저장·전송 뒤에는 홈 카드에 <strong>예정 수업</strong>으로 잡히거나, 회원에게 요청이 갔다면 <strong>응답 대기</strong>로 표시될 수 있습니다.', img: 'images/guide/s1-4-8.png' },
+          { t: '캘린더·채팅과의 연동 감', d: '같은 예약은 홈만이 아니라 ③캘린더·④채팅에서 열 때도 이어집니다. “어디서 열었냐”는 다르고, <strong>한 건의 수업</strong>으로 합쳐집니다.', img: 'images/guide/s1-4-9.png' }
+        ]
+      },
+      {
+        label: '③ 프라이빗 수업 — 캘린더 · 센터 캘린더',
+        lead: '홈에서 <strong>시간표/센터 캘린더</strong> 뷰로 전환하거나, 주 단위로 겹침·빈칸을 볼 때 <strong>캘린더</strong>에서 곧바로 잡는 흐름이 편한 경우가 많습니다.',
+        steps: [
+          { t: '시간표/센터 캘린더로 전환', d: '하루·주 단위로 룸·강사·센터 스케줄을 겹쳐 볼 수 있으면, 비는 슬롯·겹침을 피해 예약을 집니다.', img: 'images/guide/s1-4-10.png' },
+          { t: '캘린더에서 날짜/시간 선택', d: '빈 구간이나 셀을 탭해, 프라이빗 수업에 맞는 <strong>날짜·시간·룸</strong>을 먼저 띄우고 회원(또는 임의 일정)에 연결할 수 있습니다.', img: 'images/guide/s1-4-11.png' },
+          { t: '회원(또는 팀) 일정에 맞춤', d: '특정 회원과 캘린더를 맞출 때, 리스트뷰보다 날짜·시간 축이 보이는 ③ 흐름이 더 안전할 때가 있습니다.', img: 'images/guide/s1-4-12.png' },
+          { t: '캘린더에서 저장/요청', d: '캘린더에서 끊지 않고 저장하거나(즉시 반영) 회원 쪽으로 요청을 띄웁니다. ②와 UI만 다를 뿐, 같은 “한 건의 수업”입니다.', img: 'images/guide/s1-4-13.png' },
+          { t: '뷰 전환으로 동일 수업 확인', d: '홈 리스트로 돌아가도 같은 예약이 잡힌 것을 볼 수 있습니다. ②③④ 중 어디서 ‘열기’를 누르느냐의 차이에 가깝습니다.', img: 'images/guide/s1-4-14.png' }
+        ]
+      },
+      {
+        label: '④ 프라이빗 수업 — 채팅',
+        lead: '회원과 <strong>이미 1:1(또는 1:다) 채팅</strong>을 하는 중이면, 대화 맥락을 끊지 않고 <strong>같은 채팅방에서 수업 예약</strong>을 띄우는 방식이 자연스럽습니다.',
+        steps: [
+          { t: '채팅 입력창 / 메뉴(+)에서 ‘수업’·예약', d: '채팅하다가 “그럼 수업 잡을게요” 할 때, 입력창 쪽 <strong>보조 메뉴</strong>에서 수업/예약으로 들어갑니다.', img: 'images/guide/s1-4-15.png' },
+          { t: '대화 흐름에 맞춰 일정·수업 정리', d: '채팅에서 잡는 예약은 프라이빗 수업(1:1·2:1)일 때, 방금 이야기한 <strong>날짜·시간</strong>을 옮기기 쉽습니다.', img: 'images/guide/s1-4-16.png' },
+          { t: '채팅으로 전송되는 요청 카드', d: '회원 앱 쪽에 수업 <strong>요청 카드</strong>로 보이고, 수락/거절·확정 흐름은 2-1(회원 수락/거절)에서 다루는 흐름과 같습니다.', img: 'images/guide/s1-4-17.png' },
+          { t: '채팅 ↔ 홈 동시 확인', d: '같은 수업이 채팅뿐 아니라 <strong>홈 카드</strong>에도 같이 쌓입니다(대기/확정).', img: 'images/guide/s1-4-18.png' },
+          { t: '그룹으로 이어갈 때의 참고', d: '채팅에서 프라이빗을 먼저 쓰다가, ⑤이후 그룹(정기/비정기)으로 확장해도 <strong>동일한 ‘강사 생성 → 회원 응답’</strong> 개념은 그대로입니다(그룹 단의 추가 규칙이 붙는 정도).', img: 'images/guide/s1-4-19.png' }
+        ]
+      },
+      {
+        label: '⑤ 그룹 수업 — 정기·비정기 개설',
+        lead: '그룹 수업은 <strong>정기</strong>로 돌릴지(주간/요일·시간이 고정된 형태), <strong>비정기</strong>로 띄울지(캠페인·이벤트·단발) 먼저 갈릴 수 있고, <strong>개설</strong>과 <strong>참여(예약/등록)</strong>가 뒤이어집니다.',
+        steps: [
+          { t: '정기 수업 vs 비정기(단발) 모델', d: '센터·팀이 운영하기에, 매주 같은 날/시간의 <strong>정기</strong> 그룹이 있을 수도 있고, 딱 N회만 열리는 <strong>비정기</strong> 그룹이 있을 수도 있습니다. 개설·표기 방식만 다를 뿐, <strong>그룹</strong>이라는 점은 같습니다.', img: 'images/guide/s1-4-20.png' },
+          { t: '그룹 룸·최대 인원·이름(반 이름)', d: '개설·편집 쪽에서 그룹에 대한 기본(그룹명, 인원, 룸)을 정합니다. 이때부터 홈/캘린더/채팅 흐름이 그 그룹을 <strong>같은 ‘반’</strong>으로 봅니다.', img: 'images/guide/s1-4-21.png' },
+          { t: '캘린더에 반복(정기) 성격이 보이는 경우', d: '정기이면, 그룹 캘린더에 일정 뭉치가 <strong>반복해 쌓이는</strong> 느낌으로 읽힐 수 있고, 비정기는 특정 날에만 <strong>특이점</strong>이 찍힌다고 느껴지면 됩니다(화면에 따라 캡처·표기는 다를 수 있음).', img: 'images/guide/s1-4-22.png' },
+          { t: '그룹 ‘개설자/운영’과 참여객', d: '센터에서 수업/그룹을 만드는 쪽은 개설·운영 흐름(공지, 멤버, 일정)을 담고, 일반적으로 회원·대상은 <strong>참여(예약·등록)</strong> 쪽 흐름이 붙습니다(⑥).', img: 'images/guide/s1-4-23.png' },
+          { t: '이미 ②③④와 연결', d: '이미 프라이빗 흐름(홈/캘/채)을 쓰고 있었다면, <strong>그 수업 ‘유형’</strong>만 <strong>그룹</strong>으로 잡힌 것으로 읽을 수도 있습니다(화면/버전에 따라).', img: 'images/guide/s1-4-24.png' },
+          { t: '다음 파트: ‘어디서 예약·참여하느냐’', d: '같은 그룹이어도 <strong>홈 리스트, 캘린더, 채팅</strong> 셋에서 모두 <strong>예약/참여/공지</strong>가 열릴 수 있고, ⑥은 그 <strong>공유 단톡(오픈채팅에 가깝다)</strong> 쪽 느낌입니다.', img: 'images/guide/s1-4-25.png' }
+        ]
+      },
+      {
+        label: '⑥ 그룹 수업 — 예약 경로 · 그룹 단톡 참여(오픈채팅 느낌)',
+        lead: '그룹 수업은 <strong>②와 같이</strong> 홈 리스트뷰, <strong>③</strong> 캘린더(센터 캘린더/시간표), <strong>④</strong> 그룹·회원 쪽 <strong>채팅</strong>에서 <strong>예약·참여</strong>를 밟을 수 있게 설계할 수 있고, 센터가 그룹을 개설하면 <strong>그 수업(그룹) 관련 강사·참여자</strong>가 <strong>그 그룹 전용 대화(단톡)</strong> 쪽에 자동으로 끼워지는 식(카카오톡 오픈채팅처럼)으로 운영 흐름이 이어질 수 있어, 회원은 <strong>개설된 그룹 수업에 ‘참여(등록)’</strong>하는 쪽이 됩니다.',
+        steps: [
+          { t: '그룹도 홈 · 캘린더 · 채팅에서', d: '프라이빗 때와 <strong>여는 위치(홈/캘/채)의 선택</strong>은 같습니다. “그 그룹 일정/참가”에만 <strong>여인원·그룹</strong> 컨셉이 넘어갑니다.', img: 'images/guide/s1-4-26.png' },
+          { t: '그룹 캘린더에서 일정/참여 맞춤', d: '정기면 반복·고정·고정 셀, 비정기면 특정 날짜의 그룹 슬롯. 둘 다 ③과 같은 <strong>캘린더 감</strong>으로 봄직합니다.', img: 'images/guide/s1-4-27.png' },
+          { t: '그룹·수업 <strong>단톡</strong> (오픈채팅에 가까운 층)', d: '센터·강사가 <strong>그 수업(그룹)에 ‘채팅방(단톡)’이 붙</strong>고, <strong>개설·밀접</strong>한 쪽(그룹을 운영하는 역할)은 <strong>자동으로</strong> 그리로 들어가, 공지/문의/일정이 <strong>한 흐름</strong>이 될 수 있게 설계한 부분이 있습니다(디바이스/버전·권한에 따라 표기는 달 수 있어요).', img: 'images/guide/s1-4-28.png' },
+          { t: '회원은 ‘참가 / 예약’에 가깝다', d: '공개/제한(센터 정책)이 다를 수 있으나, 원리는 <strong>개설된 그룹 수업</strong>에 <strong>참여(또는 예약)</strong>하며, 그때 <strong>그 전용 톡</strong> 쪽 흐름이 같이 붙을 수 있게 되어 있습니다.', img: 'images/guide/s1-4-29.png' },
+          { t: '채팅에서 ④와 똑같이, 그룹만', d: '1:1 프라이빗 ④때 쓰던 <strong>입력창(+)·요청/안내</strong> 쪽 맥락을, <strong>그룹/단톡</strong>으로 넓힌 그림에 가깝다고 읽을 수 있어요(화면/조직·센터 설정이 다르면 캡처·버튼이 다를 수 있음).', img: 'images/guide/s1-4-30.png' },
+          { t: '정리: 프라이빗 먼저, 그다음 그룹', d: '일일 운영에선 ②③④의 <strong>프라이빗</strong> 흐름이 먼저, 팀/센터 단 <strong>그룹(정·비정)</strong>·<strong>단톡형 공유</strong>는 ⑤⑥으로 확장하시면, 예약/소통/일정이 한꺼번에 풀립니다.', img: 'images/guide/s1-4-31.png' }
+        ]
+      }
+    ]
   },
   's2-1': {
     part: 'PART 2. 핵심 업무',
@@ -1558,7 +1699,7 @@ const nextBtn = document.getElementById('next-btn');
 const layoutEl = document.querySelector('.layout');
 const mobilePhoneAnchor = document.getElementById('mobile-phone-anchor');
 
-const ORDER = ['s1-1','s1-2','s1-3','s2-1','s2-2','s2-3','s2-4','s2-5','s3-1','s3-2','s3-3','s3-4','s4-1','s4-2','s4-3','s4-4'];
+const ORDER = ['s1-1','s1-2','s1-3','s1-4','s2-1','s2-2','s2-3','s2-4','s2-5','s3-1','s3-2','s3-3','s3-4','s4-1','s4-2','s4-3','s4-4'];
 let currentIdx = 0;
 
 const imgScreen = document.getElementById('img-screen');
@@ -1589,8 +1730,18 @@ function relocatePhoneForViewport(stepEl){
 
 function getSectionFallbackImage(id){
   const section = GUIDE[id];
-  if(!section || !section.steps) return '';
-  const found = section.steps.find(step => step.img);
+  if(!section) return '';
+  if(section.pages && section.pages.length){
+    for(let p = 0; p < section.pages.length; p++){
+      const pg = section.pages[p];
+      if(!pg || !pg.steps) continue;
+      const found = pg.steps.find(function(step){ return step && step.img; });
+      if(found) return found.img;
+    }
+    return '';
+  }
+  if(!section.steps) return '';
+  const found = section.steps.find(function(step){ return step && step.img; });
   return found ? found.img : '';
 }
 
@@ -1608,37 +1759,32 @@ function showMockScreen(sectionId){
   screens.forEach(s => s.classList.toggle('active', s.dataset.id === sectionId));
 }
 
-function renderContent(id){
-  const g = GUIDE[id];
-  if(!g) return;
-  const steps = g.steps.map((s,i)=>{
+function buildStepsHtml(steps, sectionId, subPageIdx){
+  return steps.map(function(s, i){
     const activeClass = i === 0 ? 'active' : '';
-    return `
-    <div class="step ${activeClass}" data-step="${i}" data-img="${s.img||''}">
-      <div class="step-num">${i+1}</div>
-      <div class="step-body">
-        <div class="step-title">${s.t}</div>
-        <div class="step-desc">${s.d}</div>
-        <div class="mobile-step-phone-anchor"></div>
-      </div>
-    </div>`;
+    const rawImg = (s && s.img) ? String(s.img) : '';
+    const safeImg = rawImg.replace(/"/g, '&quot;');
+    return (
+      '<div class="step ' + activeClass + '" data-step="' + i + '" data-subpage="' + subPageIdx + '" data-section="' + sectionId + '" data-img="' + safeImg + '">' +
+      '<div class="step-num">' + (i + 1) + '</div>' +
+      '<div class="step-body">' +
+      '<div class="step-title">' + (s.t || '') + '</div>' +
+      '<div class="step-desc">' + (s.d || '') + '</div>' +
+      '<div class="mobile-step-phone-anchor"></div>' +
+      '</div></div>'
+    );
   }).join('');
-  contentArea.innerHTML = `
-    <span class="section-label">${g.part}</span>
-    <h1 class="section-title">${g.title}</h1>
-    <p class="section-lead">${g.lead}</p>
-    <div class="steps">${steps}</div>
-    <div class="tip">${g.tip}</div>
-  `;
-  // Wire step clicks
-  contentArea.querySelectorAll('.step').forEach(el => {
-    el.addEventListener('click', () => {
-      contentArea.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+}
+
+function wireStepClicks(sectionId){
+  contentArea.querySelectorAll('.step').forEach(function(el){
+    el.addEventListener('click', function(){
+      contentArea.querySelectorAll('.step').forEach(function(s){ s.classList.remove('active'); });
       el.classList.add('active');
-      const img = el.dataset.img;
+      const img = el.getAttribute('data-img');
       if(img) showImage(img);
       else {
-        const fallback = getSectionFallbackImage(id);
+        const fallback = getSectionFallbackImage(sectionId);
         if(fallback) showImage(fallback);
       }
       relocatePhoneForViewport(el);
@@ -1646,16 +1792,108 @@ function renderContent(id){
   });
 }
 
+function renderPaginatedSection(id, g){
+  const total = g.pages.length;
+  let currentSub = 0;
+  const shell =
+    '<span class="section-label">' + g.part + '</span>' +
+    '<h1 class="section-title">' + g.title + '</h1>' +
+    '<p class="section-lead">' + g.lead + '</p>' +
+    '<div class="subpager" id="subpager-root">' +
+    '<div class="subpager-top">' +
+    '<button type="button" class="subpager-prev" aria-label="이전 파트">← 이전 파트</button>' +
+    '<div class="subpager-meta"><span class="subpager-which"></span></div>' +
+    '<button type="button" class="subpager-next" aria-label="다음 파트">다음 파트 →</button>' +
+    '</div>' +
+    '<div class="subpager-dots"></div>' +
+    '<div class="subpager-body"></div>' +
+    '</div>' +
+    '<div class="tip">' + g.tip + '</div>';
+  contentArea.innerHTML = shell;
+
+  const bodyEl = contentArea.querySelector('.subpager-body');
+  const whichEl = contentArea.querySelector('.subpager-which');
+  const dotsEl = contentArea.querySelector('.subpager-dots');
+  const prevEl = contentArea.querySelector('.subpager-prev');
+  const nextEl = contentArea.querySelector('.subpager-next');
+
+  function renderPage(pi){
+    currentSub = pi;
+    const page = g.pages[pi];
+    if(!page || !page.steps) return;
+    const leadBlock = page.lead ? ('<p class="subpage-lead">' + page.lead + '</p>') : '';
+    const titleBlock = page.label ? ('<h2 class="subpage-title">' + page.label + '</h2>') : '';
+    bodyEl.innerHTML = titleBlock + leadBlock + '<div class="steps">' + buildStepsHtml(page.steps, id, pi) + '</div>';
+    if(whichEl) whichEl.textContent = '파트 ' + (pi + 1) + ' / ' + total;
+    if(dotsEl){
+      dotsEl.innerHTML = g.pages.map(function(_, i){
+        return '<button type="button" class="subpager-dot' + (i === pi ? ' active' : '') + '" data-pi="' + i + '" aria-label="파트 ' + (i + 1) + '">' + (i + 1) + '</button>';
+      }).join('');
+    }
+    if(prevEl) prevEl.disabled = pi === 0;
+    if(nextEl) nextEl.disabled = pi === total - 1;
+    wireStepClicks(id);
+    const first = bodyEl.querySelector('.step');
+    if(first){
+      contentArea.querySelectorAll('.step').forEach(function(s){ s.classList.remove('active'); });
+      first.classList.add('active');
+      const im = first.getAttribute('data-img');
+      if(im) showImage(im);
+      else {
+        const fb = getSectionFallbackImage(id);
+        if(fb) showImage(fb);
+      }
+      relocatePhoneForViewport(first);
+    }
+  }
+
+  renderPage(0);
+  if(prevEl) prevEl.addEventListener('click', function(){
+    if(currentSub > 0) renderPage(currentSub - 1);
+  });
+  if(nextEl) nextEl.addEventListener('click', function(){
+    if(currentSub < total - 1) renderPage(currentSub + 1);
+  });
+  if(dotsEl) dotsEl.addEventListener('click', function(e){
+    const b = e.target.closest('.subpager-dot');
+    if(!b) return;
+    const pi = parseInt(b.getAttribute('data-pi'), 10);
+    if(!isNaN(pi)) renderPage(pi);
+  });
+}
+
+function renderContent(id){
+  const g = GUIDE[id];
+  if(!g) return;
+  if(g.pages && g.pages.length){
+    renderPaginatedSection(id, g);
+    return;
+  }
+  if(!g.steps) return;
+  const steps = buildStepsHtml(g.steps, id, 0);
+  contentArea.innerHTML = `
+    <span class="section-label">${g.part}</span>
+    <h1 class="section-title">${g.title}</h1>
+    <p class="section-lead">${g.lead}</p>
+    <div class="steps">${steps}</div>
+    <div class="tip">${g.tip}</div>
+  `;
+  wireStepClicks(id);
+}
+
 function activate(id){
   navItems.forEach(n => n.classList.toggle('active', n.dataset.id === id));
   renderContent(id);
   // Always prioritize real screenshots for the guide.
-  const firstStep = GUIDE[id].steps[0];
-  if(firstStep && firstStep.img) showImage(firstStep.img);
-  else {
-    const fallback = getSectionFallbackImage(id);
-    if(fallback) showImage(fallback);
+  const sec = GUIDE[id];
+  let firstImg = '';
+  if(sec && sec.pages && sec.pages[0] && sec.pages[0].steps && sec.pages[0].steps[0]){
+    firstImg = sec.pages[0].steps[0].img || '';
+  } else if(sec && sec.steps && sec.steps[0]){
+    firstImg = sec.steps[0].img || '';
   }
+  if(!firstImg) firstImg = getSectionFallbackImage(id);
+  if(firstImg) showImage(firstImg);
   currentIdx = ORDER.indexOf(id);
   prevBtn.disabled = currentIdx === 0;
   nextBtn.disabled = currentIdx === ORDER.length - 1;
