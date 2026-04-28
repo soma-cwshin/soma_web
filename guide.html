@@ -916,16 +916,12 @@ ul,ol{list-style:none;}
                   <div style="color:var(--gray12);">›</div>
                 </div>
               </div>
-              <div class="scn-section" style="margin-top:14px;">등록 후 초대</div>
+              <div class="scn-section" style="margin-top:14px;">가입 초대는 채팅에서</div>
+              <div style="padding:0 16px 8px;font-size:12px;color:var(--gray09);line-height:1.45;">QR·초대 메시지는 <strong>채팅</strong> 탭 → 미가입 회원 → <strong>초대하기</strong>에서 엽니다. 회원 등록 화면에서는 QR을 띄우지 않습니다.</div>
               <div style="padding:0 16px;display:flex;flex-direction:column;gap:10px;">
                 <div class="card flat" style="margin:0;display:flex;align-items:center;gap:12px;">
-                  <div style="width:40px;height:40px;border-radius:10px;background:var(--gray18);display:flex;align-items:center;justify-content:center;font-size:18px;">📱</div>
-                  <div style="flex:1;"><div style="font-weight:600;font-size:14px;">QR코드로 초대</div></div>
-                  <div style="color:var(--gray12);">›</div>
-                </div>
-                <div class="card flat" style="margin:0;display:flex;align-items:center;gap:12px;">
                   <div style="width:40px;height:40px;border-radius:10px;background:var(--gray18);display:flex;align-items:center;justify-content:center;font-size:18px;">💬</div>
-                  <div style="flex:1;"><div style="font-weight:600;font-size:14px;">SMS / 카카오톡 초대</div></div>
+                  <div style="flex:1;"><div style="font-weight:600;font-size:14px;">채팅 → 미가입 → 초대하기</div><div style="font-size:11px;color:var(--gray09);margin-top:2px;">QR·메시지 복사</div></div>
                   <div style="color:var(--gray12);">›</div>
                 </div>
               </div>
@@ -1463,14 +1459,14 @@ const GUIDE = {
   's1-3': {
     part: 'PART 1. 시작하기',
     title: '첫 회원 연결',
-    lead: '수업 후·상담 후에 <strong>QR·초대 링크</strong>로 가입시키면 회원이 앱에 들어오면서 <strong>담당 강사와 자동 연결</strong>됩니다. 아직 가입이 끝나지 않은 회원(<strong>가입 대기중</strong>)도 일정에 맞춰 수업을 잡을 수 있고, 그 경우 안내 문구대로 <strong>자동 수락</strong>으로 처리되는 흐름이 있습니다. 홈·캘린더·채팅에서 예약 화면이 어떻게 이어지는지는 <strong>1-4</strong>를 보시면 됩니다.',
+    lead: '<strong>가입용 QR·초대 메시지</strong>는 <strong>채팅</strong> 탭 → <strong>미가입 회원</strong> 목록의 <strong>초대하기</strong>에서만 열립니다. <strong>회원관리</strong> 의 회원 상세에서는 같은 QR 창을 띄울 수 없습니다. 링크로 가입하면 <strong>담당 강사와 자동 연결</strong>됩니다. 아직 가입이 끝나지 않은 회원(<strong>가입 대기중</strong>)도 일정에 맞춰 수업을 잡을 수 있고, 안내 문구대로 <strong>자동 수락</strong>으로 처리됩니다. 홈·시간표·채팅에서 예약 화면이 이어지는 흐름은 <strong>1-4</strong>를 보시면 됩니다.',
     steps: [
-      { t: '가입용 QR·초대코드·메시지 보내기', d: '<strong>채팅</strong> 탭의 <strong>미가입 회원</strong> 목록에서, 회원 줄 왼쪽 <strong>동그란 초대하기</strong> 를 누르면 <strong>회원가입용 QR 코드</strong>·문자 안내 창이 열립니다. (<strong>회원관리</strong> 의 회원 상세에서는 이 QR을 띄울 수 없습니다.) 수업 후 회원에게 QR을 보여주거나 하단 <strong>메시지 복사하기</strong> 로 카카오톡·문자에 붙여 넣을 수 있는 문구가 함께 나옵니다. 문구 안의 링크로 가입하면 <strong>담당 강사로 자동 연결</strong>되고, <strong>초대 코드</strong>도 함께 표시됩니다.', img: 'images/guide/s1-3-1.png' },
+      { t: '채팅에서 미가입·만료 회원 보기', d: '<strong>채팅</strong> 탭에서 <strong>미가입 회원</strong>·<strong>만료된 수강권</strong> 구역으로 나뉘어 보입니다. 가입을 독려하거나 수강권을 갱신해야 할 대상을 한곳에서 짚을 수 있습니다.', img: 'images/guide/s2-2-2.png' },
+      { t: '초대하기로 QR·초대코드·메시지', d: '<strong>미가입 회원</strong> 목록에서 해당 회원 줄 왼쪽의 <strong>동그란 초대하기</strong> 를 누르면 <strong>회원가입용 QR 코드</strong> 모달이 열립니다. 수업 직후 회원에게 QR을 보여주거나, 하단 <strong>메시지 복사하기</strong> 로 카카오톡·문자에 붙여 넣을 수 있는 문구를 보냅니다. 문구 속 링크로 가입하면 <strong>담당 강사로 자동 연결</strong>되고 <strong>초대 코드</strong>도 함께 표시됩니다.', img: 'images/guide/s1-3-1.png' },
       { t: '가입 대기 중이어도 수업 예약', d: '<strong>회원 선택하기</strong> 화면 상단 안내와 같이, <strong>회원가입 대기중</strong> 인 경우에도 수업 예약이 가능합니다. 이 경우 회원은 수업을 <strong>자동 수락한 것으로 간주</strong>됩니다. 목록에서 1:1·2:1·잔여 횟수·<strong>가입 대기중</strong> 표시를 함께 확인할 수 있습니다.', img: 'images/guide/s1-3-2.png' },
-      { t: '채팅에서 미가입·만료 회원 구분', d: '가입을 독려하거나 수강권을 갱신해야 할 대상은 <strong>채팅</strong> 탭의 미가입·만료 구역에서 한 번에 모아볼 수 있습니다.', img: 'images/guide/s2-2-2.png' },
       { t: '예약 화면 흐름은 1-4', d: '프라이빗·그룹, 홈·시간표·채팅에서의 예약 단계는 <strong>「수업 예약 프로세스(상세)」</strong> 에서 캡처와 함께 정리했습니다.', img: 'images/guide/s1-2-7.png' }
     ],
-    tip: '<strong>Tip</strong> · QR·링크는 수업 직후에내면 기억이 살아 있어 가입 전환율이 높아지는 경우가 많습니다.'
+    tip: '<strong>Tip</strong> · QR·링크는 수업 직후에 내면 기억이 살아 있어 가입 전환율이 높아지는 경우가 많습니다.'
   },
   's1-4': {
     part: 'PART 1. 시작하기',
