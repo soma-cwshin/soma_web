@@ -2,12 +2,13 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover">
 <meta name="naver-site-verification" content="1abef9148b9243d7dfede54b26c4fa5bfef1f7c6" />
-<title>소마 사용 가이드 — 인터랙티브 앱 체험</title>
-<meta name="description" content="소마(SoMa) 앱을 웹에서 미리 체험해보세요. 회원 등록부터 수업 관리, 퍼포먼스 확인까지 주요 기능을 단계별로 소개합니다.">
+<meta name="theme-color" content="#ffffff">
+<title>소마 사용 가이드</title>
+<meta name="description" content="소마(SoMa) 앱을 단계별로 살펴봅니다. 회원 등록부터 수업 관리, 퍼포먼스 확인까지 핵심 화면을 한눈에.">
 <meta property="og:title" content="소마 사용 가이드">
-<meta property="og:description" content="소마 앱을 웹에서 미리 체험해보세요.">
+<meta property="og:description" content="소마 앱을 단계별로 살펴봅니다.">
 <meta property="og:image" content="https://soma.ai.kr/og_image.png">
 <link rel="icon" href="favicon.ico" type="image/x-icon" />
 <link rel="stylesheet" as="style" crossorigin
@@ -15,1430 +16,889 @@
 
 <style>
 /* =============================================================
-   Design tokens — pulled from lib/core/ui/styles/app_colors.dart
+   Tokens — aligned with soma.ai.kr (index.html)
    ============================================================= */
 :root {
-  /* Grayscale 20-step */
-  --gray00:#000000; --gray01:#0D0D0D; --gray02:#1A1A1A; --gray03:#282828;
-  --gray04:#353535; --gray05:#434343; --gray06:#505050; --gray07:#5E5E5E;
-  --gray08:#6B6B6B; --gray09:#797979; --gray10:#868686; --gray11:#949494;
-  --gray12:#A1A1A1; --gray13:#AFAFAF; --gray14:#BCBCBC; --gray15:#CACACA;
-  --gray16:#D7D7D7; --gray17:#E5E5E5; --gray18:#F2F2F2; --gray19:#FFFFFF;
+  --bg:#ffffff;
+  --bg-soft:#F5F5F7;
+  --bg-soft-2:#EEF1F4;
+  --sky:#E7F8FF;
+  --sky-2:#D2EFFC;
+  --ink:#000000;
+  --ink-2:#1F2933;
+  --ink-3:#3F4A55;
+  --ink-4:#6B7785;
+  --ink-5:#9AA4AF;
+  --line:#E5E7EB;
+  --line-2:#EEF1F4;
 
-  /* Brand */
-  --primary:#5FCDF9;
-  --secondary:#2E8CD5;
-  --tertiary:#0065B3;
-  --quaternary:#013A63;
+  --primary:#2E8CD5;
+  --primary-hover:#2370ad;
+  --primary-2:#0065B3;
+  --primary-soft:#E7F8FF;
+  --accent:#5FCDF9;
+  --footer-bg:#2C2C2C;
+  --footer-text:#979797;
 
-  /* Accents */
-  --blue:#2E8CD5; --lightBlue:#D0EAFF;
-  --violet:#8857CD; --lightViolet:#E9D9FF;
-  --orange:#EA7703; --lightOrange:#FFE1C3;
-  --pink:#D939C9; --lightPink:#FED6F2;
-  --green:#37C437; --lightGreen:#C5EFB6;
-  --red:#FF0000; --lightRed:#FFD0D0;
-  --yellow:#FFC800;
+  --part-1:#2E8CD5;
+  --part-2:#2F9E44;
+  --part-3:#EA7703;
+  --part-4:#7A4CC9;
 
-  /* Sky blue */
-  --skyBlue1:#E3F6FE; --skyBlue2:#C0E7F6; --skyBlue3:#CAE8FF;
-  --skyBlue4:#75B5CE; --skyBlue5:#B4CFE4; --skyBlue6:#E7F8FF;
-  --skyBlue7:#BAEBFF;
+  --r-sm:8px;
+  --r-md:14px;
+  --r-lg:20px;
+  --r-xl:28px;
+  --r-btn:27px;
+  --r-pill:999px;
 
-  /* Calendar */
-  --sundayRed:#E33939;
-  --saturdayBlue:#2E8CD5;
+  --shadow-phone: 0 24px 60px rgba(8,18,32,0.16), 0 8px 18px rgba(8,18,32,0.08);
+  --shadow-card: 0 4px 12px rgba(0,0,0,0.06);
+  --shadow-button: 0 4px 4px rgba(0,0,0,0.25);
 
-  /* Lesson types */
-  --trialBorder:#EA7703; --trialBg:#FFE0C2;
-  --singleBorder:#2E8CD5; --singleBg:#C0E7F6;
-  --duetBorder:#8856CC; --duetBg:#E9D9FF;
-  --groupBorder:#09A208; --groupBg:#C5EEB6;
+  --ease:cubic-bezier(.22,.61,.36,1);
 
-  /* Body report */
-  --bodyReportBlueDeep:#045FA3;
-  --bodyReportBlueBright:#2597EF;
-  --bodyReportNavy:#013A63;
-  --bodyReportGradientStart:#DFF5FF;
-  --bodyReportGradientEnd:#F0F7FA;
+  /* iPhone screen aspect — matches the actual screenshots (1179x2556 / 1206x2622) */
+  --phone-aspect: 1179 / 2556;
 
-  /* Radii */
-  --r-sm:8px; --r-md:12px; --r-lg:14px; --r-xl:20px; --r-pill:999px;
-
-  /* Shadows */
-  --shadow-card: 0 2px 4px rgba(0,0,0,0.06);
-  --shadow-phone: 0 30px 80px rgba(0,0,0,0.18), 0 10px 20px rgba(0,0,0,0.08);
+  --header-h: 90px;
+  --contactbar-h: 90px;
 }
 
-/* =============================================================
-   Reset & base
-   ============================================================= */
 *{box-sizing:border-box;margin:0;padding:0;font-family:'Pretendard',-apple-system,BlinkMacSystemFont,system-ui,Roboto,sans-serif;}
-html,body{background:var(--gray18);color:var(--gray02);line-height:1.5;-webkit-font-smoothing:antialiased;}
-a{color:inherit;text-decoration:none;}
+html,body{background:var(--bg);color:var(--ink);line-height:1.5;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;}
+html{scroll-behavior:smooth;scroll-padding-top:calc(var(--header-h) + 12px);}
+body{overflow-x:hidden;padding-top:var(--header-h);padding-bottom:var(--contactbar-h);}
+a{color:inherit;text-decoration:none;transition:opacity .2s var(--ease);}
+a:hover{opacity:0.85;}
 button{background:none;border:0;cursor:pointer;font-family:inherit;color:inherit;}
 img{max-width:100%;display:block;}
 ul,ol{list-style:none;}
+::selection{background:var(--primary-soft);color:var(--primary-2);}
 
 /* =============================================================
-   Page shell
+   Top progress bar
+   ============================================================= */
+.scroll-progress{
+  position:fixed;top:0;left:0;height:2px;width:0;
+  background:linear-gradient(90deg,var(--accent),var(--primary),var(--primary-2));
+  z-index:1001;
+  transition:width .08s linear;
+}
+
+/* =============================================================
+   Header — fixed, blurred, matches index.html
    ============================================================= */
 .page-header{
-  position:sticky;top:0;z-index:50;
-  background:rgba(255,255,255,0.85);backdrop-filter:blur(12px);
-  border-bottom:1px solid var(--gray17);
+  position:fixed;top:0;left:0;width:100%;
+  height:var(--header-h);z-index:1000;
+  background:rgba(255,255,255,0.7);
+  backdrop-filter:blur(35px);
+  -webkit-backdrop-filter:blur(35px);
+  display:flex;align-items:center;justify-content:center;
+  border-bottom:1px solid rgba(255,255,255,0.1);
 }
 .page-header .inner{
-  max-width:1440px;margin:0 auto;padding:14px 28px;
   display:flex;align-items:center;justify-content:space-between;
+  width:100%;max-width:1440px;padding:0 40px;
 }
-.logo{display:flex;align-items:center;gap:10px;font-weight:700;font-size:18px;}
-.logo img{height:30px;width:auto;display:block;}
-.header-actions{display:flex;gap:10px;align-items:center;font-size:14px;color:var(--gray06);}
-.header-actions .current-page{
-  padding:7px 12px;border-radius:999px;
-  border:1px solid var(--secondary);color:var(--secondary);
-  background:var(--skyBlue6);font-weight:700;font-size:13px;line-height:1;
-}
-.header-actions .btn-primary{
-  padding:8px 16px;background:var(--secondary);color:white;
-  border-radius:var(--r-pill);font-weight:600;
-}
+.logo{display:flex;align-items:center;}
+.logo img{height:34px;width:auto;display:block;}
+.header-actions{display:flex;align-items:center;gap:10px;}
 
-.layout{
-  max-width:1440px;margin:0 auto;padding:28px;
-  display:grid;grid-template-columns:300px 1fr 420px;gap:32px;
-  align-items:start;
+/* TOC button — outlined blue (matches "사용 가이드" style on index) */
+.toc-btn{
+  height:48px;padding:0 18px;
+  border-radius:var(--r-btn);
+  border:1.5px solid var(--primary);
+  color:var(--primary);background:#FFFFFF;
+  font-size:16px;font-weight:700;
+  display:inline-flex;align-items:center;gap:8px;
+  white-space:nowrap;
+  transition:background .2s var(--ease);
 }
+.toc-btn:hover{opacity:1;background:var(--sky);}
+.toc-btn-icon{
+  display:inline-flex;flex-direction:column;justify-content:space-between;
+  width:16px;height:12px;
+}
+.toc-btn-icon span{display:block;height:2px;background:currentColor;border-radius:1px;}
 
-/* =============================================================
-   Left nav
-   ============================================================= */
-.nav{
-  position:sticky;top:84px;
-  background:white;border-radius:var(--r-lg);
-  padding:20px 16px;box-shadow:var(--shadow-card);
-  max-height:calc(100vh - 100px);overflow-y:auto;
+/* Download dropdown (mirrors index .btn-download) */
+.dropdown{position:relative;display:inline-block;}
+.btn-download{
+  background:var(--primary);color:#FFFFFF;
+  height:48px;padding:0 20px;
+  border-radius:var(--r-btn);
+  font-size:18px;font-weight:700;line-height:24px;
+  display:flex;align-items:center;gap:4px;
+  border:none;cursor:pointer;
+  transition:background .2s var(--ease);
 }
-.nav-title{
-  font-size:12px;font-weight:700;color:var(--gray08);
-  letter-spacing:0.08em;text-transform:uppercase;
-  padding:0 8px 8px;
+.btn-download:hover{background:var(--primary-hover);}
+.btn-download svg{width:32px;height:32px;}
+.dropdown-content{
+  display:none;position:absolute;right:0;top:120%;
+  background:#FFFFFF;min-width:180px;
+  box-shadow:0 4px 12px rgba(0,0,0,0.10);
+  border-radius:10px;border:1.5px solid var(--primary);
+  overflow:hidden;z-index:100;
 }
-.nav-part{margin-bottom:18px;}
-.nav-part-title{
-  font-size:13px;font-weight:700;color:var(--secondary);
-  padding:6px 8px;margin-bottom:4px;
+.dropdown-content a{
+  padding:12px 16px;display:block;
+  font-size:16px;font-weight:500;color:var(--ink);
 }
-.nav-item{
-  display:flex;align-items:flex-start;gap:8px;
-  padding:10px 8px;border-radius:var(--r-sm);
-  font-size:14px;color:var(--gray04);
-  cursor:pointer;transition:all .15s ease;
-  line-height:1.4;
-}
-.nav-item:hover{background:var(--gray18);}
-.nav-item.active{background:var(--skyBlue6);color:var(--tertiary);font-weight:600;}
-.nav-item .num{
-  font-size:11px;font-weight:700;color:var(--gray10);
-  min-width:26px;padding-top:2px;letter-spacing:0.02em;
-}
-.nav-item.active .num{color:var(--secondary);}
+.dropdown-content a:hover{background:#f5f5f5;opacity:1;}
+.dropdown:hover .dropdown-content,
+.dropdown:focus-within .dropdown-content{display:block;}
 
 /* =============================================================
-   Middle content
+   TOC drawer (full-screen sheet)
    ============================================================= */
-.content{
-  background:white;border-radius:var(--r-lg);
-  padding:32px 36px;box-shadow:var(--shadow-card);
-  min-height:calc(100vh - 100px);
+.toc-overlay{
+  position:fixed;inset:0;z-index:120;
+  background:rgba(8,12,18,0.45);
+  backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
+  opacity:0;pointer-events:none;
+  transition:opacity .25s var(--ease);
 }
-.section-label{
-  display:inline-block;padding:4px 10px;
-  background:var(--skyBlue6);color:var(--tertiary);
-  font-size:12px;font-weight:700;border-radius:var(--r-pill);
-  margin-bottom:14px;
+.toc-overlay.open{opacity:1;pointer-events:auto;}
+.toc-drawer{
+  position:fixed;top:0;left:0;bottom:0;z-index:130;
+  width:min(420px, 92vw);
+  background:white;
+  display:flex;flex-direction:column;
+  transform:translateX(-105%);
+  transition:transform .32s var(--ease), box-shadow .32s var(--ease);
 }
-.section-title{font-size:28px;font-weight:700;line-height:1.3;margin-bottom:10px;color:var(--gray01);}
-.section-lead{font-size:16px;color:var(--gray07);margin-bottom:28px;line-height:1.6;}
-
-.steps{display:flex;flex-direction:column;gap:14px;margin-bottom:28px;}
-.step{
-  display:flex;gap:14px;padding:16px;
-  background:var(--gray18);border-radius:var(--r-md);
-  border-left:3px solid var(--gray15);
-  cursor:pointer;transition:all .15s ease;
+.toc-drawer.open{
+  transform:translateX(0);
+  box-shadow:24px 0 60px rgba(8,12,18,0.18);
 }
-.step:hover{background:var(--skyBlue6);border-left-color:var(--primary);}
-.step.active{background:var(--skyBlue6);border-left-color:var(--secondary);box-shadow:0 2px 8px rgba(46,140,213,0.12);}
-.step-num{
-  flex-shrink:0;width:28px;height:28px;border-radius:50%;
-  background:var(--gray13);color:white;
+.toc-head{
+  flex-shrink:0;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:18px 20px;
+  border-bottom:1px solid var(--line);
+}
+.toc-head h2{
+  font-size:18px;font-weight:800;letter-spacing:-0.012em;color:var(--ink);
+}
+.toc-close{
+  width:36px;height:36px;border-radius:50%;
   display:flex;align-items:center;justify-content:center;
-  font-weight:700;font-size:13px;transition:background .15s;
+  font-size:18px;color:var(--ink-3);
+  background:var(--bg-soft);
+  transition:background .2s var(--ease),color .2s var(--ease);
 }
-.step:hover .step-num,.step.active .step-num{background:var(--secondary);}
-.step-body{flex:1;}
-.step-title{font-weight:600;font-size:15px;color:var(--gray01);margin-bottom:4px;}
-.step-desc{font-size:14px;color:var(--gray06);line-height:1.55;}
-
-.tip{
-  padding:14px 16px;background:var(--skyBlue6);
-  border-radius:var(--r-md);font-size:14px;color:var(--tertiary);
-  line-height:1.6;
+.toc-close:hover{background:var(--bg-soft-2);color:var(--ink);}
+.toc-body{
+  flex:1;overflow-y:auto;
+  padding:8px 12px 24px;
+  -webkit-overflow-scrolling:touch;
 }
-.tip strong{font-weight:700;}
-
-.pager{
-  display:flex;justify-content:space-between;
-  padding-top:24px;margin-top:28px;border-top:1px solid var(--gray17);
+.toc-part{
+  margin-top:18px;padding:0 8px;
 }
-.pager button{
-  padding:10px 18px;font-size:14px;font-weight:500;
-  color:var(--gray06);border-radius:var(--r-sm);
-  transition:all .15s;
+.toc-part:first-child{margin-top:8px;}
+.toc-part-head{
+  display:flex;align-items:center;gap:10px;
+  padding:8px 8px 10px;
 }
-.pager button:hover{background:var(--gray18);color:var(--gray01);}
-.pager button:disabled{opacity:0.3;cursor:not-allowed;}
-
-/* Paginated sub-sections (e.g. 예약 프로세스 파트) */
-.subpager{
-  border:1px solid var(--gray17);
+.toc-part-num{
+  display:inline-flex;align-items:center;justify-content:center;
+  font-size:12px;font-weight:800;letter-spacing:0;line-height:1;
+  width:28px;height:28px;border-radius:50%;
+  background:var(--ink);color:white;
+  flex-shrink:0;
+  font-feature-settings:"tnum";
+}
+.toc-part[data-part="1"] .toc-part-num{background:var(--part-1);}
+.toc-part[data-part="2"] .toc-part-num{background:var(--part-2);}
+.toc-part[data-part="3"] .toc-part-num{background:var(--part-3);}
+.toc-part[data-part="4"] .toc-part-num{background:var(--part-4);}
+.toc-part-label{
+  font-size:14px;font-weight:800;color:var(--ink);letter-spacing:-0.01em;
+}
+.toc-list{display:flex;flex-direction:column;gap:2px;}
+.toc-item{
+  display:flex;align-items:flex-start;gap:12px;
+  padding:12px 12px;
   border-radius:var(--r-md);
-  background:var(--gray19);
-  padding:14px 16px 18px;
-  margin-bottom:20px;
+  text-align:left;
+  transition:background .2s var(--ease);
 }
-.subpager-top{
-  display:flex;align-items:center;justify-content:space-between;gap:10px;
-  flex-wrap:wrap;
+.toc-item:hover{background:var(--bg-soft);}
+.toc-item:active{background:var(--bg-soft-2);}
+.toc-item.current{background:var(--primary-soft);}
+.toc-item-num{
+  flex-shrink:0;
+  font-size:12px;font-weight:800;color:var(--ink-5);letter-spacing:0.04em;
+  min-width:28px;padding-top:2px;
+}
+.toc-item.current .toc-item-num{color:var(--primary-2);}
+.toc-item-title{
+  flex:1;
+  font-size:14px;font-weight:600;color:var(--ink-2);line-height:1.45;
+}
+.toc-item.current .toc-item-title{color:var(--primary-2);font-weight:700;}
+
+/* =============================================================
+   Hero — compact (~50vh), slime-like blurred blobs (no hard gradient)
+   ============================================================= */
+.hero-wrapper{
+  position:relative;
+  min-height:50vh;
+  background:#FFFFFF;
+  display:flex;align-items:center;justify-content:center;
+  padding:96px 24px 72px;
+  overflow:hidden;
+  isolation:isolate;
+}
+.hero-blobs{position:absolute;inset:0;z-index:-1;pointer-events:none;}
+.hero-blob{
+  position:absolute;
+  filter:blur(80px);
+  will-change:transform,border-radius;
+}
+.hero-blob.b1{
+  width:520px;height:460px;
+  background:#5FCDF9;opacity:0.55;
+  top:-140px;left:-90px;
+  border-radius:62% 38% 70% 30% / 55% 60% 40% 45%;
+  animation:blob-1 18s ease-in-out infinite alternate;
+}
+.hero-blob.b2{
+  width:600px;height:500px;
+  background:#2E8CD5;opacity:0.42;
+  bottom:-180px;right:-120px;
+  border-radius:40% 60% 35% 65% / 60% 40% 55% 45%;
+  animation:blob-2 22s ease-in-out infinite alternate;
+}
+.hero-blob.b3{
+  width:320px;height:340px;
+  background:#C0E7F6;opacity:0.5;
+  top:50%;left:55%;
+  border-radius:50% 50% 65% 35% / 60% 35% 65% 40%;
+  animation:blob-3 26s ease-in-out infinite alternate;
+}
+@keyframes blob-1{
+  from{transform:rotate(-12deg) translate(0,0) scale(1);border-radius:62% 38% 70% 30% / 55% 60% 40% 45%;}
+  to  {transform:rotate(10deg) translate(70px,40px) scale(1.08);border-radius:55% 45% 40% 60% / 65% 50% 50% 35%;}
+}
+@keyframes blob-2{
+  from{transform:translate(0,0) scale(1);border-radius:40% 60% 35% 65% / 60% 40% 55% 45%;}
+  to  {transform:translate(-50px,-60px) scale(1.1);border-radius:55% 45% 60% 40% / 35% 65% 40% 60%;}
+}
+@keyframes blob-3{
+  from{transform:translate(-50%,-50%) scale(1);border-radius:50% 50% 65% 35% / 60% 35% 65% 40%;}
+  to  {transform:translate(-35%,-58%) scale(1.12);border-radius:65% 35% 50% 50% / 40% 60% 35% 65%;}
+}
+@media (prefers-reduced-motion:reduce){
+  .hero-blob{animation:none !important;}
+}
+.hero-content{
+  position:relative;z-index:1;
+  text-align:center;
+  max-width:880px;
+}
+.hero-content h1{
+  font-size:clamp(34px, 5.6vw, 60px);
+  font-weight:800;line-height:1.15;letter-spacing:-0.025em;
+  color:var(--ink);
+  word-break:keep-all;
+}
+.hero-sub-text{
+  margin-top:18px;
+  font-size:clamp(15px, 1.6vw, 19px);
+  font-weight:500;line-height:1.6;
+  color:var(--ink-3);
+  word-break:keep-all;
+}
+
+/* =============================================================
+   Sections — full-bleed alternating bg-white / bg-sky
+   ============================================================= */
+.section-bleed{width:100%;}
+.section-inner{
+  max-width:1080px;margin:0 auto;
+  padding:64px 20px;
+}
+.bg-white{background:#FFFFFF;}
+.bg-sky{background:var(--sky);}
+
+/* PART chapter divider — clean typography, no gradient */
+.part-divider{
+  text-align:center;
+  padding:120px 20px 56px;
+  background:#FFFFFF;
+}
+.part-divider .part-eyebrow{
+  display:inline-block;
+  font-size:13px;font-weight:700;letter-spacing:0.18em;
+  color:var(--primary);
+  text-transform:uppercase;
+}
+.part-divider h2{
+  margin-top:14px;
+  font-size:56px;font-weight:800;line-height:1.1;letter-spacing:-0.02em;
+  color:var(--ink);
+  word-break:keep-all;
+}
+.part-divider .part-desc{
+  margin:18px auto 0;max-width:560px;
+  font-size:17px;font-weight:500;color:var(--ink-3);line-height:1.6;
+  word-break:keep-all;
+}
+
+/* Section heading — chapter-level, eyebrow not chip */
+.section-head{
+  margin-bottom:40px;
+  padding-bottom:32px;
+  max-width:780px;
+  border-bottom:1px solid var(--line);
+}
+.bg-sky .section-head{border-bottom-color:rgba(46,140,213,0.18);}
+.section-num{
+  display:inline-block;
+  font-size:12px;font-weight:800;letter-spacing:0.18em;
+  color:var(--primary);
+  text-transform:uppercase;
+  background:transparent;padding:0;border-radius:0;
+}
+.section-num::before{content:"SECTION ";opacity:0.7;}
+.section-head h3{
+  margin-top:10px;
+  font-size:36px;font-weight:800;line-height:1.2;letter-spacing:-0.018em;
+  color:var(--ink);
+  word-break:keep-all;
+}
+.section-lead{
+  margin-top:14px;
+  font-size:16px;font-weight:400;color:var(--ink-3);line-height:1.7;
+  word-break:keep-all;
+  text-wrap:pretty;
+}
+.section-lead strong{
+  color:var(--ink);font-weight:700;
+  background:linear-gradient(transparent 65%, rgba(95,205,249,0.45) 65%);
+  padding:0 1px;
+}
+
+/* Sub-group inside a multi-page section (s1-4) */
+.subgroup{
+  margin-top:64px;padding-top:32px;
+  border-top:1px solid var(--line);
+}
+.subgroup:first-of-type{margin-top:0;padding-top:0;border-top:0;}
+.subgroup-head{
+  margin-bottom:36px;
+  max-width:780px;
+}
+.subgroup-eyebrow{
+  font-size:12px;font-weight:700;letter-spacing:0.06em;
+  color:var(--primary);
+  text-transform:uppercase;
+}
+.subgroup-title{
+  margin-top:6px;
+  font-size:24px;font-weight:800;line-height:1.3;letter-spacing:-0.012em;
+  color:var(--ink);word-break:keep-all;
+}
+.subgroup-lead{
+  margin-top:10px;
+  font-size:15px;font-weight:400;color:var(--ink-3);line-height:1.7;
+  word-break:keep-all;
+  text-wrap:pretty;
+}
+.subgroup-lead strong{
+  color:var(--ink);font-weight:700;
+  background:linear-gradient(transparent 65%, rgba(95,205,249,0.45) 65%);
+  padding:0 1px;
+}
+
+/* =============================================================
+   Step rows — alternating image + text, scannable typography
+   ============================================================= */
+.steps{
+  display:flex;flex-direction:column;
+  gap:56px;
+}
+.step{
+  display:flex;align-items:center;justify-content:center;
+  gap:80px;
+  width:100%;
+}
+.step:nth-child(even){flex-direction:row-reverse;}
+.step-phone-wrap{
+  flex:0 0 auto;
+  display:flex;justify-content:center;
+}
+.step-text{
+  flex:1;min-width:0;max-width:540px;
+  text-align:left;
+  word-break:keep-all;
+}
+.step-mark{
+  display:inline-flex;align-items:center;justify-content:center;
+  height:26px;padding:0 12px;
+  border-radius:var(--r-sm);
+  background:#FFFFFF;color:var(--primary-2);
+  border:1px solid var(--primary);
+  font-weight:700;font-size:12px;letter-spacing:0.08em;
   margin-bottom:12px;
 }
-.subpager-meta{
-  font-size:12px;font-weight:700;color:var(--tertiary);
-  text-align:center;flex:1;min-width:0;
+.step-text h4{
+  font-size:22px;font-weight:800;line-height:1.35;letter-spacing:-0.012em;
+  color:var(--ink);word-break:keep-all;
 }
-.subpager-which{letter-spacing:0.02em;}
-.subpager-count{opacity:0.75;font-weight:600;}
-.subpager-top button{
-  padding:8px 12px;font-size:13px;font-weight:600;
-  color:var(--secondary);
-  background:white;border:1px solid var(--gray17);
-  border-radius:var(--r-sm);
-  transition:background .15s,color .15s;
-  white-space:nowrap;
+.step-text p{
+  margin-top:14px;
+  font-size:15px;font-weight:400;color:var(--ink-3);line-height:1.75;
+  word-break:keep-all;
+  text-wrap:pretty;
 }
-.subpager-top button:hover:not(:disabled){
-  background:var(--gray18);
-  color:var(--tertiary);
+.step-text p strong{
+  color:var(--ink);font-weight:700;
+  background:linear-gradient(transparent 65%, rgba(95,205,249,0.45) 65%);
+  padding:0 1px;
 }
-.subpager-top button:disabled{opacity:0.35;cursor:not-allowed;}
-.subpager-dots{
-  display:flex;flex-wrap:wrap;gap:6px;justify-content:center;
-  margin-bottom:14px;
-}
-.subpager-dot{
-  min-width:32px;padding:5px 10px;font-size:11px;font-weight:600;
-  border-radius:var(--r-pill);
-  border:1px solid var(--gray17);
-  background:white;color:var(--gray07);
-  cursor:pointer;transition:all .15s;
-}
-.subpager-dot:hover{background:var(--gray18);}
-.subpager-dot.active{
-  background:var(--secondary);border-color:var(--secondary);
-  color:white;
-}
-.subpage-title{
-  font-size:17px;font-weight:700;color:var(--gray01);
-  margin:0 0 8px;
-  line-height:1.35;
-}
-.subpage-lead{
-  font-size:14px;color:var(--gray07);
-  line-height:1.55;
-  margin:0 0 14px;
-}
-.subpager-body .steps{margin-bottom:0;}
 
 /* =============================================================
-   Phone mockup
+   Phone mockup — iPhone-correct aspect ratio
    ============================================================= */
-.phone-col{position:sticky;top:84px;}
-.phone-col.mobile-pop{
-  animation:phonePop .22s ease-out;
-}
 .phone{
-  width:380px;height:780px;margin:0 auto;
-  background:#1a1a1a;border-radius:48px;padding:10px;
+  width:281px;
+  padding:9px;
+  background:#0B0F14;
+  border-radius:42px;
   box-shadow:var(--shadow-phone);
   position:relative;
 }
-@keyframes phonePop{
-  from{opacity:0;transform:translateY(8px) scale(.985);}
-  to{opacity:1;transform:translateY(0) scale(1);}
+.phone::before{
+  content:"";
+  position:absolute;inset:1px;
+  border-radius:41px;
+  background:linear-gradient(180deg, rgba(255,255,255,0.06), transparent 30%);
+  pointer-events:none;
 }
 .phone-screen{
-  width:100%;height:100%;border-radius:40px;
-  overflow:hidden;background:white;position:relative;
+  position:relative;
+  width:100%;
+  aspect-ratio: var(--phone-aspect);
+  border-radius:34px;
+  overflow:hidden;
+  background:#0B0F14;
 }
 .phone-notch{
   position:absolute;top:10px;left:50%;transform:translateX(-50%);
-  width:110px;height:28px;background:#1a1a1a;
-  border-radius:0 0 18px 18px;z-index:20;
+  width:88px;height:26px;background:#0B0F14;
+  border-radius:14px;z-index:5;
 }
-.phone.img-mode .phone-notch{display:none;}
-.phone.img-mode .status-bar{display:none;}
-.phone-label{
-  text-align:center;margin-top:18px;font-size:13px;color:var(--gray08);
-}
-
-/* Status bar */
-.status-bar{
-  height:44px;display:flex;align-items:flex-end;justify-content:space-between;
-  padding:0 28px 6px;font-size:13px;font-weight:600;color:var(--gray01);
-}
-.status-bar .right{display:flex;align-items:center;gap:5px;font-size:11px;}
-
-/* App bars */
-.appbar{
-  height:54px;display:flex;align-items:center;
-  padding:0 16px;background:white;border-bottom:1px solid var(--gray18);
-}
-.appbar.transparent{background:transparent;border-bottom:0;}
-.appbar .title{flex:1;font-size:18px;font-weight:700;color:var(--gray01);}
-.appbar .title.center{text-align:center;}
-.appbar .back,.appbar .icon{
-  width:32px;height:32px;display:flex;align-items:center;justify-content:center;
-  color:var(--gray03);
-}
-.appbar .actions{display:flex;gap:4px;}
-.bell{position:relative;}
-.bell .dot{
-  position:absolute;top:4px;right:4px;width:8px;height:8px;
-  background:var(--red);border-radius:50%;border:1.5px solid white;
-}
-
-/* Screen body scroll container */
-.screen-body{
-  height:calc(100% - 98px);overflow-y:auto;background:var(--gray18);
-}
-.screen-body::-webkit-scrollbar{width:0;}
-.screen-body.white{background:white;}
-
-/* Bottom tab bar */
-.tabbar{
-  position:absolute;bottom:0;left:0;right:0;height:72px;
-  background:white;border-top:1px solid var(--gray17);
-  display:grid;grid-template-columns:repeat(4,1fr);
-  padding:8px 0 20px;
-}
-.tabbar .tab{
-  display:flex;flex-direction:column;align-items:center;gap:3px;
-  font-size:10px;color:var(--gray11);font-weight:500;
-}
-.tabbar .tab.active{color:var(--secondary);}
-.tabbar .tab .ico{font-size:20px;}
-
-/* =============================================================
-   Shared app UI components (CSS replicas of core_ui widgets)
-   ============================================================= */
-
-/* Cards */
-.card{
-  background:white;border-radius:var(--r-lg);
-  padding:14px;margin:10px 16px;box-shadow:0 1px 2px rgba(0,0,0,0.04);
-}
-.card.flat{box-shadow:none;border:1px solid var(--gray17);}
-
-/* Booking card */
-.booking-card{
-  display:flex;gap:12px;padding:14px;margin:10px 16px;
-  background:white;border-radius:var(--r-lg);
-  border-left:4px solid var(--singleBorder);
-  box-shadow:var(--shadow-card);
-}
-.booking-card.trial{border-left-color:var(--trialBorder);}
-.booking-card.duet{border-left-color:var(--duetBorder);}
-.booking-card.group{border-left-color:var(--groupBorder);}
-.booking-card .time{
-  flex-shrink:0;text-align:center;min-width:60px;
-}
-.booking-card .time .hh{font-size:18px;font-weight:700;color:var(--gray01);}
-.booking-card .time .period{font-size:11px;color:var(--gray09);}
-.booking-card .info{flex:1;}
-.booking-card .info .name{font-weight:600;font-size:15px;margin-bottom:2px;}
-.booking-card .info .meta{font-size:12px;color:var(--gray09);}
-.booking-card .badge{
-  font-size:11px;padding:3px 7px;border-radius:var(--r-pill);
-  background:var(--singleBg);color:var(--singleBorder);font-weight:600;
-  align-self:flex-start;margin-top:2px;
-}
-.booking-card.trial .badge{background:var(--trialBg);color:var(--trialBorder);}
-.booking-card.duet .badge{background:var(--duetBg);color:var(--duetBorder);}
-.booking-card.group .badge{background:var(--groupBg);color:var(--groupBorder);}
-
-/* CTA button */
-.cta{
-  display:flex;align-items:center;justify-content:center;gap:6px;
-  height:48px;border-radius:var(--r-md);
-  background:var(--secondary);color:white;font-size:15px;font-weight:600;
-  cursor:pointer;transition:opacity .15s;
-}
-.cta:hover{opacity:0.92;}
-.cta.outline{background:white;color:var(--secondary);border:1px solid var(--secondary);}
-.cta.ghost{background:var(--gray18);color:var(--gray02);}
-.cta.sm{height:36px;font-size:13px;padding:0 14px;}
-
-/* Segmented */
-.segmented{
-  display:flex;gap:2px;background:var(--gray18);
-  padding:3px;border-radius:var(--r-pill);margin:12px 16px;
-}
-.segmented .seg{
-  flex:1;padding:7px;border-radius:var(--r-pill);
-  font-size:13px;font-weight:600;color:var(--gray09);text-align:center;
-  cursor:pointer;
-}
-.segmented .seg.active{background:white;color:var(--gray01);box-shadow:0 1px 2px rgba(0,0,0,0.06);}
-
-/* Avatar */
-.avatar{
-  width:40px;height:40px;border-radius:50%;
-  background:var(--skyBlue3);color:var(--tertiary);
-  display:flex;align-items:center;justify-content:center;
-  font-weight:600;font-size:13px;flex-shrink:0;
-}
-.avatar.lg{width:56px;height:56px;font-size:16px;}
-
-/* Input */
-.input{
-  display:block;width:100%;height:44px;
-  padding:0 14px;border:1px solid var(--gray17);border-radius:var(--r-md);
-  font-size:14px;background:white;
-}
-.input:focus{outline:0;border-color:var(--secondary);}
-
-/* List item */
-.list-item{
-  display:flex;align-items:center;gap:12px;
-  padding:12px 16px;background:white;border-bottom:1px solid var(--gray18);
-}
-.list-item .body{flex:1;min-width:0;}
-.list-item .ln1{font-size:15px;font-weight:600;color:var(--gray01);margin-bottom:2px;}
-.list-item .ln2{font-size:13px;color:var(--gray09);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-.list-item .trail{text-align:right;}
-.list-item .trail .ts{font-size:11px;color:var(--gray10);margin-bottom:4px;}
-.list-item .trail .unread{
-  display:inline-block;min-width:18px;height:18px;
-  padding:0 6px;background:var(--red);color:white;border-radius:9px;
-  font-size:11px;font-weight:700;line-height:18px;text-align:center;
-}
-
-/* Section header in screen */
-.scn-section{
-  padding:12px 16px 6px;font-size:13px;font-weight:700;color:var(--gray07);
-  display:flex;align-items:center;justify-content:space-between;
-}
-
-/* Weekly calendar mini */
-.wk-header{
-  display:grid;grid-template-columns:repeat(7,1fr);
-  padding:8px 12px;background:white;border-bottom:1px solid var(--gray18);
-}
-.wk-header .wd{
-  text-align:center;font-size:11px;font-weight:600;color:var(--gray08);
-  padding:6px 0;
-}
-.wk-header .wd.sun{color:var(--sundayRed);}
-.wk-header .wd.sat{color:var(--saturdayBlue);}
-.wk-grid{
-  display:grid;grid-template-columns:40px repeat(7,1fr);
-  background:white;padding:0 12px 12px;
-  font-size:10px;
-}
-.wk-grid .hr{
-  grid-column:1;color:var(--gray10);font-size:9px;
-  text-align:right;padding-right:4px;
-  border-right:1px solid var(--gray17);
-  height:28px;line-height:28px;
-}
-.wk-slot{
-  grid-column:auto;height:28px;border-right:1px solid var(--gray18);
-  border-bottom:1px solid var(--gray18);position:relative;
-}
-.wk-lesson{
-  position:absolute;left:1px;right:1px;
-  border-radius:4px;font-size:8px;font-weight:600;
-  padding:2px 3px;line-height:1.2;overflow:hidden;
-}
-.wk-lesson.single{background:var(--singleBg);color:var(--singleBorder);border:1px solid var(--singleBorder);}
-.wk-lesson.duet{background:var(--duetBg);color:var(--duetBorder);border:1px solid var(--duetBorder);}
-.wk-lesson.group{background:var(--groupBg);color:var(--groupBorder);border:1px solid var(--groupBorder);}
-.wk-lesson.trial{background:var(--trialBg);color:var(--trialBorder);border:1px solid var(--trialBorder);}
-
-/* Stat card */
-.stat-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:0 16px;}
-.stat{background:white;border-radius:var(--r-md);padding:14px;}
-.stat .k{font-size:11px;color:var(--gray08);margin-bottom:6px;font-weight:500;}
-.stat .v{font-size:22px;font-weight:700;color:var(--gray01);}
-.stat .trend{font-size:11px;color:var(--green);margin-top:2px;font-weight:600;}
-.stat .trend.down{color:var(--red);}
-
-/* Chart mock */
-.chart-mock{
-  height:120px;background:linear-gradient(180deg,var(--skyBlue6) 0%,white 100%);
-  border-radius:var(--r-md);margin:10px 16px;position:relative;overflow:hidden;
-}
-.chart-mock svg{width:100%;height:100%;}
-
-/* =============================================================
-   Screens — each ".screen" is one app view
-   ============================================================= */
-.screens{position:absolute;inset:0;}
-.screen{
+.phone-img{
   position:absolute;inset:0;
-  display:none;flex-direction:column;
-  background:white;
+  width:100%;height:100%;
+  object-fit:cover;
+  background:#0B0F14;
 }
-.screen.active{display:flex;animation:fadeIn .25s ease;}
-@keyframes fadeIn{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:translateY(0);}}
-
-/* Image screen — shows a real app screenshot */
-.img-screen{
-  position:absolute;inset:0;display:none;
-  background:white;overflow:hidden;
+.phone-tap{
+  position:absolute;inset:0;background:transparent;border:0;cursor:zoom-in;
 }
-.img-screen.active{display:block;animation:fadeIn .25s ease;}
-.img-screen img{
-  width:100%;height:100%;object-fit:contain;
-  display:block;background:white;
-}
-
-/* Welcome / signup */
-.hero-wrap{
-  flex:1;display:flex;flex-direction:column;
-  padding:40px 24px 24px;
-  background:linear-gradient(180deg,var(--skyBlue6) 0%,white 60%);
-}
-.hero-wrap .brand{
-  width:56px;height:56px;border-radius:18px;
-  background:linear-gradient(135deg,var(--primary),var(--secondary));
-  margin-bottom:20px;
-}
-.hero-wrap h1{font-size:26px;font-weight:700;line-height:1.3;margin-bottom:8px;}
-.hero-wrap p{color:var(--gray07);font-size:14px;margin-bottom:24px;}
-
-/* Join code */
-.join-card{
-  background:white;border-radius:var(--r-lg);padding:16px;
-  box-shadow:var(--shadow-card);margin-bottom:12px;
-}
-.join-card h3{font-size:14px;font-weight:700;margin-bottom:10px;}
-
-/* QR dialog */
-.modal-overlay{
-  position:absolute;inset:0;background:rgba(0,0,0,0.7);
-  display:flex;align-items:center;justify-content:center;
-  padding:20px;z-index:30;
-}
-.modal{
-  background:white;border-radius:var(--r-lg);padding:22px;
-  width:100%;max-width:280px;text-align:center;
-}
-.modal h3{font-size:16px;font-weight:700;margin-bottom:6px;}
-.modal p{font-size:12px;color:var(--gray08);margin-bottom:16px;}
-.qr-box{
-  width:160px;height:160px;margin:0 auto 14px;
-  background:
-    linear-gradient(45deg,var(--gray01) 25%,transparent 25%,transparent 75%,var(--gray01) 75%),
-    linear-gradient(45deg,var(--gray01) 25%,transparent 25%,transparent 75%,var(--gray01) 75%);
-  background-size:20px 20px;background-position:0 0,10px 10px;
-  border:8px solid white;box-shadow:inset 0 0 0 2px var(--gray17);
-}
-.share-row{display:flex;gap:8px;justify-content:center;margin-top:10px;}
-.share-btn{
-  width:44px;height:44px;border-radius:50%;
-  display:flex;align-items:center;justify-content:center;
-  font-size:18px;color:white;
-}
-.share-btn.sms{background:var(--secondary);}
-.share-btn.kakao{background:#FEE500;color:#3C1E1E;}
-.share-btn.link{background:var(--gray08);}
-
-/* Star rating */
-.stars{
-  display:flex;justify-content:center;gap:8px;margin:24px 0 12px;font-size:36px;
-}
-.stars .s{color:var(--gray17);}
-.stars .s.on{color:var(--yellow);}
-
-/* Body report hero */
-.br-hero{
-  background:linear-gradient(180deg,var(--bodyReportBlueDeep),var(--bodyReportBlueBright));
-  color:white;padding:20px 16px;
-}
-.br-hero .lbl{font-size:12px;opacity:0.9;margin-bottom:6px;}
-.br-hero h2{font-size:20px;font-weight:700;margin-bottom:16px;line-height:1.35;}
-.br-hero .photos{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
-.br-hero .photo{
-  aspect-ratio:3/4;background:rgba(255,255,255,0.15);border-radius:10px;
-  display:flex;align-items:flex-end;padding:8px;font-size:11px;font-weight:600;
-}
-
-/* Utility */
-.row{display:flex;align-items:center;gap:10px;}
-.gap-8{gap:8px;} .gap-12{gap:12px;}
-.px-16{padding-left:16px;padding-right:16px;}
-.py-12{padding-top:12px;padding-bottom:12px;}
-.mt-8{margin-top:8px;} .mt-12{margin-top:12px;} .mt-16{margin-top:16px;}
-.mb-8{margin-bottom:8px;} .mb-12{margin-bottom:12px;}
-
-/* Tables */
-.tbl{width:calc(100% - 32px);margin:10px 16px;background:white;border-radius:var(--r-md);overflow:hidden;border:1px solid var(--gray17);}
-.tbl .tr{display:grid;grid-template-columns:1fr 80px 80px;padding:10px 12px;font-size:12px;border-bottom:1px solid var(--gray18);}
-.tbl .tr.head{background:var(--gray18);font-weight:700;color:var(--gray06);}
-.tbl .tr:last-child{border-bottom:0;}
-.tbl .tr .r{text-align:right;}
-
-/* Notification item */
-.noti{display:flex;gap:10px;padding:14px 16px;border-bottom:1px solid var(--gray18);background:white;}
-.noti.unread{background:var(--skyBlue6);}
-.noti .dot{width:6px;height:6px;border-radius:50%;background:var(--secondary);margin-top:7px;flex-shrink:0;}
-.noti.read .dot{background:transparent;}
-.noti .txt{flex:1;}
-.noti .txt .t{font-size:13px;font-weight:600;margin-bottom:2px;}
-.noti .txt .d{font-size:12px;color:var(--gray08);line-height:1.5;}
-.noti .txt .ago{font-size:11px;color:var(--gray10);margin-top:4px;}
-
-/* Pill filter bar */
-.pill-bar{display:flex;gap:6px;padding:10px 16px;overflow-x:auto;white-space:nowrap;}
-.pill-bar::-webkit-scrollbar{display:none;}
-.pill{padding:6px 12px;border-radius:var(--r-pill);font-size:12px;font-weight:600;background:var(--gray18);color:var(--gray07);}
-.pill.active{background:var(--gray01);color:white;}
 
 /* =============================================================
-   Responsive
+   Tip — inline note, not a heavy card
    ============================================================= */
-@media (max-width:1200px){
-  .layout{grid-template-columns:260px 1fr 380px;gap:20px;padding:20px;}
-  .phone{width:340px;height:700px;}
+.tip{
+  margin-top:40px;
+  padding:14px 18px;
+  background:transparent;
+  border-left:3px solid var(--primary);
+  border-radius:0;
+  font-size:14px;font-weight:400;color:var(--ink-3);line-height:1.7;
+  word-break:keep-all;
 }
-@media (max-width:960px){
-  .layout{grid-template-columns:1fr;gap:12px;padding:12px;}
-  .nav,.phone-col{position:static;}
-  .phone-col{order:3;}
-  .step .phone-col{margin-top:10px;}
-  .step .phone{margin:0 auto;}
-  .step .phone-label{display:none;}
-  .phone{
-    width:min(72vw,280px);
-    height:auto;
-    aspect-ratio:380/780;
-    border-radius:34px;
-    padding:8px;
-  }
-  .phone-screen{border-radius:28px;}
-  .phone-notch{width:84px;height:20px;}
-  .status-bar{height:36px;padding:0 20px 5px;font-size:11px;}
-  .phone-label{display:none;}
-  .nav{
-    display:flex;
-    overflow-x:auto;
-    white-space:nowrap;
-    gap:10px;
-    padding:10px;
-    max-height:none;
-  }
-  .nav::-webkit-scrollbar{display:none;}
-  .nav-title{display:none;}
-  .nav-part{
-    display:flex;
-    align-items:center;
-    gap:8px;
-    margin:0;
-    padding:4px 8px 4px 4px;
-    border-radius:12px;
-    border:1px solid transparent;
-  }
-  .nav-part.part-1{background:#EAF5FF;border-color:#9CCBFF;}
-  .nav-part.part-2{background:#EFFAF1;border-color:#A8DFAF;}
-  .nav-part.part-3{background:#FFF5EA;border-color:#F4C28B;}
-  .nav-part.part-4{background:#F4EEFF;border-color:#C8B3F6;}
-  .nav-part-title{
-    display:inline-flex;
-    align-items:center;
-    justify-content:center;
-    margin:0;
-    padding:6px 10px;
-    border-radius:999px;
-    font-size:11px;
-    font-weight:700;
-    letter-spacing:0.02em;
-    color:white;
-    white-space:nowrap;
-  }
-  .nav-part.part-1 .nav-part-title{background:#2E8CD5;}
-  .nav-part.part-2 .nav-part-title{background:#2F9E44;}
-  .nav-part.part-3 .nav-part-title{background:#EA7703;}
-  .nav-part.part-4 .nav-part-title{background:#7A4CC9;}
-  .nav-item{
-    min-width:max-content;
-    padding:8px 12px;
-    font-size:13px;
-    border:1px solid var(--gray17);
-    background:white;
-  }
-  .nav-item.active{
-    background:#FFFFFF;
-    border-color:var(--secondary);
-    box-shadow:0 0 0 1px var(--secondary) inset;
-    color:var(--tertiary);
-  }
-  .nav-item .num{display:none;}
-  .content{padding:16px;}
-  .page-header .inner{padding:12px 14px;}
+.tip strong{color:var(--primary-2);font-weight:700;}
+
+/* =============================================================
+   Reveal-on-scroll (matches index)
+   ============================================================= */
+.reveal{
+  opacity:0;transform:translateY(30px);
+  transition:opacity 1s var(--ease), transform 1s var(--ease);
+}
+.reveal.active{opacity:1;transform:translateY(0);}
+
+/* =============================================================
+   Lightbox
+   ============================================================= */
+.lightbox{
+  position:fixed;inset:0;z-index:1100;
+  background:rgba(0,0,0,0.86);
+  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+  display:none;align-items:center;justify-content:center;
+  padding:24px;
+  animation:fadeIn .25s var(--ease);
+}
+.lightbox.show{display:flex;}
+.lightbox img{
+  max-width:min(96vw, 420px);
+  max-height:88vh;
+  width:auto;height:auto;
+  border-radius:32px;
+  box-shadow:var(--shadow-phone);
+}
+.lightbox .close{
+  position:absolute;top:16px;right:16px;
+  width:44px;height:44px;border-radius:50%;
+  background:rgba(255,255,255,0.16);color:#fff;
+  display:flex;align-items:center;justify-content:center;
+  font-size:20px;
+}
+@keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
+
+/* =============================================================
+   Bottom CTA (matches index)
+   ============================================================= */
+.bottom-cta{
+  background:radial-gradient(67.6% 55.45% at 50% 100%, #2F8DD5 17.63%, #5FCDF9 55%, #FFFFFF 100%);
+  padding:80px 20px;
+  display:flex;flex-direction:column;align-items:center;
+  gap:48px;text-align:center;
+}
+.bottom-cta h2{
+  font-size:36px;font-weight:500;color:var(--ink);line-height:1.35;
+  word-break:keep-all;
+}
+.store-buttons{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;}
+.store-buttons img{
+  width:210px;height:70px;
+  border-radius:10px;object-fit:contain;
+}
+
+/* =============================================================
+   Footer (matches index — dark)
+   ============================================================= */
+footer.guide-footer{
+  background:var(--footer-bg);color:var(--footer-text);
+  padding:50px 0 40px;
+}
+.footer-content{
+  width:1440px;max-width:100%;margin:0 auto;
+  padding:0 40px;display:flex;flex-direction:column;
+}
+.footer-logo{margin-bottom:20px;}
+.footer-logo img{
+  width:140px;height:auto;
+  filter:brightness(0) saturate(100%) invert(66%) sepia(0%) saturate(0%) hue-rotate(159deg) brightness(92%) contrast(85%);
+}
+.footer-info-top{display:flex;flex-direction:column;gap:4px;margin-bottom:30px;}
+.info-row{
+  display:flex;align-items:center;gap:16px;
+  font-size:16px;font-weight:400;line-height:24px;
+  flex-wrap:wrap;
+}
+.info-row a{color:var(--footer-text);transition:color .2s;}
+.info-row a:hover{color:#fff;text-decoration:underline;opacity:1;}
+.divider{width:1px;height:14px;background:#777;}
+.footer-info-bottom{
+  display:flex;justify-content:space-between;align-items:center;
+  width:100%;flex-wrap:wrap;gap:16px;
+}
+.footer-bottom-left{
+  display:flex;gap:20px;align-items:center;
+  font-size:16px;font-weight:500;line-height:24px;color:var(--footer-text);
+  flex-wrap:wrap;
+}
+.footer-bottom-left a{color:var(--footer-text);}
+.footer-bottom-left a:hover{color:#fff;text-decoration:underline;opacity:1;}
+.copyright{font-size:14px;font-weight:400;color:var(--footer-text);}
+
+/* =============================================================
+   Bottom contact bar (fixed, matches index)
+   ============================================================= */
+.contact-bar{
+  position:fixed;bottom:0;left:0;width:100%;
+  background:var(--primary-2);
+  height:var(--contactbar-h);
+  display:flex;align-items:center;justify-content:center;
+  z-index:999;
+}
+.contact-bar-inner{
+  max-width:1440px;width:100%;padding:0 40px;
+  display:flex;justify-content:space-between;align-items:center;gap:16px;
+}
+.contact-bar-text{
+  font-weight:700;font-size:24px;line-height:1.4;color:#FFFFFF;
+}
+.contact-bar-text .text-yellow{color:#FFE100;}
+.btn-contact{
+  display:flex;align-items:center;justify-content:center;gap:6px;
+  padding:0 18px;height:48px;
+  background:#FFFFFF;border:1px solid var(--accent);
+  border-radius:var(--r-btn);
+  box-shadow:var(--shadow-button);
+  white-space:nowrap;
+}
+.btn-contact:hover{background:#f0faff;opacity:1;}
+.btn-contact span{font-weight:700;font-size:16px;color:var(--ink);}
+.btn-contact svg{width:28px;height:28px;}
+
+.mobile-only{display:none;}
+.pc-only{display:inline;}
+
+/* =============================================================
+   Mobile (≤768px) — index.html parity
+   ============================================================= */
+@media (max-width:768px){
+  :root{--header-h:64px;--contactbar-h:64px;}
+
+  .page-header .inner{padding:0 14px;}
   .logo img{height:28px;}
-  .header-actions .current-page{padding:6px 10px;font-size:12px;}
-  .section-title{font-size:24px;}
-  .section-lead{font-size:15px;margin-bottom:18px;}
-  .steps{gap:10px;margin-bottom:18px;}
-  .step{padding:12px;gap:10px;}
-  .step-title{font-size:14px;}
-  .step-desc{font-size:13px;line-height:1.5;}
-  .pager{
-    position:sticky;
-    bottom:8px;
-    background:white;
-    margin-top:16px;
-    padding-top:12px;
+  .header-actions{gap:6px;}
+
+  .toc-btn{
+    height:36px;padding:0 12px;
+    font-size:13px;font-weight:600;
+    border-radius:20px;
   }
-  .subpager{padding:12px;}
-  .subpager-top{gap:8px;}
-  .subpager-top button{font-size:12px;padding:7px 10px;}
-  .subpage-title{font-size:16px;}
-  .subpage-lead{font-size:13px;}
+  .toc-btn-icon{width:14px;height:10px;}
+
+  .btn-download{
+    height:36px;padding:0 12px;
+    font-size:13px;border-radius:20px;
+  }
+  .btn-download svg{display:none;}
+
+  /* Hero — mobile (compact, blob bg) */
+  .hero-wrapper{
+    min-height:48vh;
+    padding:64px 18px 48px;
+  }
+  .hero-blob.b1{width:300px;height:280px;top:-90px;left:-60px;filter:blur(60px);}
+  .hero-blob.b2{width:340px;height:300px;bottom:-110px;right:-80px;filter:blur(60px);}
+  .hero-blob.b3{width:200px;height:220px;filter:blur(60px);}
+  .hero-content h1{font-size:28px;line-height:1.25;}
+  .hero-sub-text{font-size:14px;margin-top:12px;}
+
+  /* PART divider */
+  .part-divider{padding:80px 18px 40px;}
+  .part-divider::before{width:36px;}
+  .part-divider .part-eyebrow{font-size:11px;}
+  .part-divider h2{font-size:34px;margin-top:12px;}
+  .part-divider .part-desc{font-size:15px;margin-top:14px;}
+
+  /* Section */
+  .section-inner{padding:48px 18px;}
+  .section-head{margin-bottom:28px;padding-bottom:24px;}
+  .section-head h3{font-size:24px;margin-top:8px;}
+  .section-num{font-size:11px;}
+  .section-lead{font-size:15px;margin-top:12px;}
+
+  .subgroup{margin-top:48px;padding-top:24px;}
+  .subgroup-head{margin-bottom:24px;}
+  .subgroup-title{font-size:20px;}
+  .subgroup-lead{font-size:14px;margin-top:8px;}
+
+  /* Steps stack vertically on mobile */
+  .steps{gap:44px;}
+  .step,
+  .step:nth-child(even){
+    flex-direction:column;
+    gap:20px;
+    align-items:center;
+  }
+  .step-text{
+    width:100%;max-width:none;
+    text-align:left;padding:0;
+  }
+  .step-mark{margin-bottom:10px;}
+  .step-text h4{font-size:19px;}
+  .step-text p{font-size:15px;margin-top:12px;}
+
+  .phone{width:240px;padding:8px;border-radius:38px;}
+  .phone-screen{border-radius:30px;}
+  .phone-notch{width:78px;height:22px;top:8px;border-radius:12px;}
+
+  /* Tip */
+  .tip{margin-top:28px;padding:12px 14px;font-size:13px;}
+
+  /* Bottom CTA */
+  .bottom-cta{
+    background:radial-gradient(79.39% 55.45% at 50% 100%, #2F8DD5 17.63%, #5FCDF9 55%, #FFFFFF 100%);
+    padding:64px 20px;gap:32px;
+  }
+  .bottom-cta h2{font-size:22px;font-weight:500;}
+  .store-buttons img{width:150px;height:50px;}
+
+  /* Footer */
+  footer.guide-footer{padding:30px 20px 96px;}
+  .footer-content{padding:0;width:100%;}
+  .footer-logo img{width:110px;}
+  .info-row{font-size:13px;line-height:18px;gap:8px;}
+  .info-row .divider{display:none;}
+  .info-row.info-row-inline{flex-direction:row;align-items:center;gap:8px;}
+  .info-row.info-row-inline .divider{display:block;height:10px;}
+  .footer-info-bottom{flex-direction:column;align-items:flex-start;gap:24px;}
+  .footer-bottom-left{
+    flex-direction:column;align-items:flex-start;gap:8px;
+    font-size:13px;line-height:18px;
+  }
+  .footer-bottom-left a{font-size:13px;}
+  .footer-bottom-left .divider{display:none;}
+  .copyright{font-size:12px;}
+
+  /* Contact bar */
+  .contact-bar{height:var(--contactbar-h);padding:0 16px;}
+  .contact-bar-inner{padding:0;gap:8px;}
+  .contact-bar-text{font-size:14px;line-height:1.35;font-weight:700;}
+  .btn-contact{
+    width:44px;height:44px;padding:0;border-radius:22px;
+    flex-shrink:0;
+  }
+  .btn-contact span{display:none;}
+  .btn-contact svg{width:24px;height:24px;}
+
+  .mobile-only{display:inline;}
+  .pc-only{display:none;}
+  br.pc-only{display:none;}
+  br.mobile-only{display:inline;}
 }
 </style>
 </head>
 
 <body>
 
+<div class="scroll-progress" id="scroll-progress"></div>
+
 <header class="page-header">
   <div class="inner">
     <a href="/" class="logo"><img src="logo.png" alt="SoMa Logo"></a>
     <div class="header-actions">
-      <span class="current-page">사용 가이드</span>
+      <button type="button" class="toc-btn" id="toc-btn" aria-label="목차 열기" aria-expanded="false" aria-controls="toc-drawer">
+        <span class="toc-btn-icon" aria-hidden="true"><span></span><span></span><span></span></span>
+        <span>목차</span>
+      </button>
+      <div class="dropdown">
+        <button class="btn-download" type="button">
+          지금 다운로드
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M23.7778 16V23.7778H8.22222V16H6V23.7778C6 25 7 26 8.22222 26H23.7778C25 26 26 25 26 23.7778V16H23.7778ZM17.1111 16.7444L19.9889 13.8778L21.5556 15.4444L16 21L10.4444 15.4444L12.0111 13.8778L14.8889 16.7444V6H17.1111V16.7444Z" fill="white"/>
+          </svg>
+        </button>
+        <div class="dropdown-content">
+          <a href="https://apps.apple.com/kr/app/%EC%86%8C%EB%A7%88/id6753277300" target="_blank" rel="noopener">iOS 다운로드하기</a>
+          <a href="https://play.google.com/store/apps/details?id=com.somaai.somaai&pcampaignid=web_share&pli=1" target="_blank" rel="noopener">AOS 다운로드하기</a>
+        </div>
+      </div>
     </div>
   </div>
 </header>
 
-<div class="layout">
+<div class="toc-overlay" id="toc-overlay" aria-hidden="true"></div>
+<aside class="toc-drawer" id="toc-drawer" role="dialog" aria-modal="true" aria-labelledby="toc-title" aria-hidden="true">
+  <div class="toc-head">
+    <h2 id="toc-title">목차</h2>
+    <button type="button" class="toc-close" id="toc-close" aria-label="목차 닫기">✕</button>
+  </div>
+  <nav class="toc-body" id="toc-body"><!-- rendered by JS --></nav>
+</aside>
 
-  <!-- ==================== LEFT NAV ==================== -->
-  <aside class="nav">
-    <div class="nav-title">빠른 이동</div>
+<section class="hero-wrapper reveal">
+  <div class="hero-blobs" aria-hidden="true">
+    <div class="hero-blob b1"></div>
+    <div class="hero-blob b2"></div>
+    <div class="hero-blob b3"></div>
+  </div>
+  <div class="hero-content">
+    <h1>소마, 단계별로 살펴보기</h1>
+    <p class="hero-sub-text">회원 등록부터 수업 관리, 퍼포먼스 분석까지 핵심 화면을 순서대로 정리했습니다.</p>
+  </div>
+</section>
 
-    <div class="nav-part part-1">
-      <div class="nav-part-title">PART 1. 시작하기</div>
-      <div class="nav-item active" data-id="s1-1"><span class="num">1-1</span><span>회원가입 &amp; 센터 연결</span></div>
-      <div class="nav-item" data-id="s1-2"><span class="num">1-2</span><span>회원정보 등록하기 (필수)</span></div>
-      <div class="nav-item" data-id="s1-3"><span class="num">1-3</span><span>첫 회원 연결</span></div>
-      <div class="nav-item" data-id="s1-4"><span class="num">1-4</span><span>수업 예약 프로세스 (상세)</span></div>
+<main class="guide-main" id="guide-main"><!-- rendered by JS --></main>
+
+<section class="bottom-cta reveal">
+  <h2>수업의 진심이 온전히 닿게,<br class="mobile-only"> 필라테스/PT 강사 필수 앱. '소마'</h2>
+  <div class="store-buttons">
+    <a href="https://apps.apple.com/kr/app/%EC%86%8C%EB%A7%88/id6753277300" target="_blank" rel="noopener">
+      <img src="btn-appstore.png" alt="App Store">
+    </a>
+    <a href="https://play.google.com/store/apps/details?id=com.somaai.somaai&pcampaignid=web_share&pli=1" target="_blank" rel="noopener">
+      <img src="btn-googleplay.png" alt="Google Play">
+    </a>
+  </div>
+</section>
+
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true">
+  <button class="close" id="lightbox-close" aria-label="닫기">✕</button>
+  <img id="lightbox-img" alt="">
+</div>
+
+<section class="contact-bar">
+  <div class="contact-bar-inner">
+    <p class="contact-bar-text">언제든지 상담・문의 <br class="mobile-only"><span class="text-yellow">24시간 고객센터</span> 0502-1935-5034</p>
+    <a href="tel:0502-1935-5034" class="btn-contact">
+      <span>고객센터 바로연결</span>
+      <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M9.27131 6.66303C9.60111 6.69952 9.92053 6.80105 10.2108 6.96186C10.5011 7.12277 10.7569 7.3401 10.9627 7.60053C11.421 8.09895 11.9809 8.61921 12.4403 9.09858L13.0721 9.71967C13.4431 10.0486 13.6726 10.5085 13.7137 11.0038C13.7136 11.4581 13.5458 11.8964 13.244 12.2363C13.0486 12.4739 12.8415 12.7015 12.6229 12.9179L12.4188 13.1318C12.3005 13.2421 12.2103 13.3788 12.1541 13.5302C12.1041 13.6792 12.0836 13.8319 12.0936 13.9882C12.255 14.4204 12.5089 14.8137 12.8358 15.1396C13.3462 15.8316 13.8563 16.433 14.3758 17.0849C15.3154 18.1757 16.43 19.1025 17.6746 19.8261C17.802 19.9194 17.9489 19.9817 18.1043 20.0087C18.2385 20.0187 18.3746 19.9982 18.5008 19.9482C18.8568 19.7386 19.1736 19.4701 19.4383 19.1533C19.7943 18.7173 20.3052 18.4362 20.8641 18.3691C21.4018 18.3765 21.9147 18.5961 22.2908 18.9804C22.4944 19.1529 22.7188 19.3876 22.9334 19.6122L23.2381 19.9267L23.5535 20.2333L24.0946 20.7822C24.4168 21.0683 24.7187 21.3746 25.0008 21.7001C25.2835 22.0911 25.4113 22.5754 25.3573 23.0546C25.2313 23.6192 24.9188 24.1255 24.4705 24.4912C23.9809 24.9878 23.3971 25.3821 22.7537 25.6513C22.1102 25.9206 21.4191 26.0595 20.7215 26.0595H20.3953C18.9313 25.98 17.4977 25.6096 16.1785 24.9697H16.1688C15.863 24.8273 15.5468 24.6851 15.241 24.5117C13.7011 23.6482 12.2883 22.5746 11.0438 21.3222C9.42874 19.8052 8.10341 18.0064 7.13264 16.0146C6.61686 14.9232 6.27277 13.7588 6.11213 12.5624C5.87593 11.3099 6.01809 10.0152 6.52034 8.84369C6.83744 8.31517 7.2248 7.83164 7.6717 7.40717C7.87275 7.1799 8.11826 6.9961 8.39338 6.86811C8.66861 6.74007 8.96785 6.67035 9.27131 6.66303ZM16.5457 9.3935C17.3233 9.39231 18.0937 9.54374 18.8123 9.84076C19.5309 10.1378 20.1834 10.5742 20.7332 11.124C21.2831 11.6738 21.7194 12.3272 22.0164 13.0458C22.3133 13.7643 22.4658 14.5341 22.4647 15.3115C22.4649 15.4118 22.4453 15.5117 22.4071 15.6044C22.3687 15.6973 22.312 15.7815 22.241 15.8525C22.17 15.9235 22.0858 15.9802 21.993 16.0185C21.9002 16.0568 21.8004 16.0764 21.7 16.0761C21.4981 16.0739 21.3047 15.9923 21.1619 15.8496C21.0193 15.7067 20.9384 15.5133 20.9364 15.3115C20.9373 14.7349 20.8244 14.1637 20.6043 13.6308C20.384 13.0976 20.0601 12.6129 19.6522 12.205C19.2444 11.7973 18.7603 11.4741 18.2274 11.2538C17.6942 11.0336 17.1226 10.9208 16.5457 10.9218C16.3431 10.9218 16.149 10.8405 16.0057 10.6972C15.8624 10.5539 15.7811 10.3598 15.7811 10.1572C15.7811 9.95451 15.8624 9.76044 16.0057 9.61713C16.149 9.47384 16.3431 9.3935 16.5457 9.3935ZM16.994 5.94037C18.1775 5.94037 19.3499 6.17369 20.4432 6.6269C21.5363 7.08008 22.5297 7.74381 23.366 8.581C24.2024 9.41832 24.8652 10.413 25.3172 11.5068C25.7692 12.6005 26.0011 13.7726 25.9998 14.956C26.0001 15.0564 25.9805 15.1562 25.9422 15.249C25.9039 15.3416 25.8481 15.4261 25.7772 15.497C25.7062 15.568 25.621 15.6237 25.5281 15.6621C25.4355 15.7003 25.3364 15.7189 25.2362 15.7187C25.0343 15.7166 24.8409 15.6358 24.6981 15.4931C24.5554 15.3505 24.4739 15.1577 24.4715 14.956C24.4731 13.9731 24.2812 12.9993 23.9061 12.0908C23.531 11.1823 22.9804 10.3566 22.286 9.66108C21.5915 8.96554 20.7662 8.41347 19.8582 8.03705C18.9504 7.66074 17.9767 7.46758 16.994 7.46772C16.8915 7.47138 16.789 7.45457 16.6932 7.41791C16.5974 7.38122 16.5102 7.32506 16.4364 7.25385C16.3625 7.18263 16.3036 7.09729 16.2635 7.00287C16.2234 6.90842 16.203 6.80667 16.203 6.70405C16.203 6.60139 16.2234 6.4997 16.2635 6.40522C16.3036 6.31076 16.3625 6.2255 16.4364 6.15424C16.5102 6.08303 16.5974 6.02688 16.6932 5.99018C16.789 5.95352 16.8915 5.93671 16.994 5.94037Z" fill="#11C711"/>
+      </svg>
+    </a>
+  </div>
+</section>
+
+<footer class="guide-footer">
+  <div class="footer-content">
+    <div class="footer-logo">
+      <img src="logo.png" alt="SoMa Logo">
     </div>
-
-    <div class="nav-part part-2">
-      <div class="nav-part-title">PART 2. 핵심 업무</div>
-      <div class="nav-item" data-id="s2-1"><span class="num">2-1</span><span>회원 수락/거절 처리</span></div>
-      <div class="nav-item" data-id="s2-2"><span class="num">2-2</span><span>채팅 목록 운영하기</span></div>
-      <div class="nav-item" data-id="s2-3"><span class="num">2-3</span><span>하루 일정 &amp; AI 수업 제안</span></div>
-      <div class="nav-item" data-id="s2-4"><span class="num">2-4</span><span>수업 기록 작성하기</span></div>
-      <div class="nav-item" data-id="s2-5"><span class="num">2-5</span><span>회원 정보/수강권 관리</span></div>
+    <div class="footer-info-top">
+      <div class="info-row info-row-inline">
+        <span>대표: 이창재</span>
+        <div class="divider"></div>
+        <span>호스팅 서비스: 주식회사 소마</span>
+      </div>
+      <div class="info-row">
+        <span>사업자 등록번호: 805-88-03448</span>
+        <div class="divider pc-only"></div>
+        <span>개인정보보호책임자: 이창재</span>
+      </div>
+      <div class="info-row">
+        <span>통신판매업 신고번호: 2025-서울강서-2775</span>
+        <div class="divider pc-only"></div>
+        <span>특허출원번호: 10-2025-0189745</span>
+      </div>
+      <div class="info-row">
+        <span>주소: 04617 서울특별시 중구 동호로 298 (장충동, 이성빌딩)</span>
+      </div>
     </div>
-
-    <div class="nav-part part-3">
-      <div class="nav-part-title">PART 3. 관리자 강사 전용</div>
-      <div class="nav-item" data-id="s3-1"><span class="num">3-1</span><span>센터 관리 &amp; 강사 관리</span></div>
-      <div class="nav-item" data-id="s3-2"><span class="num">3-2</span><span>관리자 단톡방 기록 관리</span></div>
-      <div class="nav-item" data-id="s3-3"><span class="num">3-3</span><span>퍼포먼스 대시보드</span></div>
-      <div class="nav-item" data-id="s3-4"><span class="num">3-4</span><span>센터 정보 설정</span></div>
+    <div class="footer-info-bottom">
+      <div class="footer-bottom-left">
+        <span>고객센터: <a href="tel:0502-1935-5034">0502-1935-5034</a></span>
+        <div class="divider pc-only"></div>
+        <span>이메일: <a href="mailto:support@soma.ai.kr">support@soma.ai.kr</a></span>
+        <div class="divider pc-only"></div>
+        <a href="/terms.html" target="_blank" rel="noopener">서비스 이용약관</a>
+        <div class="divider"></div>
+        <a href="/privacy.html" target="_blank" rel="noopener">개인정보 처리방침</a>
+      </div>
+      <p class="copyright">© 2025 SoMa Inc. All rights reserved.</p>
     </div>
+  </div>
+</footer>
 
-    <div class="nav-part part-4">
-      <div class="nav-part-title">PART 4. 유용한 기능</div>
-      <div class="nav-item" data-id="s4-1"><span class="num">4-1</span><span>매출·페이롤 파일 출력</span></div>
-      <div class="nav-item" data-id="s4-2"><span class="num">4-2</span><span>AI 리포트와 물방울 내역</span></div>
-      <div class="nav-item" data-id="s4-3"><span class="num">4-3</span><span>알림함 확인하기</span></div>
-      <div class="nav-item" data-id="s4-4"><span class="num">4-4</span><span>설정/구독/센터 관리</span></div>
-    </div>
-  </aside>
-
-  <!-- ==================== MIDDLE CONTENT ==================== -->
-  <main class="content">
-    <!-- Content is swapped by JS -->
-    <div id="content-area"></div>
-    <div id="mobile-phone-anchor"></div>
-    <div class="pager">
-      <button id="prev-btn">← 이전</button>
-      <button id="next-btn">다음 →</button>
-    </div>
-  </main>
-
-  <!-- ==================== RIGHT: PHONE MOCKUP ==================== -->
-  <aside class="phone-col">
-    <div class="phone">
-      <div class="phone-notch"></div>
-      <div class="phone-screen">
-        <div class="status-bar">
-          <span>9:41</span>
-          <span class="right">●●●● 5G 100%</span>
-        </div>
-        <!-- Image-based screen overlay (shown when a step has an image) -->
-        <div class="img-screen" id="img-screen">
-          <img id="img-screen-src" alt="앱 화면 미리보기">
-        </div>
-
-        <div class="screens">
-
-          <!-- ===== 1-1 회원가입 & 센터 연결 ===== -->
-          <div class="screen active" data-id="s1-1">
-            <div class="hero-wrap">
-              <div class="brand"></div>
-              <h1>소마에 오신 것을<br>환영합니다</h1>
-              <p>센터에 합류해서 회원 관리를<br>더 스마트하게 시작하세요</p>
-              <div class="join-card">
-                <h3>센터 조인코드 입력</h3>
-                <input class="input" value="SOMA-2587" readonly>
-              </div>
-              <div class="join-card" style="margin-top:10px;">
-                <h3 style="margin-bottom:8px;">또는 센터 검색</h3>
-                <input class="input" placeholder="센터 이름을 검색하세요 🔍">
-              </div>
-              <div style="flex:1"></div>
-              <button class="cta">센터 합류하기</button>
-            </div>
-          </div>
-
-          <!-- ===== 1-2 홈 화면 ===== -->
-          <div class="screen" data-id="s1-2">
-            <div class="appbar">
-              <div class="title">홈</div>
-              <div class="actions">
-                <div class="icon">📅</div>
-                <div class="icon bell">🔔<span class="dot"></span></div>
-              </div>
-            </div>
-            <div class="segmented">
-              <div class="seg active" onclick="swapSeg(this,'home-list')">리스트뷰</div>
-              <div class="seg" onclick="swapSeg(this,'home-week')">시간표뷰</div>
-            </div>
-            <div class="screen-body" id="home-list-body">
-              <div style="padding:0 16px;margin-top:8px;">
-                <div class="segmented" style="margin:0 0 6px;">
-                  <div class="seg active">내 수업</div>
-                  <div class="seg">센터 캘린더</div>
-                </div>
-              </div>
-              <div class="scn-section">오늘 · 4월 21일 (화)<span style="font-size:11px;color:var(--gray10);font-weight:500;">수업 5건</span></div>
-              <div class="booking-card">
-                <div class="time"><div class="hh">10:00</div><div class="period">AM</div></div>
-                <div class="info">
-                  <div class="name">김민지 회원</div>
-                  <div class="meta">1:1 · 50분 · 1룸</div>
-                  <span class="badge">개인</span>
-                </div>
-              </div>
-              <div class="booking-card duet">
-                <div class="time"><div class="hh">11:00</div><div class="period">AM</div></div>
-                <div class="info">
-                  <div class="name">이수진 · 박예지</div>
-                  <div class="meta">듀엣 · 50분 · 2룸</div>
-                  <span class="badge">듀엣</span>
-                </div>
-              </div>
-              <div class="booking-card trial">
-                <div class="time"><div class="hh">02:00</div><div class="period">PM</div></div>
-                <div class="info">
-                  <div class="name">신규 체험</div>
-                  <div class="meta">체험 · 30분 · 1룸</div>
-                  <span class="badge">체험</span>
-                </div>
-              </div>
-              <div class="booking-card group">
-                <div class="time"><div class="hh">06:00</div><div class="period">PM</div></div>
-                <div class="info">
-                  <div class="name">그룹 클래스</div>
-                  <div class="meta">그룹 4명 · 50분 · 홀</div>
-                  <span class="badge">그룹</span>
-                </div>
-              </div>
-              <div style="height:90px"></div>
-            </div>
-            <div class="tabbar">
-              <div class="tab active"><div class="ico">🏠</div>홈</div>
-              <div class="tab"><div class="ico">👥</div>회원</div>
-              <div class="tab"><div class="ico">💬</div>채팅</div>
-              <div class="tab"><div class="ico">⚙️</div>더보기</div>
-            </div>
-          </div>
-
-          <!-- ===== 2-1 회원 등록 ===== -->
-          <div class="screen" data-id="s2-1">
-            <div class="appbar">
-              <div class="back">←</div>
-              <div class="title">회원 등록</div>
-              <div class="icon">＋</div>
-            </div>
-            <div class="screen-body white">
-              <div class="scn-section">등록 방법 선택</div>
-              <div style="padding:0 16px;display:flex;flex-direction:column;gap:10px;">
-                <div class="card flat" style="margin:0;display:flex;align-items:center;gap:12px;">
-                  <div style="width:44px;height:44px;border-radius:12px;background:var(--skyBlue6);display:flex;align-items:center;justify-content:center;font-size:20px;">📊</div>
-                  <div style="flex:1;">
-                    <div style="font-weight:600;font-size:14px;">엑셀로 일괄 등록</div>
-                    <div style="font-size:12px;color:var(--gray09);">기존 회원 목록을 한 번에</div>
-                  </div>
-                  <div style="color:var(--gray12);">›</div>
-                </div>
-                <div class="card flat" style="margin:0;display:flex;align-items:center;gap:12px;">
-                  <div style="width:44px;height:44px;border-radius:12px;background:var(--lightOrange);display:flex;align-items:center;justify-content:center;font-size:20px;">✏️</div>
-                  <div style="flex:1;">
-                    <div style="font-weight:600;font-size:14px;">직접 수동 등록</div>
-                    <div style="font-size:12px;color:var(--gray09);">이름, 연락처, 수강권 입력</div>
-                  </div>
-                  <div style="color:var(--gray12);">›</div>
-                </div>
-                <div class="card flat" style="margin:0;display:flex;align-items:center;gap:12px;">
-                  <div style="width:44px;height:44px;border-radius:12px;background:var(--lightViolet);display:flex;align-items:center;justify-content:center;font-size:20px;">📸</div>
-                  <div style="flex:1;">
-                    <div style="font-weight:600;font-size:14px;">계약서 사진 인식</div>
-                    <div style="font-size:12px;color:var(--gray09);">AI가 자동으로 정보 추출</div>
-                  </div>
-                  <div style="color:var(--gray12);">›</div>
-                </div>
-              </div>
-              <div class="scn-section" style="margin-top:14px;">가입 초대는 채팅에서</div>
-              <div style="padding:0 16px 8px;font-size:12px;color:var(--gray09);line-height:1.45;">QR·초대 메시지는 <strong>채팅</strong> 탭 → 미가입 회원 → <strong>초대하기</strong>에서 엽니다. 회원 등록 화면에서는 QR을 띄우지 않습니다.</div>
-              <div style="padding:0 16px;display:flex;flex-direction:column;gap:10px;">
-                <div class="card flat" style="margin:0;display:flex;align-items:center;gap:12px;">
-                  <div style="width:40px;height:40px;border-radius:10px;background:var(--gray18);display:flex;align-items:center;justify-content:center;font-size:18px;">💬</div>
-                  <div style="flex:1;"><div style="font-weight:600;font-size:14px;">채팅 → 미가입 → 초대하기</div><div style="font-size:11px;color:var(--gray09);margin-top:2px;">QR·메시지 복사</div></div>
-                  <div style="color:var(--gray12);">›</div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- ===== 2-2 수업 예약 확인 ===== -->
-          <div class="screen" data-id="s2-2">
-            <div class="appbar">
-              <div class="back">←</div>
-              <div class="title">예약 요청</div>
-              <div class="icon">⋯</div>
-            </div>
-            <div class="screen-body">
-              <div class="scn-section">확인 대기<span style="font-size:11px;color:var(--red);font-weight:700;">3건</span></div>
-              <div class="card">
-                <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
-                  <div class="avatar">김민</div>
-                  <div style="flex:1;">
-                    <div style="font-weight:700;font-size:14px;">김민지 회원</div>
-                    <div style="font-size:12px;color:var(--gray09);">4월 22일 (수) · 오전 10:00 · 50분</div>
-                  </div>
-                  <div class="badge" style="padding:3px 8px;background:var(--singleBg);color:var(--singleBorder);border-radius:999px;font-size:11px;font-weight:600;">개인</div>
-                </div>
-                <div style="display:flex;gap:8px;">
-                  <button class="cta ghost sm" style="flex:1;">거절</button>
-                  <button class="cta sm" style="flex:1;">수락</button>
-                </div>
-              </div>
-              <div class="card">
-                <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
-                  <div class="avatar">이수</div>
-                  <div style="flex:1;">
-                    <div style="font-weight:700;font-size:14px;">이수진 · 박예지</div>
-                    <div style="font-size:12px;color:var(--gray09);">4월 23일 (목) · 오전 11:00 · 50분</div>
-                  </div>
-                  <div class="badge" style="padding:3px 8px;background:var(--duetBg);color:var(--duetBorder);border-radius:999px;font-size:11px;font-weight:600;">듀엣</div>
-                </div>
-                <div style="display:flex;gap:8px;">
-                  <button class="cta ghost sm" style="flex:1;">거절</button>
-                  <button class="cta sm" style="flex:1;">수락</button>
-                </div>
-              </div>
-              <div class="scn-section">수업 취소 요청<span style="font-size:11px;color:var(--gray10);font-weight:600;">1건</span></div>
-              <div class="card">
-                <div style="display:flex;align-items:center;gap:10px;">
-                  <div class="avatar">정하</div>
-                  <div style="flex:1;">
-                    <div style="font-weight:700;font-size:14px;">정하늘 회원</div>
-                    <div style="font-size:12px;color:var(--gray09);">4월 24일 오후 3시 취소 요청</div>
-                  </div>
-                  <button class="cta outline sm">확인</button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- ===== 2-3 수업 정리 (리포트) ===== -->
-          <div class="screen" data-id="s2-3">
-            <div class="appbar">
-              <div class="back">←</div>
-              <div class="title">수업 정리</div>
-              <div class="icon">⋯</div>
-            </div>
-            <div class="screen-body white">
-              <div style="padding:16px;background:linear-gradient(180deg,var(--skyBlue6) 0%,white 100%);">
-                <div style="font-size:12px;color:var(--gray08);">김민지 회원 · 10:00 AM</div>
-                <div style="font-size:18px;font-weight:700;margin-top:4px;">수업은 어떠셨나요?</div>
-              </div>
-              <div class="stars">
-                <span class="s on">★</span><span class="s on">★</span><span class="s on">★</span><span class="s on">★</span><span class="s">★</span>
-              </div>
-              <div style="text-align:center;font-size:13px;color:var(--gray08);margin-bottom:14px;">좋았어요!</div>
-              <div style="padding:0 16px;">
-                <div style="font-size:13px;font-weight:600;margin-bottom:6px;">수업 메모</div>
-                <textarea class="input" style="height:80px;padding:10px 14px;resize:none;font-size:13px;">코어 강화 루틴 집중. 다음 수업에 밴드 추가 예정.</textarea>
-              </div>
-              <div style="padding:14px 16px;">
-                <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
-                  <span style="font-size:13px;font-weight:700;color:var(--secondary);">✨ AI 수업 리포트</span>
-                </div>
-                <div style="background:var(--skyBlue6);border-radius:12px;padding:12px;font-size:12px;color:var(--gray02);line-height:1.6;">
-                  <strong>운동 강도</strong> 중상<br>
-                  <strong>집중 부위</strong> 코어, 둔근<br>
-                  <strong>진척도</strong> 지난 수업 대비 +15% 안정성 개선
-                </div>
-              </div>
-              <div style="padding:0 16px 20px;display:flex;gap:8px;">
-                <button class="cta outline" style="flex:1;">임시 저장</button>
-                <button class="cta" style="flex:1;">수업 완료</button>
-              </div>
-            </div>
-          </div>
-
-          <!-- ===== 2-4 채팅 ===== -->
-          <div class="screen" data-id="s2-4">
-            <div class="appbar">
-              <div class="title">채팅</div>
-              <div class="actions">
-                <div class="icon">🔍</div>
-                <div class="icon">＋</div>
-              </div>
-            </div>
-            <div class="screen-body white">
-              <div class="scn-section">활성 회원<span style="font-size:11px;color:var(--gray10);font-weight:600;">12</span></div>
-              <div class="list-item">
-                <div class="avatar">김민</div>
-                <div class="body">
-                  <div class="ln1">김민지</div>
-                  <div class="ln2">네! 내일 10시 수업 맞죠?</div>
-                </div>
-                <div class="trail">
-                  <div class="ts">10분 전</div>
-                  <div class="unread">2</div>
-                </div>
-              </div>
-              <div class="list-item">
-                <div class="avatar" style="background:var(--lightViolet);color:var(--violet);">이수</div>
-                <div class="body">
-                  <div class="ln1">이수진</div>
-                  <div class="ln2">[사진] 동작 확인 부탁드려요 🙏</div>
-                </div>
-                <div class="trail">
-                  <div class="ts">1시간 전</div>
-                </div>
-              </div>
-              <div class="scn-section">미초대 회원<span style="font-size:11px;color:var(--orange);font-weight:700;">3</span></div>
-              <div class="list-item">
-                <div class="avatar" style="background:var(--lightOrange);color:var(--orange);">박지</div>
-                <div class="body">
-                  <div class="ln1">박지훈</div>
-                  <div class="ln2">수강권만 발급됨 · 초대 필요</div>
-                </div>
-                <div class="trail">
-                  <button class="cta sm" style="padding:0 12px;height:28px;font-size:11px;">초대</button>
-                </div>
-              </div>
-              <div class="scn-section">만료 회원<span style="font-size:11px;color:var(--gray10);font-weight:600;">2</span></div>
-              <div class="list-item" style="opacity:0.65;">
-                <div class="avatar" style="background:var(--gray17);color:var(--gray08);">정하</div>
-                <div class="body">
-                  <div class="ln1">정하늘</div>
-                  <div class="ln2">수강권 만료 · 2일 전</div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- ===== 2-5 회원 관리 탭 ===== -->
-          <div class="screen" data-id="s2-5">
-            <div class="appbar">
-              <div class="title">회원관리</div>
-              <div class="actions">
-                <div class="icon bell">🔔<span class="dot"></span></div>
-              </div>
-            </div>
-            <div class="screen-body">
-              <div class="scn-section" style="background:white;">
-                <span>🆕 새로운 회원 (체험)</span>
-                <span style="font-size:11px;color:var(--orange);font-weight:700;">2명</span>
-              </div>
-              <div class="card flat" style="border-left:3px solid var(--orange);">
-                <div class="row">
-                  <div class="avatar" style="background:var(--lightOrange);color:var(--orange);">최지</div>
-                  <div style="flex:1;">
-                    <div style="font-weight:700;font-size:14px;">최지원</div>
-                    <div style="font-size:12px;color:var(--gray09);">체험 후 5일 경과 · 등록 유도</div>
-                  </div>
-                  <button class="cta sm">연락</button>
-                </div>
-              </div>
-              <div class="scn-section" style="background:white;">
-                <span>🔄 재등록 대상</span>
-                <span style="font-size:11px;color:var(--secondary);font-weight:700;">5명</span>
-              </div>
-              <div class="card flat" style="border-left:3px solid var(--secondary);">
-                <div class="row">
-                  <div class="avatar">김민</div>
-                  <div style="flex:1;">
-                    <div style="font-weight:700;font-size:14px;">김민지</div>
-                    <div style="font-size:12px;color:var(--gray09);">잔여 2회 · 연장 권유</div>
-                  </div>
-                  <div style="text-align:right;">
-                    <div style="font-size:11px;color:var(--green);font-weight:700;">재등록률 80%</div>
-                  </div>
-                </div>
-              </div>
-              <div class="scn-section" style="background:white;">
-                <span>⏳ 소비 지연 회원</span>
-                <span style="font-size:11px;color:var(--red);font-weight:700;">3명</span>
-              </div>
-              <div class="card flat" style="border-left:3px solid var(--red);">
-                <div class="row">
-                  <div class="avatar" style="background:var(--lightRed);color:var(--red);">홍길</div>
-                  <div style="flex:1;">
-                    <div style="font-weight:700;font-size:14px;">홍길순</div>
-                    <div style="font-size:12px;color:var(--gray09);">최근 방문 21일 전 · 관리 필요</div>
-                  </div>
-                  <button class="cta outline sm">💬</button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- ===== 3-1 센터/강사 관리 ===== -->
-          <div class="screen" data-id="s3-1">
-            <div class="appbar">
-              <div class="back">←</div>
-              <div class="title">센터 관리</div>
-              <div class="icon">＋</div>
-            </div>
-            <div class="screen-body">
-              <div class="pill-bar">
-                <div class="pill active">전체 강사 (8)</div>
-                <div class="pill">관리자 (2)</div>
-                <div class="pill">퇴사 처리</div>
-              </div>
-              <div class="card">
-                <div class="row">
-                  <div class="avatar lg">한윤</div>
-                  <div style="flex:1;">
-                    <div style="font-weight:700;font-size:15px;">한윤주 <span style="font-size:10px;padding:2px 6px;background:var(--secondary);color:white;border-radius:999px;margin-left:4px;">관리자</span></div>
-                    <div style="font-size:12px;color:var(--gray09);margin-top:2px;">담당 회원 32명 · 재등록률 82%</div>
-                  </div>
-                  <div style="color:var(--gray12);">›</div>
-                </div>
-              </div>
-              <div class="card">
-                <div class="row">
-                  <div class="avatar lg" style="background:var(--lightViolet);color:var(--violet);">하늘</div>
-                  <div style="flex:1;">
-                    <div style="font-weight:700;font-size:15px;">하늘핏강사1</div>
-                    <div style="font-size:12px;color:var(--gray09);margin-top:2px;">담당 회원 18명 · 재등록률 72%</div>
-                  </div>
-                  <div style="color:var(--gray12);">›</div>
-                </div>
-              </div>
-              <div class="card">
-                <div class="row">
-                  <div class="avatar lg" style="background:var(--lightOrange);color:var(--orange);">김대</div>
-                  <div style="flex:1;">
-                    <div style="font-weight:700;font-size:15px;">김대호</div>
-                    <div style="font-size:12px;color:var(--gray09);margin-top:2px;">담당 회원 24명 · 재등록률 68%</div>
-                  </div>
-                  <div style="color:var(--gray12);">›</div>
-                </div>
-              </div>
-              <div style="padding:14px 16px;">
-                <button class="cta outline">퇴사 처리 · 회원 인계</button>
-              </div>
-            </div>
-          </div>
-
-          <!-- ===== 3-2 퍼포먼스 & 매출 ===== -->
-          <div class="screen" data-id="s3-2">
-            <div class="appbar">
-              <div class="back">←</div>
-              <div class="title">퍼포먼스</div>
-              <div class="icon">📅</div>
-            </div>
-            <div class="screen-body">
-              <div class="pill-bar">
-                <div class="pill">주간</div>
-                <div class="pill active">월간</div>
-                <div class="pill">연간</div>
-              </div>
-              <div class="stat-row">
-                <div class="stat">
-                  <div class="k">이번 달 매출</div>
-                  <div class="v">₩ 18.4M</div>
-                  <div class="trend">▲ 12% vs 전월</div>
-                </div>
-                <div class="stat">
-                  <div class="k">완료 수업</div>
-                  <div class="v">247</div>
-                  <div class="trend">▲ 8%</div>
-                </div>
-              </div>
-              <div class="scn-section">매출 추이</div>
-              <div class="chart-mock">
-                <svg viewBox="0 0 300 120" preserveAspectRatio="none">
-                  <polyline fill="none" stroke="#2E8CD5" stroke-width="2" points="0,90 40,70 80,78 120,55 160,62 200,40 240,45 280,28"/>
-                  <polyline fill="rgba(46,140,213,0.1)" stroke="none" points="0,90 40,70 80,78 120,55 160,62 200,40 240,45 280,28 300,120 0,120"/>
-                </svg>
-              </div>
-              <div class="scn-section">강사별 퍼포먼스</div>
-              <div class="tbl">
-                <div class="tr head"><span>강사</span><span class="r">수업</span><span class="r">매출</span></div>
-                <div class="tr"><span>한윤주</span><span class="r">92</span><span class="r">₩6.8M</span></div>
-                <div class="tr"><span>하늘핏강사1</span><span class="r">68</span><span class="r">₩4.9M</span></div>
-                <div class="tr"><span>김대호</span><span class="r">87</span><span class="r">₩6.7M</span></div>
-              </div>
-            </div>
-          </div>
-
-          <!-- ===== 3-3 센터 정보 설정 ===== -->
-          <div class="screen" data-id="s3-3">
-            <div class="appbar">
-              <div class="back">←</div>
-              <div class="title">센터 정보</div>
-              <div class="icon">＋</div>
-            </div>
-            <div class="screen-body white">
-              <div class="pill-bar">
-                <div class="pill active">영등포 본점</div>
-                <div class="pill">분당점</div>
-              </div>
-              <div class="scn-section">기본 정보</div>
-              <div style="padding:0 16px;display:flex;flex-direction:column;gap:8px;">
-                <div class="list-item" style="padding:14px;border-radius:12px;border:1px solid var(--gray17);background:white;">
-                  <div class="body">
-                    <div class="ln1">센터명</div>
-                    <div class="ln2">소마 영등포 본점</div>
-                  </div>
-                  <div style="color:var(--gray12);">›</div>
-                </div>
-                <div class="list-item" style="padding:14px;border-radius:12px;border:1px solid var(--gray17);background:white;">
-                  <div class="body">
-                    <div class="ln1">주소</div>
-                    <div class="ln2">서울 영등포구 당산로 123</div>
-                  </div>
-                  <div style="color:var(--gray12);">›</div>
-                </div>
-              </div>
-              <div class="scn-section">운영 시간</div>
-              <div style="padding:0 16px;">
-                <div style="background:white;border:1px solid var(--gray17);border-radius:12px;padding:12px 14px;font-size:13px;">
-                  <div style="display:flex;justify-content:space-between;padding:4px 0;"><span>평일</span><span style="color:var(--gray07);">06:00 - 22:00</span></div>
-                  <div style="display:flex;justify-content:space-between;padding:4px 0;"><span>토요일</span><span style="color:var(--gray07);">08:00 - 18:00</span></div>
-                  <div style="display:flex;justify-content:space-between;padding:4px 0;"><span>일요일</span><span style="color:var(--sundayRed);">휴무</span></div>
-                </div>
-              </div>
-              <div class="scn-section">룸 설정</div>
-              <div style="padding:0 16px;display:grid;grid-template-columns:repeat(3,1fr);gap:8px;">
-                <div style="padding:14px;background:var(--skyBlue6);border-radius:10px;text-align:center;font-size:12px;font-weight:600;">1룸</div>
-                <div style="padding:14px;background:var(--skyBlue6);border-radius:10px;text-align:center;font-size:12px;font-weight:600;">2룸</div>
-                <div style="padding:14px;background:var(--gray18);border-radius:10px;text-align:center;font-size:12px;font-weight:600;color:var(--gray09);">＋ 추가</div>
-              </div>
-            </div>
-          </div>
-
-          <!-- ===== 4-1 내 퍼포먼스 ===== -->
-          <div class="screen" data-id="s4-1">
-            <div class="appbar">
-              <div class="back">←</div>
-              <div class="title">내 퍼포먼스</div>
-              <div class="icon">📅</div>
-            </div>
-            <div class="screen-body">
-              <div style="padding:16px;background:linear-gradient(135deg,var(--secondary),var(--tertiary));color:white;">
-                <div style="font-size:12px;opacity:0.85;">이번 달 내 실적</div>
-                <div style="font-size:28px;font-weight:700;margin-top:6px;">₩ 6,820,000</div>
-                <div style="font-size:12px;opacity:0.9;margin-top:4px;">▲ 15% 전월 대비</div>
-              </div>
-              <div class="stat-row" style="margin-top:12px;">
-                <div class="stat"><div class="k">완료 수업</div><div class="v">92</div><div class="trend">▲ 10</div></div>
-                <div class="stat"><div class="k">담당 회원</div><div class="v">32</div><div class="trend">▲ 3</div></div>
-              </div>
-              <div class="stat-row" style="margin-top:10px;">
-                <div class="stat"><div class="k">재등록률</div><div class="v">82%</div><div class="trend">▲ 4%p</div></div>
-                <div class="stat"><div class="k">NPS</div><div class="v">9.2</div><div class="trend">▲ 0.3</div></div>
-              </div>
-              <div class="scn-section">월별 재등록률</div>
-              <div class="chart-mock">
-                <svg viewBox="0 0 300 120" preserveAspectRatio="none">
-                  <rect x="20" y="60" width="24" height="60" fill="#5FCDF9"/>
-                  <rect x="60" y="50" width="24" height="70" fill="#5FCDF9"/>
-                  <rect x="100" y="40" width="24" height="80" fill="#5FCDF9"/>
-                  <rect x="140" y="35" width="24" height="85" fill="#2E8CD5"/>
-                  <rect x="180" y="30" width="24" height="90" fill="#2E8CD5"/>
-                  <rect x="220" y="25" width="24" height="95" fill="#2E8CD5"/>
-                  <rect x="260" y="18" width="24" height="102" fill="#0065B3"/>
-                </svg>
-              </div>
-            </div>
-          </div>
-
-          <!-- ===== 4-2 바디 변화 ===== -->
-          <div class="screen" data-id="s4-2">
-            <div class="appbar transparent" style="color:white;position:absolute;top:44px;left:0;right:0;z-index:10;">
-              <div class="back" style="color:white;">←</div>
-              <div class="title" style="color:white;">바디 변화 리포트</div>
-              <div class="icon" style="color:white;">⋯</div>
-            </div>
-            <div class="screen-body white" style="padding-top:54px;">
-              <div class="br-hero">
-                <div class="lbl">김민지 회원 · 3개월 경과</div>
-                <h2>허리-엉덩이 비율이<br>8% 개선되었어요</h2>
-                <div class="photos">
-                  <div class="photo">Before<br>1월 21일</div>
-                  <div class="photo">After<br>4월 21일</div>
-                </div>
-              </div>
-              <div style="padding:14px 16px;">
-                <div class="scn-section" style="padding:0 0 8px;">변화 지표</div>
-                <div style="display:flex;flex-direction:column;gap:8px;">
-                  <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 14px;background:var(--skyBlue6);border-radius:10px;">
-                    <span style="font-size:13px;font-weight:600;">체중</span>
-                    <span style="font-size:13px;color:var(--green);font-weight:700;">−2.8 kg ↓</span>
-                  </div>
-                  <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 14px;background:var(--skyBlue6);border-radius:10px;">
-                    <span style="font-size:13px;font-weight:600;">체지방률</span>
-                    <span style="font-size:13px;color:var(--green);font-weight:700;">−3.1% ↓</span>
-                  </div>
-                  <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 14px;background:var(--skyBlue6);border-radius:10px;">
-                    <span style="font-size:13px;font-weight:600;">골격근량</span>
-                    <span style="font-size:13px;color:var(--green);font-weight:700;">+1.4 kg ↑</span>
-                  </div>
-                </div>
-                <div style="margin-top:14px;padding:12px;background:var(--gray18);border-radius:10px;font-size:12px;color:var(--gray06);line-height:1.6;">
-                  💡 <strong>AI 코칭</strong> · 상체 근력 강화에 힘써온 결과가 보입니다. 다음 3개월은 코어 안정성에 집중해보세요.
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- ===== 4-3 알림 센터 ===== -->
-          <div class="screen" data-id="s4-3">
-            <div class="appbar">
-              <div class="back">←</div>
-              <div class="title center">알림함</div>
-              <button class="cta ghost sm" style="padding:0 10px;height:30px;font-size:11px;">모두 읽음</button>
-            </div>
-            <div class="pill-bar" style="border-bottom:1px solid var(--gray18);background:white;">
-              <div class="pill active">전체 <span style="margin-left:3px;color:var(--red);">5</span></div>
-              <div class="pill">예약</div>
-              <div class="pill">메시지</div>
-              <div class="pill">정산</div>
-            </div>
-            <div class="screen-body white">
-              <div class="noti unread">
-                <div class="dot"></div>
-                <div class="txt">
-                  <div class="t">새로운 예약 요청</div>
-                  <div class="d">김민지 회원님이 4월 22일 10:00 수업을 요청했습니다.</div>
-                  <div class="ago">방금 전</div>
-                </div>
-              </div>
-              <div class="noti unread">
-                <div class="dot"></div>
-                <div class="txt">
-                  <div class="t">수강권 만료 임박</div>
-                  <div class="d">정하늘 회원 · 잔여 2회 · 재등록 권유 시점</div>
-                  <div class="ago">15분 전</div>
-                </div>
-              </div>
-              <div class="noti read">
-                <div class="dot"></div>
-                <div class="txt">
-                  <div class="t">4월 정산 내역이 준비되었어요</div>
-                  <div class="d">총 ₩6,820,000 · 상세 확인</div>
-                  <div class="ago">2시간 전</div>
-                </div>
-              </div>
-              <div class="noti read">
-                <div class="dot"></div>
-                <div class="txt">
-                  <div class="t">체험 후기가 도착했어요</div>
-                  <div class="d">최지원 님 ★★★★★ "친절하고 설명이 명쾌해요"</div>
-                  <div class="ago">어제</div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- ===== 4-4 마이페이지 ===== -->
-          <div class="screen" data-id="s4-4">
-            <div class="appbar">
-              <div class="title">설정</div>
-              <div class="icon">⚙️</div>
-            </div>
-            <div class="screen-body">
-              <div class="card" style="display:flex;align-items:center;gap:12px;">
-                <div class="avatar lg">한윤</div>
-                <div style="flex:1;">
-                  <div style="font-weight:700;font-size:16px;">한윤주</div>
-                  <div style="font-size:12px;color:var(--gray09);">소마 영등포 본점 · 관리자</div>
-                </div>
-                <button class="cta outline sm">편집</button>
-              </div>
-              <div class="scn-section">계정</div>
-              <div style="background:white;">
-                <div class="list-item"><div class="body"><div class="ln1">구독 관리</div><div class="ln2">프리미엄 · 4월 30일 갱신</div></div><div style="color:var(--gray12);">›</div></div>
-                <div class="list-item"><div class="body"><div class="ln1">페이 정보</div><div class="ln2">계좌 등록 · 정산 수단</div></div><div style="color:var(--gray12);">›</div></div>
-                <div class="list-item"><div class="body"><div class="ln1">계정 전환</div><div class="ln2">회원 ↔ 강사 모드</div></div><div style="color:var(--gray12);">›</div></div>
-              </div>
-              <div class="scn-section">서비스</div>
-              <div style="background:white;">
-                <div class="list-item"><div class="body"><div class="ln1">알림 설정</div></div><div style="color:var(--gray12);">›</div></div>
-                <div class="list-item"><div class="body"><div class="ln1">고객센터</div></div><div style="color:var(--gray12);">›</div></div>
-                <div class="list-item"><div class="body"><div class="ln1">서비스 이용약관</div></div><div style="color:var(--gray12);">›</div></div>
-                <div class="list-item"><div class="body"><div class="ln1">개인정보 처리방침</div></div><div style="color:var(--gray12);">›</div></div>
-              </div>
-              <div style="padding:18px 16px;text-align:center;font-size:11px;color:var(--gray11);">SoMa v1.0.37</div>
-            </div>
-          </div>
-
-        </div><!-- /screens -->
-      </div><!-- /phone-screen -->
-    </div><!-- /phone -->
-    <div class="phone-label">← 왼쪽 목차를 클릭하면 화면이 바뀝니다</div>
-  </aside>
-
-</div><!-- /layout -->
+<style>.text-yellow{color:#FFE100;}</style>
 
 <script>
 /* =============================================================
-   Guide content — loaded into middle column
+   Guide content data
    ============================================================= */
 const GUIDE = {
   's1-1': {
     part: 'PART 1. 시작하기',
-    title: '회원가입 &amp; 센터 연결',
+    title: '회원가입 & 센터 연결',
     lead: '처음 사용하는 강사님을 위한 시작 단계입니다. 앱 설치 후 가입하고 센터에 연결하면 바로 수업 관리를 시작할 수 있습니다.',
     steps: [
-      { t: '앱 설치 &amp; 회원가입', d: '스토어에서 소마 앱을 설치하고 휴대폰 번호로 가입합니다.', img: 'images/guide/s1-1-1.png' },
+      { t: '앱 설치 & 회원가입', d: '스토어에서 소마 앱을 설치하고 휴대폰 번호로 가입합니다.', img: 'images/guide/s1-1-1.png' },
       { t: '회원가입 정보 입력', d: '회원가입 화면에서 이름, 휴대전화 번호, 비밀번호, 초대코드 등 필수 정보를 입력합니다.', img: 'images/guide/s1-1-2.png' },
       { t: '센터 연결 방식 확인', d: '대부분은 센터 검색 후 최초 사용자로 센터를 등록하면 바로 입장할 수 있습니다. 단, Standard 플랜 결제 + 사업자 인증 센터는 관리자 승인 후 입장됩니다.', img: 'images/guide/s3-3-2.jpg' }
     ],
@@ -1472,7 +932,7 @@ const GUIDE = {
   's1-4': {
     part: 'PART 1. 시작하기',
     title: '수업 예약 프로세스 (상세)',
-    lead: '홈·시간표(내 수업)·채팅에서 수업을 잡을 때 모달과 일정이 이어지는 흐름을 단계별로 설명합니다. ①은 수업 종류·빈 시간, ②③은 개인수업(홈·1:1 채팅), ④는 홈 일정, ⑤⑥은 그룹(홈·그룹 채팅)입니다. 구간은 상단 ①~⑥·이전·다음으로 넘깁니다.',
+    lead: '홈·시간표(내 수업)·채팅에서 수업을 잡을 때 모달과 일정이 이어지는 흐름을 단계별로 설명합니다. ①은 수업 종류·빈 시간, ②③은 개인수업(홈·1:1 채팅), ④는 홈 일정, ⑤⑥은 그룹(홈·그룹 채팅)입니다.',
     tip: '<strong>Tip</strong> · 일시·룸·선착순·정기 일정 문구는 센터/버전·권한에 따라 달라질 수 있습니다. 요청이 나가면 카드에 <strong>수락 대기</strong> 등으로 표시되고, 상황에 따라 <strong>일정 변경</strong>이 붙을 수도 있습니다.',
     pages: [
       {
@@ -1538,7 +998,7 @@ const GUIDE = {
     title: '회원 수락/거절 처리',
     lead: '소마에서는 강사가 예약을 요청하고 회원이 수락/거절합니다. 회원이 강사 스케줄을 직접 보고 예약 요청하는 구조가 아닙니다.',
     steps: [
-      { t: '요청 카드 전달 &amp; 회원 응답', d: '강사가 보낸 예약 요청 카드가 회원 채팅방에 도착하고, 회원은 같은 카드에서 수락 또는 거절을 선택해 응답합니다.', img: 'images/guide/s2-1-1.png' },
+      { t: '요청 카드 전달 & 회원 응답', d: '강사가 보낸 예약 요청 카드가 회원 채팅방에 도착하고, 회원은 같은 카드에서 수락 또는 거절을 선택해 응답합니다.', img: 'images/guide/s2-1-1.png' },
       { t: '응답 후 상태 반영', d: '수락 완료 시 카드 상태가 변경되고 홈/채팅에 확정 결과가 반영됩니다.', img: 'images/guide/s2-1-2.png' }
     ],
     tip: '<strong>Tip</strong> · 강사가 먼저 요청을 보내고 회원이 응답하는 구조를 onboarding에서 명확히 안내하면 사용 부담이 줄어듭니다.'
@@ -1556,7 +1016,7 @@ const GUIDE = {
   },
   's2-3': {
     part: 'PART 2. 핵심 업무',
-    title: '하루 일정 &amp; AI 수업 제안',
+    title: '하루 일정 & AI 수업 제안',
     lead: '수업 전에는 홈 일정에서 당일 흐름을 잡고, 필요 시 AI 수업 제안을 확인해 수업 구성을 빠르게 준비합니다.',
     steps: [
       { t: '당일 수업 카드 점검', d: '시간순 카드에서 회원명, 잔여 수강권, 수업내용을 점검합니다.', img: 'images/guide/s2-3-2.png' },
@@ -1589,7 +1049,7 @@ const GUIDE = {
   },
   's3-1': {
     part: 'PART 3. 관리자 강사 전용',
-    title: '센터 관리 &amp; 강사 관리',
+    title: '센터 관리 & 강사 관리',
     lead: '센터 관리에서는 지점별 강사 성과 확인, 관리자 지정/해제, 회원 인계, 강사 제거를 수행합니다.',
     steps: [
       { t: '지점별 강사 운영 현황', d: '센터 탭마다 강사별 회원 수/수익/재등록률을 확인합니다.', img: 'images/guide/s3-1-1.png' },
@@ -1675,247 +1135,269 @@ const GUIDE = {
   }
 };
 
+const PARTS = [
+  { num: '1', label: '시작하기', desc: '회원가입 후 센터에 연결하고, 회원 정보·수강권·예약 흐름을 한 번에 익힙니다.', sections: ['s1-1','s1-2','s1-3','s1-4'] },
+  { num: '2', label: '핵심 업무', desc: '예약 응답, 채팅 운영, 하루 일정과 수업 기록까지 — 매일 쓰는 업무 흐름.', sections: ['s2-1','s2-2','s2-3','s2-4','s2-5'] },
+  { num: '3', label: '관리자 강사 전용', desc: '강사·센터 관리, 변경 로그, 퍼포먼스 대시보드 등 운영 책임자 기능.', sections: ['s3-1','s3-2','s3-3','s3-4'] },
+  { num: '4', label: '유용한 기능', desc: '정산·AI 리포트·알림·설정까지, 운영 효율을 끌어올리는 보조 기능들.', sections: ['s4-1','s4-2','s4-3','s4-4'] }
+];
+
 /* =============================================================
-   Interaction logic
+   Render
    ============================================================= */
-const navItems = document.querySelectorAll('.nav-item');
-const screens = document.querySelectorAll('.screen');
-const contentArea = document.getElementById('content-area');
-const prevBtn = document.getElementById('prev-btn');
-const nextBtn = document.getElementById('next-btn');
-const layoutEl = document.querySelector('.layout');
-const mobilePhoneAnchor = document.getElementById('mobile-phone-anchor');
+const guideMain = document.getElementById('guide-main');
 
-const ORDER = ['s1-1','s1-2','s1-3','s1-4','s2-1','s2-2','s2-3','s2-4','s2-5','s3-1','s3-2','s3-3','s3-4','s4-1','s4-2','s4-3','s4-4'];
-let currentIdx = 0;
+function escapeAttr(s){ return String(s||'').replace(/"/g, '&quot;'); }
 
-const imgScreen = document.getElementById('img-screen');
-const imgScreenSrc = document.getElementById('img-screen-src');
-
-const phoneEl = document.querySelector('.phone');
-const phoneCol = document.querySelector('.phone-col');
-
-function relocatePhoneForViewport(stepEl){
-  if(!phoneCol || !layoutEl || !mobilePhoneAnchor) return;
-  const isMobile = window.matchMedia('(max-width: 960px)').matches;
-  phoneCol.classList.remove('mobile-pop');
-  if(isMobile){
-    const anchor = stepEl ? stepEl.querySelector('.mobile-step-phone-anchor') : null;
-    if(anchor){
-      if(phoneCol.parentElement !== anchor){
-        anchor.appendChild(phoneCol);
-        // Retrigger a short pop animation when moving to another step.
-        requestAnimationFrame(() => phoneCol.classList.add('mobile-pop'));
-      }
-      return;
-    }
-    if(phoneCol.parentElement !== mobilePhoneAnchor) mobilePhoneAnchor.appendChild(phoneCol);
-    return;
-  }
-  if(phoneCol.parentElement !== layoutEl) layoutEl.appendChild(phoneCol);
+function renderStepCard(s, idx){
+  const img = s.img ? escapeAttr(s.img) : '';
+  const num = String(idx + 1).padStart(2, '0');
+  const phoneBlock = img ? (
+    '<div class="step-phone-wrap">' +
+      '<div class="phone">' +
+        '<div class="phone-screen">' +
+          '<div class="phone-notch"></div>' +
+          '<img class="phone-img" src="' + img + '" alt="' + escapeAttr(s.t || '') + '" loading="lazy">' +
+          '<button class="phone-tap" data-img="' + img + '" aria-label="크게 보기"></button>' +
+        '</div>' +
+      '</div>' +
+    '</div>'
+  ) : '';
+  return (
+    '<article class="step reveal">' +
+      phoneBlock +
+      '<div class="step-text">' +
+        '<span class="step-mark">STEP ' + num + '</span>' +
+        '<h4>' + (s.t || '') + '</h4>' +
+        '<p>' + (s.d || '') + '</p>' +
+      '</div>' +
+    '</article>'
+  );
 }
 
-function getSectionFallbackImage(id){
-  const section = GUIDE[id];
-  if(!section) return '';
-  if(section.pages && section.pages.length){
-    for(let p = 0; p < section.pages.length; p++){
-      const pg = section.pages[p];
-      if(!pg || !pg.steps) continue;
-      const found = pg.steps.find(function(step){ return step && step.img; });
-      if(found) return found.img;
-    }
-    return '';
-  }
-  if(!section.steps) return '';
-  const found = section.steps.find(function(step){ return step && step.img; });
-  return found ? found.img : '';
-}
+let _sectionIndex = 0;
+function nextBg(){ _sectionIndex += 1; return _sectionIndex % 2 === 0 ? 'bg-sky' : 'bg-white'; }
 
-function showImage(src){
-  imgScreenSrc.src = src;
-  imgScreen.classList.add('active');
-  phoneEl.classList.add('img-mode');
-  screens.forEach(s => s.classList.remove('active'));
-}
-
-function showMockScreen(sectionId){
-  imgScreen.classList.remove('active');
-  imgScreenSrc.removeAttribute('src');
-  phoneEl.classList.remove('img-mode');
-  screens.forEach(s => s.classList.toggle('active', s.dataset.id === sectionId));
-}
-
-function buildStepsHtml(steps, sectionId, subPageIdx){
-  return steps.map(function(s, i){
-    const activeClass = i === 0 ? 'active' : '';
-    const rawImg = (s && s.img) ? String(s.img) : '';
-    const safeImg = rawImg.replace(/"/g, '&quot;');
-    return (
-      '<div class="step ' + activeClass + '" data-step="' + i + '" data-subpage="' + subPageIdx + '" data-section="' + sectionId + '" data-img="' + safeImg + '">' +
-      '<div class="step-num">' + (i + 1) + '</div>' +
-      '<div class="step-body">' +
-      '<div class="step-title">' + (s.t || '') + '</div>' +
-      '<div class="step-desc">' + (s.d || '') + '</div>' +
-      '<div class="mobile-step-phone-anchor"></div>' +
-      '</div></div>'
-    );
-  }).join('');
-}
-
-function wireStepClicks(sectionId){
-  contentArea.querySelectorAll('.step').forEach(function(el){
-    el.addEventListener('click', function(){
-      contentArea.querySelectorAll('.step').forEach(function(s){ s.classList.remove('active'); });
-      el.classList.add('active');
-      const img = el.getAttribute('data-img');
-      if(img) showImage(img);
-      else {
-        const fallback = getSectionFallbackImage(sectionId);
-        if(fallback) showImage(fallback);
-      }
-      relocatePhoneForViewport(el);
-    });
-  });
-}
-
-function renderPaginatedSection(id, g){
-  const total = g.pages.length;
-  let currentSub = 0;
-  const shell =
-    '<span class="section-label">' + g.part + '</span>' +
-    '<h1 class="section-title">' + g.title + '</h1>' +
-    '<p class="section-lead">' + g.lead + '</p>' +
-    '<div class="subpager" id="subpager-root">' +
-    '<div class="subpager-top">' +
-    '<button type="button" class="subpager-prev" aria-label="이전 파트">← 이전 파트</button>' +
-    '<div class="subpager-meta"><span class="subpager-which"></span></div>' +
-    '<button type="button" class="subpager-next" aria-label="다음 파트">다음 파트 →</button>' +
-    '</div>' +
-    '<div class="subpager-dots"></div>' +
-    '<div class="subpager-body"></div>' +
-    '</div>' +
-    '<div class="tip">' + g.tip + '</div>';
-  contentArea.innerHTML = shell;
-
-  const bodyEl = contentArea.querySelector('.subpager-body');
-  const whichEl = contentArea.querySelector('.subpager-which');
-  const dotsEl = contentArea.querySelector('.subpager-dots');
-  const prevEl = contentArea.querySelector('.subpager-prev');
-  const nextEl = contentArea.querySelector('.subpager-next');
-
-  function renderPage(pi){
-    currentSub = pi;
-    const page = g.pages[pi];
-    if(!page || !page.steps) return;
-    const leadBlock = page.lead ? ('<p class="subpage-lead">' + page.lead + '</p>') : '';
-    const titleBlock = page.label ? ('<h2 class="subpage-title">' + page.label + '</h2>') : '';
-    bodyEl.innerHTML = titleBlock + leadBlock + '<div class="steps">' + buildStepsHtml(page.steps, id, pi) + '</div>';
-    if(whichEl) whichEl.textContent = '파트 ' + (pi + 1) + ' / ' + total;
-    if(dotsEl){
-      dotsEl.innerHTML = g.pages.map(function(_, i){
-        return '<button type="button" class="subpager-dot' + (i === pi ? ' active' : '') + '" data-pi="' + i + '" aria-label="파트 ' + (i + 1) + '">' + (i + 1) + '</button>';
-      }).join('');
-    }
-    if(prevEl) prevEl.disabled = pi === 0;
-    if(nextEl) nextEl.disabled = pi === total - 1;
-    wireStepClicks(id);
-    const first = bodyEl.querySelector('.step');
-    if(first){
-      contentArea.querySelectorAll('.step').forEach(function(s){ s.classList.remove('active'); });
-      first.classList.add('active');
-      const im = first.getAttribute('data-img');
-      if(im) showImage(im);
-      else {
-        const fb = getSectionFallbackImage(id);
-        if(fb) showImage(fb);
-      }
-      relocatePhoneForViewport(first);
-    }
-  }
-
-  renderPage(0);
-  if(prevEl) prevEl.addEventListener('click', function(){
-    if(currentSub > 0) renderPage(currentSub - 1);
-  });
-  if(nextEl) nextEl.addEventListener('click', function(){
-    if(currentSub < total - 1) renderPage(currentSub + 1);
-  });
-  if(dotsEl) dotsEl.addEventListener('click', function(e){
-    const b = e.target.closest('.subpager-dot');
-    if(!b) return;
-    const pi = parseInt(b.getAttribute('data-pi'), 10);
-    if(!isNaN(pi)) renderPage(pi);
-  });
-}
-
-function renderContent(id){
+function renderSection(id){
   const g = GUIDE[id];
-  if(!g) return;
-  if(g.pages && g.pages.length){
-    renderPaginatedSection(id, g);
-    return;
+  if (!g) return '';
+  const num = id.replace('s','');
+  const partNum = id.split('-')[0].replace('s','');
+  let inner = '';
+  if (g.pages && g.pages.length){
+    inner = g.pages.map(function(p){
+      const stepsHtml = (p.steps || []).map(renderStepCard).join('');
+      const headBlock = (p.label || p.lead) ? (
+        '<header class="subgroup-head reveal">' +
+          (p.label ? '<h3 class="subgroup-title">' + p.label + '</h3>' : '') +
+          (p.lead ? '<p class="subgroup-lead">' + p.lead + '</p>' : '') +
+        '</header>'
+      ) : '';
+      return (
+        '<section class="subgroup">' +
+          headBlock +
+          '<div class="steps">' + stepsHtml + '</div>' +
+        '</section>'
+      );
+    }).join('');
+  } else {
+    const stepsHtml = (g.steps || []).map(renderStepCard).join('');
+    inner = '<div class="steps">' + stepsHtml + '</div>';
   }
-  if(!g.steps) return;
-  const steps = buildStepsHtml(g.steps, id, 0);
-  contentArea.innerHTML = `
-    <span class="section-label">${g.part}</span>
-    <h1 class="section-title">${g.title}</h1>
-    <p class="section-lead">${g.lead}</p>
-    <div class="steps">${steps}</div>
-    <div class="tip">${g.tip}</div>
-  `;
-  wireStepClicks(id);
+  const bg = nextBg();
+  return (
+    '<section class="section-bleed ' + bg + '">' +
+      '<div class="section-inner guide-section" id="' + id + '" data-part="' + partNum + '">' +
+        '<header class="section-head reveal">' +
+          '<span class="section-num">' + num + '</span>' +
+          '<h3>' + g.title + '</h3>' +
+          '<p class="section-lead">' + g.lead + '</p>' +
+        '</header>' +
+        inner +
+        '<div class="tip reveal">' + g.tip + '</div>' +
+      '</div>' +
+    '</section>'
+  );
 }
 
-function activate(id){
-  navItems.forEach(n => n.classList.toggle('active', n.dataset.id === id));
-  renderContent(id);
-  // Always prioritize real screenshots for the guide.
-  const sec = GUIDE[id];
-  let firstImg = '';
-  if(sec && sec.pages && sec.pages[0] && sec.pages[0].steps && sec.pages[0].steps[0]){
-    firstImg = sec.pages[0].steps[0].img || '';
-  } else if(sec && sec.steps && sec.steps[0]){
-    firstImg = sec.steps[0].img || '';
+function renderPartDivider(part){
+  return (
+    '<section class="part-divider reveal" id="part-' + part.num + '" data-part="' + part.num + '">' +
+      '<span class="part-eyebrow">PART ' + part.num + '</span>' +
+      '<h2>' + part.label + '</h2>' +
+      '<p class="part-desc">' + part.desc + '</p>' +
+    '</section>'
+  );
+}
+
+let html = '';
+PARTS.forEach(function(part){
+  html += renderPartDivider(part);
+  part.sections.forEach(function(id){ html += renderSection(id); });
+});
+guideMain.innerHTML = html;
+
+/* =============================================================
+   TOC drawer
+   ============================================================= */
+const tocBtn = document.getElementById('toc-btn');
+const tocDrawer = document.getElementById('toc-drawer');
+const tocOverlay = document.getElementById('toc-overlay');
+const tocCloseBtn = document.getElementById('toc-close');
+const tocBody = document.getElementById('toc-body');
+
+function buildToc(){
+  let h = '';
+  PARTS.forEach(function(part){
+    let items = '';
+    part.sections.forEach(function(id){
+      const g = GUIDE[id];
+      if (!g) return;
+      const num = id.replace('s','');
+      items += (
+        '<a class="toc-item" href="#' + id + '" data-id="' + id + '">' +
+          '<span class="toc-item-num">' + num + '</span>' +
+          '<span class="toc-item-title">' + g.title + '</span>' +
+        '</a>'
+      );
+    });
+    h += (
+      '<div class="toc-part" data-part="' + part.num + '">' +
+        '<div class="toc-part-head">' +
+          '<span class="toc-part-num">' + part.num + '</span>' +
+          '<span class="toc-part-label">' + part.label + '</span>' +
+        '</div>' +
+        '<div class="toc-list">' + items + '</div>' +
+      '</div>'
+    );
+  });
+  tocBody.innerHTML = h;
+}
+buildToc();
+
+let tocLastFocus = null;
+function openToc(){
+  tocLastFocus = document.activeElement;
+  tocDrawer.classList.add('open');
+  tocOverlay.classList.add('open');
+  tocDrawer.setAttribute('aria-hidden','false');
+  tocOverlay.setAttribute('aria-hidden','false');
+  tocBtn.setAttribute('aria-expanded','true');
+  document.body.style.overflow = 'hidden';
+  setTimeout(function(){ tocCloseBtn.focus(); }, 60);
+}
+function closeToc(){
+  tocDrawer.classList.remove('open');
+  tocOverlay.classList.remove('open');
+  tocDrawer.setAttribute('aria-hidden','true');
+  tocOverlay.setAttribute('aria-hidden','true');
+  tocBtn.setAttribute('aria-expanded','false');
+  document.body.style.overflow = '';
+  if (tocLastFocus && tocLastFocus.focus) tocLastFocus.focus();
+}
+tocBtn.addEventListener('click', openToc);
+tocCloseBtn.addEventListener('click', closeToc);
+tocOverlay.addEventListener('click', closeToc);
+document.addEventListener('keydown', function(e){
+  if (e.key === 'Escape' && tocDrawer.classList.contains('open')) closeToc();
+});
+
+tocBody.addEventListener('click', function(e){
+  const a = e.target.closest('.toc-item');
+  if (!a) return;
+  e.preventDefault();
+  const id = a.getAttribute('data-id');
+  closeToc();
+  // Scroll after drawer close transition starts
+  requestAnimationFrame(function(){
+    const target = document.getElementById(id);
+    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    history.replaceState(null, '', '#' + id);
+  });
+});
+
+const tocItems = Array.from(tocBody.querySelectorAll('.toc-item'));
+function setActiveTocItem(id){
+  tocItems.forEach(function(el){
+    el.classList.toggle('current', el.dataset.id === id);
+  });
+}
+
+/* =============================================================
+   Track current section to highlight in TOC drawer
+   ============================================================= */
+const sectionEls = Array.from(document.querySelectorAll('.guide-section'));
+const sectionObserver = new IntersectionObserver(function(entries){
+  entries.forEach(function(entry){
+    if (entry.isIntersecting && entry.target.id){
+      setActiveTocItem(entry.target.id);
+    }
+  });
+}, { rootMargin: '-25% 0px -65% 0px', threshold: 0 });
+sectionEls.forEach(function(el){ sectionObserver.observe(el); });
+
+/* =============================================================
+   Reveal-on-scroll (matches index.html pattern)
+   ============================================================= */
+const revealObserver = new IntersectionObserver(function(entries){
+  entries.forEach(function(entry){
+    if (entry.isIntersecting){
+      entry.target.classList.add('active');
+      revealObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(function(el){ revealObserver.observe(el); });
+window.addEventListener('load', function(){
+  const hero = document.querySelector('.hero-wrapper.reveal');
+  if (hero) hero.classList.add('active');
+});
+
+/* =============================================================
+   Scroll progress bar
+   ============================================================= */
+const progressBar = document.getElementById('scroll-progress');
+function updateProgress(){
+  const h = document.documentElement;
+  const max = h.scrollHeight - h.clientHeight;
+  const pct = max > 0 ? (h.scrollTop / max) * 100 : 0;
+  progressBar.style.width = pct + '%';
+}
+document.addEventListener('scroll', updateProgress, { passive: true });
+updateProgress();
+
+/* =============================================================
+   Lightbox
+   ============================================================= */
+const lightbox = document.getElementById('lightbox');
+const lightboxImg = document.getElementById('lightbox-img');
+const lightboxClose = document.getElementById('lightbox-close');
+
+function openLightbox(src){
+  if (!src) return;
+  lightboxImg.src = src;
+  lightbox.classList.add('show');
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox(){
+  lightbox.classList.remove('show');
+  lightboxImg.removeAttribute('src');
+  document.body.style.overflow = '';
+}
+document.addEventListener('click', function(e){
+  const tap = e.target.closest('.phone-tap');
+  if (tap){
+    e.preventDefault();
+    openLightbox(tap.getAttribute('data-img'));
   }
-  if(!firstImg) firstImg = getSectionFallbackImage(id);
-  if(firstImg) showImage(firstImg);
-  currentIdx = ORDER.indexOf(id);
-  prevBtn.disabled = currentIdx === 0;
-  nextBtn.disabled = currentIdx === ORDER.length - 1;
-  const activeNav = document.querySelector('.nav-item.active');
-  if(activeNav) activeNav.scrollIntoView({block:'nearest',behavior:'smooth'});
-  const activeStep = contentArea.querySelector('.step.active');
-  relocatePhoneForViewport(activeStep);
-}
-
-navItems.forEach(item => {
-  item.addEventListener('click', () => activate(item.dataset.id));
 });
-
-prevBtn.addEventListener('click', () => {
-  if(currentIdx > 0) activate(ORDER[currentIdx-1]);
+lightboxClose.addEventListener('click', closeLightbox);
+lightbox.addEventListener('click', function(e){
+  if (e.target === lightbox) closeLightbox();
 });
-nextBtn.addEventListener('click', () => {
-  if(currentIdx < ORDER.length-1) activate(ORDER[currentIdx+1]);
+document.addEventListener('keydown', function(e){
+  if (e.key === 'Escape' && lightbox.classList.contains('show')) closeLightbox();
 });
-
-/* Segmented tabs within screens (e.g., 홈 리스트뷰/시간표뷰) */
-function swapSeg(el, target){
-  const segs = el.parentElement.querySelectorAll('.seg');
-  segs.forEach(s => s.classList.remove('active'));
-  el.classList.add('active');
-  // placeholder for future: swap body content
-}
-window.swapSeg = swapSeg;
-
-/* Init */
-window.addEventListener('resize', () => {
-  const activeStep = contentArea.querySelector('.step.active');
-  relocatePhoneForViewport(activeStep);
-});
-activate('s1-1');
 </script>
 
 </body>
