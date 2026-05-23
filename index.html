@@ -878,6 +878,145 @@
             word-break: keep-all;
         }
 
+        /* Pricing Plans */
+        .pricing-section {
+            background: linear-gradient(180deg, rgba(5, 12, 24, 0.92) 0%, rgba(5, 12, 24, 0.96) 100%),
+                        url('images/video/frame_plan.jpg') center/cover no-repeat;
+            background-blend-mode: multiply;
+            padding: 120px 0;
+            overflow: hidden;
+        }
+
+        .pricing-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            gap: 24px;
+            margin-bottom: 36px;
+        }
+
+        .pricing-header .section-title {
+            color: var(--white);
+        }
+
+        .pricing-note {
+            color: rgba(255, 255, 255, 0.64);
+            font-size: 15px;
+            line-height: 1.6;
+            text-align: right;
+            word-break: keep-all;
+        }
+
+        .pricing-table-wrap {
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            border-radius: 18px;
+            overflow: hidden;
+            background: rgba(8, 15, 35, 0.5);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            box-shadow: 0 24px 80px rgba(0, 0, 0, 0.35);
+        }
+
+        .pricing-table {
+            width: 100%;
+            border-collapse: collapse;
+            table-layout: fixed;
+            color: var(--white);
+        }
+
+        .pricing-table th,
+        .pricing-table td {
+            border-right: 1px solid rgba(255, 255, 255, 0.16);
+            border-bottom: 1px dashed rgba(255, 255, 255, 0.18);
+            padding: 30px 22px;
+            text-align: center;
+            vertical-align: middle;
+            word-break: keep-all;
+        }
+
+        .pricing-table th:last-child,
+        .pricing-table td:last-child {
+            border-right: none;
+        }
+
+        .pricing-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .pricing-table thead th {
+            padding: 18px 16px;
+            font-size: 20px;
+            font-weight: 800;
+            background: rgba(18, 40, 71, 0.65);
+        }
+
+        .pricing-table thead th:first-child,
+        .pricing-row-label {
+            width: 20%;
+            background: rgba(255, 255, 255, 0.04);
+            font-size: 17px;
+            font-weight: 800;
+            line-height: 1.5;
+        }
+
+        .pricing-plan-highlight {
+            background: rgba(95, 205, 249, 0.22) !important;
+            color: var(--white);
+        }
+
+        .pricing-target {
+            font-size: 18px;
+            font-weight: 800;
+            line-height: 1.45;
+        }
+
+        .pricing-price {
+            font-size: 20px;
+            font-weight: 800;
+        }
+
+        .pricing-price.accent,
+        .pricing-volume.accent,
+        .pricing-benefit strong {
+            color: var(--cyan);
+        }
+
+        .pricing-volume {
+            font-size: 18px;
+            font-weight: 800;
+            line-height: 1.45;
+        }
+
+        .pricing-sub {
+            display: block;
+            margin-top: 4px;
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.72);
+            font-weight: 600;
+        }
+
+        .pricing-benefit {
+            text-align: left !important;
+            font-size: 16px;
+            line-height: 1.75;
+            color: rgba(255, 255, 255, 0.86);
+        }
+
+        .pricing-benefit ul {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            max-width: 720px;
+            margin: 0 auto;
+        }
+
+        .pricing-benefit li::before {
+            content: '•';
+            color: var(--cyan);
+            margin-right: 8px;
+            font-weight: 800;
+        }
+
         /* Bottom CTA */
         .bottom-cta {
             background: radial-gradient(100% 100% at 50% 100%, 
@@ -1585,6 +1724,56 @@
 
             .tools-header p {
                 font-size: 15px;
+            }
+
+            /* Pricing */
+            .pricing-section {
+                padding: 64px 0;
+                background-position: center;
+            }
+
+            .pricing-header {
+                flex-direction: column;
+                align-items: flex-start;
+                margin-bottom: 24px;
+            }
+
+            .pricing-note {
+                text-align: left;
+                font-size: 13px;
+            }
+
+            .pricing-table-wrap {
+                overflow-x: auto;
+                border-radius: 14px;
+                -webkit-overflow-scrolling: touch;
+            }
+
+            .pricing-table {
+                min-width: 880px;
+            }
+
+            .pricing-table th,
+            .pricing-table td {
+                padding: 22px 16px;
+            }
+
+            .pricing-table thead th {
+                font-size: 17px;
+            }
+
+            .pricing-row-label {
+                font-size: 15px;
+            }
+
+            .pricing-target,
+            .pricing-price,
+            .pricing-volume {
+                font-size: 16px;
+            }
+
+            .pricing-benefit {
+                font-size: 14px;
             }
 
             /* Bottom CTA */
@@ -2657,6 +2846,71 @@
                     <h3>홈 &amp; 채팅 통합 예약</h3>
                     <p>홈 화면과 채팅창에서 곧바로 처리되는 매끄러운 예약 흐름.</p>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Plans -->
+    <section class="pricing-section">
+        <div class="container">
+            <div class="pricing-header reveal">
+                <div>
+                    <span class="section-label">Optimized Plan</span>
+                    <h2 class="section-title">우리 센터에 최적화된<br><span class="text-cyan">소마 AI 플랜</span></h2>
+                </div>
+                <p class="pricing-note">센터 규모와 운영 방식에 맞춰<br>AI 리포트와 몰입형 케어를 선택하세요.</p>
+            </div>
+            <div class="pricing-table-wrap reveal" aria-label="SoMa AI 요금제 표">
+                <table class="pricing-table">
+                    <thead>
+                        <tr>
+                            <th scope="col">플랜명</th>
+                            <th scope="col" class="pricing-plan-highlight">Solo</th>
+                            <th scope="col">Solo Plus</th>
+                            <th scope="col">Standard</th>
+                            <th scope="col">Standard Plus</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="pricing-row-label">권장 고객</td>
+                            <td><div class="pricing-target">스마트한<br>개인 강사</div></td>
+                            <td><div class="pricing-target">고단가 레슨 전문,<br>1인 경영</div></td>
+                            <td><div class="pricing-target">가성비<br>센터 운영</div></td>
+                            <td><div class="pricing-target">프리미엄 센터의<br>표준</div></td>
+                        </tr>
+                        <tr>
+                            <td class="pricing-row-label">월 구독료</td>
+                            <td><div class="pricing-price">19,000원</div></td>
+                            <td><div class="pricing-price accent">39,000원</div></td>
+                            <td><div class="pricing-price">59,000원</div></td>
+                            <td><div class="pricing-price accent">99,000원</div></td>
+                        </tr>
+                        <tr>
+                            <td class="pricing-row-label">1년 구독시<br><span class="pricing-sub">(2개월 무료)</span></td>
+                            <td><div class="pricing-price">연 190,000원</div></td>
+                            <td><div class="pricing-price">연 390,000원</div></td>
+                            <td><div class="pricing-price">연 590,000원</div></td>
+                            <td><div class="pricing-price">연 990,000원</div></td>
+                        </tr>
+                        <tr>
+                            <td class="pricing-row-label">AI 리포트<br><span class="pricing-sub">(무료 제공)</span></td>
+                            <td><div class="pricing-volume">월 5개<span class="pricing-sub">(1인)</span></div></td>
+                            <td><div class="pricing-volume accent">월 100개<span class="pricing-sub">(1인)</span></div></td>
+                            <td><div class="pricing-volume">월 20개<span class="pricing-sub">(선착순 공용)</span></div></td>
+                            <td><div class="pricing-volume accent">월 400개<span class="pricing-sub">(선착순 공용)</span></div></td>
+                        </tr>
+                        <tr>
+                            <td class="pricing-row-label">고객의<br>신뢰를 완성하는<br>공통 혜택</td>
+                            <td colspan="4" class="pricing-benefit">
+                                <ul>
+                                    <li><strong>몸 변화 AI 리포트 (SoMa):</strong> 모든 플랜에서 횟수 무제한 생성 가능</li>
+                                    <li><strong>몰입홀 시스템:</strong> 무료 횟수 소진 후에도 강사 몰입홀(10개) 또는 회원 몰입홀(50개)로 중단 없는 케어</li>
+                                </ul>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
     </section>
