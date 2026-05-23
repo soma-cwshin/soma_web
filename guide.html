@@ -105,37 +105,11 @@ ul,ol{list-style:none;}
 }
 .page-header .inner{
   display:flex;align-items:center;justify-content:space-between;
-  width:100%;max-width:1440px;padding:0 40px;
+  width:100%;max-width:1440px;padding:0 40px;gap:16px;
 }
 .logo{display:flex;align-items:center;}
 .logo img{height:34px;width:auto;display:block;filter:brightness(0) invert(1);}
-.header-actions{display:flex;align-items:center;gap:10px;}
-.header-stores{
-  display:flex;
-  align-items:center;
-  gap:8px;
-}
-.header-store-btn{
-  display:flex;
-  align-items:center;
-  padding:4px 6px;
-  border-radius:18px;
-  background:rgba(255, 255, 255, 0.06);
-  border:1px solid rgba(95, 205, 249, 0.16);
-  transition:transform .2s, border-color .2s, background .2s;
-}
-.header-store-btn img{
-  height:44px;
-  width:auto;
-  border-radius:8px;
-  transition:transform .2s;
-}
-.header-store-btn:hover{
-  transform:translateY(-2px);
-  background:rgba(95, 205, 249, 0.12);
-  border-color:rgba(95, 205, 249, 0.35);
-  opacity:1;
-}
+.header-actions{display:flex;align-items:center;gap:10px;margin-left:auto;}
 
 /* TOC button — outlined blue (matches "사용 가이드" style on index) */
 .toc-btn{
@@ -154,38 +128,6 @@ ul,ol{list-style:none;}
   width:16px;height:12px;
 }
 .toc-btn-icon span{display:block;height:2px;background:currentColor;border-radius:1px;}
-
-/* Download dropdown (mirrors index .btn-download) */
-.dropdown{position:relative;display:inline-block;}
-.btn-download{
-  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-2) 100%);
-  color:#FFFFFF;
-  height:48px;padding:0 20px;
-  border-radius:var(--r-btn);
-  font-size:18px;font-weight:700;line-height:24px;
-  display:flex;align-items:center;gap:4px;
-  border:1px solid rgba(255,255,255,0.12);cursor:pointer;
-  transition:all .2s var(--ease);
-}
-.btn-download:hover{background:var(--primary-hover);transform:translateY(-2px);box-shadow:0 8px 24px rgba(46, 140, 213, 0.4);}
-.btn-download svg{width:32px;height:32px;}
-.dropdown-content{
-  display:none;position:absolute;right:0;top:120%;
-  background:rgba(18, 40, 71, 0.95);
-  backdrop-filter:blur(10px);
-  -webkit-backdrop-filter:blur(10px);
-  min-width:180px;
-  box-shadow:0 12px 32px rgba(0,0,0,0.5);
-  border-radius:10px;border:1.5px solid rgba(95, 205, 249, 0.25);
-  overflow:hidden;z-index:100;
-}
-.dropdown-content a{
-  padding:12px 16px;display:block;
-  font-size:16px;font-weight:500;color:rgba(255,255,255,0.9);
-}
-.dropdown-content a:hover{background:rgba(95, 205, 249, 0.15);color:var(--accent);opacity:1;}
-.dropdown:hover .dropdown-content,
-.dropdown:focus-within .dropdown-content{display:block;}
 
 /* =============================================================
    TOC drawer (full-screen sheet)
@@ -768,15 +710,12 @@ footer.guide-footer{
 @media (max-width:768px){
   :root{--header-h:64px;}
 
-  .page-header .inner{padding:0 14px;}
-  .logo img{height:28px;}
+  .page-header .inner{padding:0 18px;gap:10px;}
+  .logo img{height:26px;max-width:190px;}
   .header-actions{gap:6px;}
-  .header-stores{gap:4px;}
-  .header-store-btn{padding:2px 3px;border-radius:10px;}
-  .header-store-btn img{height:24px;border-radius:4px;}
 
   .toc-btn{
-    height:36px;padding:0 12px;
+    height:36px;padding:0 14px;
     font-size:13px;font-weight:600;
     border-radius:20px;
   }
@@ -896,14 +835,6 @@ footer.guide-footer{
         <span class="toc-btn-icon" aria-hidden="true"><span></span><span></span><span></span></span>
         <span>목차</span>
       </button>
-      <div class="header-stores">
-        <a href="https://apps.apple.com/kr/app/%EC%86%8C%EB%A7%88/id6753277300" target="_blank" rel="noopener" class="header-store-btn" aria-label="App Store에서 다운로드 하기">
-          <img src="btn-appstore.png" alt="App Store">
-        </a>
-        <a href="https://play.google.com/store/apps/details?id=com.somaai.somaai&pcampaignid=web_share&pli=1" target="_blank" rel="noopener" class="header-store-btn" aria-label="Google Play에서 다운로드 하기">
-          <img src="btn-googleplay.png" alt="Google Play">
-        </a>
-      </div>
     </div>
   </div>
 </header>
@@ -932,7 +863,7 @@ footer.guide-footer{
 <main class="guide-main" id="guide-main"><!-- rendered by JS --></main>
 
 <section class="bottom-cta reveal">
-  <h2>수업의 진심이 온전히 닿게,<br class="mobile-only"> 필라테스/PT 강사 필수 앱. '소마'</h2>
+  <h2>데이터로 수업을 설계하고,<br class="mobile-only"> 회원의 변화를 끝까지 관리하세요</h2>
   <div class="store-buttons">
     <a href="https://apps.apple.com/kr/app/%EC%86%8C%EB%A7%88/id6753277300" target="_blank" rel="noopener">
       <img src="btn-appstore.png" alt="App Store">
