@@ -464,7 +464,9 @@
 
         /* Why SoMa */
         .why-section {
-            background: linear-gradient(180deg, var(--navy-deep) 0%, #0a2244 100%);
+            background: linear-gradient(180deg, rgba(8, 20, 38, 0.94) 0%, rgba(6, 17, 34, 0.96) 100%), 
+                        url('images/video/frame_20.jpg') center/cover no-repeat;
+            background-blend-mode: multiply;
             padding: 120px 0;
         }
 
@@ -1196,7 +1198,7 @@
             }
 
             .header-stores {
-                gap: 5px;
+                display: none;
             }
 
             .header-store-btn img {
@@ -1366,10 +1368,13 @@
             .posture-simulator {
                 padding: 20px;
                 gap: 14px;
+                max-width: 100%;
+                overflow: hidden;
             }
 
             .posture-canvas-wrap {
                 height: 220px;
+                max-width: 100%;
             }
 
             .skeletal-dot {
@@ -1379,6 +1384,11 @@
 
             .skeletal-dot::after {
                 inset: -10px;
+            }
+
+            .canvas-info-left,
+            .canvas-info-right {
+                font-size: 8.5px;
             }
 
             .posture-panel {
@@ -1404,6 +1414,8 @@
             .step-simulator {
                 padding: 20px;
                 gap: 18px;
+                max-width: 100%;
+                overflow: hidden;
             }
 
             .step-tab {
@@ -1419,10 +1431,13 @@
                 font-size: 11px;
                 white-space: nowrap;
                 flex-shrink: 0;
-                margin-left: 8px;
+                margin-left: 0;
+                margin-top: 4px;
             }
 
             .step-header-row {
+                flex-direction: column;
+                align-items: flex-start;
                 gap: 6px;
             }
 
@@ -1678,6 +1693,18 @@
 
             .posture-canvas-wrap {
                 height: 190px;
+            }
+
+            .sim-header-row {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 4px;
+                padding-bottom: 8px;
+            }
+
+            .canvas-info-left,
+            .canvas-info-right {
+                font-size: 7.5px;
             }
         }
 
@@ -2186,7 +2213,7 @@
     <!-- Hero -->
     <section class="hero reveal">
         <div class="hero-video-wrap">
-            <video autoplay loop playsinline id="heroBgVideo">
+            <video autoplay muted loop playsinline id="heroBgVideo">
                 <source src="hero-clip.mp4" type="video/mp4">
             </video>
         </div>
@@ -2329,7 +2356,7 @@
                         <span class="sim-header-hint">마커를 클릭해 체험</span>
                     </div>
                     <div class="posture-canvas-wrap">
-                        <svg class="skeletal-svg" viewBox="0 0 300 280">
+                        <svg class="skeletal-svg" viewBox="0 0 300 280" preserveAspectRatio="none">
                             <defs>
                                 <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
                                     <path d="M 20 0 L 0 0 0 20" fill="none" stroke="rgba(95, 205, 249, 0.08)" stroke-width="1"/>
@@ -2352,10 +2379,10 @@
                         <div class="skeletal-dot" id="dot-pelvis" style="left: calc(160px / 300px * 100% - 6px); top: calc(180px / 280px * 100% - 6px);" data-part="pelvis"></div>
                         <div class="skeletal-dot" id="dot-knee" style="left: calc(145px / 300px * 100% - 6px); top: calc(245px / 280px * 100% - 6px);" data-part="knee"></div>
                         
-                        <div style="position: absolute; color: rgba(255,255,255,0.15); font-size: 10px; font-family: monospace; bottom: 8px; left: 12px; z-index: 5;">
+                        <div class="canvas-info-left" style="position: absolute; color: rgba(255,255,255,0.15); font-size: 10px; font-family: monospace; bottom: 8px; left: 12px; z-index: 5;">
                             CAMERA CALIBRATION: OK<br>LATENCY: 1.4ms
                         </div>
-                        <div style="position: absolute; color: rgba(255,255,255,0.15); font-size: 10px; font-family: monospace; bottom: 8px; right: 12px; z-index: 5; text-align: right;">
+                        <div class="canvas-info-right" style="position: absolute; color: rgba(255,255,255,0.15); font-size: 10px; font-family: monospace; bottom: 8px; right: 12px; z-index: 5; text-align: right;">
                             SOMA AI VISION v2.4<br>SENSITIVITY: 99.8%
                         </div>
                     </div>
@@ -3058,68 +3085,70 @@
             }
         }
 
-        // Set video sound ON as default
-        if (heroBgVideo) {
-            heroBgVideo.muted = false;
-            
-            // Try playing unmuted
-            heroBgVideo.play().catch(err => {
-                // Browser blocks unmuted autoplay. Play muted as fallback.
-                heroBgVideo.muted = true;
-                heroBgVideo.play().catch(e => console.log("Video play failed:", e));
+        // Helper to remove page unmute listeners
+        function cleanupUnmuteListeners() {
+            document.removeEventListener('click', unmuteOnInteract);
+            document.removeEventListener('keydown', unmuteOnInteract);
+            document.removeEventListener('touchstart', unmuteOnInteract);
+        }
+
+        // UNMUTE AS SOON AS user interacts (valid user-activation gestures)
+        function unmuteOnInteract() {
+            if (heroBgVideo && heroBgVideo.muted) {
+                heroBgVideo.muted = false;
+                soundOnIcon.style.display = 'block';
+                soundOffIcon.style.display = 'none';
+                heroSoundText.textContent = '소리 끄기';
+                heroSoundBtn.classList.add('unmuted');
                 
-                // Adjust button to show off icon
+                // Play a gentle unmuted sync chime
+                playToggleSound(true);
+            }
+            cleanupUnmuteListeners();
+        }
+
+        // Initialize sound control
+        if (heroBgVideo) {
+            // Force start muted to guarantee video autoplays instantly on mobile/Safari
+            heroBgVideo.muted = true;
+            
+            heroBgVideo.play().then(() => {
+                // Video is playing muted. Start waiting for first user gesture to automatically unmute.
                 soundOnIcon.style.display = 'none';
                 soundOffIcon.style.display = 'block';
                 heroSoundText.textContent = '소리 켜기';
                 heroSoundBtn.classList.remove('unmuted');
 
-                // AS SOON AS the user interacts anywhere on the page, unmute and play with sound!
-                const unmuteOnInteract = () => {
-                    if (heroBgVideo.muted) {
-                        heroBgVideo.muted = false;
-                        soundOnIcon.style.display = 'block';
-                        soundOffIcon.style.display = 'none';
-                        heroSoundText.textContent = '소리 끄기';
-                        heroSoundBtn.classList.add('unmuted');
-                        
-                        // Play a gentle unmuted sync chime
-                        playToggleSound(true);
-                    }
-                    
-                    // Clean up triggers
-                    document.removeEventListener('click', unmuteOnInteract);
-                    document.removeEventListener('keydown', unmuteOnInteract);
-                    document.removeEventListener('touchstart', unmuteOnInteract);
-                    document.removeEventListener('scroll', unmuteOnInteract);
-                };
-
                 document.addEventListener('click', unmuteOnInteract);
                 document.addEventListener('keydown', unmuteOnInteract);
                 document.addEventListener('touchstart', unmuteOnInteract);
-                document.addEventListener('scroll', unmuteOnInteract, { passive: true });
+            }).catch(err => {
+                console.log("Autoplay blocked:", err);
             });
         }
 
         heroSoundBtn.addEventListener('click', (e) => {
-            e.stopPropagation(); // Avoid triggering page unmuteOnInteract listener
+            e.stopPropagation(); // Avoid triggering document's unmuteOnInteract
+            cleanupUnmuteListeners(); // Clean up page-wide unmute triggers since user directly clicked button
             initAudio();
             if (heroBgVideo) {
                 const isMuted = heroBgVideo.muted;
                 heroBgVideo.muted = !isMuted;
                 
-                if (!isMuted) {
-                    soundOnIcon.style.display = 'none';
-                    soundOffIcon.style.display = 'block';
-                    heroSoundText.textContent = '소리 켜기';
-                    heroSoundBtn.classList.remove('unmuted');
-                    playToggleSound(false);
-                } else {
+                if (isMuted) {
+                    // Unmuted now (was muted)
                     soundOnIcon.style.display = 'block';
                     soundOffIcon.style.display = 'none';
                     heroSoundText.textContent = '소리 끄기';
                     heroSoundBtn.classList.add('unmuted');
                     playToggleSound(true);
+                } else {
+                    // Muted now (was unmuted)
+                    soundOnIcon.style.display = 'none';
+                    soundOffIcon.style.display = 'block';
+                    heroSoundText.textContent = '소리 켜기';
+                    heroSoundBtn.classList.remove('unmuted');
+                    playToggleSound(false);
                 }
             }
         });
