@@ -947,21 +947,39 @@
             padding: 18px 16px;
             font-size: 20px;
             font-weight: 800;
-            background: rgba(18, 40, 71, 0.65);
+            color: var(--white);
         }
 
         .pricing-table thead th:first-child,
         .pricing-row-label {
             width: 20%;
-            background: rgba(255, 255, 255, 0.04);
             font-size: 17px;
             font-weight: 800;
             line-height: 1.5;
         }
 
-        .pricing-plan-highlight {
-            background: rgba(95, 205, 249, 0.22) !important;
-            color: var(--white);
+        .pricing-table thead th:first-child {
+            background: #071428;
+        }
+
+        .pricing-col-solo {
+            background: #6B8FA8;
+        }
+
+        .pricing-col-solo-plus {
+            background: #2E8CD5;
+        }
+
+        .pricing-col-standard {
+            background: #1A4A7A;
+        }
+
+        .pricing-col-standard-plus {
+            background: #0C1F3D;
+        }
+
+        .pricing-row-label {
+            background: rgba(255, 255, 255, 0.04);
         }
 
         .pricing-target {
@@ -2865,10 +2883,10 @@
                     <thead>
                         <tr>
                             <th scope="col">플랜명</th>
-                            <th scope="col" class="pricing-plan-highlight">Solo</th>
-                            <th scope="col">Solo Plus</th>
-                            <th scope="col">Standard</th>
-                            <th scope="col">Standard Plus</th>
+                            <th scope="col" class="pricing-col-solo">Solo</th>
+                            <th scope="col" class="pricing-col-solo-plus">Solo Plus</th>
+                            <th scope="col" class="pricing-col-standard">Standard</th>
+                            <th scope="col" class="pricing-col-standard-plus">Standard Plus</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -2905,7 +2923,7 @@
                             <td colspan="4" class="pricing-benefit">
                                 <ul>
                                     <li><strong>몸 변화 AI 리포트 (SoMa):</strong> 모든 플랜에서 횟수 무제한 생성 가능</li>
-                                    <li><strong>몰입홀 시스템:</strong> 무료 횟수 소진 후에도 강사 몰입홀(10개) 또는 회원 몰입홀(50개)로 중단 없는 케어</li>
+                                    <li><strong>물방울 시스템:</strong> 무료 횟수 소진 후에도 강사 물방울(10개) 또는 회원 물방울(50개)로 중단 없는 케어</li>
                                 </ul>
                             </td>
                         </tr>
