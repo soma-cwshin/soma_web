@@ -867,7 +867,8 @@
 
         /* Bottom CTA */
         .bottom-cta {
-            background: radial-gradient(67.6% 55.45% at 50% 100%, #2F8DD5 17.63%, #5FCDF9 55%, #FFFFFF 100%);
+            background: radial-gradient(100% 100% at 50% 100%, rgba(95, 205, 249, 0.28) 0%, rgba(46, 140, 213, 0.12) 50%, #050c18 100%);
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
             padding: 100px 24px;
             display: flex;
             flex-direction: column;
@@ -880,14 +881,14 @@
         .bottom-cta h2 {
             font-size: clamp(24px, 3.5vw, 36px);
             font-weight: 700;
-            color: #000;
+            color: var(--white);
             line-height: 1.4;
             word-break: keep-all;
         }
 
         .bottom-cta p {
             font-size: 18px;
-            color: #333;
+            color: rgba(255, 255, 255, 0.72);
             max-width: 560px;
             word-break: keep-all;
         }
