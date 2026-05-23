@@ -1214,19 +1214,20 @@
             }
 
             .header-stores {
-                display: none;
+                display: flex;
+                gap: 4px;
             }
 
             .header-store-btn img {
-                height: 32px;
-                border-radius: 6px;
+                height: 24px;
+                border-radius: 4px;
             }
 
             .btn-guide {
-                height: 32px;
-                padding: 0 12px;
-                font-size: 12px;
-                border-radius: 18px;
+                height: 24px;
+                padding: 0 8px;
+                font-size: 11px;
+                border-radius: 12px;
             }
 
             .btn-guide .guide-text-full {
@@ -1669,13 +1670,15 @@
 
         @media (max-width: 480px) {
             .header-store-btn img {
-                height: 28px;
+                height: 20px;
+                border-radius: 3px;
             }
 
             .btn-guide {
-                height: 28px;
-                padding: 0 10px;
-                font-size: 11px;
+                height: 20px;
+                padding: 0 6px;
+                font-size: 10px;
+                border-radius: 10px;
             }
 
             .logo img {
@@ -3135,27 +3138,37 @@
 
         // Initialize sound control
         if (heroBgVideo) {
-            // Force start muted to guarantee video autoplays instantly on mobile/Safari
-            heroBgVideo.muted = true;
-            
             const savedSoundPref = localStorage.getItem('soma-sound-pref');
             
-            heroBgVideo.play().then(() => {
-                // Video is playing muted. Start waiting for first user gesture to automatically unmute.
+            // Set sound behavior on page load
+            if (savedSoundPref === 'muted') {
+                heroBgVideo.muted = true;
                 soundOnIcon.style.display = 'none';
                 soundOffIcon.style.display = 'block';
                 heroSoundText.textContent = '소리 켜기';
                 heroSoundBtn.classList.remove('unmuted');
+                
+                heroBgVideo.play().catch(err => console.log(err));
+            } else {
+                // DEFAULT VALUE is sound ON!
+                // Force muted for initial autoplay success on mobile/Safari, but trigger automatic unmute as soon as possible
+                heroBgVideo.muted = true;
+                
+                heroBgVideo.play().then(() => {
+                    // Show standard visual of unmuted (sound on) as intended default
+                    soundOnIcon.style.display = 'block';
+                    soundOffIcon.style.display = 'none';
+                    heroSoundText.textContent = '소리 끄기';
+                    heroSoundBtn.classList.add('unmuted');
 
-                // If user hasn't explicitly muted previously, try to auto-unmute on first click/touch
-                if (savedSoundPref !== 'muted') {
+                    // Set up touch/click triggers to instantly activate the real Web Audio & unmuted stream
                     document.addEventListener('click', unmuteOnInteract);
                     document.addEventListener('keydown', unmuteOnInteract);
                     document.addEventListener('touchstart', unmuteOnInteract);
-                }
-            }).catch(err => {
-                console.log("Autoplay blocked:", err);
-            });
+                }).catch(err => {
+                    console.log("Autoplay blocked:", err);
+                });
+            }
         }
 
         heroSoundBtn.addEventListener('click', (e) => {
