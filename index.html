@@ -867,7 +867,15 @@
 
         /* Bottom CTA */
         .bottom-cta {
-            background: radial-gradient(67.6% 55.45% at 50% 100%, #2F8DD5 17.63%, #5FCDF9 55%, #FFFFFF 100%);
+            background: radial-gradient(100% 100% at 50% 100%, 
+                #FFFFFF 0%, 
+                #CBEEFF 12%, 
+                #8BE2FF 25%, 
+                #5FCDF9 40%, 
+                #2F8DD5 58%, 
+                #1A5EA1 75%, 
+                #0E2A4F 88%, 
+                #050C18 100%);
             padding: 100px 24px;
             display: flex;
             flex-direction: column;
@@ -880,16 +888,18 @@
         .bottom-cta h2 {
             font-size: clamp(24px, 3.5vw, 36px);
             font-weight: 700;
-            color: #000;
+            color: var(--white);
             line-height: 1.4;
             word-break: keep-all;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
         }
 
         .bottom-cta p {
             font-size: 18px;
-            color: #333;
+            color: rgba(255, 255, 255, 0.85);
             max-width: 560px;
             word-break: keep-all;
+            text-shadow: 0 1px 6px rgba(0, 0, 0, 0.2);
         }
 
         /* Footer */
