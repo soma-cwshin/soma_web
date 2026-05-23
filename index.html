@@ -1699,6 +1699,59 @@
             opacity: 1;
             transform: translateY(0) scale(1);
         }
+
+        /* Hero Sound Button Styles */
+        .hero-sound-btn {
+            position: absolute;
+            bottom: 30px;
+            right: 30px;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 18px;
+            border-radius: 999px;
+            border: 1.5px solid rgba(255, 255, 255, 0.25);
+            background: rgba(7, 20, 40, 0.65);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            color: var(--white);
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.15);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero-sound-btn:hover {
+            background: rgba(95, 205, 249, 0.18);
+            border-color: var(--cyan);
+            color: var(--cyan-bright);
+            transform: translateY(-3px) scale(1.03);
+            box-shadow: 0 15px 35px rgba(95, 205, 249, 0.25);
+        }
+
+        .hero-sound-btn:active {
+            transform: translateY(0) scale(0.97);
+        }
+
+        .hero-sound-btn svg {
+            transition: transform 0.2s;
+        }
+
+        .hero-sound-btn:hover svg {
+            transform: scale(1.1);
+        }
+
+        @media (max-width: 768px) {
+            .hero-sound-btn {
+                bottom: 20px;
+                right: 20px;
+                padding: 8px 14px;
+                font-size: 11px;
+                gap: 6px;
+            }
+        }
     </style>
 </head>
 
@@ -1726,7 +1779,7 @@
     <!-- Hero -->
     <section class="hero reveal">
         <div class="hero-video-wrap">
-            <video autoplay muted loop playsinline>
+            <video autoplay muted loop playsinline id="heroBgVideo">
                 <source src="hero-clip.mp4" type="video/mp4">
             </video>
         </div>
@@ -1739,6 +1792,13 @@
             <p class="hero-sub">AI 초정밀 분석과 24시간 케어로<br class="mobile-only"> 재등록률 90%의 벽을 넘으세요</p>
             <p class="hero-desc">수천 건의 수업 데이터를 분석해 센터의 수익을 극대화하는<br class="pc-only"> 국내 유일의 AI 피트니스 매니지먼트 SaaS, SoMa AI</p>
         </div>
+        
+        <!-- Hero Sound Button -->
+        <button class="hero-sound-btn" id="heroSoundBtn" type="button" aria-label="배경음악 켜고 끄기">
+            <svg class="sound-off-icon" viewBox="0 0 24 24" style="width: 18px; height: 16px;"><path fill="currentColor" d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.21c.03-.13.05-.26.05-.39zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.53 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 18.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/></svg>
+            <svg class="sound-on-icon" viewBox="0 0 24 24" style="display: none; width: 18px; height: 16px;"><path fill="currentColor" d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
+            <span id="heroSoundText">소리 켜기</span>
+        </button>
     </section>
 
     <!-- Video Story -->
@@ -2272,6 +2332,123 @@
             }
         });
 
+        // --- WEB AUDIO SYNTHESIZER ---
+        let audioCtx = null;
+
+        function initAudio() {
+            if (!audioCtx) {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            }
+            if (audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+        }
+
+        // 1. Futuristic clean click/pop sound for skeletal dots
+        function playClickSound() {
+            try {
+                initAudio();
+                const osc = audioCtx.createOscillator();
+                const gainNode = audioCtx.createGain();
+
+                osc.connect(gainNode);
+                gainNode.connect(audioCtx.destination);
+
+                // Quick pitch slide from 1200Hz to 600Hz
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(1200, audioCtx.currentTime);
+                osc.frequency.exponentialRampToValueAtTime(450, audioCtx.currentTime + 0.08);
+
+                // Quick volume decay
+                gainNode.gain.setValueAtTime(0.08, audioCtx.currentTime);
+                gainNode.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 0.08);
+
+                osc.start(audioCtx.currentTime);
+                osc.stop(audioCtx.currentTime + 0.08);
+            } catch (e) {
+                console.log("Audio play blocked or failed", e);
+            }
+        }
+
+        // 2. Tab change sound (nice digital double-beep)
+        function playTabSound() {
+            try {
+                initAudio();
+                const now = audioCtx.currentTime;
+                
+                const osc1 = audioCtx.createOscillator();
+                const gain1 = audioCtx.createGain();
+                osc1.connect(gain1);
+                gain1.connect(audioCtx.destination);
+                
+                osc1.type = 'sine';
+                osc1.frequency.setValueAtTime(987.77, now); // B5
+                osc1.frequency.exponentialRampToValueAtTime(1318.51, now + 0.05); // E6
+                
+                gain1.gain.setValueAtTime(0.04, now);
+                gain1.gain.exponentialRampToValueAtTime(0.0001, now + 0.06);
+                
+                osc1.start(now);
+                osc1.stop(now + 0.06);
+            } catch (e) {
+                console.log(e);
+            }
+        }
+
+        // 3. Slider tick (short low-frequency tick)
+        function playTickSound() {
+            try {
+                initAudio();
+                const now = audioCtx.currentTime;
+                const osc = audioCtx.createOscillator();
+                const gainNode = audioCtx.createGain();
+
+                osc.connect(gainNode);
+                gainNode.connect(audioCtx.destination);
+
+                osc.type = 'triangle';
+                osc.frequency.setValueAtTime(150, now);
+                osc.frequency.setValueAtTime(50, now + 0.015);
+
+                gainNode.gain.setValueAtTime(0.12, now);
+                gainNode.gain.exponentialRampToValueAtTime(0.0001, now + 0.015);
+
+                osc.start(now);
+                osc.stop(now + 0.015);
+            } catch (e) {
+                console.log(e);
+            }
+        }
+
+        // 4. Milestone achievement chime (rolling arpeggio)
+        function playChimeSound() {
+            try {
+                initAudio();
+                const now = audioCtx.currentTime;
+                const notes = [523.25, 659.25, 783.99, 1046.50]; // C5, E5, G5, C6
+                
+                notes.forEach((freq, idx) => {
+                    const osc = audioCtx.createOscillator();
+                    const gainNode = audioCtx.createGain();
+                    
+                    osc.connect(gainNode);
+                    gainNode.connect(audioCtx.destination);
+                    
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(freq, now + idx * 0.06);
+                    
+                    gainNode.gain.setValueAtTime(0, now + idx * 0.06);
+                    gainNode.gain.linearRampToValueAtTime(0.04, now + idx * 0.06 + 0.02);
+                    gainNode.gain.exponentialRampToValueAtTime(0.0001, now + idx * 0.06 + 0.4);
+                    
+                    osc.start(now + idx * 0.06);
+                    osc.stop(now + idx * 0.06 + 0.4);
+                });
+            } catch (e) {
+                console.log(e);
+            }
+        }
+
         // --- INTERACTIVE POSTURE SIMULATOR ---
         const dots = document.querySelectorAll('.skeletal-dot');
         const posturePanel = document.getElementById('posturePanel');
@@ -2316,6 +2493,7 @@
 
         dots.forEach(dot => {
             dot.addEventListener('click', () => {
+                playClickSound();
                 const part = dot.getAttribute('data-part');
                 const data = postureData[part];
                 if (!data) return;
@@ -2349,6 +2527,7 @@
 
         stepTabs.forEach(tab => {
             tab.addEventListener('click', () => {
+                playTabSound();
                 const stepNum = tab.getAttribute('data-step');
                 
                 // Set active tab
@@ -2376,7 +2555,8 @@
         const bonusRevenue = document.getElementById('bonusRevenue');
         const calcBadge = document.getElementById('calcBadge');
 
-        function updateCalculator() {
+        let activeMilestone = '';
+        function updateCalculator(playAudio = false) {
             const val = parseInt(revenueSlider.value);
             sliderVal.textContent = val.toLocaleString() + ' 만원';
             
@@ -2400,29 +2580,108 @@
             calcBadge.classList.remove('show');
             void calcBadge.offsetWidth; // Trigger reflow
             
+            let milestone = '';
             if (val < 1500) {
                 calcBadge.textContent = '소마로 신규 유입 폭발! 소규모 업장 탈출 🌱';
                 calcBadge.style.color = 'var(--yellow)';
                 calcBadge.style.borderColor = 'rgba(255, 225, 0, 0.4)';
                 calcBadge.style.background = 'rgba(255, 225, 0, 0.12)';
+                milestone = 'small';
             } else if (val >= 1500 && val < 4000) {
                 calcBadge.textContent = '강사 관리 자동화 완료! 지역 1위 전문 센터 도약 🚀';
                 calcBadge.style.color = 'var(--cyan)';
                 calcBadge.style.borderColor = 'rgba(95, 205, 249, 0.4)';
                 calcBadge.style.background = 'rgba(95, 205, 249, 0.15)';
+                milestone = 'medium';
             } else {
                 calcBadge.textContent = '폭발적 매출 극대화! 지점 프랜차이즈화 돌입 💎';
                 calcBadge.style.color = '#ff6b6b';
                 calcBadge.style.borderColor = 'rgba(255, 107, 107, 0.4)';
                 calcBadge.style.background = 'rgba(255, 107, 107, 0.15)';
+                milestone = 'large';
             }
             calcBadge.classList.add('show');
+
+            if (playAudio) {
+                if (activeMilestone !== milestone) {
+                    activeMilestone = milestone;
+                    playChimeSound();
+                } else {
+                    playTickSound();
+                }
+            } else {
+                activeMilestone = milestone;
+            }
         }
 
         if (revenueSlider) {
-            revenueSlider.addEventListener('input', updateCalculator);
-            updateCalculator();
+            revenueSlider.addEventListener('input', () => updateCalculator(true));
+            updateCalculator(false);
         }
+
+        // --- HERO BACKGROUND VIDEO SOUND CONTROL ---
+        const heroBgVideo = document.getElementById('heroBgVideo');
+        const heroSoundBtn = document.getElementById('heroSoundBtn');
+        const heroSoundText = document.getElementById('heroSoundText');
+        const soundOnIcon = heroSoundBtn.querySelector('.sound-on-icon');
+        const soundOffIcon = heroSoundBtn.querySelector('.sound-off-icon');
+
+        function playToggleSound(unmuted) {
+            try {
+                initAudio();
+                const now = audioCtx.currentTime;
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                
+                osc.type = 'sine';
+                if (unmuted) {
+                    osc.frequency.setValueAtTime(440, now); // A4
+                    osc.frequency.exponentialRampToValueAtTime(880, now + 0.15); // A5
+                    gain.gain.setValueAtTime(0.05, now);
+                    gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.15);
+                } else {
+                    osc.frequency.setValueAtTime(600, now);
+                    osc.frequency.exponentialRampToValueAtTime(300, now + 0.15);
+                    gain.gain.setValueAtTime(0.05, now);
+                    gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.15);
+                }
+                osc.start(now);
+                osc.stop(now + 0.15);
+            } catch (e) {
+                console.log(e);
+            }
+        }
+
+        heroSoundBtn.addEventListener('click', () => {
+            initAudio();
+            if (heroBgVideo) {
+                const isMuted = heroBgVideo.muted;
+                heroBgVideo.muted = !isMuted;
+                
+                if (!isMuted) {
+                    soundOnIcon.style.display = 'none';
+                    soundOffIcon.style.display = 'block';
+                    heroSoundText.textContent = '소리 켜기';
+                    heroSoundBtn.classList.remove('unmuted');
+                    playToggleSound(false);
+                } else {
+                    soundOnIcon.style.display = 'block';
+                    soundOffIcon.style.display = 'none';
+                    heroSoundText.textContent = '소리 끄기';
+                    heroSoundBtn.classList.add('unmuted');
+                    playToggleSound(true);
+                }
+            }
+        });
+
+        // Initialize Web Audio context on the very first touch/click anywhere on the page
+        document.addEventListener('click', () => {
+            if (audioCtx && audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+        }, { once: true });
     </script>
 
 </body>
