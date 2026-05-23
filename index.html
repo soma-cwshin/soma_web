@@ -390,7 +390,9 @@
 
         /* Video Section */
         .video-section {
-            background: var(--navy);
+            background: linear-gradient(180deg, rgba(8, 20, 38, 0.94) 0%, rgba(6, 17, 34, 0.96) 100%), 
+                        url('images/video/frame_0.jpg') center/cover no-repeat;
+            background-blend-mode: multiply;
             padding: 100px 0;
         }
 
@@ -567,7 +569,9 @@
 
         /* Pillars */
         .pillars-section {
-            background: var(--white);
+            background: linear-gradient(180deg, rgba(6, 17, 34, 0.96) 0%, rgba(10, 22, 45, 0.95) 100%), 
+                        url('images/video/frame_40.jpg') center/cover no-repeat;
+            background-blend-mode: multiply;
             padding: 120px 0;
         }
 
@@ -578,13 +582,13 @@
         }
 
         .pillars-header .section-title {
-            color: #000;
+            color: var(--white);
         }
 
         .pillars-header .section-desc-dark {
             margin-top: 16px;
             font-size: 18px;
-            color: #444;
+            color: rgba(255, 255, 255, 0.75);
         }
 
         .pillars-grid {
@@ -596,19 +600,22 @@
         .pillar-card {
             padding: 32px 28px;
             border-radius: 16px;
-            background: var(--sky);
-            border: 1px solid rgba(46, 140, 213, 0.12);
-            transition: box-shadow 0.3s;
+            background: rgba(18, 40, 71, 0.55);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(95, 205, 249, 0.15);
+            transition: box-shadow 0.3s, transform 0.3s;
         }
 
         .pillar-card:hover {
-            box-shadow: 0 12px 32px rgba(46, 140, 213, 0.12);
+            box-shadow: 0 12px 32px rgba(95, 205, 249, 0.18);
+            transform: translateY(-4px);
         }
 
         .pillar-num {
             font-size: 13px;
             font-weight: 800;
-            color: var(--blue);
+            color: var(--cyan);
             letter-spacing: 0.08em;
             margin-bottom: 12px;
         }
@@ -617,7 +624,7 @@
             font-size: 19px;
             font-weight: 700;
             line-height: 1.4;
-            color: #000;
+            color: var(--white);
             margin-bottom: 12px;
             word-break: keep-all;
         }
@@ -625,13 +632,15 @@
         .pillar-card p {
             font-size: 15px;
             line-height: 1.65;
-            color: #333;
+            color: rgba(255, 255, 255, 0.75);
             word-break: keep-all;
         }
 
         /* Data Section */
         .data-section {
-            background: var(--navy);
+            background: linear-gradient(180deg, rgba(10, 22, 45, 0.95) 0%, rgba(8, 20, 38, 0.94) 100%), 
+                        url('images/video/frame_60.jpg') center/cover no-repeat;
+            background-blend-mode: multiply;
             padding: 120px 0;
         }
 
@@ -727,7 +736,9 @@
         .stats-section {
             position: relative;
             padding: 120px 0;
-            background: var(--navy-deep);
+            background: linear-gradient(180deg, rgba(8, 20, 38, 0.94) 0%, rgba(7, 18, 33, 0.96) 100%), 
+                        url('images/video/frame_80.jpg') center/cover no-repeat;
+            background-blend-mode: multiply;
             overflow: hidden;
         }
 
@@ -791,7 +802,9 @@
 
         /* Tools */
         .tools-section {
-            background: var(--white);
+            background: linear-gradient(180deg, rgba(7, 18, 33, 0.96) 0%, rgba(5, 12, 24, 0.98) 100%), 
+                        url('images/video/poster.jpg') center/cover no-repeat;
+            background-blend-mode: multiply;
             padding: 120px 0;
         }
 
@@ -801,28 +814,31 @@
         }
 
         .tools-header .section-title {
-            color: #000;
+            color: var(--white);
         }
 
         .tools-header p {
             margin-top: 16px;
             font-size: 18px;
-            color: #444;
+            color: rgba(255, 255, 255, 0.72);
         }
 
         .tools-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 0;
-            border: 1px solid #e0e0e0;
+            border: 1px solid rgba(255, 255, 255, 0.12);
             border-radius: 16px;
             overflow: hidden;
+            background: rgba(18, 40, 71, 0.35);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
         }
 
         .tool-item {
             padding: 40px 36px;
-            border-right: 1px solid #e0e0e0;
-            border-bottom: 1px solid #e0e0e0;
+            border-right: 1px solid rgba(255, 255, 255, 0.12);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.12);
         }
 
         .tool-item:nth-child(2n) {
@@ -837,7 +853,7 @@
         .tool-item h3 {
             font-size: 20px;
             font-weight: 700;
-            color: #000;
+            color: var(--white);
             margin-bottom: 12px;
             word-break: keep-all;
         }
@@ -845,7 +861,7 @@
         .tool-item p {
             font-size: 15px;
             line-height: 1.65;
-            color: #555;
+            color: rgba(255, 255, 255, 0.7);
             word-break: keep-all;
         }
 
@@ -1523,7 +1539,7 @@
             .tool-item {
                 padding: 28px 22px;
                 border-right: none !important;
-                border-bottom: 1px solid #e0e0e0 !important;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.12) !important;
             }
 
             .tool-item:last-child {
@@ -3096,13 +3112,23 @@
         function unmuteOnInteract() {
             if (heroBgVideo && heroBgVideo.muted) {
                 heroBgVideo.muted = false;
-                soundOnIcon.style.display = 'block';
-                soundOffIcon.style.display = 'none';
-                heroSoundText.textContent = '소리 끄기';
-                heroSoundBtn.classList.add('unmuted');
                 
-                // Play a gentle unmuted sync chime
-                playToggleSound(true);
+                // Explicitly call play() inside the user gesture to ensure iOS/Safari starts streaming audio immediately
+                heroBgVideo.play().then(() => {
+                    // Successfully playing unmuted
+                    soundOnIcon.style.display = 'block';
+                    soundOffIcon.style.display = 'none';
+                    heroSoundText.textContent = '소리 끄기';
+                    heroSoundBtn.classList.add('unmuted');
+                    
+                    // Save user preference
+                    localStorage.setItem('soma-sound-pref', 'unmuted');
+                    
+                    // Play a gentle unmuted sync chime
+                    playToggleSound(true);
+                }).catch(e => {
+                    console.log("Unmute play failed:", e);
+                });
             }
             cleanupUnmuteListeners();
         }
@@ -3112,6 +3138,8 @@
             // Force start muted to guarantee video autoplays instantly on mobile/Safari
             heroBgVideo.muted = true;
             
+            const savedSoundPref = localStorage.getItem('soma-sound-pref');
+            
             heroBgVideo.play().then(() => {
                 // Video is playing muted. Start waiting for first user gesture to automatically unmute.
                 soundOnIcon.style.display = 'none';
@@ -3119,9 +3147,12 @@
                 heroSoundText.textContent = '소리 켜기';
                 heroSoundBtn.classList.remove('unmuted');
 
-                document.addEventListener('click', unmuteOnInteract);
-                document.addEventListener('keydown', unmuteOnInteract);
-                document.addEventListener('touchstart', unmuteOnInteract);
+                // If user hasn't explicitly muted previously, try to auto-unmute on first click/touch
+                if (savedSoundPref !== 'muted') {
+                    document.addEventListener('click', unmuteOnInteract);
+                    document.addEventListener('keydown', unmuteOnInteract);
+                    document.addEventListener('touchstart', unmuteOnInteract);
+                }
             }).catch(err => {
                 console.log("Autoplay blocked:", err);
             });
@@ -3137,17 +3168,21 @@
                 
                 if (isMuted) {
                     // Unmuted now (was muted)
-                    soundOnIcon.style.display = 'block';
-                    soundOffIcon.style.display = 'none';
-                    heroSoundText.textContent = '소리 끄기';
-                    heroSoundBtn.classList.add('unmuted');
-                    playToggleSound(true);
+                    heroBgVideo.play().then(() => {
+                        soundOnIcon.style.display = 'block';
+                        soundOffIcon.style.display = 'none';
+                        heroSoundText.textContent = '소리 끄기';
+                        heroSoundBtn.classList.add('unmuted');
+                        localStorage.setItem('soma-sound-pref', 'unmuted');
+                        playToggleSound(true);
+                    }).catch(err => console.log(err));
                 } else {
                     // Muted now (was unmuted)
                     soundOnIcon.style.display = 'none';
                     soundOffIcon.style.display = 'block';
                     heroSoundText.textContent = '소리 켜기';
                     heroSoundBtn.classList.remove('unmuted');
+                    localStorage.setItem('soma-sound-pref', 'muted');
                     playToggleSound(false);
                 }
             }
