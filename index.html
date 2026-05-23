@@ -3151,22 +3151,35 @@
                 heroBgVideo.play().catch(err => console.log(err));
             } else {
                 // DEFAULT VALUE is sound ON!
-                // Force muted for initial autoplay success on mobile/Safari, but trigger automatic unmute as soon as possible
-                heroBgVideo.muted = true;
+                // First, try DIRECT unmuted cold autoplay! (Some browsers/webviews/users with high MEI scores allow this)
+                heroBgVideo.muted = false;
                 
                 heroBgVideo.play().then(() => {
-                    // Show standard visual of unmuted (sound on) as intended default
+                    // SUCCESS! Browser allowed unmuted autoplay directly without any touch!
                     soundOnIcon.style.display = 'block';
                     soundOffIcon.style.display = 'none';
                     heroSoundText.textContent = '소리 끄기';
                     heroSoundBtn.classList.add('unmuted');
-
-                    // Set up touch/click triggers to instantly activate the real Web Audio & unmuted stream
-                    document.addEventListener('click', unmuteOnInteract);
-                    document.addEventListener('keydown', unmuteOnInteract);
-                    document.addEventListener('touchstart', unmuteOnInteract);
+                    localStorage.setItem('soma-sound-pref', 'unmuted');
                 }).catch(err => {
-                    console.log("Autoplay blocked:", err);
+                    // BLOCKED: Unmuted autoplay is forbidden on this device/browser by default policy.
+                    // Fallback: Force muted to let the video stream smoothly, and unmute on first gentle touch.
+                    heroBgVideo.muted = true;
+                    
+                    heroBgVideo.play().then(() => {
+                        // Keep showing "sound on" as our visual default intention
+                        soundOnIcon.style.display = 'block';
+                        soundOffIcon.style.display = 'none';
+                        heroSoundText.textContent = '소리 끄기';
+                        heroSoundBtn.classList.add('unmuted');
+
+                        // Bind gentle activation triggers to unmute automatically on any click/touch
+                        document.addEventListener('click', unmuteOnInteract);
+                        document.addEventListener('keydown', unmuteOnInteract);
+                        document.addEventListener('touchstart', unmuteOnInteract);
+                    }).catch(e => {
+                        console.log("Muted autoplay blocked entirely:", e);
+                    });
                 });
             }
         }
