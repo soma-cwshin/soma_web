@@ -210,6 +210,10 @@
             white-space: nowrap;
         }
 
+        .btn-guide .guide-text-short {
+            display: none;
+        }
+
         .btn-guide:hover {
             opacity: 1;
             background: rgba(95, 205, 249, 0.12);
@@ -1179,7 +1183,7 @@
 
         @media (max-width: 768px) {
             header {
-                height: 64px;
+                height: 60px;
                 background: rgba(7, 20, 40, 0.92);
             }
 
@@ -1188,31 +1192,88 @@
             }
 
             .logo img {
-                height: 28px;
+                height: 26px;
             }
 
             .header-stores {
-                gap: 6px;
+                gap: 5px;
             }
 
             .header-store-btn img {
-                height: 34px;
+                height: 32px;
                 border-radius: 6px;
             }
 
             .btn-guide {
-                height: 34px;
-                padding: 0 10px;
+                height: 32px;
+                padding: 0 12px;
                 font-size: 12px;
-                border-radius: 20px;
+                border-radius: 18px;
+            }
+
+            .btn-guide .guide-text-full {
+                display: none;
+            }
+
+            .btn-guide .guide-text-short {
+                display: inline;
             }
 
             .header-actions {
                 gap: 6px;
             }
 
+            .container {
+                padding: 0 18px;
+            }
+
             .hero {
-                padding: 100px 0 160px;
+                padding: 88px 0 110px;
+                min-height: auto;
+            }
+
+            .hero-inner {
+                padding: 0 18px;
+            }
+
+            .hero-badge {
+                font-size: 12px;
+                padding: 7px 14px;
+                margin-bottom: 20px;
+                line-height: 1.35;
+                text-align: center;
+            }
+
+            .hero h1 {
+                font-size: clamp(28px, 8vw, 38px);
+                line-height: 1.3;
+            }
+
+            .hero-sub {
+                margin-top: 18px;
+                font-size: 16px;
+                line-height: 1.5;
+            }
+
+            .hero-desc {
+                font-size: 14px;
+                margin-top: 12px;
+            }
+
+            .section-title {
+                font-size: clamp(24px, 5.6vw, 32px);
+                line-height: 1.32;
+            }
+
+            .section-desc {
+                font-size: 15px;
+                line-height: 1.65;
+                margin-top: 14px;
+            }
+
+            .section-label {
+                font-size: 12px;
+                margin-bottom: 12px;
             }
 
             .video-section,
@@ -1221,7 +1282,262 @@
             .data-section,
             .stats-section,
             .tools-section {
-                padding: 72px 0;
+                padding: 64px 0;
+            }
+
+            .video-grid,
+            .data-grid {
+                gap: 28px;
+                margin-top: 28px;
+            }
+
+            .video-point {
+                padding: 18px 18px;
+            }
+
+            .video-point h3 {
+                font-size: 16px;
+            }
+
+            .video-point p {
+                font-size: 14px;
+            }
+
+            .why-intro {
+                margin-bottom: 36px;
+            }
+
+            .why-name {
+                margin-top: 24px;
+                padding: 20px 18px;
+            }
+
+            .why-name p {
+                font-size: 15px;
+            }
+
+            .connection-cards {
+                gap: 16px;
+            }
+
+            .connection-card {
+                padding: 26px 22px;
+            }
+
+            .connection-card h3 {
+                font-size: 18px;
+            }
+
+            .connection-card .layer-tag {
+                font-size: 12px;
+            }
+
+            .connection-card .formula {
+                font-size: 12.5px;
+                padding: 8px 12px;
+            }
+
+            .connection-card p {
+                font-size: 14px;
+            }
+
+            .pillars-header {
+                margin-bottom: 36px;
+            }
+
+            .pillars-grid {
+                gap: 14px;
+            }
+
+            .pillar-card {
+                padding: 22px 20px;
+            }
+
+            .pillar-card h3 {
+                font-size: 17px;
+                margin-bottom: 10px;
+            }
+
+            .pillar-card p {
+                font-size: 14px;
+            }
+
+            /* Posture Simulator on mobile */
+            .posture-simulator {
+                padding: 20px;
+                gap: 14px;
+            }
+
+            .posture-canvas-wrap {
+                height: 220px;
+            }
+
+            .skeletal-dot {
+                width: 14px;
+                height: 14px;
+            }
+
+            .skeletal-dot::after {
+                inset: -10px;
+            }
+
+            .posture-panel {
+                padding: 14px 16px;
+            }
+
+            .posture-panel-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 6px;
+                margin-bottom: 8px;
+            }
+
+            .posture-part-name {
+                font-size: 14px;
+            }
+
+            .posture-panel-body p {
+                font-size: 13px;
+            }
+
+            /* 5-Step Simulator on mobile */
+            .step-simulator {
+                padding: 20px;
+                gap: 18px;
+            }
+
+            .step-tab {
+                padding: 8px 12px;
+                font-size: 12px;
+            }
+
+            .step-label-title {
+                font-size: 16px;
+            }
+
+            .step-duration-badge {
+                font-size: 11px;
+                white-space: nowrap;
+                flex-shrink: 0;
+                margin-left: 8px;
+            }
+
+            .step-header-row {
+                gap: 6px;
+            }
+
+            .step-exercise-name {
+                font-size: 14px;
+            }
+
+            .step-details-grid {
+                grid-template-columns: 1fr;
+                gap: 8px;
+            }
+
+            .step-cue-box {
+                font-size: 13px;
+                padding: 11px 14px;
+            }
+
+            /* Stats on mobile */
+            .stats-grid {
+                gap: 16px;
+            }
+
+            .stat-card {
+                padding: 30px 22px;
+            }
+
+            .stat-label {
+                font-size: 14px;
+            }
+
+            .stat-value {
+                font-size: clamp(40px, 12vw, 56px);
+            }
+
+            .stat-desc {
+                font-size: 13.5px;
+            }
+
+            /* ROI Calculator on mobile */
+            .calculator-container {
+                padding: 26px 22px;
+                gap: 22px;
+                margin-top: 40px;
+            }
+
+            .calculator-title h3 {
+                font-size: 18px;
+            }
+
+            .calculator-title p {
+                font-size: 13px;
+            }
+
+            .slider-header {
+                flex-wrap: wrap;
+                gap: 6px;
+            }
+
+            .slider-label {
+                font-size: 14px;
+            }
+
+            .slider-current-val {
+                font-size: 16px;
+            }
+
+            .calc-bonus-revenue {
+                font-size: clamp(26px, 7vw, 34px);
+            }
+
+            .calc-celebrate-badge {
+                font-size: 11px;
+                padding: 4px 10px;
+                text-align: center;
+                line-height: 1.4;
+            }
+
+            /* Tools */
+            .tools-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .tool-item {
+                padding: 28px 22px;
+                border-right: none !important;
+                border-bottom: 1px solid #e0e0e0 !important;
+            }
+
+            .tool-item:last-child {
+                border-bottom: none !important;
+            }
+
+            .tool-item h3 {
+                font-size: 17px;
+            }
+
+            .tool-item p {
+                font-size: 14px;
+            }
+
+            .tools-header p {
+                font-size: 15px;
+            }
+
+            /* Bottom CTA */
+            .bottom-cta {
+                padding: 70px 20px;
+            }
+
+            .bottom-cta h2 {
+                font-size: clamp(22px, 6vw, 28px);
+            }
+
+            .bottom-cta p {
+                font-size: 15px;
             }
 
             .store-buttons img {
@@ -1229,17 +1545,26 @@
                 height: 50px;
             }
 
-            .tools-grid {
-                grid-template-columns: 1fr;
+            /* Floating Contact Widget */
+            .floating-contact-wrap {
+                bottom: 16px;
+                right: 16px;
             }
 
-            .tool-item {
-                border-right: none !important;
-                border-bottom: 1px solid #e0e0e0 !important;
+            .floating-contact-btn {
+                width: 52px;
+                height: 52px;
             }
 
-            .tool-item:last-child {
-                border-bottom: none !important;
+            .floating-contact-card {
+                width: calc(100vw - 32px);
+                max-width: 320px;
+            }
+
+            /* Modal */
+            .modal-close {
+                top: -42px;
+                font-size: 28px;
             }
 
             footer {
@@ -1311,6 +1636,51 @@
             }
         }
 
+        @media (max-width: 480px) {
+            .header-store-btn img {
+                height: 28px;
+            }
+
+            .btn-guide {
+                height: 28px;
+                padding: 0 10px;
+                font-size: 11px;
+            }
+
+            .logo img {
+                height: 22px;
+            }
+
+            .hero h1 {
+                font-size: 26px;
+            }
+
+            .hero-sub {
+                font-size: 15px;
+            }
+
+            .hero-badge {
+                font-size: 11px;
+                padding: 6px 12px;
+            }
+
+            .section-title {
+                font-size: 22px;
+            }
+
+            .pillar-card h3 {
+                font-size: 16px;
+            }
+
+            .calculator-container {
+                padding: 22px 18px;
+            }
+
+            .posture-canvas-wrap {
+                height: 190px;
+            }
+        }
+
         /* 3D and Pop Animations */
         @keyframes popIn {
             0% { transform: scale(0.92); opacity: 0; }
@@ -1325,6 +1695,42 @@
 
         .pop-card {
             animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.15) forwards;
+        }
+
+        /* Shared Simulator Header Row */
+        .sim-header-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding-bottom: 12px;
+            margin-bottom: 8px;
+        }
+
+        .sim-header-row-light {
+            border-bottom: none;
+            padding-bottom: 4px;
+            margin-bottom: 0;
+        }
+
+        .sim-header-label {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .sim-header-hint {
+            font-size: 11px;
+            color: rgba(255,255,255,0.45);
+        }
+
+        .data-section .section-desc.data-section-desc {
+            max-width: 720px;
+            margin-top: 18px;
+            margin-bottom: 16px;
+            color: rgba(255, 255, 255, 0.72);
         }
 
         /* Posture Simulator Styling */
@@ -1745,9 +2151,10 @@
 
         @media (max-width: 768px) {
             .hero-sound-btn {
-                bottom: 20px;
-                right: 20px;
-                padding: 8px 14px;
+                bottom: 18px;
+                right: auto;
+                left: 18px;
+                padding: 7px 12px;
                 font-size: 11px;
                 gap: 6px;
             }
@@ -1763,7 +2170,7 @@
                 <img src="logo.png" alt="SoMa Logo">
             </a>
             <div class="header-actions">
-                <a href="/guide" class="btn-guide">사용 가이드</a>
+                <a href="/guide" class="btn-guide"><span class="guide-text-full">사용 가이드</span><span class="guide-text-short">가이드</span></a>
                 <div class="header-stores">
                     <a href="https://apps.apple.com/kr/app/%EC%86%8C%EB%A7%88/id6753277300" target="_blank" class="header-store-btn" aria-label="App Store에서 다운로드 하기">
                         <img src="btn-appstore.png" alt="App Store">
@@ -1788,9 +2195,8 @@
             <div class="hero-badge" id="openVideoModal" style="cursor: pointer;">
                 <span></span> The Masterpiece of Management ➔
             </div>
-            <h1>감(感)으로 회원관리하는 시대는 끝났습니다.<br><em>이제 데이터로 수업을 설계할 시간입니다.</em></h1>
-            <p class="hero-sub">AI 초정밀 분석과 24시간 케어로<br class="mobile-only"> 재등록률 90%의 벽을 넘으세요</p>
-            <p class="hero-desc">수천 건의 수업 데이터를 분석해 센터의 수익을 극대화하는<br class="pc-only"> 국내 유일의 AI 피트니스 매니지먼트 SaaS, SoMa AI</p>
+            <h1>감(感)이 아닌 <em>데이터</em>로<br>수업을 설계합니다</h1>
+            <p class="hero-sub">재등록률 90%를 만드는<br class="mobile-only"> AI 피트니스 매니지먼트</p>
         </div>
         
         <!-- Hero Sound Button -->
@@ -1805,8 +2211,8 @@
     <section class="video-section">
         <div class="container">
             <span class="section-label reveal">Data-Driven Class</span>
-            <h2 class="section-title reveal">기대가 확신이 되는 순간,<br>함께 만들어가는 <span class="text-cyan">변화의 여정</span></h2>
-            <p class="section-desc reveal">과거에는 강사의 '감'에만 의존해 수업을 진행했습니다. 이제 SoMa AI는 관절 0.1°와 영양 타이밍까지 분석하는 차가운 이성(AI)으로, 회원의 실제 몸의 변화라는 따뜻한 현실을 데이터로 증명합니다.</p>
+            <h2 class="section-title reveal">'감'이 아닌 <span class="text-cyan">'데이터'</span>로<br>증명하는 변화의 여정</h2>
+            <p class="section-desc reveal">관절 0.1°와 영양 타이밍까지 분석하는 AI가 회원의 실제 몸 변화를 데이터로 증명합니다.</p>
             <div class="video-grid">
                 <div class="video-player reveal">
                     <video controls playsinline preload="metadata" poster="">
@@ -1817,15 +2223,15 @@
                 <div class="video-points">
                     <div class="video-point reveal">
                         <h3>압도적 만족의 시작</h3>
-                        <p>회원이 '제대로 케어받고 있다'고 느끼는 순간, 이탈은 사라집니다. 매 수업 직후 AI 리포트로 객관적인 변화를 회원에게 전달하세요.</p>
+                        <p>매 수업 직후 AI 리포트로 객관적인 변화를 전달하세요. 회원이 '케어받고 있다'고 느끼는 순간, 이탈은 사라집니다.</p>
                     </div>
                     <div class="video-point reveal">
                         <h3>전문성이 수익이 되는 시스템</h3>
-                        <p>가장 확실한 시스템. 강사의 전문성이 데이터로 증명될 때, 그 가치는 곧바로 센터의 수익으로 직결됩니다.</p>
+                        <p>강사의 전문성이 데이터로 증명될 때, 그 가치는 곧바로 센터의 수익으로 직결됩니다.</p>
                     </div>
                     <div class="video-point reveal">
                         <h3>24시간 연결된 케어</h3>
-                        <p>센터 안의 운동을 넘어 일상의 식단과 홈워크까지 AI가 밀착 관리합니다. 회원은 "나를 가장 잘 아는 센터"라고 확신하게 됩니다.</p>
+                        <p>일상의 식단과 홈워크까지 AI가 밀착 관리해, "나를 가장 잘 아는 센터"라는 확신을 만듭니다.</p>
                     </div>
                 </div>
             </div>
@@ -1838,32 +2244,29 @@
             <div class="why-intro reveal">
                 <span class="section-label">Why SoMa AI</span>
                 <h2 class="section-title">왜 이름이 <span class="text-cyan">SoMa</span>인가요?</h2>
-                <p class="section-desc">'소마(Soma)'는 그리스어로 <strong style="color:#fff;">'내면에서 직접 느끼고 경험하는 생생한 몸과 마음의 통합체'</strong>를 뜻합니다. 우리가 이 이름을 선택한 이유는 피트니스 비즈니스의 가장 핵심적인 '연결'을 완성하기 위해서입니다.</p>
-                <div class="why-name">
-                    <p>SoMa AI는 단순한 회원 관리 프로그램을 넘어, 피트니스 생태계의 <strong>몸과 마음을 가장 완벽하게 연결하는 '지능형 매니지먼트'</strong>입니다. 강사의 감각과 AI의 초정밀 분석이라는 '이성적인 마음'이 회원의 '실제 몸 변화'라는 객관적 데이터로 연결되는 순간, 비로소 압도적인 신뢰와 매출 혁신이 일어납니다.</p>
-                </div>
+                <p class="section-desc">'소마(Soma)'는 그리스어로 <strong style="color:#fff;">'몸과 마음의 통합체'</strong>를 뜻합니다. 센터와 회원, 강사와 데이터를 가장 완벽하게 연결하는 지능형 매니지먼트, 그것이 SoMa AI입니다.</p>
             </div>
             <div class="connection-cards">
                 <div class="connection-card reveal">
                     <div class="connection-step">01</div>
                     <div class="layer-tag">Business Layer · 운영의 본질</div>
-                    <h3>센터(몸) + 소프트웨어(마음)</h3>
-                    <div class="formula">오프라인 센터(하드웨어) × SoMa AI(뇌)</div>
-                    <p>아무리 인테리어가 멋진 센터(몸)라도, 이를 효율적으로 움직이는 시스템(마음)이 없다면 운영은 멈춥니다. SoMa AI는 오프라인이라는 육체에 '지능'이라는 마음을 이식해, 매출과 운영을 극대화하는 두뇌 역할을 합니다.</p>
+                    <h3>센터 + 소프트웨어</h3>
+                    <div class="formula">오프라인 센터 × SoMa AI(두뇌)</div>
+                    <p>오프라인 센터에 '지능'을 이식해, 매출과 운영을 극대화하는 두뇌 역할을 합니다.</p>
                 </div>
                 <div class="connection-card reveal">
                     <div class="connection-step">02</div>
                     <div class="layer-tag">Service Layer · 데이터 기반 수업</div>
-                    <h3>AI 데이터(마음) + 회원의 몸(몸)</h3>
-                    <div class="formula">AI 초정밀 분석(인지) × 신체 변화(물질)</div>
-                    <p>관절 0.1°와 영양 타이밍을 분석하는 '차가운 이성(AI)'이, 거북목 교정과 골격근량 변화 같은 '따뜻한 현실(회원의 몸)'을 데이터로 증명합니다. 몸과 마음이 실시간으로 상호작용하는 장을 만듭니다.</p>
+                    <h3>AI 데이터 + 회원의 몸</h3>
+                    <div class="formula">AI 초정밀 분석 × 신체 변화</div>
+                    <p>관절 0.1°를 분석하는 AI가 회원의 몸 변화를 데이터로 증명해, 객관적 신뢰를 만듭니다.</p>
                 </div>
                 <div class="connection-card reveal">
                     <div class="connection-step">03</div>
                     <div class="layer-tag">Philosophical Layer · 소마틱스 철학</div>
-                    <h3>전문성(마음) + 라이프스타일(삶)</h3>
-                    <div class="formula">강사 노하우 × 회원의 24시간 일상</div>
-                    <p>진정한 소마틱스(Somatics)는 센터 문 안에서 끝나지 않습니다. 수업 후 일상의 식단과 홈워크까지 AI가 24시간 함께할 때, 회원은 "나를 가장 잘 아는 센터"라는 깊은 신뢰를 느낍니다.</p>
+                    <h3>전문성 + 일상</h3>
+                    <div class="formula">강사 노하우 × 24시간 케어</div>
+                    <p>수업 후 식단과 홈워크까지 함께해, "나를 가장 잘 아는 센터"라는 신뢰를 만듭니다.</p>
                 </div>
             </div>
         </div>
@@ -1874,39 +2277,39 @@
         <div class="container">
             <div class="pillars-header reveal">
                 <span class="section-label" style="color:var(--blue);">Core Value</span>
-                <h2 class="section-title">데이터가 만드는 <span class="text-blue">6가지 압도적 가치</span></h2>
-                <p class="section-desc-dark">감(感)이 아닌 데이터로, 회원의 몸과 마음을 연결하는 SoMa AI만의 핵심 기능</p>
+                <h2 class="section-title">데이터가 만드는 <span class="text-blue">6가지 가치</span></h2>
+                <p class="section-desc-dark">회원의 몸과 마음을 연결하는 SoMa AI만의 핵심 기능</p>
             </div>
             <div class="pillars-grid">
                 <div class="pillar-card reveal">
                     <div class="pillar-num">01</div>
-                    <h3>초정밀 분석으로 완성되는 충성도</h3>
-                    <p>관절 0.1° 단위의 영상 분석과 식단 타이밍 최적화로, 회원이 "나를 가장 잘 아는 센터"라고 느끼게 합니다.</p>
+                    <h3>초정밀 분석 충성도</h3>
+                    <p>관절 0.1° 영상 분석과 식단 최적화로, "나를 가장 잘 아는 센터"가 됩니다.</p>
                 </div>
                 <div class="pillar-card reveal">
                     <div class="pillar-num">02</div>
                     <h3>24시간 밀착 관리</h3>
-                    <p>액션 아이템(홈워크)과 맞춤형 영양 전략으로 센터의 케어가 회원의 일상까지 자연스럽게 닿습니다.</p>
+                    <p>홈워크와 맞춤 영양 전략으로 케어가 회원의 일상까지 닿습니다.</p>
                 </div>
                 <div class="pillar-card reveal">
                     <div class="pillar-num">03</div>
                     <h3>데이터로 증명하는 신뢰</h3>
-                    <p>'좋아졌어요' 같은 주관적 평가 대신, AI가 산출한 종합 점수와 세부 지표로 객관적 변화를 시각화합니다.</p>
+                    <p>주관적 평가 대신, AI 종합 점수와 세부 지표로 변화를 시각화합니다.</p>
                 </div>
                 <div class="pillar-card reveal">
                     <div class="pillar-num">04</div>
                     <h3>재등록률 90%의 과학</h3>
-                    <p>AI가 신체 변화를 종합적으로 진단하고 다음 수업을 자동 설계합니다. 강사 경력과 무관하게 일관된 고품질 수업이 보장됩니다.</p>
+                    <p>AI가 신체 변화를 진단하고 다음 수업을 자동 설계해, 강사와 무관하게 일관된 품질을 보장합니다.</p>
                 </div>
                 <div class="pillar-card reveal">
                     <div class="pillar-num">05</div>
                     <h3>상담 전환율 혁신</h3>
-                    <p>신규 상담 시 초정밀 AI 리포트를 제시하는 것만으로, 경쟁 센터와 차별화된 프리미엄 이미지를 각인시킵니다.</p>
+                    <p>초정밀 AI 리포트만으로, 경쟁 센터와 차별화된 프리미엄 이미지를 각인시킵니다.</p>
                 </div>
                 <div class="pillar-card reveal">
                     <div class="pillar-num">06</div>
                     <h3>강사 역량의 시스템화</h3>
-                    <p>10년 이상 경력 강사의 노하우가 AI 프롬프트에 내장되어, 신입 강사도 베테랑 수준의 수업을 즉시 구현할 수 있습니다.</p>
+                    <p>10년 경력 강사의 노하우가 AI에 내장되어, 신입 강사도 베테랑 수업을 즉시 구현합니다.</p>
                 </div>
             </div>
         </div>
@@ -1916,13 +2319,14 @@
     <section class="data-section">
         <div class="container">
             <span class="section-label reveal">AI Analysis</span>
-            <h2 class="section-title reveal">재등록의 확신은 '느낌'이 아닌<br><span class="text-cyan">'데이터'</span>에서 나옵니다</h2>
+            <h2 class="section-title reveal">직접 체험해보세요<br><span class="text-cyan">데이터로 만들어지는 수업</span></h2>
+            <p class="section-desc reveal data-section-desc">왼쪽은 AI 관절 분석, 오른쪽은 자동 수업 설계. 두 위젯을 직접 만져보며 SoMa AI의 작동 방식을 체험할 수 있습니다.</p>
             <div class="data-grid">
                 <!-- Left: Posture Simulator -->
                 <div class="posture-simulator reveal">
-                    <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 12px; margin-bottom: 8px;">
-                        <span style="font-size: 11px; font-weight: 700; color: var(--cyan); letter-spacing: 1px; text-transform: uppercase;">Real-Time AI Vision Core</span>
-                        <span style="font-size: 11px; color: rgba(255,255,255,0.4);">마커를 클릭해 실시간 각도 측정을 체험하세요</span>
+                    <div class="sim-header-row">
+                        <span class="sim-header-label" style="color: var(--cyan);">AI Vision Core</span>
+                        <span class="sim-header-hint">마커를 클릭해 체험</span>
                     </div>
                     <div class="posture-canvas-wrap">
                         <svg class="skeletal-svg" viewBox="0 0 300 280">
@@ -1958,20 +2362,20 @@
                     
                     <div class="posture-panel pop-card" id="posturePanel">
                         <div class="posture-panel-header">
-                            <span class="posture-part-name" id="posturePartName">경추 정렬 분석 (Cervical Spine)</span>
-                            <span class="posture-status-badge" id="postureStatusBadge" style="color: var(--cyan); background: rgba(95, 205, 249, 0.15); border: 1px solid rgba(95, 205, 249, 0.2);">실시간 연동 중</span>
+                            <span class="posture-part-name" id="posturePartName">AI 관절 분석</span>
+                            <span class="posture-status-badge" id="postureStatusBadge" style="color: var(--cyan); background: rgba(95, 205, 249, 0.15); border: 1px solid rgba(95, 205, 249, 0.2);">대기 중</span>
                         </div>
                         <div class="posture-panel-body">
-                            <p id="postureDesc">위의 초정밀 AI 마커(하늘색 점)를 클릭하여 관절 부하 및 대칭도 분석을 실시간으로 확인해보세요. SoMa AI는 관절 0.1°까지 추적하여 부상 없는 완벽한 정렬을 제안합니다.</p>
+                            <p id="postureDesc">하늘색 마커를 눌러 관절 각도 분석을 확인하세요. SoMa AI는 관절 0.1°까지 추적합니다.</p>
                         </div>
                     </div>
                 </div>
 
                 <!-- Right: 5-Step Lesson Sequence Simulator -->
                 <div class="step-simulator reveal">
-                    <div style="display: flex; justify-content: space-between; align-items: center; padding-bottom: 4px;">
-                        <span style="font-size: 11px; font-weight: 700; color: var(--blue); letter-spacing: 1px; text-transform: uppercase;">AI LESSON SEQUENCE PROPOSAL</span>
-                        <span style="font-size: 11px; color: #777; font-weight: 600;">50분 자동 설계 솔루션</span>
+                    <div class="sim-header-row sim-header-row-light">
+                        <span class="sim-header-label" style="color: var(--blue);">AI Lesson Sequence</span>
+                        <span class="sim-header-hint" style="color:#777;">50분 자동 설계</span>
                     </div>
                     <div class="step-tabs">
                         <button class="step-tab active" data-step="1">1. 워밍업</button>
@@ -1987,7 +2391,7 @@
                                 <div class="step-label-title">1단계: 전신 순환 &amp; 웜업</div>
                                 <span class="step-duration-badge">8분 (0-8min)</span>
                             </div>
-                            <div class="step-exercise-name">캣 카우 스트레칭 (Cat-Cow Stretch) with AI 호흡 보조</div>
+                            <div class="step-exercise-name">캣 카우 (Cat-Cow) · AI 호흡 보조</div>
                             <div class="step-details-grid">
                                 <div class="step-detail-item">
                                     <span class="step-detail-label">타겟 근육 / 목적</span>
@@ -2010,7 +2414,7 @@
                                 <div class="step-label-title">2단계: 정렬 및 관절 움직임 인지</div>
                                 <span class="step-duration-badge">10분 (8-18min)</span>
                             </div>
-                            <div class="step-exercise-name">펠빅 클락 (Pelvis Clock) 골반 대칭 정밀 정렬</div>
+                            <div class="step-exercise-name">펠빅 클락 (Pelvis Clock) · 골반 대칭 정렬</div>
                             <div class="step-details-grid">
                                 <div class="step-detail-item">
                                     <span class="step-detail-label">타겟 근육 / 목적</span>
@@ -2033,7 +2437,7 @@
                                 <div class="step-label-title">3단계: 주동근 근력 강화 (메인)</div>
                                 <span class="step-duration-badge">12분 (18-30min)</span>
                             </div>
-                            <div class="step-exercise-name">브릿지 (Pelvic Bridge) with 내전근 서포트</div>
+                            <div class="step-exercise-name">브릿지 (Pelvic Bridge) · 내전근 서포트</div>
                             <div class="step-details-grid">
                                 <div class="step-detail-item">
                                     <span class="step-detail-label">타겟 근육 / 목적</span>
@@ -2111,37 +2515,37 @@
             </div>
             <div class="stats-grid">
                 <div class="stat-card reveal">
-                    <div class="stat-label">압도적인 재등록률 ↑</div>
+                    <div class="stat-label">재등록률 ↑</div>
                     <div class="stat-value">92%</div>
-                    <p class="stat-desc">주관적 관리에서 AI 데이터 기반 관리로 전환한 결과, 회원 이탈을 획기적으로 줄여 업계 최고 수준의 재등록률을 달성했습니다.</p>
+                    <p class="stat-desc">AI 데이터 기반 관리로 회원 이탈을 줄여 업계 최고 수준의 재등록률을 달성.</p>
                 </div>
                 <div class="stat-card reveal">
-                    <div class="stat-label">상담 등록률 폭발적 상승 ↑</div>
+                    <div class="stat-label">상담 등록률 ↑</div>
                     <div class="stat-value">+40%</div>
-                    <p class="stat-desc">신규 상담 시 SoMa AI의 초정밀 분석 리포트를 제시하는 것만으로 전문성이 각인되어, 자발적인 등록 결정으로 이어졌습니다.</p>
+                    <p class="stat-desc">초정밀 AI 리포트로 전문성이 각인되어, 자발적인 등록으로 이어졌습니다.</p>
                 </div>
                 <div class="stat-card reveal">
-                    <div class="stat-label">센터 매출 수직 상승 ↑</div>
+                    <div class="stat-label">센터 매출 ↑</div>
                     <div class="stat-value">+30%</div>
-                    <p class="stat-desc">재등록과 신규 등록이 동시에 상승하며 차원이 다른 매출 혁신을 이뤘습니다. SoMa AI가 설계한 '수익의 인과관계'입니다.</p>
+                    <p class="stat-desc">재등록과 신규 등록이 동시에 상승하며 매출 혁신을 이뤘습니다.</p>
                 </div>
             </div>
 
             <!-- Interactive ROI Calculator -->
             <div class="calculator-container reveal">
                 <div class="calculator-title">
-                    <h3>💰 우리 센터 예상 매출 상승액 계산기</h3>
-                    <p>현재 매출을 입력하고 SoMa AI 도입 시 기대할 수 있는 연간 추가 매출 상승을 확인하세요.</p>
+                    <h3>💰 예상 매출 상승액 계산기</h3>
+                    <p>슬라이더로 현재 월 매출을 맞춰보세요.</p>
                 </div>
                 <div class="calculator-slider-box">
                     <div class="slider-header">
-                        <span class="slider-label">우리 센터 월 매출 (만원)</span>
+                        <span class="slider-label">월 매출</span>
                         <span class="slider-current-val" id="sliderVal">3,000 만원</span>
                     </div>
                     <input type="range" class="calculator-slider" id="revenueSlider" min="500" max="10000" step="500" value="3000">
                 </div>
                 <div class="calc-result-box">
-                    <span class="calc-result-title">SoMa AI 도입 시 기대되는 연간 보너스 매출 상승액은?</span>
+                    <span class="calc-result-title">SoMa AI 도입 시 연간 추가 매출</span>
                     <div class="calc-bonus-revenue" id="bonusRevenue">➔ +10,800만원</div>
                     <div class="calc-celebrate-badge" id="calcBadge">지역 1위 전문 센터로 대도약! 🚀</div>
                 </div>
@@ -2160,19 +2564,19 @@
             <div class="tools-grid">
                 <div class="tool-item reveal">
                     <h3>센터 전용 스마트 단톡방</h3>
-                    <p>강사와 관리자가 실시간으로 내부 정보를 공유하는 전용 채널. 개인 메신저와 완벽히 분리된 프로페셔널한 소통 환경을 제공합니다.</p>
+                    <p>개인 메신저와 분리된 프로페셔널한 소통 환경.</p>
                 </div>
                 <div class="tool-item reveal">
-                    <h3>강사별 만료 임박 회원 트래커</h3>
-                    <p>강사별 회원의 잔여 일수와 횟수를 실시간으로 추적합니다. 재등록 골든타임을 놓치지 않는 정밀 타겟 관리가 가능해집니다.</p>
+                    <h3>만료 임박 회원 트래커</h3>
+                    <p>재등록 골든타임을 놓치지 않는 정밀 타겟 관리.</p>
                 </div>
                 <div class="tool-item reveal">
                     <h3>강사 퍼포먼스 대시보드</h3>
-                    <p>강사별 재등록률·수업 횟수·매출 지표를 한눈에 확인하세요. 데이터 기반의 객관적 평가와 보상 체계가 센터의 성장을 가속화합니다.</p>
+                    <p>재등록률·수업 횟수·매출 지표를 한눈에 확인하는 데이터 기반 평가.</p>
                 </div>
                 <div class="tool-item reveal">
-                    <h3>홈 &amp; 채팅 통합 예약 시스템</h3>
-                    <p>홈 화면과 채팅창에서 곧바로 예약을 처리할 수 있습니다. 다수 회원의 중복 예약을 일일이 정리하던 번거로움이 사라집니다.</p>
+                    <h3>홈 &amp; 채팅 통합 예약</h3>
+                    <p>홈 화면과 채팅창에서 곧바로 처리되는 매끄러운 예약 흐름.</p>
                 </div>
             </div>
         </div>
@@ -2180,8 +2584,8 @@
 
     <!-- Bottom CTA -->
     <section class="bottom-cta reveal">
-        <h2>몸과 마음, 센터와 일상을 연결하는<br class="mobile-only"> 지능형 매니지먼트</h2>
-        <p>데이터로 설계되는 수업, 지금 SoMa AI와 함께 시작하세요</p>
+        <h2>지금, <br class="mobile-only">SoMa AI와 함께 시작하세요</h2>
+        <p>데이터로 설계되는 수업, 지능형 매니지먼트</p>
         <div class="store-buttons">
             <a href="https://apps.apple.com/kr/app/%EC%86%8C%EB%A7%88/id6753277300" target="_blank">
                 <img src="btn-appstore.png" alt="App Store">
