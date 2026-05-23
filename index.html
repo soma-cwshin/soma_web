@@ -6,13 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="naver-site-verification" content="1abef9148b9243d7dfede54b26c4fa5bfef1f7c6" />
 
-    <title>소마 (SoMa AI) - 운동에만 집중하도록, 나만의 피트니스 AI</title>
+    <title>소마 (SoMa AI) — 데이터로 설계되는 지능형 피트니스 매니지먼트</title>
 
-    <meta name="description" content="수업 관리부터 정산, 체형 분석까지. 강사님의 하루를 AI로 완벽하게 관리하세요. 필라테스/PT 강사 필수 앱 소마.">
+    <meta name="description"
+        content="감(感)이 아닌 데이터로 수업을 설계하세요. AI 초정밀 분석과 24시간 케어로 재등록률 90%의 벽을 넘는 국내 유일 AI 피트니스 매니지먼트 SaaS, SoMa AI.">
 
     <meta property="og:type" content="website">
-    <meta property="og:title" content="소마 (SoMa AI) - 나만의 피트니스 AI">
-    <meta property="og:description" content="복잡한 강사 업무는 AI에게 맡기고 수업에만 집중하세요.">
+    <meta property="og:title" content="소마 (SoMa AI) — The Masterpiece of Management">
+    <meta property="og:description" content="몸과 마음, 센터와 일상을 연결하는 지능형 매니지먼트. 데이터로 설계되는 수업, SoMa AI.">
     <meta property="og:image" content="https://soma.ai.kr/og_image.png">
 
     <link rel="icon" href="favicon.ico" type="image/x-icon" />
@@ -20,7 +21,21 @@
         href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
 
     <style>
-        /* 1. 기본 설정 (Reset) */
+        :root {
+            --navy-deep: #071428;
+            --navy: #0c1f3d;
+            --navy-card: #122847;
+            --blue: #2E8CD5;
+            --blue-dark: #0065B3;
+            --cyan: #5FCDF9;
+            --cyan-bright: #7ee8ff;
+            --sky: #E7F8FF;
+            --yellow: #FFE100;
+            --white: #FFFFFF;
+            --gray: #979797;
+            --footer-bg: #2C2C2C;
+        }
+
         * {
             box-sizing: border-box;
             margin: 0;
@@ -29,10 +44,10 @@
         }
 
         body {
-            background-color: #FFFFFF;
-            color: #000000;
+            background-color: var(--white);
+            color: #000;
             overflow-x: hidden;
-            line-height: 1.5;
+            line-height: 1.6;
         }
 
         a {
@@ -42,10 +57,11 @@
         }
 
         a:hover {
-            opacity: 0.8;
+            opacity: 0.85;
         }
 
-        img {
+        img,
+        video {
             max-width: 100%;
             display: block;
         }
@@ -54,17 +70,16 @@
             list-style: none;
         }
 
-        /* 2. 공통 클래스 */
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 24px;
         }
 
         .reveal {
             opacity: 0;
-            transform: translateY(30px);
-            transition: all 1s ease;
+            transform: translateY(28px);
+            transition: all 0.9s ease;
         }
 
         .reveal.active {
@@ -72,40 +87,67 @@
             transform: translateY(0);
         }
 
+        .text-cyan {
+            color: var(--cyan);
+        }
+
         .text-blue {
-            color: #2E8CD5;
+            color: var(--blue);
         }
 
         .text-yellow {
-            color: #FFE100;
+            color: var(--yellow);
+        }
+
+        .section-label {
+            display: inline-block;
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--cyan);
+            margin-bottom: 16px;
+        }
+
+        .section-title {
+            font-size: clamp(28px, 4vw, 44px);
+            font-weight: 700;
+            line-height: 1.3;
+            word-break: keep-all;
+            color: var(--white);
+        }
+
+        .section-desc {
+            margin-top: 20px;
+            font-size: clamp(16px, 2vw, 20px);
+            font-weight: 400;
+            line-height: 1.7;
+            color: rgba(255, 255, 255, 0.82);
+            word-break: keep-all;
+        }
+
+        .section-desc-dark {
+            color: #333;
         }
 
         .mobile-only {
             display: none;
         }
 
-        .bg-sky {
-            background-color: #E7F8FF;
-        }
-
-        .bg-white {
-            background-color: #FFFFFF;
-        }
-
-        /* 3. 헤더 (Blur Effect) */
+        /* Header */
         header {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 90px;
-            background: rgba(255, 255, 255, 0.7);
-            backdrop-filter: blur(35px);
+            background: rgba(7, 20, 40, 0.55);
+            backdrop-filter: blur(24px);
             z-index: 1000;
             display: flex;
             align-items: center;
             justify-content: center;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid rgba(95, 205, 249, 0.12);
         }
 
         .header-inner {
@@ -120,21 +162,46 @@
         .logo img {
             height: 34px;
             width: auto;
+            filter: brightness(0) invert(1);
         }
 
         .header-actions {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
+        }
+
+        .header-stores {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .header-store-btn {
+            display: flex;
+            align-items: center;
+        }
+
+        .header-store-btn img {
+            height: 44px;
+            width: auto;
+            border-radius: 8px;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .header-store-btn:hover img {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
         }
 
         .btn-guide {
             height: 48px;
             padding: 0 18px;
             border-radius: 27px;
-            border: 1.5px solid #2E8CD5;
-            color: #2E8CD5;
-            background: #FFFFFF;
+            border: 1.5px solid var(--cyan);
+            color: var(--cyan);
+            background: transparent;
             font-size: 16px;
             font-weight: 700;
             display: inline-flex;
@@ -145,262 +212,669 @@
 
         .btn-guide:hover {
             opacity: 1;
-            background: #E7F8FF;
+            background: rgba(95, 205, 249, 0.12);
         }
 
-        /* 헤더 다운로드 버튼 */
-        .dropdown {
+        .header-scrolled {
+            background: rgba(255, 255, 255, 0.92) !important;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.06) !important;
+        }
+
+        .header-scrolled .logo img {
+            filter: none;
+        }
+
+        .header-scrolled .btn-guide {
+            border-color: var(--blue);
+            color: var(--blue);
+        }
+
+        /* Hero */
+        .hero {
             position: relative;
-            display: inline-block;
-        }
-
-        .btn-download {
-            background-color: #2E8CD5;
-            color: #FFFFFF;
-            height: 48px;
-            padding: 0 20px;
-            border-radius: 27px;
-            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
-            font-size: 18px;
-            font-weight: 700;
-            line-height: 24px;
-            display: flex;
-            align-items: center;
-            gap: 4px;
-            border: none;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-
-        .btn-download svg {
-            width: 32px;
-            height: 32px;
-        }
-
-        .btn-download:hover {
-            background-color: #2370ad;
-        }
-
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            right: 0;
-            top: 120%;
-            background-color: #ffffff;
-            min-width: 160px;
-            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
-            border-radius: 10px;
-            border: 1.5px solid #2E8CD5;
-            overflow: hidden;
-            z-index: 100;
-        }
-
-        .dropdown-content a {
-            padding: 12px 16px;
-            display: block;
-            font-size: 16px;
-            font-weight: 500;
-            color: #000;
-        }
-
-        .dropdown-content a:hover {
-            background-color: #f5f5f5;
-        }
-
-        .dropdown:hover .dropdown-content {
-            display: block;
-        }
-
-        /* =========================================
-           4. [PC/Desktop] 스타일 (MD: Desktop - 1 기준)
-           ========================================= */
-
-        .hero-wrapper {
-            /* MD: Frame 5 배경 */
-            background: radial-gradient(65.39% 45.83% at 50% 100%, #2F8DD5 14.78%, #5FCDF9 59.4%, #FFFFFF 90.82%);
-
-            /* MD: Frame 5 Layout -> flex-end, gap 260px */
             min-height: 100vh;
-            /* 화면 꽉 채움 */
             display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-            /* 하단 정렬 */
             align-items: center;
-            padding-bottom: 150px;
-            /* 하단 고정바(90px) + 60px 여유 공간 */
+            justify-content: center;
+            overflow: hidden;
+            background: var(--navy-deep);
+            padding: 120px 0 180px;
         }
 
-        .hero-content {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            /* MD: Frame 5 gap 260px (타이틀 그룹과 하단 그룹 사이 간격) */
-            gap: 260px;
+        .hero-video-wrap {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .hero-video-wrap video {
             width: 100%;
+            height: 100%;
+            object-fit: cover;
+            pointer-events: none;
         }
 
-        /* PC 상단 타이틀 그룹 */
-        .hero-title-row {
-            display: flex;
-            align-items: flex-start;
-            gap: 50px;
-            /* MD: Frame 4 gap 50px */
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg,
+                    rgba(7, 20, 40, 0.65) 0%,
+                    rgba(12, 31, 61, 0.45) 45%,
+                    rgba(7, 20, 40, 0.60) 100%);
+            z-index: 1;
         }
 
-        .hero-title-row h1 {
-            /* MD: Font 50px */
-            font-size: 50px;
-            font-weight: 700;
-            line-height: 1.28;
-            /* 64px */
-            color: #000000;
-            text-align: left;
-        }
-
-        .hero-big-logo img {
-            width: 529px;
-            /* MD: Logo width */
-            height: auto;
-        }
-
-        /* PC 하단 텍스트 및 버튼 그룹 */
-        .hero-bottom-group {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 36px;
-            /* MD: Frame 8 gap 36px */
-        }
-
-        .hero-sub-text {
-            /* MD: Font 36px */
-            font-size: 36px;
-            font-weight: 500;
-            line-height: 1.28;
-            /* 46px */
-            color: #FFFFFF;
+        .hero-inner {
+            position: relative;
+            z-index: 2;
             text-align: center;
-            text-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+            max-width: 920px;
+            padding: 0 24px;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 18px;
+            border-radius: 999px;
+            border: 1px solid rgba(95, 205, 249, 0.35);
+            background: rgba(95, 205, 249, 0.08);
+            color: var(--cyan);
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 28px;
+        }
+
+        .hero-badge span {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--cyan);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.3); }
+        }
+
+        .hero h1 {
+            font-size: clamp(32px, 5.5vw, 58px);
+            font-weight: 700;
+            line-height: 1.25;
+            color: var(--white);
+            word-break: keep-all;
+            text-shadow: 0 4px 24px rgba(0, 0, 0, 0.7);
+        }
+
+        .hero h1 em {
+            font-style: normal;
+            color: var(--cyan-bright);
+            text-shadow: 0 0 20px rgba(95, 205, 249, 0.4);
+        }
+
+        .hero-sub {
+            margin-top: 24px;
+            font-size: clamp(18px, 2.5vw, 26px);
+            font-weight: 500;
+            line-height: 1.55;
+            color: rgba(255, 255, 255, 0.88);
+            word-break: keep-all;
+            text-shadow: 0 2px 12px rgba(0, 0, 0, 0.65);
+        }
+
+        .hero-desc {
+            margin-top: 16px;
+            font-size: clamp(15px, 1.8vw, 18px);
+            color: rgba(255, 255, 255, 0.65);
+            line-height: 1.7;
+            word-break: keep-all;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero-actions {
+            margin-top: 40px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            justify-content: center;
+            align-items: center;
         }
 
         .store-buttons {
             display: flex;
             gap: 12px;
-            /* MD: Frame 7 gap 12px */
+            flex-wrap: wrap;
+            justify-content: center;
         }
 
         .store-buttons img {
-            width: 210px;
-            /* MD: Button width 210px */
-            height: 70px;
-            /* MD: Button height 70px */
+            width: 200px;
+            height: 66px;
             border-radius: 10px;
             object-fit: contain;
         }
 
-        /* PC 기능 소개 섹션 */
-        .section-padding {
-            padding: 195px 0;
+        .btn-play {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 0 24px;
+            height: 54px;
+            border-radius: 27px;
+            border: 1.5px solid rgba(255, 255, 255, 0.35);
+            background: rgba(255, 255, 255, 0.08);
+            color: var(--white);
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
         }
 
-        .feature-row {
+        .btn-play:hover {
+            background: rgba(255, 255, 255, 0.15);
+            opacity: 1;
+        }
+
+        .btn-play svg {
+            width: 22px;
+            height: 22px;
+            fill: var(--white);
+        }
+
+        /* Video Section */
+        .video-section {
+            background: var(--navy);
+            padding: 100px 0;
+        }
+
+        .video-section .section-desc {
+            color: rgba(255, 255, 255, 0.7);
+            max-width: 640px;
+        }
+
+        .video-grid {
+            margin-top: 48px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+            align-items: center;
+        }
+
+        .video-player {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+            border: 1px solid rgba(95, 205, 249, 0.2);
+            aspect-ratio: 16 / 9;
+            background: #000;
+        }
+
+        .video-player video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .video-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 20px 24px;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.75));
+            color: var(--white);
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .video-points {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .video-point {
+            padding: 22px 24px;
+            border-radius: 16px;
+            background: var(--navy-card);
+            border: 1px solid rgba(95, 205, 249, 0.12);
+        }
+
+        .video-point h3 {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--cyan);
+            margin-bottom: 8px;
+        }
+
+        .video-point p {
+            font-size: 15px;
+            color: rgba(255, 255, 255, 0.75);
+            line-height: 1.65;
+            word-break: keep-all;
+        }
+
+        /* Why SoMa */
+        .why-section {
+            background: linear-gradient(180deg, var(--navy-deep) 0%, #0a2244 100%);
+            padding: 120px 0;
+        }
+
+        .why-intro {
+            max-width: 780px;
+            margin-bottom: 64px;
+        }
+
+        .why-intro .section-desc {
+            margin-top: 24px;
+        }
+
+        .why-name {
+            margin-top: 32px;
+            padding: 28px 32px;
+            border-radius: 16px;
+            background: rgba(95, 205, 249, 0.06);
+            border-left: 4px solid var(--cyan);
+        }
+
+        .why-name p {
+            font-size: 17px;
+            line-height: 1.75;
+            color: rgba(255, 255, 255, 0.85);
+            word-break: keep-all;
+        }
+
+        .why-name strong {
+            color: var(--cyan-bright);
+            font-weight: 700;
+        }
+
+        .connection-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .connection-card {
+            padding: 36px 28px;
+            border-radius: 20px;
+            background: var(--navy-card);
+            border: 1px solid rgba(95, 205, 249, 0.15);
+            transition: transform 0.3s, border-color 0.3s;
+        }
+
+        .connection-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(95, 205, 249, 0.35);
+        }
+
+        .connection-step {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: rgba(46, 140, 213, 0.25);
+            color: var(--cyan);
+            font-size: 14px;
+            font-weight: 800;
+            margin-bottom: 20px;
+        }
+
+        .connection-card h3 {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 6px;
+            word-break: keep-all;
+        }
+
+        .connection-card .layer-tag {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--blue);
+            margin-bottom: 16px;
+        }
+
+        .connection-card .formula {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--cyan);
+            margin-bottom: 14px;
+            padding: 10px 14px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+            word-break: keep-all;
+        }
+
+        .connection-card p {
+            font-size: 15px;
+            line-height: 1.7;
+            color: rgba(255, 255, 255, 0.72);
+            word-break: keep-all;
+        }
+
+        /* Pillars */
+        .pillars-section {
+            background: var(--white);
+            padding: 120px 0;
+        }
+
+        .pillars-header {
+            text-align: center;
+            max-width: 720px;
+            margin: 0 auto 64px;
+        }
+
+        .pillars-header .section-title {
+            color: #000;
+        }
+
+        .pillars-header .section-desc-dark {
+            margin-top: 16px;
+            font-size: 18px;
+            color: #444;
+        }
+
+        .pillars-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .pillar-card {
+            padding: 32px 28px;
+            border-radius: 16px;
+            background: var(--sky);
+            border: 1px solid rgba(46, 140, 213, 0.12);
+            transition: box-shadow 0.3s;
+        }
+
+        .pillar-card:hover {
+            box-shadow: 0 12px 32px rgba(46, 140, 213, 0.12);
+        }
+
+        .pillar-num {
+            font-size: 13px;
+            font-weight: 800;
+            color: var(--blue);
+            letter-spacing: 0.08em;
+            margin-bottom: 12px;
+        }
+
+        .pillar-card h3 {
+            font-size: 19px;
+            font-weight: 700;
+            line-height: 1.4;
+            color: #000;
+            margin-bottom: 12px;
+            word-break: keep-all;
+        }
+
+        .pillar-card p {
+            font-size: 15px;
+            line-height: 1.65;
+            color: #333;
+            word-break: keep-all;
+        }
+
+        /* Data Section */
+        .data-section {
+            background: var(--navy);
+            padding: 120px 0;
+        }
+
+        .data-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 64px;
+            align-items: center;
+            margin-top: 48px;
+        }
+
+        .data-visual {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .data-metric {
             display: flex;
             align-items: center;
-            justify-content: space-between;
-            width: 1046px;
-            max-width: 100%;
-            height: 609px;
-            margin: 0 auto;
-            gap: 186px;
-            /* 1046 - 281 - 579 = 186 */
+            gap: 20px;
+            padding: 20px 24px;
+            border-radius: 14px;
+            background: var(--navy-card);
+            border: 1px solid rgba(95, 205, 249, 0.12);
         }
 
-        .feature-text {
-            width: 579px;
-            flex-shrink: 0;
-            text-align: left;
-        }
-
-        .feature-text h2 {
-            /* 첫번째 타이틀: Bold 36px, line-height 64px */
-            font-size: 36px;
-            font-weight: 700;
-            line-height: 64px;
-            margin-bottom: 0;
-            color: #000;
-            word-break: keep-all;
-        }
-
-        .feature-text h2 span.text-blue {
-            /* 두번째 타이틀: Bold 48px, line-height 64px */
-            font-size: 48px;
-            font-weight: 700;
-            line-height: 64px;
-            display: block;
-        }
-
-        .feature-text p {
-            /* 본문: 상단 36px 여백, Medium 26px */
-            margin-top: 36px;
-            font-size: 26px;
-            font-weight: 500;
-            line-height: 40px;
-            color: #000;
-            word-break: keep-all;
-        }
-
-        .feature-img {
-            width: 281px;
-            flex-shrink: 0;
+        .metric-circle {
+            width: 72px;
+            height: 72px;
+            border-radius: 50%;
+            background: conic-gradient(var(--cyan) 0deg 295deg, rgba(255,255,255,0.1) 295deg);
             display: flex;
-            justify-content: flex-end;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            position: relative;
         }
 
-        .feature-img img {
-            width: 281px;
-            height: 609px;
-            object-fit: contain;
-            border: none;
+        .metric-circle::before {
+            content: '';
+            position: absolute;
+            inset: 6px;
+            border-radius: 50%;
+            background: var(--navy-card);
         }
 
-        .feature-row.reverse {
-            flex-direction: row-reverse;
+        .metric-circle span {
+            position: relative;
+            font-size: 20px;
+            font-weight: 800;
+            color: var(--cyan);
         }
 
-        .feature-row.reverse .feature-img {
-            justify-content: flex-start;
+        .metric-info h4 {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 4px;
         }
 
-        .feature-row.reverse .feature-text {
-            text-align: left;
+        .metric-info p {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.6);
         }
 
-        /* PC 하단 CTA */
+        .data-features {
+            display: flex;
+            flex-direction: column;
+            gap: 28px;
+        }
+
+        .data-feature h3 {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 10px;
+            word-break: keep-all;
+        }
+
+        .data-feature h3 span {
+            color: var(--cyan);
+        }
+
+        .data-feature p {
+            font-size: 16px;
+            line-height: 1.7;
+            color: rgba(255, 255, 255, 0.72);
+            word-break: keep-all;
+        }
+
+        /* Stats */
+        .stats-section {
+            position: relative;
+            padding: 120px 0;
+            background: var(--navy-deep);
+            overflow: hidden;
+        }
+
+        .stats-section::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at 50% 100%, rgba(46, 140, 213, 0.25) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .stats-header {
+            text-align: center;
+            margin-bottom: 64px;
+            position: relative;
+        }
+
+        .stats-note {
+            margin-top: 12px;
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.45);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+            position: relative;
+        }
+
+        .stat-card {
+            text-align: center;
+            padding: 40px 24px;
+            border-radius: 20px;
+            background: rgba(18, 40, 71, 0.6);
+            border: 1px solid rgba(95, 205, 249, 0.15);
+        }
+
+        .stat-label {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--cyan);
+            margin-bottom: 16px;
+            word-break: keep-all;
+        }
+
+        .stat-value {
+            font-size: clamp(48px, 6vw, 72px);
+            font-weight: 800;
+            color: var(--white);
+            line-height: 1;
+            margin-bottom: 16px;
+        }
+
+        .stat-desc {
+            font-size: 14px;
+            line-height: 1.65;
+            color: rgba(255, 255, 255, 0.65);
+            word-break: keep-all;
+        }
+
+        /* Tools */
+        .tools-section {
+            background: var(--white);
+            padding: 120px 0;
+        }
+
+        .tools-header {
+            text-align: center;
+            margin-bottom: 64px;
+        }
+
+        .tools-header .section-title {
+            color: #000;
+        }
+
+        .tools-header p {
+            margin-top: 16px;
+            font-size: 18px;
+            color: #444;
+        }
+
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0;
+            border: 1px solid #e0e0e0;
+            border-radius: 16px;
+            overflow: hidden;
+        }
+
+        .tool-item {
+            padding: 40px 36px;
+            border-right: 1px solid #e0e0e0;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .tool-item:nth-child(2n) {
+            border-right: none;
+        }
+
+        .tool-item:nth-child(3),
+        .tool-item:nth-child(4) {
+            border-bottom: none;
+        }
+
+        .tool-item h3 {
+            font-size: 20px;
+            font-weight: 700;
+            color: #000;
+            margin-bottom: 12px;
+            word-break: keep-all;
+        }
+
+        .tool-item p {
+            font-size: 15px;
+            line-height: 1.65;
+            color: #555;
+            word-break: keep-all;
+        }
+
+        /* Bottom CTA */
         .bottom-cta {
             background: radial-gradient(67.6% 55.45% at 50% 100%, #2F8DD5 17.63%, #5FCDF9 55%, #FFFFFF 100%);
-            height: 356px;
+            padding: 100px 24px;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            gap: 62px;
-            /* MD: Frame 8 gap */
+            gap: 20px;
+            text-align: center;
         }
 
         .bottom-cta h2 {
-            font-size: 36px;
-            font-weight: 500;
-            text-align: center;
-            color: #000000;
+            font-size: clamp(24px, 3.5vw, 36px);
+            font-weight: 700;
+            color: #000;
+            line-height: 1.4;
+            word-break: keep-all;
         }
 
-        /* 7. 푸터 (Footer) */
+        .bottom-cta p {
+            font-size: 18px;
+            color: #333;
+            max-width: 560px;
+            word-break: keep-all;
+        }
+
+        /* Footer */
         footer {
-            background-color: #2C2C2C;
-            padding: 50px 0 140px 0;
-            /* 하단 90px 고정바 + 여유 공간 */
-            color: #979797;
+            background-color: var(--footer-bg);
+            padding: 60px 0 80px;
+            color: var(--gray);
         }
 
         .footer-content {
@@ -410,7 +884,6 @@
             padding: 0 40px;
             display: flex;
             flex-direction: column;
-            gap: 0;
         }
 
         .footer-logo {
@@ -434,25 +907,21 @@
             display: flex;
             align-items: center;
             gap: 16px;
-            font-family: 'Pretendard', sans-serif;
             font-size: 20px;
             font-weight: 400;
             line-height: 28px;
             flex-wrap: wrap;
         }
 
-        /* 고객센터 링크 스타일 */
-        .info-row a,
-        .footer-bottom-left a {
-            text-decoration: none;
-            color: #979797;
+        .info-row a {
+            color: var(--gray);
             transition: color 0.2s;
         }
 
-        .info-row a:hover,
-        .footer-bottom-left a:hover {
-            color: #ffffff;
+        .info-row a:hover {
+            color: var(--white);
             text-decoration: underline;
+            opacity: 1;
         }
 
         .footer-info-bottom {
@@ -466,25 +935,25 @@
             display: flex;
             gap: 20px;
             align-items: center;
-            font-family: 'Pretendard', sans-serif;
             font-size: 20px;
             font-weight: 500;
-            line-height: 28px;
-            color: #979797;
+            color: var(--gray);
+            flex-wrap: wrap;
         }
 
         .footer-bottom-left a {
-            font-family: 'Pretendard', sans-serif;
-            font-size: 20px;
-            font-weight: 500;
-            line-height: 28px;
-            color: #979797;
+            color: var(--gray);
+        }
+
+        .footer-bottom-left a:hover {
+            color: var(--white);
+            opacity: 1;
         }
 
         .divider {
             width: 1px;
             height: 16px;
-            background: #777777;
+            background: #777;
         }
 
         .footer-links-row {
@@ -494,95 +963,247 @@
         }
 
         .copyright {
-            font-family: 'Pretendard', sans-serif;
             font-size: 18px;
-            font-weight: 400;
-            line-height: 24px;
-            color: #979797;
+            color: var(--gray);
         }
 
-        /* 고객센터 바 (언제든지 상담) */
-        .contact-bar {
+        /* Floating Contact Widget */
+        .floating-contact-wrap {
             position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            background-color: #0065B3;
-            height: 90px;
+            bottom: 30px;
+            right: 30px;
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 12px;
+        }
+
+        .floating-contact-btn {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--blue) 0%, var(--blue-dark) 100%);
+            box-shadow: 0 8px 32px rgba(46, 140, 213, 0.4);
             display: flex;
             align-items: center;
             justify-content: center;
-            z-index: 999;
+            color: var(--white);
+            cursor: pointer;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s;
         }
 
-        .contact-bar-inner {
-            max-width: 1440px;
-            width: 100%;
-            padding: 0 40px;
+        .floating-contact-btn:hover {
+            transform: scale(1.08);
+            box-shadow: 0 12px 36px rgba(46, 140, 213, 0.55);
+        }
+
+        .floating-contact-btn svg {
+            width: 28px;
+            height: 28px;
+            fill: currentColor;
+            transition: transform 0.3s;
+        }
+
+        .floating-contact-btn.active svg {
+            transform: rotate(135deg);
+        }
+
+        .floating-contact-card {
+            width: 320px;
+            background: var(--navy-card);
+            border: 1px solid rgba(95, 205, 249, 0.25);
+            border-radius: 20px;
+            box-shadow: 0 16px 48px rgba(0, 0, 0, 0.35);
+            padding: 24px;
+            display: none;
+            flex-direction: column;
+            gap: 16px;
+            animation: slideUp 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+            backdrop-filter: blur(12px);
+        }
+
+        .floating-contact-card.open {
+            display: flex;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px) scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .contact-card-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 12px;
         }
 
-        .contact-bar-text {
-            font-family: 'Pretendard', sans-serif;
+        .contact-card-header h4 {
+            font-size: 16px;
             font-weight: 700;
-            font-size: 28px;
-            line-height: 36px;
-            color: #FFFFFF;
+            color: var(--white);
         }
 
-        .btn-contact {
+        .contact-card-header span {
+            font-size: 12px;
+            color: var(--cyan);
+            font-weight: 600;
+            background: rgba(95, 205, 249, 0.1);
+            padding: 3px 8px;
+            border-radius: 12px;
+        }
+
+        .contact-card-body {
             display: flex;
-            flex-direction: row;
-            justify-content: center;
-            align-items: center;
-            padding: 0 18px 0 20px;
-            gap: 4px;
-            height: 48px;
-            background: #FFFFFF;
-            border: 1px solid #5FCDF9;
-            border-radius: 27px;
-            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-            cursor: pointer;
-            text-decoration: none;
-            transition: all 0.2s;
+            flex-direction: column;
+            gap: 12px;
         }
 
-        .btn-contact:hover {
-            background: #f0faff;
+        .contact-option {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 16px;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            color: var(--white);
+            transition: background 0.2s, border-color 0.2s;
+        }
+
+        .contact-option:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(95, 205, 249, 0.2);
             opacity: 1;
         }
 
-        .btn-contact span {
-            font-family: 'Pretendard', sans-serif;
+        .contact-icon-box {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(46, 140, 213, 0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--cyan);
+        }
+
+        .contact-option svg {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+        }
+
+        .contact-details {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .contact-label {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.5);
+            margin-bottom: 2px;
+        }
+
+        .contact-value {
+            font-size: 15px;
             font-weight: 700;
-            font-size: 18px;
-            line-height: 24px;
-            color: #000000;
         }
 
-        .btn-contact svg {
-            width: 32px;
-            height: 32px;
+        /* Modal */
+        .video-modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 2000;
+            background: rgba(0, 0, 0, 0.88);
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
         }
 
-        /* =========================================
-           5. [Mobile] 반응형 (MD: iPhone 14 & 15 Pro 기준)
-           ========================================= */
+        .video-modal.open {
+            display: flex;
+        }
+
+        .video-modal-inner {
+            position: relative;
+            width: 100%;
+            max-width: 960px;
+            border-radius: 16px;
+            overflow: hidden;
+            background: #000;
+        }
+
+        .video-modal-inner video {
+            width: 100%;
+            aspect-ratio: 16/9;
+            object-fit: contain;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: -48px;
+            right: 0;
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 32px;
+            cursor: pointer;
+            line-height: 1;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .connection-cards,
+            .pillars-grid,
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .video-grid,
+            .data-grid {
+                grid-template-columns: 1fr;
+                gap: 36px;
+            }
+        }
+
         @media (max-width: 768px) {
             header {
                 height: 64px;
+                background: rgba(7, 20, 40, 0.92);
             }
 
             .header-inner {
                 padding: 0 14px;
             }
 
-            .btn-download {
-                font-size: 13px;
-                padding: 0 12px;
+            .logo img {
+                height: 28px;
+            }
+
+            .header-stores {
+                gap: 6px;
+            }
+
+            .header-store-btn img {
                 height: 34px;
+                border-radius: 6px;
+            }
+
+            .btn-guide {
+                height: 34px;
+                padding: 0 10px;
+                font-size: 12px;
                 border-radius: 20px;
             }
 
@@ -590,188 +1211,43 @@
                 gap: 6px;
             }
 
-            .btn-guide {
-                height: 34px;
-                padding: 0 10px;
-                font-size: 12px;
-                font-weight: 600;
-                border-radius: 20px;
+            .hero {
+                padding: 100px 0 160px;
             }
 
-            .btn-download svg {
-                display: none;
-            }
-
-            .logo img {
-                height: 28px;
-            }
-
-            /* Mobile Hero */
-            .hero-wrapper {
-                /* MD: Frame 4 Layout */
-                min-height: 100vh;
-                /* 화면 전체 사용 */
-                height: auto;
-                justify-content: flex-start;
-                /* 초기화: space-between은 hero-content에서 처리 */
-                background: radial-gradient(133.61% 50.12% at 50% 89.96%, #2F8DD5 39.9%, #5FCDF9 69.23%, #FFFFFF 92.79%);
-                padding-bottom: 0;
-                /* padding reset */
-            }
-
-            .hero-content {
-                height: 100vh;
-                min-height: 800px;
-                /* 너무 작아짐 방지 */
-
-                /* MD: Frame 4 -> justify-content: space-between */
-                justify-content: space-between;
-                gap: 0;
-                /* PC gap 제거 */
-
-                /* MD: Padding Top 160px, Bottom = 고정바 + 60px */
-                padding-top: 160px;
-                padding-bottom: 160px;
-            }
-
-            /* Mobile 상단 타이틀 그룹 */
-            .hero-title-row {
-                flex-direction: column;
-                /* 세로 정렬 */
-                gap: 20px;
-                align-items: center;
-            }
-
-            .hero-title-row h1 {
-                /* MD: Font 24px */
-                font-size: 24px;
-                line-height: 1.33;
-                /* 32px */
-                text-align: center;
-            }
-
-            .hero-big-logo img {
-                width: 241px;
-                /* MD: Mobile Logo Width */
-            }
-
-            /* Mobile 하단 텍스트 및 버튼 그룹 */
-            .hero-bottom-group {
-                gap: 30px;
-                /* MD: Frame 9 gap */
-            }
-
-            .hero-sub-text {
-                /* MD: Font 20px */
-                font-size: 20px;
-                line-height: 1.4;
-                /* 28px */
-                margin-bottom: 0;
-                /* 그룹 gap으로 처리 */
+            .video-section,
+            .why-section,
+            .pillars-section,
+            .data-section,
+            .stats-section,
+            .tools-section {
+                padding: 72px 0;
             }
 
             .store-buttons img {
                 width: 150px;
-                /* MD: Mobile Button Width */
                 height: 50px;
-                /* MD: Mobile Button Height */
             }
 
-            /* Mobile 기능 소개 섹션 */
-            .section-padding {
-                padding: 70px 0;
+            .tools-grid {
+                grid-template-columns: 1fr;
             }
 
-            .feature-row {
-                flex-direction: column;
-                width: 325px;
-                max-width: 100%;
-                height: auto;
-                gap: 40px;
-                margin: 0 auto;
+            .tool-item {
+                border-right: none !important;
+                border-bottom: 1px solid #e0e0e0 !important;
             }
 
-            .feature-row.reverse {
-                flex-direction: column;
+            .tool-item:last-child {
+                border-bottom: none !important;
             }
 
-            .feature-row.reverse .feature-img {
-                justify-content: center;
-            }
-
-            .feature-text {
-                width: 325px;
-                text-align: left;
-                padding: 0;
-            }
-
-            .feature-img {
-                width: 325px;
-                display: flex;
-                justify-content: center;
-            }
-
-            .feature-img img {
-                width: 281px;
-                height: auto;
-                margin: 0 auto;
-            }
-
-            .feature-text h2 {
-                /* 첫번째 타이틀: Bold 22px */
-                font-size: 22px;
-                font-weight: 700;
-                line-height: 44px;
-                text-align: left;
-            }
-
-            .feature-text h2 span.text-blue {
-                /* 두번째 타이틀: Bold 36px, line-height 44px */
-                font-size: 36px;
-                font-weight: 700;
-                line-height: 44px;
-                display: block;
-            }
-
-            .feature-text p {
-                /* 본문: 상단 24px, Medium 18px, line-height 30px */
-                margin-top: 24px;
-                font-size: 18px;
-                font-weight: 500;
-                line-height: 30px;
-            }
-
-            /* Mobile 하단 CTA */
-            .bottom-cta {
-                background: radial-gradient(79.39% 55.45% at 50% 100%, #2F8DD5 17.63%, #5FCDF9 55%, #FFFFFF 100%);
-                height: auto;
-                padding: 80px 20px;
-                gap: 40px;
-            }
-
-            .bottom-cta h2 {
-                color: #000000;
-                /* MD: Font 24px */
-                font-size: 24px;
-                font-weight: 500;
-                line-height: 1.33;
-            }
-
-            /* Mobile Footer */
             footer {
-                padding: 30px 20px 120px 20px;
-                text-align: left;
+                padding: 40px 20px;
             }
 
             .footer-content {
-                width: 355px;
-                max-width: 100%;
                 padding: 0;
-                gap: 0;
-            }
-
-            .footer-logo {
-                margin-bottom: 20px;
             }
 
             .footer-logo img {
@@ -779,17 +1255,11 @@
                 height: 30px;
             }
 
-            .footer-info-top {
-                margin-bottom: 30px;
-                gap: 4px;
-            }
-
             .info-row {
                 flex-direction: column;
                 align-items: flex-start;
                 gap: 4px;
                 font-size: 14px;
-                font-weight: 500;
                 line-height: 18px;
             }
 
@@ -799,15 +1269,12 @@
 
             .info-row.info-row-inline {
                 flex-direction: row;
-                align-items: center;
                 gap: 8px;
             }
 
             .info-row.info-row-inline .divider {
                 display: block;
-                width: 1px;
                 height: 10px;
-                background: #777777;
             }
 
             .footer-info-bottom {
@@ -821,36 +1288,18 @@
                 align-items: flex-start;
                 gap: 4px;
                 font-size: 14px;
-                font-weight: 500;
-                line-height: 18px;
-            }
-
-            .footer-bottom-left a {
-                font-size: 14px;
-                font-weight: 500;
-                line-height: 18px;
             }
 
             .footer-bottom-left .divider {
                 display: none;
             }
 
-            .footer-links-row {
-                display: flex;
-                gap: 8px;
-                align-items: center;
-                margin-top: 30px;
-            }
-
             .footer-links-row .divider {
-                display: block;
                 height: 10px;
             }
 
             .copyright {
                 font-size: 12px;
-                font-weight: 400;
-                line-height: 16px;
             }
 
             .pc-only {
@@ -860,45 +1309,395 @@
             .mobile-only {
                 display: block;
             }
+        }
 
-            /* Mobile 고객센터 바 */
-            .contact-bar {
-                height: 90px;
-                padding: 0 16px;
-            }
+        /* 3D and Pop Animations */
+        @keyframes popIn {
+            0% { transform: scale(0.92); opacity: 0; }
+            70% { transform: scale(1.03); }
+            100% { transform: scale(1); opacity: 1; }
+        }
 
-            .contact-bar-inner {
-                flex-direction: row;
-                justify-content: space-between;
-                align-items: center;
-                gap: 0;
-                padding: 0;
-                width: 100%;
-            }
+        @keyframes sonar {
+            0% { transform: scale(1); opacity: 0.8; }
+            100% { transform: scale(2.2); opacity: 0; }
+        }
 
-            .contact-bar-text {
-                font-family: 'Pretendard', sans-serif;
-                font-size: 18px;
-                font-weight: 700;
-                line-height: 24px;
-                text-align: left;
-            }
+        .pop-card {
+            animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.15) forwards;
+        }
 
-            .btn-contact {
-                width: 48px;
-                height: 48px;
-                padding: 0;
-                border-radius: 27px;
-            }
+        /* Posture Simulator Styling */
+        .posture-simulator {
+            position: relative;
+            background: linear-gradient(145deg, #0e1e38 0%, #061126 100%);
+            border-radius: 24px;
+            border: 1px solid rgba(95, 205, 249, 0.2);
+            padding: 32px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
 
-            .btn-contact span {
-                display: none;
-            }
+        .posture-canvas-wrap {
+            position: relative;
+            width: 100%;
+            height: 280px;
+            background: radial-gradient(circle at 50% 50%, #102640 0%, #071529 100%);
+            border-radius: 16px;
+            border: 1px solid rgba(95, 205, 249, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
 
-            .btn-contact svg {
-                width: 32px;
-                height: 32px;
-            }
+        /* Skeletal graphic representation */
+        .skeletal-svg {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+        }
+
+        .skeletal-bg-image {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.4;
+            mix-blend-mode: luminosity;
+            filter: blur(2px);
+            z-index: 1;
+        }
+
+        .skeletal-dot {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--cyan);
+            border: 2px solid var(--white);
+            cursor: pointer;
+            z-index: 10;
+            box-shadow: 0 0 10px var(--cyan);
+            transition: transform 0.2s, background-color 0.2s;
+        }
+
+        .skeletal-dot::after {
+            content: '';
+            position: absolute;
+            inset: -8px;
+            border-radius: 50%;
+            border: 2.5px solid var(--cyan);
+            animation: sonar 1.8s infinite;
+        }
+
+        .skeletal-dot:hover {
+            transform: scale(1.3);
+            background: var(--yellow);
+            box-shadow: 0 0 15px var(--yellow);
+        }
+
+        .posture-panel {
+            background: rgba(18, 40, 71, 0.6);
+            border-radius: 12px;
+            padding: 16px 20px;
+            border: 1px solid rgba(95, 205, 249, 0.08);
+            transition: all 0.3s;
+        }
+
+        .posture-panel-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .posture-part-name {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--white);
+        }
+
+        .posture-status-badge {
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--cyan);
+            background: rgba(95, 205, 249, 0.15);
+            padding: 3px 8px;
+            border-radius: 999px;
+            text-transform: uppercase;
+        }
+
+        .posture-panel-body p {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.5;
+        }
+
+        /* 5-Step Simulator Style */
+        .step-simulator {
+            background: var(--white);
+            border-radius: 24px;
+            border: 1px solid rgba(46, 140, 213, 0.12);
+            padding: 32px;
+            box-shadow: 0 20px 48px rgba(46, 140, 213, 0.08);
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .step-tabs {
+            display: flex;
+            gap: 6px;
+            overflow-x: auto;
+            padding-bottom: 6px;
+            border-bottom: 1.5px solid #eaeaea;
+        }
+
+        /* Hide scrollbars for tabs */
+        .step-tabs::-webkit-scrollbar {
+            display: none;
+        }
+        .step-tabs {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        .step-tab {
+            padding: 10px 16px;
+            border-radius: 999px;
+            font-size: 13px;
+            font-weight: 700;
+            background: #f5f7fa;
+            color: #555;
+            cursor: pointer;
+            white-space: nowrap;
+            border: none;
+            transition: background 0.2s, color 0.2s;
+        }
+
+        .step-tab:hover {
+            background: #eef2f5;
+        }
+
+        .step-tab.active {
+            background: var(--blue);
+            color: var(--white);
+            box-shadow: 0 4px 12px rgba(46, 140, 213, 0.3);
+        }
+
+        .simulator-content-box {
+            min-height: 240px;
+        }
+
+        .step-sim-card {
+            display: none;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .step-sim-card.active {
+            display: flex;
+        }
+
+        .step-header-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .step-label-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #000;
+        }
+
+        .step-duration-badge {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--blue);
+            background: var(--sky);
+            padding: 4px 10px;
+            border-radius: 8px;
+        }
+
+        .step-exercise-name {
+            font-size: 15px;
+            font-weight: 600;
+            color: #555;
+            padding-bottom: 8px;
+            border-bottom: 1px dashed #eaeaea;
+        }
+
+        .step-details-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+
+        .step-detail-item {
+            background: #f8fafc;
+            padding: 10px 14px;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .step-detail-label {
+            font-size: 11px;
+            color: #777;
+            font-weight: 600;
+        }
+
+        .step-detail-val {
+            font-size: 14px;
+            font-weight: 700;
+            color: #000;
+        }
+
+        .step-cue-box {
+            background: #fff8eb;
+            border-left: 3.5px solid var(--yellow);
+            padding: 12px 16px;
+            border-radius: 4px 10px 10px 4px;
+            font-size: 13.5px;
+            line-height: 1.6;
+            color: #7a5c00;
+            word-break: keep-all;
+        }
+
+        /* ROI Calculator Style */
+        .calculator-container {
+            margin-top: 56px;
+            background: linear-gradient(135deg, rgba(12, 31, 61, 0.8) 0%, rgba(7, 20, 40, 0.95) 100%);
+            border: 1.5px solid rgba(95, 205, 249, 0.2);
+            border-radius: 24px;
+            padding: 36px 40px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+            display: flex;
+            flex-direction: column;
+            gap: 28px;
+            position: relative;
+        }
+
+        .calculator-title {
+            text-align: center;
+        }
+
+        .calculator-title h3 {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 6px;
+        }
+
+        .calculator-title p {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.65);
+        }
+
+        .calculator-slider-box {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .slider-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .slider-label {
+            font-size: 15px;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.85);
+        }
+
+        .slider-current-val {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--cyan);
+        }
+
+        .calculator-slider {
+            width: 100%;
+            height: 6px;
+            -webkit-appearance: none;
+            appearance: none;
+            background: rgba(255, 255, 255, 0.12);
+            border-radius: 999px;
+            outline: none;
+        }
+
+        .calculator-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            background: var(--cyan);
+            border: 3px solid var(--white);
+            cursor: pointer;
+            box-shadow: 0 0 12px rgba(95, 205, 249, 0.6);
+            transition: transform 0.15s;
+        }
+
+        .calculator-slider::-webkit-slider-thumb:hover {
+            transform: scale(1.15);
+        }
+
+        .calc-result-box {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            padding: 24px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .calc-result-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .calc-bonus-revenue {
+            font-size: clamp(30px, 4vw, 44px);
+            font-weight: 800;
+            color: var(--yellow);
+            line-height: 1.2;
+            text-shadow: 0 0 20px rgba(255, 225, 0, 0.3);
+            transition: transform 0.2s;
+        }
+
+        .calc-celebrate-badge {
+            background: rgba(255, 225, 0, 0.12);
+            border: 1px solid var(--yellow);
+            color: var(--yellow);
+            font-size: 12px;
+            font-weight: 700;
+            padding: 4px 12px;
+            border-radius: 999px;
+            display: inline-block;
+            margin-top: 8px;
+            opacity: 0;
+            transform: translateY(10px) scale(0.9);
+            transition: opacity 0.3s, transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .calc-celebrate-badge.show {
+            opacity: 1;
+            transform: translateY(0) scale(1);
         }
     </style>
 </head>
@@ -910,124 +1709,419 @@
             <a href="#" class="logo">
                 <img src="logo.png" alt="SoMa Logo">
             </a>
-
             <div class="header-actions">
                 <a href="/guide" class="btn-guide">사용 가이드</a>
-                <div class="dropdown">
-                    <button class="btn-download">
-                        지금 다운로드
-                        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path
-                                d="M23.7778 16V23.7778H8.22222V16H6V23.7778C6 25 7 26 8.22222 26H23.7778C25 26 26 25 26 23.7778V16H23.7778ZM17.1111 16.7444L19.9889 13.8778L21.5556 15.4444L16 21L10.4444 15.4444L12.0111 13.8778L14.8889 16.7444V6H17.1111V16.7444Z"
-                                fill="white" />
-                        </svg>
-                    </button>
-                    <div class="dropdown-content">
-                        <a href="https://apps.apple.com/kr/app/%EC%86%8C%EB%A7%88/id6753277300" target="_blank">iOS
-                            다운로드하기</a>
-                        <a href="https://play.google.com/store/apps/details?id=com.somaai.somaai&pcampaignid=web_share&pli=1"
-                            target="_blank">AOS 다운로드하기</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </header>
-
-    <section class="hero-wrapper reveal">
-        <div class="container hero-content">
-            <div class="hero-title-row">
-                <h1>운동에만 집중하도록,<br>나만의 피트니스 AI</h1>
-                <div class="hero-big-logo">
-                    <img src="logo.png" alt="SoMa AI Big Logo">
-                </div>
-            </div>
-
-            <div class="hero-bottom-group">
-                <p class="hero-sub-text">수업의 진심이 온전히 닿게,<br class="mobile-only"> 필라테스/PT 강사 필수 앱. '소마'</p>
-                <div class="store-buttons">
-                    <a href="https://apps.apple.com/kr/app/%EC%86%8C%EB%A7%88/id6753277300" target="_blank">
+                <div class="header-stores">
+                    <a href="https://apps.apple.com/kr/app/%EC%86%8C%EB%A7%88/id6753277300" target="_blank" class="header-store-btn" aria-label="App Store에서 다운로드 하기">
                         <img src="btn-appstore.png" alt="App Store">
                     </a>
-                    <a href="https://play.google.com/store/apps/details?id=com.somaai.somaai&pcampaignid=web_share&pli=1"
-                        target="_blank">
+                    <a href="https://play.google.com/store/apps/details?id=com.somaai.somaai&pcampaignid=web_share&pli=1" target="_blank" class="header-store-btn" aria-label="Google Play에서 다운로드 하기">
                         <img src="btn-googleplay.png" alt="Google Play">
                     </a>
                 </div>
             </div>
         </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero reveal">
+        <div class="hero-video-wrap">
+            <video autoplay muted loop playsinline>
+                <source src="hero-clip.mp4" type="video/mp4">
+            </video>
+        </div>
+        <div class="hero-overlay"></div>
+        <div class="hero-inner">
+            <div class="hero-badge" id="openVideoModal" style="cursor: pointer;">
+                <span></span> The Masterpiece of Management ➔
+            </div>
+            <h1>감(感)으로 회원관리하는 시대는 끝났습니다.<br><em>이제 데이터로 수업을 설계할 시간입니다.</em></h1>
+            <p class="hero-sub">AI 초정밀 분석과 24시간 케어로<br class="mobile-only"> 재등록률 90%의 벽을 넘으세요</p>
+            <p class="hero-desc">수천 건의 수업 데이터를 분석해 센터의 수익을 극대화하는<br class="pc-only"> 국내 유일의 AI 피트니스 매니지먼트 SaaS, SoMa AI</p>
+        </div>
     </section>
 
-    <section class="section-padding bg-white">
-        <div class="container feature-row">
-            <div class="feature-text reveal">
-                <h2>수업 관리부터 정산까지,<br><span class="text-blue">강사님의 하루를 AI로<br>완벽하게</span></h2>
-                <p>출석 체크부터 스케줄 조정, 강사료 정산까지<br class="mobile-only"> 귀찮은<br class="pc-only"> '강사 잡무'를 AI가 다 처리해주니, 이제<br
-                        class="mobile-only"> 몸과 마음은<br class="pc-only"> 오직 회원님 케어에만 집중하세요!</p>
-            </div>
-            <div class="feature-img reveal">
-                <img src="feature-1.png" alt="수업 관리 화면">
+    <!-- Video Story -->
+    <section class="video-section">
+        <div class="container">
+            <span class="section-label reveal">Data-Driven Class</span>
+            <h2 class="section-title reveal">기대가 확신이 되는 순간,<br>함께 만들어가는 <span class="text-cyan">변화의 여정</span></h2>
+            <p class="section-desc reveal">과거에는 강사의 '감'에만 의존해 수업을 진행했습니다. 이제 SoMa AI는 관절 0.1°와 영양 타이밍까지 분석하는 차가운 이성(AI)으로, 회원의 실제 몸의 변화라는 따뜻한 현실을 데이터로 증명합니다.</p>
+            <div class="video-grid">
+                <div class="video-player reveal">
+                    <video controls playsinline preload="metadata" poster="">
+                        <source src="hero-clip.mp4" type="video/mp4">
+                    </video>
+                    <div class="video-caption">The Masterpiece of Management — SoMa AI Brand Film</div>
+                </div>
+                <div class="video-points">
+                    <div class="video-point reveal">
+                        <h3>압도적 만족의 시작</h3>
+                        <p>회원이 '제대로 케어받고 있다'고 느끼는 순간, 이탈은 사라집니다. 매 수업 직후 AI 리포트로 객관적인 변화를 회원에게 전달하세요.</p>
+                    </div>
+                    <div class="video-point reveal">
+                        <h3>전문성이 수익이 되는 시스템</h3>
+                        <p>가장 확실한 시스템. 강사의 전문성이 데이터로 증명될 때, 그 가치는 곧바로 센터의 수익으로 직결됩니다.</p>
+                    </div>
+                    <div class="video-point reveal">
+                        <h3>24시간 연결된 케어</h3>
+                        <p>센터 안의 운동을 넘어 일상의 식단과 홈워크까지 AI가 밀착 관리합니다. 회원은 "나를 가장 잘 아는 센터"라고 확신하게 됩니다.</p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <section class="section-padding bg-sky">
-        <div class="container feature-row reverse">
-            <div class="feature-text reveal">
-                <h2>비포애프터 눈대중은 그만.<br><span class="text-blue">AI가 분석하는<br>회원 체형 리포트</span></h2>
-                <p>그냥 '좋아졌네요' 대신, AI가 회원님 체형 변화<br class="mobile-only">를 객관적<br class="pc-only">인 수치와 이미지로 정밀 분석해줘요.<br
-                        class="mobile-only"> 비포/애프터 리포트<br class="pc-only"> 퀄리티가 확 올라가서 프로<br class="mobile-only">페셔널함이
-                    남달라집니다.</p>
+    <!-- Why SoMa -->
+    <section class="why-section">
+        <div class="container">
+            <div class="why-intro reveal">
+                <span class="section-label">Why SoMa AI</span>
+                <h2 class="section-title">왜 이름이 <span class="text-cyan">SoMa</span>인가요?</h2>
+                <p class="section-desc">'소마(Soma)'는 그리스어로 <strong style="color:#fff;">'내면에서 직접 느끼고 경험하는 생생한 몸과 마음의 통합체'</strong>를 뜻합니다. 우리가 이 이름을 선택한 이유는 피트니스 비즈니스의 가장 핵심적인 '연결'을 완성하기 위해서입니다.</p>
+                <div class="why-name">
+                    <p>SoMa AI는 단순한 회원 관리 프로그램을 넘어, 피트니스 생태계의 <strong>몸과 마음을 가장 완벽하게 연결하는 '지능형 매니지먼트'</strong>입니다. 강사의 감각과 AI의 초정밀 분석이라는 '이성적인 마음'이 회원의 '실제 몸 변화'라는 객관적 데이터로 연결되는 순간, 비로소 압도적인 신뢰와 매출 혁신이 일어납니다.</p>
+                </div>
             </div>
-            <div class="feature-img reveal">
-                <img src="feature-2.png" alt="체형 분석 화면">
-            </div>
-        </div>
-    </section>
-
-    <section class="section-padding bg-white">
-        <div class="container feature-row">
-            <div class="feature-text reveal">
-                <h2>매월 기다려지는 투명한 급여 명세서,<br><span class="text-blue">복잡한 페이롤 계산,<br>소마가 1초 만에</span></h2>
-                <p>내 페이, 계산기 두드릴 필요 없어요!<br>복잡한 페이롤 계산, 전부 소마 AI에 맡기세요.<br class="mobile-only"> 투명하고<br class="pc-only">
-                    정확한 급여 명세서가 1초 만에 PDF<br class="mobile-only">로 생성됩니다.</p>
-            </div>
-            <div class="feature-img reveal">
-                <img src="feature-3.png" alt="급여 명세서 화면">
-            </div>
-        </div>
-    </section>
-
-    <section class="section-padding bg-sky">
-        <div class="container feature-row reverse">
-            <div class="feature-text reveal">
-                <h2>종이장부, 엑셀파일?<br><span class="text-blue">업로드 한 번이면<br>회원 등록 끝</span></h2>
-                <p>종이 장부, 복잡한 엑셀 파일에 흩어진 회원 정<br class="mobile-only">보들, 그냥<br class="pc-only"> 사진 찍듯 소마앱에 한 번만 올리면<br
-                        class="mobile-only"> 끝! 모든 정보가 AI로<br class="pc-only"> 깔끔하게 정리되어 관리<br class="mobile-only"> 시간이
-                    반으로 줄어듭니다.</p>
-            </div>
-            <div class="feature-img reveal">
-                <img src="feature-4.png" alt="회원 등록 화면">
+            <div class="connection-cards">
+                <div class="connection-card reveal">
+                    <div class="connection-step">01</div>
+                    <div class="layer-tag">Business Layer · 운영의 본질</div>
+                    <h3>센터(몸) + 소프트웨어(마음)</h3>
+                    <div class="formula">오프라인 센터(하드웨어) × SoMa AI(뇌)</div>
+                    <p>아무리 인테리어가 멋진 센터(몸)라도, 이를 효율적으로 움직이는 시스템(마음)이 없다면 운영은 멈춥니다. SoMa AI는 오프라인이라는 육체에 '지능'이라는 마음을 이식해, 매출과 운영을 극대화하는 두뇌 역할을 합니다.</p>
+                </div>
+                <div class="connection-card reveal">
+                    <div class="connection-step">02</div>
+                    <div class="layer-tag">Service Layer · 데이터 기반 수업</div>
+                    <h3>AI 데이터(마음) + 회원의 몸(몸)</h3>
+                    <div class="formula">AI 초정밀 분석(인지) × 신체 변화(물질)</div>
+                    <p>관절 0.1°와 영양 타이밍을 분석하는 '차가운 이성(AI)'이, 거북목 교정과 골격근량 변화 같은 '따뜻한 현실(회원의 몸)'을 데이터로 증명합니다. 몸과 마음이 실시간으로 상호작용하는 장을 만듭니다.</p>
+                </div>
+                <div class="connection-card reveal">
+                    <div class="connection-step">03</div>
+                    <div class="layer-tag">Philosophical Layer · 소마틱스 철학</div>
+                    <h3>전문성(마음) + 라이프스타일(삶)</h3>
+                    <div class="formula">강사 노하우 × 회원의 24시간 일상</div>
+                    <p>진정한 소마틱스(Somatics)는 센터 문 안에서 끝나지 않습니다. 수업 후 일상의 식단과 홈워크까지 AI가 24시간 함께할 때, 회원은 "나를 가장 잘 아는 센터"라는 깊은 신뢰를 느낍니다.</p>
+                </div>
             </div>
         </div>
     </section>
 
-    <section class="section-padding bg-white">
-        <div class="container feature-row">
-            <div class="feature-text reveal">
-                <h2>놓치는 회원 없이 꽉 잡으세요.<br><span class="text-blue">재등록 확률 예측으로<br>매출 상승</span></h2>
-                <p>곧 이탈할 것 같은 회원님, 재등록 시기 놓칠 것<br class="mobile-only"> 같은<br class="pc-only"> 회원님을 AI가 똑똑하게 미리 알려줘요.<br
-                        class="mobile-only"> 놓치는 회원<br class="pc-only"> 없이 싹 다 관리해서 내 레슨 매출<br class="mobile-only">도
-                    안정적으로 Up!</p>
+    <!-- 6 Pillars -->
+    <section class="pillars-section">
+        <div class="container">
+            <div class="pillars-header reveal">
+                <span class="section-label" style="color:var(--blue);">Core Value</span>
+                <h2 class="section-title">데이터가 만드는 <span class="text-blue">6가지 압도적 가치</span></h2>
+                <p class="section-desc-dark">감(感)이 아닌 데이터로, 회원의 몸과 마음을 연결하는 SoMa AI만의 핵심 기능</p>
             </div>
-            <div class="feature-img reveal">
-                <img src="feature-5.png" alt="재등록 예측 화면">
+            <div class="pillars-grid">
+                <div class="pillar-card reveal">
+                    <div class="pillar-num">01</div>
+                    <h3>초정밀 분석으로 완성되는 충성도</h3>
+                    <p>관절 0.1° 단위의 영상 분석과 식단 타이밍 최적화로, 회원이 "나를 가장 잘 아는 센터"라고 느끼게 합니다.</p>
+                </div>
+                <div class="pillar-card reveal">
+                    <div class="pillar-num">02</div>
+                    <h3>24시간 밀착 관리</h3>
+                    <p>액션 아이템(홈워크)과 맞춤형 영양 전략으로 센터의 케어가 회원의 일상까지 자연스럽게 닿습니다.</p>
+                </div>
+                <div class="pillar-card reveal">
+                    <div class="pillar-num">03</div>
+                    <h3>데이터로 증명하는 신뢰</h3>
+                    <p>'좋아졌어요' 같은 주관적 평가 대신, AI가 산출한 종합 점수와 세부 지표로 객관적 변화를 시각화합니다.</p>
+                </div>
+                <div class="pillar-card reveal">
+                    <div class="pillar-num">04</div>
+                    <h3>재등록률 90%의 과학</h3>
+                    <p>AI가 신체 변화를 종합적으로 진단하고 다음 수업을 자동 설계합니다. 강사 경력과 무관하게 일관된 고품질 수업이 보장됩니다.</p>
+                </div>
+                <div class="pillar-card reveal">
+                    <div class="pillar-num">05</div>
+                    <h3>상담 전환율 혁신</h3>
+                    <p>신규 상담 시 초정밀 AI 리포트를 제시하는 것만으로, 경쟁 센터와 차별화된 프리미엄 이미지를 각인시킵니다.</p>
+                </div>
+                <div class="pillar-card reveal">
+                    <div class="pillar-num">06</div>
+                    <h3>강사 역량의 시스템화</h3>
+                    <p>10년 이상 경력 강사의 노하우가 AI 프롬프트에 내장되어, 신입 강사도 베테랑 수준의 수업을 즉시 구현할 수 있습니다.</p>
+                </div>
             </div>
         </div>
     </section>
 
+    <!-- Data Analysis -->
+    <section class="data-section">
+        <div class="container">
+            <span class="section-label reveal">AI Analysis</span>
+            <h2 class="section-title reveal">재등록의 확신은 '느낌'이 아닌<br><span class="text-cyan">'데이터'</span>에서 나옵니다</h2>
+            <div class="data-grid">
+                <!-- Left: Posture Simulator -->
+                <div class="posture-simulator reveal">
+                    <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 12px; margin-bottom: 8px;">
+                        <span style="font-size: 11px; font-weight: 700; color: var(--cyan); letter-spacing: 1px; text-transform: uppercase;">Real-Time AI Vision Core</span>
+                        <span style="font-size: 11px; color: rgba(255,255,255,0.4);">마커를 클릭해 실시간 각도 측정을 체험하세요</span>
+                    </div>
+                    <div class="posture-canvas-wrap">
+                        <svg class="skeletal-svg" viewBox="0 0 300 280">
+                            <defs>
+                                <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
+                                    <path d="M 20 0 L 0 0 0 20" fill="none" stroke="rgba(95, 205, 249, 0.08)" stroke-width="1"/>
+                                </pattern>
+                            </defs>
+                            <rect width="100%" height="100%" fill="url(#grid)" />
+                            
+                            <!-- Skeleton lines -->
+                            <line id="skeletal-line-1" x1="150" y1="45" x2="135" y2="100" stroke="rgba(95, 205, 249, 0.4)" stroke-width="3" stroke-dasharray="4 2" />
+                            <line id="skeletal-line-2" x1="135" y1="100" x2="160" y2="180" stroke="rgba(95, 205, 249, 0.4)" stroke-width="3" />
+                            <line id="skeletal-line-3" x1="160" y1="180" x2="145" y2="245" stroke="rgba(95, 205, 249, 0.4)" stroke-width="3" />
+                            
+                            <!-- Joint Arc helper -->
+                            <path d="M 125,65 Q 140,80 150,100" fill="none" stroke="var(--yellow)" stroke-width="1.5" stroke-dasharray="2 2" />
+                        </svg>
+                        
+                        <!-- Pinging skeleton dots -->
+                        <div class="skeletal-dot" id="dot-neck" style="left: calc(150px / 300px * 100% - 6px); top: calc(45px / 280px * 100% - 6px);" data-part="neck"></div>
+                        <div class="skeletal-dot" id="dot-shoulder" style="left: calc(135px / 300px * 100% - 6px); top: calc(100px / 280px * 100% - 6px);" data-part="shoulder"></div>
+                        <div class="skeletal-dot" id="dot-pelvis" style="left: calc(160px / 300px * 100% - 6px); top: calc(180px / 280px * 100% - 6px);" data-part="pelvis"></div>
+                        <div class="skeletal-dot" id="dot-knee" style="left: calc(145px / 300px * 100% - 6px); top: calc(245px / 280px * 100% - 6px);" data-part="knee"></div>
+                        
+                        <div style="position: absolute; color: rgba(255,255,255,0.15); font-size: 10px; font-family: monospace; bottom: 8px; left: 12px; z-index: 5;">
+                            CAMERA CALIBRATION: OK<br>LATENCY: 1.4ms
+                        </div>
+                        <div style="position: absolute; color: rgba(255,255,255,0.15); font-size: 10px; font-family: monospace; bottom: 8px; right: 12px; z-index: 5; text-align: right;">
+                            SOMA AI VISION v2.4<br>SENSITIVITY: 99.8%
+                        </div>
+                    </div>
+                    
+                    <div class="posture-panel pop-card" id="posturePanel">
+                        <div class="posture-panel-header">
+                            <span class="posture-part-name" id="posturePartName">경추 정렬 분석 (Cervical Spine)</span>
+                            <span class="posture-status-badge" id="postureStatusBadge" style="color: var(--cyan); background: rgba(95, 205, 249, 0.15); border: 1px solid rgba(95, 205, 249, 0.2);">실시간 연동 중</span>
+                        </div>
+                        <div class="posture-panel-body">
+                            <p id="postureDesc">위의 초정밀 AI 마커(하늘색 점)를 클릭하여 관절 부하 및 대칭도 분석을 실시간으로 확인해보세요. SoMa AI는 관절 0.1°까지 추적하여 부상 없는 완벽한 정렬을 제안합니다.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: 5-Step Lesson Sequence Simulator -->
+                <div class="step-simulator reveal">
+                    <div style="display: flex; justify-content: space-between; align-items: center; padding-bottom: 4px;">
+                        <span style="font-size: 11px; font-weight: 700; color: var(--blue); letter-spacing: 1px; text-transform: uppercase;">AI LESSON SEQUENCE PROPOSAL</span>
+                        <span style="font-size: 11px; color: #777; font-weight: 600;">50분 자동 설계 솔루션</span>
+                    </div>
+                    <div class="step-tabs">
+                        <button class="step-tab active" data-step="1">1. 워밍업</button>
+                        <button class="step-tab" data-step="2">2. 인지</button>
+                        <button class="step-tab" data-step="3">3. 강화 1</button>
+                        <button class="step-tab" data-step="4">4. 강화 2</button>
+                        <button class="step-tab" data-step="5">5. 쿨다운</button>
+                    </div>
+                    <div class="simulator-content-box">
+                        <!-- Step 1 Card -->
+                        <div class="step-sim-card active" id="step-card-1">
+                            <div class="step-header-row">
+                                <div class="step-label-title">1단계: 전신 순환 &amp; 웜업</div>
+                                <span class="step-duration-badge">8분 (0-8min)</span>
+                            </div>
+                            <div class="step-exercise-name">캣 카우 스트레칭 (Cat-Cow Stretch) with AI 호흡 보조</div>
+                            <div class="step-details-grid">
+                                <div class="step-detail-item">
+                                    <span class="step-detail-label">타겟 근육 / 목적</span>
+                                    <span class="step-detail-val">척추 가동성, 코어 활성화</span>
+                                </div>
+                                <div class="step-detail-item">
+                                    <span class="step-detail-label">수행 가이드</span>
+                                    <span class="step-detail-val">2세트 × 12회 (템포 4-1-4)</span>
+                                </div>
+                            </div>
+                            <div class="step-cue-box">
+                                <strong>💡 강사용 AI 티칭 큐 (Verbal Cue):</strong><br>
+                                "숨을 들이마시며 척추를 하나하나 바닥으로 내리고, 내쉬는 호흡에 꼬리뼈부터 정수리까지 둥글게 말아 천장 방향으로 밀어 올립니다."
+                            </div>
+                        </div>
+                        
+                        <!-- Step 2 Card -->
+                        <div class="step-sim-card" id="step-card-2">
+                            <div class="step-header-row">
+                                <div class="step-label-title">2단계: 정렬 및 관절 움직임 인지</div>
+                                <span class="step-duration-badge">10분 (8-18min)</span>
+                            </div>
+                            <div class="step-exercise-name">펠빅 클락 (Pelvis Clock) 골반 대칭 정밀 정렬</div>
+                            <div class="step-details-grid">
+                                <div class="step-detail-item">
+                                    <span class="step-detail-label">타겟 근육 / 목적</span>
+                                    <span class="step-detail-val">골반 중립 밸런스 인지</span>
+                                </div>
+                                <div class="step-detail-item">
+                                    <span class="step-detail-label">수행 가이드</span>
+                                    <span class="step-detail-val">1세트 × 5분 (정교한 등척성)</span>
+                                </div>
+                            </div>
+                            <div class="step-cue-box">
+                                <strong>💡 강사용 AI 티칭 큐 (Verbal Cue):</strong><br>
+                                "골반을 시계 방향으로 12시, 6시, 3시, 9시 방향으로 미세하게 움직이며, 양쪽 골반뼈가 바닥과 수평을 이루는지 스스로 감각해보세요."
+                            </div>
+                        </div>
+                        
+                        <!-- Step 3 Card -->
+                        <div class="step-sim-card" id="step-card-3">
+                            <div class="step-header-row">
+                                <div class="step-label-title">3단계: 주동근 근력 강화 (메인)</div>
+                                <span class="step-duration-badge">12분 (18-30min)</span>
+                            </div>
+                            <div class="step-exercise-name">브릿지 (Pelvic Bridge) with 내전근 서포트</div>
+                            <div class="step-details-grid">
+                                <div class="step-detail-item">
+                                    <span class="step-detail-label">타겟 근육 / 목적</span>
+                                    <span class="step-detail-val">둔근, 햄스트링, 기립근</span>
+                                </div>
+                                <div class="step-detail-item">
+                                    <span class="step-detail-label">수행 가이드</span>
+                                    <span class="step-detail-val">3세트 × 15회 (RPE 7-8)</span>
+                                </div>
+                            </div>
+                            <div class="step-cue-box">
+                                <strong>💡 강사용 AI 티칭 큐 (Verbal Cue):</strong><br>
+                                "발가락 전체로 바닥을 꽉 움켜쥐며 골반을 들어올리세요. 허리가 꺾이지 않도록 아랫배를 등 쪽으로 납작하게 붙이는 느낌을 유지합니다."
+                            </div>
+                        </div>
+                        
+                        <!-- Step 4 Card -->
+                        <div class="step-sim-card" id="step-card-4">
+                            <div class="step-header-row">
+                                <div class="step-label-title">4단계: 협력근 및 복합 기능 강화</div>
+                                <span class="step-duration-badge">12분 (30-42min)</span>
+                            </div>
+                            <div class="step-exercise-name">버드 독 (Bird-Dog Cross Pattern Balance)</div>
+                            <div class="step-details-grid">
+                                <div class="step-detail-item">
+                                    <span class="step-detail-label">타겟 근육 / 목적</span>
+                                    <span class="step-detail-val">후면 사슬 근육 복합 통합</span>
+                                </div>
+                                <div class="step-detail-item">
+                                    <span class="step-detail-label">수행 가이드</span>
+                                    <span class="step-detail-val">3세트 × 10회 (버티기 3초)</span>
+                                </div>
+                            </div>
+                            <div class="step-cue-box">
+                                <strong>💡 강사용 AI 티칭 큐 (Verbal Cue):</strong><br>
+                                "오른팔과 왼발을 뻗을 때, 등이 기울어지지 않도록 중심을 유지하세요. 몸통이 물 위에 떠 있는 배처럼 흔들리지 않게 고정합니다."
+                            </div>
+                        </div>
+                        
+                        <!-- Step 5 Card -->
+                        <div class="step-sim-card" id="step-card-5">
+                            <div class="step-header-row">
+                                <div class="step-label-title">5단계: 회복 및 쿨다운 정렬</div>
+                                <span class="step-duration-badge">8분 (42-50min)</span>
+                            </div>
+                            <div class="step-exercise-name">이상근 신장성 이완 (Glute &amp; Piriformis Stretch)</div>
+                            <div class="step-details-grid">
+                                <div class="step-detail-item">
+                                    <span class="step-detail-label">타겟 근육 / 목적</span>
+                                    <span class="step-detail-val">둔근 이완, 자율신경 회복</span>
+                                </div>
+                                <div class="step-detail-item">
+                                    <span class="step-detail-label">수행 가이드</span>
+                                    <span class="step-detail-val">양쪽 각 1분 유지 (RPE 3-4)</span>
+                                </div>
+                            </div>
+                            <div class="step-cue-box">
+                                <strong>💡 강사용 AI 티칭 큐 (Verbal Cue):</strong><br>
+                                "몸의 힘을 완전히 빼고 호흡에만 집중합니다. 들이쉴 때 갈비뼈를 옆으로 부풀리고, 내쉴 때 온몸의 긴장을 바닥으로 완전히 내려놓으세요."
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="stats-header reveal">
+                <span class="section-label">Proven Results</span>
+                <h2 class="section-title">매출과 재등록률의 혁신,<br><span class="text-cyan">실제 업장에서 숫자로 증명</span></h2>
+                <p class="stats-note">* 서울 하늘핏 필라테스 3개 지점 POC 테스트 결과 (테스트 기간 3개월)</p>
+            </div>
+            <div class="stats-grid">
+                <div class="stat-card reveal">
+                    <div class="stat-label">압도적인 재등록률 ↑</div>
+                    <div class="stat-value">92%</div>
+                    <p class="stat-desc">주관적 관리에서 AI 데이터 기반 관리로 전환한 결과, 회원 이탈을 획기적으로 줄여 업계 최고 수준의 재등록률을 달성했습니다.</p>
+                </div>
+                <div class="stat-card reveal">
+                    <div class="stat-label">상담 등록률 폭발적 상승 ↑</div>
+                    <div class="stat-value">+40%</div>
+                    <p class="stat-desc">신규 상담 시 SoMa AI의 초정밀 분석 리포트를 제시하는 것만으로 전문성이 각인되어, 자발적인 등록 결정으로 이어졌습니다.</p>
+                </div>
+                <div class="stat-card reveal">
+                    <div class="stat-label">센터 매출 수직 상승 ↑</div>
+                    <div class="stat-value">+30%</div>
+                    <p class="stat-desc">재등록과 신규 등록이 동시에 상승하며 차원이 다른 매출 혁신을 이뤘습니다. SoMa AI가 설계한 '수익의 인과관계'입니다.</p>
+                </div>
+            </div>
+
+            <!-- Interactive ROI Calculator -->
+            <div class="calculator-container reveal">
+                <div class="calculator-title">
+                    <h3>💰 우리 센터 예상 매출 상승액 계산기</h3>
+                    <p>현재 매출을 입력하고 SoMa AI 도입 시 기대할 수 있는 연간 추가 매출 상승을 확인하세요.</p>
+                </div>
+                <div class="calculator-slider-box">
+                    <div class="slider-header">
+                        <span class="slider-label">우리 센터 월 매출 (만원)</span>
+                        <span class="slider-current-val" id="sliderVal">3,000 만원</span>
+                    </div>
+                    <input type="range" class="calculator-slider" id="revenueSlider" min="500" max="10000" step="500" value="3000">
+                </div>
+                <div class="calc-result-box">
+                    <span class="calc-result-title">SoMa AI 도입 시 기대되는 연간 보너스 매출 상승액은?</span>
+                    <div class="calc-bonus-revenue" id="bonusRevenue">➔ +10,800만원</div>
+                    <div class="calc-celebrate-badge" id="calcBadge">지역 1위 전문 센터로 대도약! 🚀</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Management Tools -->
+    <section class="tools-section">
+        <div class="container">
+            <div class="tools-header reveal">
+                <span class="section-label" style="color:var(--blue);">Smart Management</span>
+                <h2 class="section-title">매출에만 집중하세요</h2>
+                <p>운영의 번거로움은 SoMa AI가 모두 해결해드립니다</p>
+            </div>
+            <div class="tools-grid">
+                <div class="tool-item reveal">
+                    <h3>센터 전용 스마트 단톡방</h3>
+                    <p>강사와 관리자가 실시간으로 내부 정보를 공유하는 전용 채널. 개인 메신저와 완벽히 분리된 프로페셔널한 소통 환경을 제공합니다.</p>
+                </div>
+                <div class="tool-item reveal">
+                    <h3>강사별 만료 임박 회원 트래커</h3>
+                    <p>강사별 회원의 잔여 일수와 횟수를 실시간으로 추적합니다. 재등록 골든타임을 놓치지 않는 정밀 타겟 관리가 가능해집니다.</p>
+                </div>
+                <div class="tool-item reveal">
+                    <h3>강사 퍼포먼스 대시보드</h3>
+                    <p>강사별 재등록률·수업 횟수·매출 지표를 한눈에 확인하세요. 데이터 기반의 객관적 평가와 보상 체계가 센터의 성장을 가속화합니다.</p>
+                </div>
+                <div class="tool-item reveal">
+                    <h3>홈 &amp; 채팅 통합 예약 시스템</h3>
+                    <p>홈 화면과 채팅창에서 곧바로 예약을 처리할 수 있습니다. 다수 회원의 중복 예약을 일일이 정리하던 번거로움이 사라집니다.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bottom CTA -->
     <section class="bottom-cta reveal">
-        <h2>수업의 진심이 온전히 닿게,<br class="mobile-only"> 필라테스/PT 강사 필수 앱. '소마'</h2>
-
+        <h2>몸과 마음, 센터와 일상을 연결하는<br class="mobile-only"> 지능형 매니지먼트</h2>
+        <p>데이터로 설계되는 수업, 지금 SoMa AI와 함께 시작하세요</p>
         <div class="store-buttons">
             <a href="https://apps.apple.com/kr/app/%EC%86%8C%EB%A7%88/id6753277300" target="_blank">
                 <img src="btn-appstore.png" alt="App Store">
@@ -1039,30 +2133,46 @@
         </div>
     </section>
 
-    <!-- 언제든지 상담 바 -->
-    <section class="contact-bar">
-        <div class="contact-bar-inner">
-            <p class="contact-bar-text">언제든지 상담・문의 <br class="mobile-only"><span class="text-yellow">24시간 고객센터</span>
-                0502-1935-5034</p>
-            <a href="tel:0502-1935-5034" class="btn-contact">
-                <span>고객센터 바로연결</span>
-                <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path fill-rule="evenodd" clip-rule="evenodd"
-                        d="M9.27131 6.66303C9.60111 6.69952 9.92053 6.80105 10.2108 6.96186C10.5011 7.12277 10.7569 7.3401 10.9627 7.60053C11.421 8.09895 11.9809 8.61921 12.4403 9.09858L13.0721 9.71967C13.4431 10.0486 13.6726 10.5085 13.7137 11.0038C13.7136 11.4581 13.5458 11.8964 13.244 12.2363C13.0486 12.4739 12.8415 12.7015 12.6229 12.9179L12.4188 13.1318C12.3005 13.2421 12.2103 13.3788 12.1541 13.5302C12.1041 13.6792 12.0836 13.8319 12.0936 13.9882C12.255 14.4204 12.5089 14.8137 12.8358 15.1396C13.3462 15.8316 13.8563 16.433 14.3758 17.0849C15.3154 18.1757 16.43 19.1025 17.6746 19.8261C17.802 19.9194 17.9489 19.9817 18.1043 20.0087C18.2385 20.0187 18.3746 19.9982 18.5008 19.9482C18.8568 19.7386 19.1736 19.4701 19.4383 19.1533C19.7943 18.7173 20.3052 18.4362 20.8641 18.3691C21.4018 18.3765 21.9147 18.5961 22.2908 18.9804C22.4944 19.1529 22.7188 19.3876 22.9334 19.6122L23.2381 19.9267L23.5535 20.2333L24.0946 20.7822C24.4168 21.0683 24.7187 21.3746 25.0008 21.7001C25.2835 22.0911 25.4113 22.5754 25.3573 23.0546C25.2313 23.6192 24.9188 24.1255 24.4705 24.4912C23.9809 24.9878 23.3971 25.3821 22.7537 25.6513C22.1102 25.9206 21.4191 26.0595 20.7215 26.0595H20.3953C18.9313 25.98 17.4977 25.6096 16.1785 24.9697H16.1688C15.863 24.8273 15.5468 24.6851 15.241 24.5117C13.7011 23.6482 12.2883 22.5746 11.0438 21.3222C9.42874 19.8052 8.10341 18.0064 7.13264 16.0146C6.61686 14.9232 6.27277 13.7588 6.11213 12.5624C5.87593 11.3099 6.01809 10.0152 6.52034 8.84369C6.83744 8.31517 7.2248 7.83164 7.6717 7.40717C7.87275 7.1799 8.11826 6.9961 8.39338 6.86811C8.66861 6.74007 8.96785 6.67035 9.27131 6.66303ZM16.5457 9.3935C17.3233 9.39231 18.0937 9.54374 18.8123 9.84076C19.5309 10.1378 20.1834 10.5742 20.7332 11.124C21.2831 11.6738 21.7194 12.3272 22.0164 13.0458C22.3133 13.7643 22.4658 14.5341 22.4647 15.3115C22.4649 15.4118 22.4453 15.5117 22.4071 15.6044C22.3687 15.6973 22.312 15.7815 22.241 15.8525C22.17 15.9235 22.0858 15.9802 21.993 16.0185C21.9002 16.0568 21.8004 16.0764 21.7 16.0761C21.4981 16.0739 21.3047 15.9923 21.1619 15.8496C21.0193 15.7067 20.9384 15.5133 20.9364 15.3115C20.9373 14.7349 20.8244 14.1637 20.6043 13.6308C20.384 13.0976 20.0601 12.6129 19.6522 12.205C19.2444 11.7973 18.7603 11.4741 18.2274 11.2538C17.6942 11.0336 17.1226 10.9208 16.5457 10.9218C16.3431 10.9218 16.149 10.8405 16.0057 10.6972C15.8624 10.5539 15.7811 10.3598 15.7811 10.1572C15.7811 9.95451 15.8624 9.76044 16.0057 9.61713C16.149 9.47384 16.3431 9.3935 16.5457 9.3935ZM16.994 5.94037C18.1775 5.94037 19.3499 6.17369 20.4432 6.6269C21.5363 7.08008 22.5297 7.74381 23.366 8.581C24.2024 9.41832 24.8652 10.413 25.3172 11.5068C25.7692 12.6005 26.0011 13.7726 25.9998 14.956C26.0001 15.0564 25.9805 15.1562 25.9422 15.249C25.9039 15.3416 25.8481 15.4261 25.7772 15.497C25.7062 15.568 25.621 15.6237 25.5281 15.6621C25.4355 15.7003 25.3364 15.7189 25.2362 15.7187C25.0343 15.7166 24.8409 15.6358 24.6981 15.4931C24.5554 15.3505 24.4739 15.1577 24.4715 14.956C24.4731 13.9731 24.2812 12.9993 23.9061 12.0908C23.531 11.1823 22.9804 10.3566 22.286 9.66108C21.5915 8.96554 20.7662 8.41347 19.8582 8.03705C18.9504 7.66074 17.9767 7.46758 16.994 7.46772C16.8915 7.47138 16.789 7.45457 16.6932 7.41791C16.5974 7.38122 16.5102 7.32506 16.4364 7.25385C16.3625 7.18263 16.3036 7.09729 16.2635 7.00287C16.2234 6.90842 16.203 6.80667 16.203 6.70405C16.203 6.60139 16.2234 6.4997 16.2635 6.40522C16.3036 6.31076 16.3625 6.2255 16.4364 6.15424C16.5102 6.08303 16.5974 6.02688 16.6932 5.99018C16.789 5.95352 16.8915 5.93671 16.994 5.94037Z"
-                        fill="#11C711" />
-                </svg>
-            </a>
+    <!-- Floating Contact Widget -->
+    <div class="floating-contact-wrap">
+        <!-- Floating Contact Card -->
+        <div class="floating-contact-card" id="contactCard">
+            <div class="contact-card-header">
+                <h4>상담 및 문의</h4>
+                <span>24시간 운영</span>
+            </div>
+            <div class="contact-card-body">
+                <a href="tel:0502-1935-5034" class="contact-option">
+                    <div class="contact-icon-box">
+                        <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 4.22 6.59 5.66l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+                    </div>
+                    <div class="contact-details">
+                        <span class="contact-label">고객센터 전화연결</span>
+                        <span class="contact-value">0502-1935-5034</span>
+                    </div>
+                </a>
+                <a href="mailto:support@soma.ai.kr" class="contact-option">
+                    <div class="contact-icon-box">
+                        <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                    </div>
+                    <div class="contact-details">
+                        <span class="contact-label">이메일 문의</span>
+                        <span class="contact-value">support@soma.ai.kr</span>
+                    </div>
+                </a>
+            </div>
         </div>
-    </section>
+        <!-- Floating Contact Button -->
+        <button class="floating-contact-btn" id="contactBtn" type="button" aria-label="고객센터 문의하기">
+            <svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"/></svg>
+        </button>
+    </div>
 
     <footer>
         <div class="footer-content">
-            <!-- 로고 -->
             <div class="footer-logo">
                 <img src="logo.png" alt="SoMa Logo">
             </div>
-
-            <!-- 대표~주소 (Regular 20px) -->
             <div class="footer-info-top">
                 <div class="info-row info-row-inline">
                     <span>대표: 이창재</span>
@@ -1083,13 +2193,11 @@
                     <span>주소: 04617 서울특별시 중구 동호로 298 (장충동, 이성빌딩)</span>
                 </div>
             </div>
-
-            <!-- 고객센터~개인정보처리방침 + 카피라이트 (한 줄) -->
             <div class="footer-info-bottom">
                 <div class="footer-bottom-left">
-                    <span class="contact-item">고객센터: <a href="tel:0502-1935-5034">0502-1935-5034</a></span>
+                    <span>고객센터: <a href="tel:0502-1935-5034">0502-1935-5034</a></span>
                     <div class="divider pc-only"></div>
-                    <span class="contact-item">이메일: <a href="mailto:support@soma.ai.kr">support@soma.ai.kr</a></span>
+                    <span>이메일: <a href="mailto:support@soma.ai.kr">support@soma.ai.kr</a></span>
                     <div class="divider pc-only"></div>
                     <div class="footer-links-row">
                         <a href="/terms.html" target="_blank">서비스 이용약관</a>
@@ -1102,23 +2210,219 @@
         </div>
     </footer>
 
+    <!-- Full video modal -->
+    <div class="video-modal" id="videoModal">
+        <div class="video-modal-inner">
+            <button class="modal-close" id="closeVideoModal" type="button">&times;</button>
+            <video id="fullVideo" controls playsinline>
+                <source src="the Masterpiece of Management.mp4" type="video/mp4">
+            </video>
+        </div>
+    </div>
+
     <script>
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
-                }
+                if (entry.isIntersecting) entry.target.classList.add('active');
             });
-        }, {
-            threshold: 0.1
-        });
+        }, { threshold: 0.1 });
 
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
         window.addEventListener('load', () => {
-            const heroElements = document.querySelectorAll('.hero-wrapper.reveal');
-            heroElements.forEach(el => el.classList.add('active'));
+            document.querySelectorAll('.hero.reveal').forEach(el => el.classList.add('active'));
         });
+
+        const header = document.querySelector('header');
+        window.addEventListener('scroll', () => {
+            header.classList.toggle('header-scrolled', window.scrollY > 80);
+        }, { passive: true });
+
+        const modal = document.getElementById('videoModal');
+        const fullVideo = document.getElementById('fullVideo');
+        document.getElementById('openVideoModal').addEventListener('click', () => {
+            modal.classList.add('open');
+            fullVideo.play();
+        });
+        document.getElementById('closeVideoModal').addEventListener('click', () => {
+            modal.classList.remove('open');
+            fullVideo.pause();
+        });
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.classList.remove('open');
+                fullVideo.pause();
+            }
+        });
+
+        // Floating Contact Widget Toggle
+        const contactBtn = document.getElementById('contactBtn');
+        const contactCard = document.getElementById('contactCard');
+
+        contactBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            contactBtn.classList.toggle('active');
+            contactCard.classList.toggle('open');
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!contactCard.contains(e.target) && !contactBtn.contains(e.target)) {
+                contactBtn.classList.remove('active');
+                contactCard.classList.remove('open');
+            }
+        });
+
+        // --- INTERACTIVE POSTURE SIMULATOR ---
+        const dots = document.querySelectorAll('.skeletal-dot');
+        const posturePanel = document.getElementById('posturePanel');
+        const posturePartName = document.getElementById('posturePartName');
+        const postureStatusBadge = document.getElementById('postureStatusBadge');
+        const postureDesc = document.getElementById('postureDesc');
+
+        const postureData = {
+            neck: {
+                title: "경추 정렬 분석 (Cervical Spine)",
+                badge: "거북목 12.4° 개선",
+                badgeColor: "var(--yellow)",
+                badgeBg: "rgba(255, 225, 0, 0.15)",
+                badgeBorder: "rgba(255, 225, 0, 0.3)",
+                desc: "수강 전 회원의 거북목 돌출 각도 12.4°를 실시간으로 감지했습니다. SoMa AI의 경추 교정 맞춤 가이드를 처방한 결과, 경추 관절의 수평 정렬을 회복하며 8.2° 정위 상태로 복원되었습니다."
+            },
+            shoulder: {
+                title: "견관절 및 라운드숄더 교정 (Shoulder Joint)",
+                badge: "대칭성 96% 도달",
+                badgeColor: "var(--cyan)",
+                badgeBg: "rgba(95, 205, 249, 0.15)",
+                badgeBorder: "rgba(95, 205, 249, 0.3)",
+                desc: "좌우 어깨 비대칭과 라운드숄더 불균형을 양측 견갑골 0.1° 스캔으로 정밀하게 추적했습니다. 협력근 및 소흉근 단축 보상 작용을 인지하는 큐를 맞춤 처방하여 대칭성이 84%에서 96%로 급상승했습니다."
+            },
+            pelvis: {
+                title: "골반 기울기 및 중립 분석 (Pelvis Alignment)",
+                badge: "골반 불균형 극복",
+                badgeColor: "#3ecf8e",
+                badgeBg: "rgba(62, 207, 142, 0.15)",
+                badgeBorder: "rgba(62, 207, 142, 0.3)",
+                desc: "스쿼트 및 브릿지 운동 시 좌우 골반의 수평 경사 3.2° 차이를 연동 분석했습니다. 장요근 좌우 불균형을 자동으로 진단하여, 다음 세션에서 골반 중립을 유지하도록 소마가 맞춤형 강도 피드백을 전달했습니다."
+            },
+            knee: {
+                title: "슬관절 굴곡 가동 범위 (Knee Flexion)",
+                badge: "관절 부하 예방",
+                badgeColor: "#ff7a00",
+                badgeBg: "rgba(255, 122, 0, 0.15)",
+                badgeBorder: "rgba(255, 122, 0, 0.3)",
+                desc: "하체 강화 운동 시 슬관절의 굴곡 각도 114.5°를 초정밀 추적했습니다. 대퇴사두근의 부하 임계치를 실시간 계산하여, 무릎 관절 보상을 즉각 상쇄하고 안전한 가동범위 안에서 수업이 보장됩니다."
+            }
+        };
+
+        dots.forEach(dot => {
+            dot.addEventListener('click', () => {
+                const part = dot.getAttribute('data-part');
+                const data = postureData[part];
+                if (!data) return;
+
+                // Animate posturePanel re-pop
+                posturePanel.classList.remove('pop-card');
+                void posturePanel.offsetWidth; // Trigger reflow
+
+                posturePartName.textContent = data.title;
+                postureStatusBadge.textContent = data.badge;
+                postureStatusBadge.style.color = data.badgeColor;
+                postureStatusBadge.style.background = data.badgeBg;
+                postureStatusBadge.style.borderColor = data.badgeBorder;
+                postureDesc.textContent = data.desc;
+
+                posturePanel.classList.add('pop-card');
+
+                // Visual active state on clicked dot
+                dots.forEach(d => {
+                    d.style.background = 'var(--cyan)';
+                    d.style.boxShadow = '0 0 10px var(--cyan)';
+                });
+                dot.style.background = 'var(--yellow)';
+                dot.style.boxShadow = '0 0 15px var(--yellow)';
+            });
+        });
+
+        // --- INTERACTIVE LESSON FLOW SIMULATOR ---
+        const stepTabs = document.querySelectorAll('.step-tab');
+        const stepCards = document.querySelectorAll('.step-sim-card');
+
+        stepTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                const stepNum = tab.getAttribute('data-step');
+                
+                // Set active tab
+                stepTabs.forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+
+                // Set active card with pop animation
+                stepCards.forEach(card => {
+                    card.classList.remove('active');
+                    card.classList.remove('pop-card');
+                });
+
+                const activeCard = document.getElementById('step-card-' + stepNum);
+                if (activeCard) {
+                    activeCard.classList.add('active');
+                    void activeCard.offsetWidth; // Trigger reflow
+                    activeCard.classList.add('pop-card');
+                }
+            });
+        });
+
+        // --- INTERACTIVE ROI CALCULATOR ---
+        const revenueSlider = document.getElementById('revenueSlider');
+        const sliderVal = document.getElementById('sliderVal');
+        const bonusRevenue = document.getElementById('bonusRevenue');
+        const calcBadge = document.getElementById('calcBadge');
+
+        function updateCalculator() {
+            const val = parseInt(revenueSlider.value);
+            sliderVal.textContent = val.toLocaleString() + ' 만원';
+            
+            // Expected bonus (30% increase per year = Monthly Sales * 0.3 * 12)
+            const bonus = Math.round(val * 0.3 * 12);
+            let formattedBonus = '➔ +' + bonus.toLocaleString() + '만원';
+            if (bonus >= 10000) {
+                const eok = Math.floor(bonus / 10000);
+                const remain = bonus % 10000;
+                formattedBonus = '➔ +' + eok + '억 ' + (remain > 0 ? remain.toLocaleString() + '만원' : '원');
+            }
+            bonusRevenue.textContent = formattedBonus;
+            
+            // Scale pop animation
+            bonusRevenue.style.transform = 'scale(1.08)';
+            setTimeout(() => {
+                bonusRevenue.style.transform = 'scale(1)';
+            }, 150);
+            
+            // Badge text & pop
+            calcBadge.classList.remove('show');
+            void calcBadge.offsetWidth; // Trigger reflow
+            
+            if (val < 1500) {
+                calcBadge.textContent = '소마로 신규 유입 폭발! 소규모 업장 탈출 🌱';
+                calcBadge.style.color = 'var(--yellow)';
+                calcBadge.style.borderColor = 'rgba(255, 225, 0, 0.4)';
+                calcBadge.style.background = 'rgba(255, 225, 0, 0.12)';
+            } else if (val >= 1500 && val < 4000) {
+                calcBadge.textContent = '강사 관리 자동화 완료! 지역 1위 전문 센터 도약 🚀';
+                calcBadge.style.color = 'var(--cyan)';
+                calcBadge.style.borderColor = 'rgba(95, 205, 249, 0.4)';
+                calcBadge.style.background = 'rgba(95, 205, 249, 0.15)';
+            } else {
+                calcBadge.textContent = '폭발적 매출 극대화! 지점 프랜차이즈화 돌입 💎';
+                calcBadge.style.color = '#ff6b6b';
+                calcBadge.style.borderColor = 'rgba(255, 107, 107, 0.4)';
+                calcBadge.style.background = 'rgba(255, 107, 107, 0.15)';
+            }
+            calcBadge.classList.add('show');
+        }
+
+        if (revenueSlider) {
+            revenueSlider.addEventListener('input', updateCalculator);
+            updateCalculator();
+        }
     </script>
 
 </body>
