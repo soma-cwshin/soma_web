@@ -2232,7 +2232,7 @@
     <!-- Hero -->
     <section class="hero reveal">
         <div class="hero-video-wrap">
-            <video autoplay muted loop playsinline id="heroBgVideo">
+            <video autoplay loop playsinline id="heroBgVideo">
                 <source src="hero-clip.mp4" type="video/mp4">
             </video>
         </div>
@@ -2290,7 +2290,7 @@
             <div class="why-intro reveal">
                 <span class="section-label">Why SoMa AI</span>
                 <h2 class="section-title">왜 이름이 <span class="text-cyan">SoMa</span>인가요?</h2>
-                <p class="section-desc">'소마(Soma)'는 그리스어로 <strong style="color:#fff;">'몸과 마음의 통합체'</strong>를 뜻합니다. 센터와 회원, 강사와 데이터를 가장 완벽하게 연결하는 지능형 매니지먼트, 그것이 SoMa AI입니다.</p>
+                <p class="section-desc">소마 (σῶμα)는 그리스어로 <strong style="color:#fff;">'몸과 마음의 통합체'</strong>를 뜻합니다. 센터와 회원, 강사와 데이터를 가장 완벽하게 연결하는 지능형 매니지먼트, 그것이 SoMa AI입니다.</p>
             </div>
             <div class="connection-cards">
                 <div class="connection-card reveal">
@@ -3075,6 +3075,7 @@
         const heroSoundText = document.getElementById('heroSoundText');
         const soundOnIcon = heroSoundBtn.querySelector('.sound-on-icon');
         const soundOffIcon = heroSoundBtn.querySelector('.sound-off-icon');
+        const HERO_VIDEO_VOLUME = 0.28;
 
         function playToggleSound(unmuted) {
             try {
@@ -3089,12 +3090,12 @@
                 if (unmuted) {
                     osc.frequency.setValueAtTime(440, now); // A4
                     osc.frequency.exponentialRampToValueAtTime(880, now + 0.15); // A5
-                    gain.gain.setValueAtTime(0.05, now);
+                    gain.gain.setValueAtTime(0.025, now);
                     gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.15);
                 } else {
                     osc.frequency.setValueAtTime(600, now);
                     osc.frequency.exponentialRampToValueAtTime(300, now + 0.15);
-                    gain.gain.setValueAtTime(0.05, now);
+                    gain.gain.setValueAtTime(0.025, now);
                     gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.15);
                 }
                 osc.start(now);
@@ -3115,6 +3116,8 @@
         function unmuteOnInteract() {
             if (heroBgVideo && heroBgVideo.muted) {
                 heroBgVideo.muted = false;
+                heroBgVideo.defaultMuted = false;
+                heroBgVideo.volume = HERO_VIDEO_VOLUME;
                 
                 // Explicitly call play() inside the user gesture to ensure iOS/Safari starts streaming audio immediately
                 heroBgVideo.play().then(() => {
@@ -3138,50 +3141,37 @@
 
         // Initialize sound control
         if (heroBgVideo) {
-            const savedSoundPref = localStorage.getItem('soma-sound-pref');
+            localStorage.removeItem('soma-sound-pref');
+            heroBgVideo.volume = HERO_VIDEO_VOLUME;
+            heroBgVideo.defaultMuted = false;
             
-            // Set sound behavior on page load
-            if (savedSoundPref === 'muted') {
+            // DEFAULT VALUE is sound ON!
+            // Try direct unmuted autoplay first. Browsers that allow it will start music immediately.
+            heroBgVideo.muted = false;
+            
+            heroBgVideo.play().then(() => {
+                soundOnIcon.style.display = 'block';
+                soundOffIcon.style.display = 'none';
+                heroSoundText.textContent = '소리 끄기';
+                heroSoundBtn.classList.add('unmuted');
+            }).catch(err => {
+                // Browser policy blocked audible autoplay. Keep the video moving muted,
+                // then unmute on the first valid user gesture.
                 heroBgVideo.muted = true;
-                soundOnIcon.style.display = 'none';
-                soundOffIcon.style.display = 'block';
-                heroSoundText.textContent = '소리 켜기';
-                heroSoundBtn.classList.remove('unmuted');
-                
-                heroBgVideo.play().catch(err => console.log(err));
-            } else {
-                // DEFAULT VALUE is sound ON!
-                // First, try DIRECT unmuted cold autoplay! (Some browsers/webviews/users with high MEI scores allow this)
-                heroBgVideo.muted = false;
                 
                 heroBgVideo.play().then(() => {
-                    // SUCCESS! Browser allowed unmuted autoplay directly without any touch!
                     soundOnIcon.style.display = 'block';
                     soundOffIcon.style.display = 'none';
                     heroSoundText.textContent = '소리 끄기';
                     heroSoundBtn.classList.add('unmuted');
-                    localStorage.setItem('soma-sound-pref', 'unmuted');
-                }).catch(err => {
-                    // BLOCKED: Unmuted autoplay is forbidden on this device/browser by default policy.
-                    // Fallback: Force muted to let the video stream smoothly, and unmute on first gentle touch.
-                    heroBgVideo.muted = true;
-                    
-                    heroBgVideo.play().then(() => {
-                        // Keep showing "sound on" as our visual default intention
-                        soundOnIcon.style.display = 'block';
-                        soundOffIcon.style.display = 'none';
-                        heroSoundText.textContent = '소리 끄기';
-                        heroSoundBtn.classList.add('unmuted');
 
-                        // Bind gentle activation triggers to unmute automatically on any click/touch
-                        document.addEventListener('click', unmuteOnInteract);
-                        document.addEventListener('keydown', unmuteOnInteract);
-                        document.addEventListener('touchstart', unmuteOnInteract);
-                    }).catch(e => {
-                        console.log("Muted autoplay blocked entirely:", e);
-                    });
+                    document.addEventListener('click', unmuteOnInteract);
+                    document.addEventListener('keydown', unmuteOnInteract);
+                    document.addEventListener('touchstart', unmuteOnInteract);
+                }).catch(e => {
+                    console.log("Muted autoplay blocked entirely:", e);
                 });
-            }
+            });
         }
 
         heroSoundBtn.addEventListener('click', (e) => {
@@ -3191,6 +3181,8 @@
             if (heroBgVideo) {
                 const isMuted = heroBgVideo.muted;
                 heroBgVideo.muted = !isMuted;
+                heroBgVideo.defaultMuted = heroBgVideo.muted;
+                heroBgVideo.volume = HERO_VIDEO_VOLUME;
                 
                 if (isMuted) {
                     // Unmuted now (was muted)
