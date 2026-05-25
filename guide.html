@@ -139,7 +139,7 @@ ul,ol{list-style:none;}
   opacity:0;pointer-events:none;
   transition:opacity .25s var(--ease);
 }
-.toc-overlay.open{opacity:1;pointer-events:auto;}
+.toc-overlay.open{opacity:1;pointer-events:none;}
 .toc-drawer{
   position:fixed;top:0;left:0;bottom:0;z-index:130;
   width:min(420px, 92vw);
@@ -703,6 +703,27 @@ footer.guide-footer{
 
 .mobile-only{display:none;}
 .pc-only{display:inline;}
+
+/* Desktop — pinned TOC sidebar (stays open while navigating) */
+@media (min-width: 1024px) {
+  .toc-overlay{display:none !important;}
+  .toc-drawer.open{
+    transform:translateX(0);
+    box-shadow:none;
+  }
+  body.toc-desktop-open{
+    padding-left:min(420px, 28vw);
+  }
+  body.toc-desktop-open .page-header{
+    left:min(420px, 28vw);
+    width:calc(100% - min(420px, 28vw));
+  }
+  .toc-btn[aria-expanded="true"]{
+    background:rgba(95, 205, 249, 0.15);
+    border-color:var(--accent);
+    color:var(--accent);
+  }
+}
 
 /* =============================================================
    Mobile (≤768px) — index.html parity
@@ -1340,16 +1361,28 @@ function buildToc(){
 }
 buildToc();
 
+const TOC_DESKTOP_MQ = window.matchMedia('(min-width: 1024px)');
+
 let tocLastFocus = null;
+function isTocDesktopPinned(){
+  return TOC_DESKTOP_MQ.matches;
+}
+function syncTocDesktopLayout(){
+  document.body.classList.toggle('toc-desktop-open', isTocDesktopPinned() && tocDrawer.classList.contains('open'));
+}
 function openToc(){
   tocLastFocus = document.activeElement;
   tocDrawer.classList.add('open');
-  tocOverlay.classList.add('open');
+  if (!isTocDesktopPinned()) {
+    tocOverlay.classList.add('open');
+    tocOverlay.setAttribute('aria-hidden','false');
+  }
   tocDrawer.setAttribute('aria-hidden','false');
-  tocOverlay.setAttribute('aria-hidden','false');
   tocBtn.setAttribute('aria-expanded','true');
-  document.body.style.overflow = 'hidden';
-  setTimeout(function(){ tocCloseBtn.focus(); }, 60);
+  syncTocDesktopLayout();
+  if (!isTocDesktopPinned()) {
+    setTimeout(function(){ tocCloseBtn.focus(); }, 60);
+  }
 }
 function closeToc(){
   tocDrawer.classList.remove('open');
@@ -1357,12 +1390,29 @@ function closeToc(){
   tocDrawer.setAttribute('aria-hidden','true');
   tocOverlay.setAttribute('aria-hidden','true');
   tocBtn.setAttribute('aria-expanded','false');
-  document.body.style.overflow = '';
-  if (tocLastFocus && tocLastFocus.focus) tocLastFocus.focus();
+  syncTocDesktopLayout();
+  if (!isTocDesktopPinned() && tocLastFocus && tocLastFocus.focus) tocLastFocus.focus();
 }
-tocBtn.addEventListener('click', openToc);
+function toggleToc(){
+  if (tocDrawer.classList.contains('open')) closeToc();
+  else openToc();
+}
+tocBtn.addEventListener('click', function(){
+  if (isTocDesktopPinned()) toggleToc();
+  else if (tocDrawer.classList.contains('open')) closeToc();
+  else openToc();
+});
 tocCloseBtn.addEventListener('click', closeToc);
-tocOverlay.addEventListener('click', closeToc);
+TOC_DESKTOP_MQ.addEventListener('change', function(){
+  if (isTocDesktopPinned()) {
+    tocOverlay.classList.remove('open');
+    tocOverlay.setAttribute('aria-hidden','true');
+    if (!tocDrawer.classList.contains('open')) openToc();
+  } else {
+    syncTocDesktopLayout();
+  }
+});
+if (isTocDesktopPinned()) openToc();
 document.addEventListener('keydown', function(e){
   if (e.key === 'Escape' && tocDrawer.classList.contains('open')) closeToc();
 });
@@ -1372,13 +1422,10 @@ tocBody.addEventListener('click', function(e){
   if (!a) return;
   e.preventDefault();
   const id = a.getAttribute('data-id');
-  closeToc();
-  // Scroll after drawer close transition starts
-  requestAnimationFrame(function(){
-    const target = document.getElementById(id);
-    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    history.replaceState(null, '', '#' + id);
-  });
+  setActiveTocItem(id);
+  const target = document.getElementById(id);
+  if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  history.replaceState(null, '', '#' + id);
 });
 
 const tocItems = Array.from(tocBody.querySelectorAll('.toc-item'));
