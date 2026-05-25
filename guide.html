@@ -139,7 +139,7 @@ ul,ol{list-style:none;}
   opacity:0;pointer-events:none;
   transition:opacity .25s var(--ease);
 }
-.toc-overlay.open{opacity:1;pointer-events:none;}
+.toc-overlay.open{opacity:1;pointer-events:auto;}
 .toc-drawer{
   position:fixed;top:0;left:0;bottom:0;z-index:130;
   width:min(420px, 92vw);
@@ -1376,6 +1376,7 @@ function openToc(){
   if (!isTocDesktopPinned()) {
     tocOverlay.classList.add('open');
     tocOverlay.setAttribute('aria-hidden','false');
+    document.body.style.overflow = 'hidden';
   }
   tocDrawer.setAttribute('aria-hidden','false');
   tocBtn.setAttribute('aria-expanded','true');
@@ -1390,6 +1391,7 @@ function closeToc(){
   tocDrawer.setAttribute('aria-hidden','true');
   tocOverlay.setAttribute('aria-hidden','true');
   tocBtn.setAttribute('aria-expanded','false');
+  if (!isTocDesktopPinned()) document.body.style.overflow = '';
   syncTocDesktopLayout();
   if (!isTocDesktopPinned() && tocLastFocus && tocLastFocus.focus) tocLastFocus.focus();
 }
@@ -1399,10 +1401,12 @@ function toggleToc(){
 }
 tocBtn.addEventListener('click', function(){
   if (isTocDesktopPinned()) toggleToc();
-  else if (tocDrawer.classList.contains('open')) closeToc();
   else openToc();
 });
 tocCloseBtn.addEventListener('click', closeToc);
+tocOverlay.addEventListener('click', function(){
+  if (!isTocDesktopPinned()) closeToc();
+});
 TOC_DESKTOP_MQ.addEventListener('change', function(){
   if (isTocDesktopPinned()) {
     tocOverlay.classList.remove('open');
@@ -1423,9 +1427,18 @@ tocBody.addEventListener('click', function(e){
   e.preventDefault();
   const id = a.getAttribute('data-id');
   setActiveTocItem(id);
-  const target = document.getElementById(id);
-  if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  history.replaceState(null, '', '#' + id);
+  if (isTocDesktopPinned()) {
+    const target = document.getElementById(id);
+    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    history.replaceState(null, '', '#' + id);
+    return;
+  }
+  closeToc();
+  requestAnimationFrame(function(){
+    const target = document.getElementById(id);
+    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    history.replaceState(null, '', '#' + id);
+  });
 });
 
 const tocItems = Array.from(tocBody.querySelectorAll('.toc-item'));
