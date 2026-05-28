@@ -438,6 +438,20 @@
             object-fit: cover;
         }
 
+        .youtube-embed {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .youtube-embed iframe {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
         .video-caption {
             position: absolute;
             bottom: 0;
@@ -1346,10 +1360,8 @@
             background: #000;
         }
 
-        .video-modal-inner video {
-            width: 100%;
-            aspect-ratio: 16/9;
-            object-fit: contain;
+        .video-modal-inner .youtube-embed {
+            aspect-ratio: 16 / 9;
         }
 
         .modal-close {
@@ -2501,9 +2513,14 @@
             <p class="section-desc reveal">관절 0.1°와 영양 타이밍까지 분석하는 AI가 회원의 실제 몸 변화를 데이터로 증명합니다.</p>
             <div class="video-grid">
                 <div class="video-player reveal">
-                    <video controls playsinline preload="metadata" poster="">
-                        <source src="hero-clip.mp4" type="video/mp4">
-                    </video>
+                    <div class="youtube-embed">
+                        <iframe
+                            src="https://www.youtube-nocookie.com/embed/tKnoJdHVIIk?rel=0&modestbranding=1&playsinline=1"
+                            title="SoMa AI Brand Film"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            referrerpolicy="strict-origin-when-cross-origin"
+                            allowfullscreen></iframe>
+                    </div>
                     <div class="video-caption">The Masterpiece of Management — SoMa AI Brand Film</div>
                 </div>
                 <div class="video-points">
@@ -3029,9 +3046,15 @@
     <div class="video-modal" id="videoModal">
         <div class="video-modal-inner">
             <button class="modal-close" id="closeVideoModal" type="button">&times;</button>
-            <video id="fullVideo" controls playsinline>
-                <source src="the Masterpiece of Management.mp4" type="video/mp4">
-            </video>
+            <div class="youtube-embed">
+                <iframe
+                    id="fullVideoYT"
+                    src="https://www.youtube-nocookie.com/embed/tKnoJdHVIIk?rel=0&modestbranding=1&playsinline=1"
+                    title="SoMa AI Brand Film"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerpolicy="strict-origin-when-cross-origin"
+                    allowfullscreen></iframe>
+            </div>
         </div>
     </div>
 
@@ -3054,19 +3077,21 @@
         }, { passive: true });
 
         const modal = document.getElementById('videoModal');
-        const fullVideo = document.getElementById('fullVideo');
+        const fullVideoYT = document.getElementById('fullVideoYT');
+        const YT_BASE = 'https://www.youtube-nocookie.com/embed/tKnoJdHVIIk?rel=0&modestbranding=1&playsinline=1';
+        const YT_AUTOPLAY = YT_BASE + '&autoplay=1';
         document.getElementById('openVideoModal').addEventListener('click', () => {
             modal.classList.add('open');
-            fullVideo.play();
+            if (fullVideoYT) fullVideoYT.src = YT_AUTOPLAY;
         });
         document.getElementById('closeVideoModal').addEventListener('click', () => {
             modal.classList.remove('open');
-            fullVideo.pause();
+            if (fullVideoYT) fullVideoYT.src = YT_BASE;
         });
         modal.addEventListener('click', (e) => {
             if (e.target === modal) {
                 modal.classList.remove('open');
-                fullVideo.pause();
+                if (fullVideoYT) fullVideoYT.src = YT_BASE;
             }
         });
 
