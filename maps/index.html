@@ -574,7 +574,7 @@
     let leads = [];
     let coordOverrides = loadCoordOverrides();
     let state = loadState();
-    let map, clusterer, infoWindow, markers = {}, activeId = null;
+    let map, infoWindow, markers = {}, activeId = null;
     let myLocationMarker = null;
     let filterStatus = '', filterGu = '', filterDong = '', query = '';
 
@@ -668,7 +668,7 @@
           return;
         }
         const script = document.createElement('script');
-        script.src = `https://dapi.kakao.com/v2/maps/sdk.js?appkey=${encodeURIComponent(key)}&autoload=false&libraries=clusterer,services`;
+        script.src = `https://dapi.kakao.com/v2/maps/sdk.js?appkey=${encodeURIComponent(key)}&autoload=false`;
         script.onload = () => {
           kakao.maps.load(() => {
             if (!kakao.maps.Map) reject(new Error('카카오맵 API 사용 불가'));
@@ -880,14 +880,13 @@
     }
 
     function renderMarkers(items) {
-      clusterer.clear();
+      Object.values(markers).forEach(m => m.setMap(null));
       markers = {};
-      const markerList = items.map(l => {
+      items.forEach(l => {
         const m = createMarker(l, l.id === activeId);
+        m.setMap(map);
         markers[l.id] = m;
-        return m;
       });
-      clusterer.addMarkers(markerList);
     }
 
     function bindPopupEvents() {
@@ -948,17 +947,14 @@
 
     function initMap() {
       const container = document.getElementById('map');
+      if (!container.offsetWidth || !container.offsetHeight) {
+        throw new Error('지도 영역 크기 0 — 새로고침 후 다시 시도해주세요.');
+      }
       map = new kakao.maps.Map(container, {
         center: new kakao.maps.LatLng(37.548, 126.88),
         level: 8
       });
       map.addControl(new kakao.maps.ZoomControl(), kakao.maps.ControlPosition.RIGHTBOTTOM);
-      clusterer = new kakao.maps.MarkerClusterer({
-        map,
-        averageCenter: true,
-        minLevel: 6,
-        gridSize: 50
-      });
       relayoutMap();
     }
 
@@ -974,6 +970,7 @@
       const key = await getKakaoKey();
       await loadKakaoSdk(key);
       await waitForLayout();
+      await new Promise(r => setTimeout(r, 150));
       initMap();
 
       const res = await apiFetch('/api/leads');
@@ -1112,7 +1109,16 @@
           showApp();
           await init();
         } catch (err) {
-          loginError.textContent = err.message || '비밀번호가 틀렸습니다.';
+          if (err.message && err.message.includes('비밀')) {
+            loginError.textContent = err.message;
+          } else {
+            console.error(err);
+            alert(
+              '지도를 불러오지 못했습니다.\n\n' +
+              (err.message || err) + '\n\n' +
+              '확인: 제품 설정 → 카카오맵 ON'
+            );
+          }
         }
       });
 
