@@ -576,7 +576,6 @@
     }
 
     async function isAuthed() {
-      if (sessionStorage.getItem(AUTH_FLAG) === '1') return true;
       try {
         const res = await apiFetch('./data/leads.json', { method: 'HEAD' });
         if (res.ok) {
@@ -584,6 +583,7 @@
           return true;
         }
       } catch { /* ignore */ }
+      sessionStorage.removeItem(AUTH_FLAG);
       return false;
     }
 
