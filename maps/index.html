@@ -222,10 +222,12 @@
     }
 
     .dot {
-      width: 8px;
-      height: 8px;
+      width: 10px;
+      height: 10px;
       border-radius: 50%;
       flex-shrink: 0;
+      border: 2px solid #fff;
+      box-shadow: 0 0 8px currentColor;
     }
 
     .dot.pending { background: var(--pending); }
@@ -248,11 +250,67 @@
     .map-wrap {
       position: relative;
       min-height: 0;
+      background: #0f1724;
     }
 
     #map {
       width: 100%;
       height: 100%;
+    }
+
+    /* 지도 타일: 채도·대비 낮춰 배경처럼 */
+    #map .leaflet-tile-pane {
+      filter: saturate(0.2) brightness(1.06) contrast(0.88);
+      opacity: 0.5;
+    }
+
+    .map-wrap::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(5, 12, 24, 0.12), rgba(5, 12, 24, 0.28));
+      pointer-events: none;
+      z-index: 401;
+    }
+
+    .custom-marker-wrap {
+      background: none !important;
+      border: none !important;
+    }
+
+    .marker-pin {
+      border-radius: 50%;
+      border: 3px solid #fff;
+      box-sizing: border-box;
+      animation: marker-glow 2.4s ease-in-out infinite;
+    }
+
+    .marker-pin.active {
+      animation: marker-glow-active 1.6s ease-in-out infinite;
+      z-index: 1000 !important;
+    }
+
+    @keyframes marker-glow {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.12); }
+    }
+
+    @keyframes marker-glow-active {
+      0%, 100% { transform: scale(1.15); }
+      50% { transform: scale(1.28); }
+    }
+
+    .marker-cluster-small,
+    .marker-cluster-medium,
+    .marker-cluster-large {
+      background-color: rgba(46, 140, 213, 0.28) !important;
+    }
+
+    .marker-cluster div {
+      background: rgba(46, 140, 213, 0.95) !important;
+      color: #fff !important;
+      font-weight: 700;
+      box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.9), 0 0 18px rgba(95, 205, 249, 0.75);
     }
 
     .map-actions {
@@ -684,13 +742,17 @@
       refreshUI(id);
     }
 
-    function makeIcon(status) {
+    function makeIcon(status, isActive = false) {
       const color = STATUS_COLORS[status] || STATUS_COLORS.pending;
+      const size = isActive ? 26 : 20;
+      const glow1 = isActive ? 22 : 14;
+      const glow2 = isActive ? 44 : 28;
+      const cls = isActive ? 'marker-pin active' : 'marker-pin';
       return L.divIcon({
-        className: 'custom-marker',
-        html: `<div style="width:14px;height:14px;border-radius:50%;background:${color};border:2px solid #fff;box-shadow:0 2px 6px rgba(0,0,0,.35)"></div>`,
-        iconSize: [14, 14],
-        iconAnchor: [7, 7]
+        className: 'custom-marker-wrap',
+        html: `<div class="${cls}" style="width:${size}px;height:${size}px;background:${color};box-shadow:0 0 0 3px #fff,0 0 ${glow1}px ${color},0 0 ${glow2}px ${color}99,0 4px 10px rgba(0,0,0,.35);"></div>`,
+        iconSize: [size, size],
+        iconAnchor: [size / 2, size / 2]
       });
     }
 
@@ -779,7 +841,7 @@
       items.forEach(l => {
         const st = getStatus(l.id);
         const c = leadCoords(l);
-        const m = L.marker([c.lat, c.lng], { icon: makeIcon(st) });
+        const m = L.marker([c.lat, c.lng], { icon: makeIcon(st, l.id === activeId) });
         m.bindPopup(popupContent(l), { maxWidth: 280 });
         m.on('popupopen', () => {
           activeId = l.id;
@@ -849,8 +911,9 @@
     function initMap() {
       map = L.map('map', { zoomControl: false }).setView([37.548, 126.88], 12);
       L.control.zoom({ position: 'bottomright' }).addTo(map);
-      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '&copy; OpenStreetMap',
+      L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+        attribution: '&copy; OpenStreetMap &copy; CARTO',
+        subdomains: 'abcd',
         maxZoom: 19
       }).addTo(map);
       cluster = L.markerClusterGroup({ maxClusterRadius: 42, spiderfyOnMaxZoom: true });
