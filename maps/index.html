@@ -479,6 +479,221 @@
 
     .geocode-status.show { display: block; }
 
+    .route-panel {
+      border-bottom: 1px solid var(--line);
+      background: rgba(46, 140, 213, 0.08);
+      max-height: 42vh;
+      display: flex;
+      flex-direction: column;
+      min-height: 0;
+    }
+
+    .route-panel.hidden { display: none; }
+
+    .route-head {
+      padding: 10px 12px 8px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .route-head-row {
+      display: flex;
+      gap: 6px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .route-head input, .route-head select {
+      padding: 6px 8px;
+      border-radius: 8px;
+      border: 1px solid var(--line);
+      background: rgba(0, 0, 0, 0.25);
+      color: var(--ink);
+      font-size: 12px;
+    }
+
+    .route-head label {
+      font-size: 11px;
+      color: var(--ink-3);
+    }
+
+    .route-mini {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 4px;
+    }
+
+    .route-list {
+      flex: 1;
+      overflow-y: auto;
+      padding: 0 8px 8px;
+    }
+
+    .route-item {
+      display: grid;
+      grid-template-columns: 28px 1fr auto;
+      gap: 6px;
+      align-items: center;
+      padding: 8px;
+      border-radius: 10px;
+      border: 1px solid transparent;
+      margin-bottom: 4px;
+      cursor: pointer;
+      background: rgba(0, 0, 0, 0.15);
+    }
+
+    .route-item:hover { border-color: var(--line); }
+    .route-item.current {
+      border-color: var(--cyan);
+      background: rgba(95, 205, 249, 0.12);
+    }
+    .route-item.done { opacity: 0.55; }
+
+    .route-num {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: var(--primary);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .route-item.current .route-num {
+      background: var(--cyan);
+      color: #051018;
+      box-shadow: 0 0 12px rgba(95, 205, 249, 0.6);
+    }
+
+    .route-item.done .route-num { background: var(--visited); }
+
+    .route-info { min-width: 0; }
+    .route-name {
+      font-size: 13px;
+      font-weight: 600;
+      line-height: 1.3;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .route-time { font-size: 11px; color: var(--ink-3); margin-top: 2px; }
+
+    .route-item-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .route-item-actions button {
+      width: 22px;
+      height: 18px;
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      background: transparent;
+      color: var(--ink-3);
+      font-size: 10px;
+      cursor: pointer;
+      line-height: 1;
+    }
+
+    .route-item-actions button:hover { color: var(--ink); border-color: var(--primary); }
+
+    .route-foot {
+      padding: 8px 12px 10px;
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      border-top: 1px solid var(--line);
+    }
+
+    .route-foot .btn.primary { flex: 1; min-width: 120px; }
+
+    .btn.route-on {
+      background: rgba(46, 140, 213, 0.3);
+      border-color: var(--primary);
+      color: var(--ink);
+    }
+
+    .route-add-btn {
+      margin-left: auto;
+      padding: 2px 6px;
+      border-radius: 6px;
+      border: 1px solid var(--line);
+      background: rgba(46, 140, 213, 0.2);
+      color: var(--cyan);
+      font-size: 10px;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    .route-add-btn:hover { border-color: var(--cyan); }
+
+    .route-marker {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--primary);
+      color: #fff;
+      font-size: 12px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 3px solid #fff;
+      box-shadow: 0 0 0 2px var(--primary), 0 0 16px rgba(46, 140, 213, 0.5);
+    }
+
+    .route-marker.current {
+      background: var(--cyan);
+      color: #051018;
+      box-shadow: 0 0 0 2px var(--cyan), 0 0 20px rgba(95, 205, 249, 0.8);
+      transform: scale(1.15);
+    }
+
+    .route-marker.done { background: var(--visited); box-shadow: 0 0 0 2px var(--visited); }
+
+    .route-banner {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      right: 120px;
+      z-index: 500;
+      background: var(--panel-2);
+      border: 1px solid var(--cyan);
+      border-radius: 12px;
+      padding: 10px 14px;
+      font-size: 13px;
+      backdrop-filter: blur(8px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+    }
+
+    .route-banner.hidden { display: none; }
+
+    .route-banner strong { color: var(--cyan); }
+
+    .route-banner-actions {
+      margin-top: 8px;
+      display: flex;
+      gap: 6px;
+    }
+
+    .popup-route-btn {
+      margin-top: 8px;
+      width: 100%;
+      padding: 8px;
+      border-radius: 8px;
+      border: 1px solid var(--primary);
+      background: rgba(46, 140, 213, 0.2);
+      color: var(--cyan);
+      font-size: 12px;
+      cursor: pointer;
+    }
+
     .app.hidden { display: none; }
 
     @media (max-width: 900px) {
@@ -528,10 +743,33 @@
             <button class="tab" data-status="hold">보류</button>
           </div>
           <div class="toolbar">
+            <button class="btn" id="btnRouteToggle">📋 영업 계획</button>
             <button class="btn" id="btnExport">백업</button>
             <button class="btn" id="btnImport">복원</button>
             <input type="file" id="importFile" accept=".json" hidden>
             <button class="btn" id="btnReset">초기화</button>
+          </div>
+        </div>
+        <div class="route-panel hidden" id="routePanel">
+          <div class="route-head">
+            <input type="text" id="routeName" placeholder="계획 이름">
+            <div class="route-mini">
+              <div><label>날짜</label><input type="date" id="routeDate"></div>
+              <div><label>시작</label><input type="time" id="routeStart" value="12:00"></div>
+              <div><label>종료</label><input type="time" id="routeEnd" value="19:00"></div>
+            </div>
+            <div class="route-head-row">
+              <label>방문 <input type="number" id="routeVisitMin" value="30" min="10" max="90" style="width:48px">분</label>
+              <label>이동 <input type="number" id="routeTravelMin" value="10" min="5" max="30" style="width:48px">분</label>
+            </div>
+          </div>
+          <div class="route-list" id="routeList"></div>
+          <div class="route-foot">
+            <button class="btn primary" id="btnRouteNext">▶ 다음 방문</button>
+            <button class="btn" id="btnMondayPlan">월요일 계획</button>
+            <button class="btn" id="btnRouteAuto">자동(북쪽)</button>
+            <button class="btn" id="btnRouteFit">경로 보기</button>
+            <button class="btn" id="btnRouteClear">비우기</button>
           </div>
         </div>
         <div class="list" id="list"></div>
@@ -539,6 +777,7 @@
 
       <div class="map-wrap">
         <div id="geocodeStatus" class="geocode-status"></div>
+        <div id="routeBanner" class="route-banner hidden"></div>
         <div id="map"></div>
         <div class="map-actions">
           <button class="btn" id="btnLocate" title="내 위치">📍 내 위치</button>
@@ -559,7 +798,14 @@
   <script>
     const STORAGE_KEY = 'soma-sales-map-v1';
     const COORDS_KEY = 'soma-sales-coords-v1';
+    const ROUTE_STORAGE_KEY = 'soma-sales-route-v1';
     const AUTH_FLAG = 'soma_maps_client_auth';
+    const ALWAYS_PT_ID = 'be53bd068abd';
+    const MONDAY_PRESET_IDS = [
+      'be53bd068abd', '4490f3f465f9', '3b6a0b01a03d', 'd64905182dbe', 'f571df3468df',
+      'ae4d8576491e', '23f25d738670', 'cc9c7bb9478c', '161c2da82feb', 'de00303b0550',
+      'e956f652128d', 'a4a1f004042b'
+    ];
     const STATUS_COLORS = {
       pending: '#94a3b8',
       visited: '#22c55e',
@@ -579,7 +825,319 @@
     let map, markers = {}, activeId = null;
     let myLocationMarker = null;
     let markerLayer = null;
+    let routePolyline = null;
+    let routePlan = loadRoutePlan();
+    let routePanelOpen = false;
     let filterStatus = '', filterGu = '', filterDong = '', query = '';
+
+    function loadRoutePlan() {
+      const defaults = {
+        name: '월요일 목동→등촌→염창',
+        date: getNextMondayISO(),
+        startTime: '12:00',
+        endTime: '19:00',
+        visitMin: 30,
+        travelMin: 10,
+        stopIds: [],
+        currentIndex: 0
+      };
+      try {
+        return { ...defaults, ...JSON.parse(localStorage.getItem(ROUTE_STORAGE_KEY) || '{}') };
+      } catch {
+        return defaults;
+      }
+    }
+
+    function saveRoutePlan() {
+      localStorage.setItem(ROUTE_STORAGE_KEY, JSON.stringify(routePlan));
+    }
+
+    function getNextMondayISO() {
+      const d = new Date();
+      let add = (8 - d.getDay()) % 7;
+      if (add === 0) add = 7;
+      d.setDate(d.getDate() + add);
+      return d.toISOString().slice(0, 10);
+    }
+
+    function haversineM(a, b) {
+      const R = 6371000;
+      const toRad = x => x * Math.PI / 180;
+      const la1 = toRad(a.lat);
+      const lo1 = toRad(a.lng);
+      const la2 = toRad(b.lat);
+      const lo2 = toRad(b.lng);
+      const x = Math.sin((la2 - la1) / 2) ** 2
+        + Math.cos(la1) * Math.cos(la2) * Math.sin((lo2 - lo1) / 2) ** 2;
+      return 2 * R * Math.atan2(Math.sqrt(x), Math.sqrt(1 - x));
+    }
+
+    function maxStopsFromSchedule() {
+      const [sh, sm] = routePlan.startTime.split(':').map(Number);
+      const [eh, em] = routePlan.endTime.split(':').map(Number);
+      const totalMin = (eh * 60 + em) - (sh * 60 + sm);
+      const perStop = routePlan.visitMin + routePlan.travelMin;
+      return Math.max(1, Math.floor(totalMin / perStop));
+    }
+
+    function buildNorthwardRoute(startId, candidates, maxStops) {
+      const start = leads.find(l => l.id === startId);
+      if (!start) return [];
+      const remaining = candidates.filter(l => l.id !== startId);
+      const route = [start];
+      let cur = leadCoords(start);
+      while (remaining.length && route.length < maxStops) {
+        let bestIdx = 0;
+        let bestScore = Infinity;
+        remaining.forEach((l, idx) => {
+          const c = leadCoords(l);
+          const d = haversineM(cur, c);
+          const north = (c.lat - cur.lat) * 80000;
+          const score = d - north * 0.35;
+          if (score < bestScore) {
+            bestScore = score;
+            bestIdx = idx;
+          }
+        });
+        const next = remaining.splice(bestIdx, 1)[0];
+        route.push(next);
+        cur = leadCoords(next);
+      }
+      return route.map(l => l.id);
+    }
+
+    function getRouteSchedule() {
+      const [sh, sm] = routePlan.startTime.split(':').map(Number);
+      let cursor = sh * 60 + sm;
+      return routePlan.stopIds.map((id, idx) => {
+        const startMin = cursor;
+        const endMin = startMin + routePlan.visitMin;
+        cursor = endMin + (idx < routePlan.stopIds.length - 1 ? routePlan.travelMin : 0);
+        const lead = leads.find(l => l.id === id);
+        return {
+          id,
+          lead,
+          startMin,
+          endMin,
+          label: formatMinutes(startMin) + '–' + formatMinutes(endMin)
+        };
+      });
+    }
+
+    function formatMinutes(totalMin) {
+      const h = Math.floor(totalMin / 60);
+      const m = totalMin % 60;
+      return String(h).padStart(2, '0') + ':' + String(m).padStart(2, '0');
+    }
+
+    function syncRouteForm() {
+      document.getElementById('routeName').value = routePlan.name || '';
+      document.getElementById('routeDate').value = routePlan.date || getNextMondayISO();
+      document.getElementById('routeStart').value = routePlan.startTime || '12:00';
+      document.getElementById('routeEnd').value = routePlan.endTime || '19:00';
+      document.getElementById('routeVisitMin').value = routePlan.visitMin || 30;
+      document.getElementById('routeTravelMin').value = routePlan.travelMin || 10;
+    }
+
+    function readRouteForm() {
+      routePlan.name = document.getElementById('routeName').value.trim() || '영업 계획';
+      routePlan.date = document.getElementById('routeDate').value || getNextMondayISO();
+      routePlan.startTime = document.getElementById('routeStart').value || '12:00';
+      routePlan.endTime = document.getElementById('routeEnd').value || '19:00';
+      routePlan.visitMin = Number(document.getElementById('routeVisitMin').value) || 30;
+      routePlan.travelMin = Number(document.getElementById('routeTravelMin').value) || 10;
+      saveRoutePlan();
+    }
+
+    function addToRoute(id) {
+      if (routePlan.stopIds.includes(id)) return;
+      routePlan.stopIds.push(id);
+      saveRoutePlan();
+      renderRoutePanel();
+      renderRouteOverlay();
+      refreshUI();
+    }
+
+    function removeFromRoute(index) {
+      routePlan.stopIds.splice(index, 1);
+      if (routePlan.currentIndex >= routePlan.stopIds.length) {
+        routePlan.currentIndex = Math.max(0, routePlan.stopIds.length - 1);
+      }
+      saveRoutePlan();
+      renderRoutePanel();
+      renderRouteOverlay();
+      refreshUI();
+    }
+
+    function moveRouteStop(index, dir) {
+      const next = index + dir;
+      if (next < 0 || next >= routePlan.stopIds.length) return;
+      const ids = routePlan.stopIds;
+      [ids[index], ids[next]] = [ids[next], ids[index]];
+      if (routePlan.currentIndex === index) routePlan.currentIndex = next;
+      else if (routePlan.currentIndex === next) routePlan.currentIndex = index;
+      saveRoutePlan();
+      renderRoutePanel();
+      renderRouteOverlay();
+      refreshUI();
+    }
+
+    function loadMondayPreset() {
+      readRouteForm();
+      routePlan.name = '월요일 목동→등촌→염창';
+      routePlan.date = getNextMondayISO();
+      routePlan.startTime = '12:00';
+      routePlan.endTime = '19:00';
+      routePlan.stopIds = MONDAY_PRESET_IDS.filter(id => leads.some(l => l.id === id));
+      routePlan.currentIndex = 0;
+      saveRoutePlan();
+      syncRouteForm();
+      renderRoutePanel();
+      renderRouteOverlay();
+      fitRouteBounds();
+      refreshUI(routePlan.stopIds[0]);
+    }
+
+    function generateAutoRoute() {
+      readRouteForm();
+      const maxStops = maxStopsFromSchedule();
+      const bounds = map.getBounds();
+      const candidates = leads.filter(l => {
+        const c = leadCoords(l);
+        return bounds.contains([c.lat, c.lng]) && getStatus(l.id) === 'pending';
+      });
+      if (!candidates.length) {
+        alert('지도에 보이는 미방문 업체가 없습니다. 지도를 해당 구역으로 이동한 뒤 다시 시도하세요.');
+        return;
+      }
+      routePlan.stopIds = buildNorthwardRoute(ALWAYS_PT_ID, candidates, maxStops);
+      routePlan.currentIndex = 0;
+      saveRoutePlan();
+      renderRoutePanel();
+      renderRouteOverlay();
+      fitRouteBounds();
+      refreshUI(routePlan.stopIds[0]);
+    }
+
+    function clearRoute() {
+      if (routePlan.stopIds.length && !confirm('영업 계획을 비울까요?')) return;
+      routePlan.stopIds = [];
+      routePlan.currentIndex = 0;
+      saveRoutePlan();
+      renderRoutePanel();
+      renderRouteOverlay();
+      refreshUI();
+    }
+
+    function advanceRoute() {
+      if (!routePlan.stopIds.length) return;
+      if (routePlan.currentIndex < routePlan.stopIds.length - 1) {
+        routePlan.currentIndex += 1;
+      }
+      saveRoutePlan();
+      renderRoutePanel();
+      renderRouteOverlay();
+      const id = routePlan.stopIds[routePlan.currentIndex];
+      refreshUI(id);
+    }
+
+    function fitRouteBounds() {
+      if (!routePlan.stopIds.length) return;
+      const bounds = L.latLngBounds(routePlan.stopIds.map(id => {
+        const l = leads.find(x => x.id === id);
+        const c = leadCoords(l);
+        return [c.lat, c.lng];
+      }));
+      map.fitBounds(bounds.pad(0.1));
+    }
+
+    function renderRoutePanel() {
+      const el = document.getElementById('routeList');
+      if (!routePlan.stopIds.length) {
+        el.innerHTML = '<div class="empty" style="padding:12px;font-size:12px;color:var(--ink-3)">「월요일 계획」으로 올웨이즈 PT부터 북쪽 루트를 불러오거나, 목록에서 ＋로 추가하세요.</div>';
+        renderRouteBanner();
+        return;
+      }
+      const schedule = getRouteSchedule();
+      el.innerHTML = schedule.map((slot, idx) => {
+        const l = slot.lead;
+        if (!l) return '';
+        const cls = [
+          'route-item',
+          idx === routePlan.currentIndex ? 'current' : '',
+          idx < routePlan.currentIndex ? 'done' : ''
+        ].filter(Boolean).join(' ');
+        return `
+          <div class="${cls}" data-route-idx="${idx}" data-id="${l.id}">
+            <span class="route-num">${idx + 1}</span>
+            <div class="route-info">
+              <div class="route-name">${escapeHtml(l.name)}</div>
+              <div class="route-time">${slot.label} · ${escapeHtml(l.dong)}</div>
+            </div>
+            <div class="route-item-actions">
+              <button type="button" data-move="up" data-idx="${idx}" title="위로">▲</button>
+              <button type="button" data-move="down" data-idx="${idx}" title="아래로">▼</button>
+              <button type="button" data-remove="${idx}" title="삭제">✕</button>
+            </div>
+          </div>`;
+      }).join('');
+      renderRouteBanner();
+    }
+
+    function renderRouteBanner() {
+      const banner = document.getElementById('routeBanner');
+      if (!routePanelOpen || !routePlan.stopIds.length) {
+        banner.classList.add('hidden');
+        return;
+      }
+      const schedule = getRouteSchedule();
+      const cur = schedule[routePlan.currentIndex];
+      if (!cur || !cur.lead) {
+        banner.classList.add('hidden');
+        return;
+      }
+      banner.classList.remove('hidden');
+      banner.innerHTML = `
+        <div><strong>${routePlan.currentIndex + 1}/${routePlan.stopIds.length}</strong> · ${escapeHtml(cur.lead.name)} · ${cur.label} 예정</div>
+        <div class="route-banner-actions">
+          <button class="btn primary" id="btnBannerNext">▶ 다음 방문</button>
+          <button class="btn" id="btnBannerNav">길찾기</button>
+        </div>`;
+      document.getElementById('btnBannerNext').onclick = advanceRoute;
+      document.getElementById('btnBannerNav').onclick = () => {
+        const q = encodeURIComponent(cur.lead.address || cur.lead.name);
+        window.open('https://map.kakao.com/?q=' + q, '_blank');
+      };
+    }
+
+    function renderRouteOverlay() {
+      if (routePolyline) {
+        map.removeLayer(routePolyline);
+        routePolyline = null;
+      }
+      if (!routePlan.stopIds.length) return;
+      const latlngs = routePlan.stopIds.map(id => {
+        const l = leads.find(x => x.id === id);
+        const c = leadCoords(l);
+        return [c.lat, c.lng];
+      });
+      routePolyline = L.polyline(latlngs, {
+        color: '#5FCDF9',
+        weight: 4,
+        opacity: 0.85,
+        dashArray: '8 6'
+      }).addTo(map);
+    }
+
+    function toggleRoutePanel() {
+      routePanelOpen = !routePanelOpen;
+      document.getElementById('routePanel').classList.toggle('hidden', !routePanelOpen);
+      document.getElementById('btnRouteToggle').classList.toggle('route-on', routePanelOpen);
+      syncRouteForm();
+      renderRoutePanel();
+      renderRouteOverlay();
+      if (routePanelOpen && routePlan.stopIds.length) fitRouteBounds();
+    }
 
     function loadCoordOverrides() {
       try {
@@ -741,6 +1299,7 @@
             <a href="https://map.kakao.com/?q=${navQuery}" target="_blank" rel="noopener">카카오 지도</a>
             <a href="https://map.naver.com/v5/search/${navQuery}" target="_blank" rel="noopener">네이버 지도</a>
           </div>
+          <button type="button" class="popup-route-btn" data-route-add="${lead.id}">＋ 영업 계획에 추가</button>
         </div>`;
     }
 
@@ -792,18 +1351,36 @@
       }
       el.innerHTML = items.map(l => {
         const st = getStatus(l.id);
+        const routeIdx = routePlan.stopIds.indexOf(l.id);
+        const routeBadge = routeIdx >= 0
+          ? `<span class="route-num" style="width:20px;height:20px;font-size:10px">${routeIdx + 1}</span>`
+          : '';
+        const addBtn = routePanelOpen && routeIdx < 0
+          ? `<button type="button" class="route-add-btn" data-route-add="${l.id}">＋</button>`
+          : '';
         return `
           <div class="lead-item${l.id === activeId ? ' active' : ''}" data-id="${l.id}">
             <div class="lead-top">
-              <span class="dot ${st}"></span>
+              ${routeBadge || `<span class="dot ${st}"></span>`}
               <span class="lead-name">${escapeHtml(l.name)}</span>
+              ${addBtn}
             </div>
             <div class="lead-meta">${escapeHtml(l.gu)} ${escapeHtml(l.dong)} · ${STATUS_LABELS[st]}</div>
           </div>`;
       }).join('');
     }
 
-    function makeLeafletIcon(status, isActive) {
+    function makeLeafletIcon(status, isActive, routeNum, isCurrent, isDone) {
+      if (routeNum) {
+        const cls = ['route-marker', isCurrent ? 'current' : '', isDone ? 'done' : ''].filter(Boolean).join(' ');
+        const size = isCurrent ? 32 : 28;
+        return L.divIcon({
+          className: 'custom-marker-wrap',
+          html: `<div class="${cls}" style="width:${size}px;height:${size}px">${routeNum}</div>`,
+          iconSize: [size, size],
+          iconAnchor: [size / 2, size / 2]
+        });
+      }
       const color = STATUS_COLORS[status] || STATUS_COLORS.pending;
       const size = isActive ? 26 : 20;
       return L.divIcon({
@@ -817,7 +1394,14 @@
     function createMarker(lead, isActive) {
       const c = leadCoords(lead);
       const st = getStatus(lead.id);
-      const m = L.marker([c.lat, c.lng], { icon: makeLeafletIcon(st, isActive) });
+      const routeIdx = routePlan.stopIds.indexOf(lead.id);
+      const routeNum = routeIdx >= 0 ? routeIdx + 1 : 0;
+      const isCurrent = routeIdx === routePlan.currentIndex;
+      const isDone = routeIdx >= 0 && routeIdx < routePlan.currentIndex;
+      const m = L.marker([c.lat, c.lng], {
+        icon: makeLeafletIcon(st, isActive, routeNum, isCurrent, isDone),
+        opacity: routePanelOpen && routePlan.stopIds.length && routeNum === 0 ? 0.35 : 1
+      });
       m.bindPopup(popupContent(lead), { maxWidth: 280 });
       m.on('popupopen', () => {
         activeId = lead.id;
@@ -854,6 +1438,9 @@
         ta.onchange = () => setLeadStatus(ta.dataset.id, getStatus(ta.dataset.id), ta.value);
         ta.onblur = ta.onchange;
       });
+      document.querySelectorAll('.popup-route-btn').forEach(btn => {
+        btn.onclick = () => addToRoute(btn.dataset.routeAdd);
+      });
     }
 
     function refreshUI(focusId) {
@@ -861,6 +1448,10 @@
       const items = filteredLeads();
       renderList(items);
       renderMarkers(items);
+      if (routePanelOpen) {
+        renderRoutePanel();
+        renderRouteOverlay();
+      }
       if (focusId && markers[focusId]) {
         const lead = leads.find(l => l.id === focusId);
         if (lead) {
@@ -928,6 +1519,41 @@
       leads = data.leads || [];
       populateFilters();
       refreshUI();
+
+      document.getElementById('btnRouteToggle').addEventListener('click', toggleRoutePanel);
+      document.getElementById('btnRouteNext').addEventListener('click', advanceRoute);
+      document.getElementById('btnMondayPlan').addEventListener('click', loadMondayPreset);
+      document.getElementById('btnRouteAuto').addEventListener('click', generateAutoRoute);
+      document.getElementById('btnRouteFit').addEventListener('click', fitRouteBounds);
+      document.getElementById('btnRouteClear').addEventListener('click', clearRoute);
+
+      ['routeName', 'routeDate', 'routeStart', 'routeEnd', 'routeVisitMin', 'routeTravelMin'].forEach(id => {
+        document.getElementById(id).addEventListener('change', () => {
+          readRouteForm();
+          renderRoutePanel();
+        });
+      });
+
+      document.getElementById('routeList').addEventListener('click', e => {
+        const removeBtn = e.target.closest('[data-remove]');
+        if (removeBtn) {
+          e.stopPropagation();
+          removeFromRoute(Number(removeBtn.dataset.remove));
+          return;
+        }
+        const moveBtn = e.target.closest('[data-move]');
+        if (moveBtn) {
+          e.stopPropagation();
+          moveRouteStop(Number(moveBtn.dataset.idx), moveBtn.dataset.move === 'up' ? -1 : 1);
+          return;
+        }
+        const item = e.target.closest('.route-item');
+        if (!item) return;
+        routePlan.currentIndex = Number(item.dataset.routeIdx);
+        saveRoutePlan();
+        refreshUI(item.dataset.id);
+      });
+
       refineCoordsViaApi();
 
       document.getElementById('search').addEventListener('input', e => {
@@ -960,6 +1586,12 @@
       });
 
       document.getElementById('list').addEventListener('click', e => {
+        const addBtn = e.target.closest('[data-route-add]');
+        if (addBtn) {
+          e.stopPropagation();
+          addToRoute(addBtn.dataset.routeAdd);
+          return;
+        }
         const item = e.target.closest('.lead-item');
         if (!item) return;
         activeId = item.dataset.id;
