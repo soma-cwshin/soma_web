@@ -258,17 +258,17 @@
       height: 100%;
     }
 
-    /* 지도 타일: 채도·대비 낮춰 배경처럼 */
+    /* 지도: 살짝만 눌러서 마커가 돋보이게 */
     #map .leaflet-tile-pane {
-      filter: saturate(0.2) brightness(1.06) contrast(0.88);
-      opacity: 0.5;
+      filter: saturate(0.78) brightness(1.02) contrast(0.96);
+      opacity: 0.92;
     }
 
     .map-wrap::after {
       content: '';
       position: absolute;
       inset: 0;
-      background: linear-gradient(180deg, rgba(5, 12, 24, 0.12), rgba(5, 12, 24, 0.28));
+      background: linear-gradient(180deg, rgba(5, 12, 24, 0.03), rgba(5, 12, 24, 0.08));
       pointer-events: none;
       z-index: 401;
     }
