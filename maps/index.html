@@ -554,6 +554,9 @@
     </div>
   </div>
 
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
+  <script charset="UTF-8" src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=5596f90a80c8ed0b8877c09370d5f29b&autoload=false"></script>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
   <script>
     const STORAGE_KEY = 'soma-sales-map-v1';
     const COORDS_KEY = 'soma-sales-coords-v1';
@@ -576,6 +579,8 @@
     let state = loadState();
     let map, infoWindow, markers = {}, activeId = null;
     let myLocationMarker = null;
+    let mapEngine = 'kakao';
+    let leafletCluster = null;
     let filterStatus = '', filterGu = '', filterDong = '', query = '';
 
     function loadCoordOverrides() {
@@ -658,25 +663,24 @@
       }
     }
 
-    function loadKakaoSdk(key) {
+    function loadKakaoSdk() {
       return new Promise((resolve, reject) => {
-        if (window.kakao && window.kakao.maps) {
-          kakao.maps.load(() => {
-            if (!kakao.maps.Map) reject(new Error('카카오맵 API 사용 불가'));
-            else resolve();
-          });
-          return;
-        }
-        const script = document.createElement('script');
-        script.src = `https://dapi.kakao.com/v2/maps/sdk.js?appkey=${encodeURIComponent(key)}&autoload=false`;
-        script.onload = () => {
-          kakao.maps.load(() => {
-            if (!kakao.maps.Map) reject(new Error('카카오맵 API 사용 불가'));
-            else resolve();
-          });
+        const deadline = Date.now() + 10000;
+        const tryLoad = () => {
+          if (window.kakao && window.kakao.maps) {
+            kakao.maps.load(() => {
+              if (kakao.maps.Map) resolve();
+              else reject(new Error('카카오맵 API 사용 불가'));
+            });
+            return;
+          }
+          if (Date.now() > deadline) {
+            reject(new Error('카카오맵 SDK 스크립트 로드 실패'));
+            return;
+          }
+          setTimeout(tryLoad, 100);
         };
-        script.onerror = () => reject(new Error('카카오맵 SDK 스크립트 로드 실패'));
-        document.head.appendChild(script);
+        tryLoad();
       });
     }
 
@@ -757,6 +761,7 @@
       };
       saveState();
       if (infoWindow) infoWindow.close();
+      if (mapEngine === 'leaflet' && map && map.closePopup) map.closePopup();
       refreshUI(id);
     }
 
@@ -819,11 +824,15 @@
     function openInfoForLead(lead) {
       activeId = lead.id;
       renderList(filteredLeads());
-      if (!infoWindow) {
-        infoWindow = new kakao.maps.InfoWindow({ removable: true, zIndex: 20 });
+      if (mapEngine === 'kakao') {
+        if (!infoWindow) {
+          infoWindow = new kakao.maps.InfoWindow({ removable: true, zIndex: 20 });
+        }
+        infoWindow.setContent(popupContent(lead));
+        infoWindow.open(map, markers[lead.id]);
+      } else if (markers[lead.id]) {
+        markers[lead.id].openPopup();
       }
-      infoWindow.setContent(popupContent(lead));
-      infoWindow.open(map, markers[lead.id]);
       setTimeout(bindPopupEvents, 30);
     }
 
@@ -879,14 +888,53 @@
       }).join('');
     }
 
-    function renderMarkers(items) {
-      Object.values(markers).forEach(m => m.setMap(null));
-      markers = {};
-      items.forEach(l => {
-        const m = createMarker(l, l.id === activeId);
-        m.setMap(map);
-        markers[l.id] = m;
+    function makeLeafletIcon(status, isActive) {
+      const color = STATUS_COLORS[status] || STATUS_COLORS.pending;
+      const size = isActive ? 26 : 20;
+      return L.divIcon({
+        className: 'custom-marker-wrap',
+        html: `<div class="marker-pin${isActive ? ' active' : ''}" style="width:${size}px;height:${size}px;background:${color};box-shadow:0 0 0 3px #fff,0 0 16px ${color};"></div>`,
+        iconSize: [size, size],
+        iconAnchor: [size / 2, size / 2]
       });
+    }
+
+    function createLeafletMarker(lead, isActive) {
+      const c = leadCoords(lead);
+      const st = getStatus(lead.id);
+      const m = L.marker([c.lat, c.lng], { icon: makeLeafletIcon(st, isActive) });
+      m.bindPopup(popupContent(lead), { maxWidth: 280 });
+      m.on('popupopen', () => {
+        activeId = lead.id;
+        renderList(filteredLeads());
+        bindPopupEvents();
+      });
+      return m;
+    }
+
+    function renderMarkers(items) {
+      if (mapEngine === 'kakao') {
+        Object.values(markers).forEach(m => m.setMap(null));
+        markers = {};
+        items.forEach(l => {
+          const m = createMarker(l, l.id === activeId);
+          m.setMap(map);
+          markers[l.id] = m;
+        });
+        return;
+      }
+      if (leafletCluster) {
+        map.removeLayer(leafletCluster);
+        leafletCluster = null;
+      }
+      markers = {};
+      leafletCluster = L.layerGroup();
+      items.forEach(l => {
+        const m = createLeafletMarker(l, l.id === activeId);
+        markers[l.id] = m;
+        leafletCluster.addLayer(m);
+      });
+      leafletCluster.addTo(map);
     }
 
     function bindPopupEvents() {
@@ -911,8 +959,13 @@
       if (focusId && markers[focusId]) {
         const lead = leads.find(l => l.id === focusId);
         if (lead) {
-          map.setCenter(toLatLng(lead));
-          map.setLevel(Math.min(map.getLevel(), 5));
+          if (mapEngine === 'kakao') {
+            map.setCenter(toLatLng(lead));
+            map.setLevel(Math.min(map.getLevel(), 5));
+          } else {
+            const c = leadCoords(lead);
+            map.setView([c.lat, c.lng], Math.max(map.getZoom(), 16));
+          }
           openInfoForLead(lead);
         }
       }
@@ -945,7 +998,7 @@
       else { dongSel.value = ''; filterDong = ''; }
     }
 
-    function initMap() {
+    function initKakaoMap() {
       const container = document.getElementById('map');
       if (!container.offsetWidth || !container.offsetHeight) {
         throw new Error('지도 영역 크기 0 — 새로고침 후 다시 시도해주세요.');
@@ -958,20 +1011,50 @@
       relayoutMap();
     }
 
+    function initLeafletMap() {
+      const container = document.getElementById('map');
+      container.innerHTML = '';
+      map = L.map(container).setView([37.548, 126.88], 12);
+      L.control.zoom({ position: 'bottomright' }).addTo(map);
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; OpenStreetMap',
+        maxZoom: 19
+      }).addTo(map);
+    }
+
     function fitAllMarkers() {
       const items = filteredLeads();
       if (!items.length) return;
-      const bounds = new kakao.maps.LatLngBounds();
-      items.forEach(l => bounds.extend(toLatLng(l)));
-      map.setBounds(bounds, 40, 40, 40, 40);
+      if (mapEngine === 'kakao') {
+        const bounds = new kakao.maps.LatLngBounds();
+        items.forEach(l => bounds.extend(toLatLng(l)));
+        map.setBounds(bounds, 40, 40, 40, 40);
+        return;
+      }
+      const bounds = L.latLngBounds(items.map(l => {
+        const c = leadCoords(l);
+        return [c.lat, c.lng];
+      }));
+      map.fitBounds(bounds.pad(0.08));
     }
 
     async function init() {
-      const key = await getKakaoKey();
-      await loadKakaoSdk(key);
       await waitForLayout();
       await new Promise(r => setTimeout(r, 150));
-      initMap();
+
+      try {
+        await loadKakaoSdk();
+        mapEngine = 'kakao';
+        initKakaoMap();
+      } catch (err) {
+        console.warn('Kakao map unavailable, fallback to OSM', err);
+        mapEngine = 'leaflet';
+        initLeafletMap();
+        const statusEl = document.getElementById('geocodeStatus');
+        statusEl.textContent = '카카오맵 로드 실패 → 일반 지도로 표시합니다';
+        statusEl.classList.add('show');
+        setTimeout(() => statusEl.classList.remove('show'), 4000);
+      }
 
       const res = await apiFetch('/api/leads');
       if (!res.ok) throw new Error('데이터를 불러올 수 없습니다.');
@@ -1023,20 +1106,29 @@
       document.getElementById('btnLocate').addEventListener('click', () => {
         if (!navigator.geolocation) return alert('위치 정보를 사용할 수 없습니다.');
         navigator.geolocation.getCurrentPosition(pos => {
-          const loc = new kakao.maps.LatLng(pos.coords.latitude, pos.coords.longitude);
-          map.setCenter(loc);
-          map.setLevel(4);
-          if (myLocationMarker) myLocationMarker.setMap(null);
-          myLocationMarker = new kakao.maps.Marker({
-            position: loc,
-            map,
-            image: new kakao.maps.MarkerImage(
-              markerImageUrl('#5FCDF9', true),
-              new kakao.maps.Size(66, 66),
-              { offset: new kakao.maps.Point(33, 33) }
-            ),
-            zIndex: 15
-          });
+          const { latitude, longitude } = pos.coords;
+          if (mapEngine === 'kakao') {
+            const loc = new kakao.maps.LatLng(latitude, longitude);
+            map.setCenter(loc);
+            map.setLevel(4);
+            if (myLocationMarker) myLocationMarker.setMap(null);
+            myLocationMarker = new kakao.maps.Marker({
+              position: loc,
+              map,
+              image: new kakao.maps.MarkerImage(
+                markerImageUrl('#5FCDF9', true),
+                new kakao.maps.Size(66, 66),
+                { offset: new kakao.maps.Point(33, 33) }
+              ),
+              zIndex: 15
+            });
+          } else {
+            map.setView([latitude, longitude], 15);
+            if (myLocationMarker) map.removeLayer(myLocationMarker);
+            myLocationMarker = L.circleMarker([latitude, longitude], {
+              radius: 8, color: '#2E8CD5', fillColor: '#5FCDF9', fillOpacity: 0.8
+            }).addTo(map).bindPopup('내 위치').openPopup();
+          }
         }, () => alert('위치 권한이 필요합니다.'));
       });
 
@@ -1087,14 +1179,7 @@
           await init();
         } catch (err) {
           console.error(err);
-          alert(
-            '지도를 불러오지 못했습니다.\n\n' +
-            (err.message || err) + '\n\n' +
-            '확인 사항:\n' +
-            '1. 카카오 Developers → 플랫폼 키 → JavaScript 키 사용\n' +
-            '2. 앱 → 일반 → Web에 https://soma.ai.kr 등록\n' +
-            '3. 제품 설정 → 카카오맵 ON'
-          );
+          alert('지도를 불러오지 못했습니다.\n\n' + (err.message || err));
         }
         return;
       }
@@ -1113,11 +1198,7 @@
             loginError.textContent = err.message;
           } else {
             console.error(err);
-            alert(
-              '지도를 불러오지 못했습니다.\n\n' +
-              (err.message || err) + '\n\n' +
-              '확인: 제품 설정 → 카카오맵 ON'
-            );
+            alert('지도를 불러오지 못했습니다.\n\n' + (err.message || err));
           }
         }
       });
