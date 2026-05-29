@@ -646,16 +646,36 @@
       document.getElementById('app').classList.remove('hidden');
     }
 
+    function waitForLayout() {
+      return new Promise(resolve => {
+        requestAnimationFrame(() => requestAnimationFrame(resolve));
+      });
+    }
+
+    function relayoutMap() {
+      if (map && map.relayout) {
+        map.relayout();
+      }
+    }
+
     function loadKakaoSdk(key) {
       return new Promise((resolve, reject) => {
         if (window.kakao && window.kakao.maps) {
-          kakao.maps.load(resolve);
+          kakao.maps.load(() => {
+            if (!kakao.maps.Map) reject(new Error('카카오맵 API 사용 불가'));
+            else resolve();
+          });
           return;
         }
         const script = document.createElement('script');
-        script.src = `https://dapi.kakao.com/v2/maps/sdk.js?appkey=${key}&autoload=false&libraries=clusterer,services`;
-        script.onload = () => kakao.maps.load(resolve);
-        script.onerror = () => reject(new Error('카카오맵 SDK 로드 실패'));
+        script.src = `https://dapi.kakao.com/v2/maps/sdk.js?appkey=${encodeURIComponent(key)}&autoload=false&libraries=clusterer,services`;
+        script.onload = () => {
+          kakao.maps.load(() => {
+            if (!kakao.maps.Map) reject(new Error('카카오맵 API 사용 불가'));
+            else resolve();
+          });
+        };
+        script.onerror = () => reject(new Error('카카오맵 SDK 스크립트 로드 실패'));
         document.head.appendChild(script);
       });
     }
@@ -937,18 +957,9 @@
         map,
         averageCenter: true,
         minLevel: 6,
-        gridSize: 50,
-        styles: [{
-          width: '44px', height: '44px',
-          background: 'rgba(46, 140, 213, 0.92)',
-          borderRadius: '22px',
-          color: '#fff',
-          textAlign: 'center',
-          fontWeight: '700',
-          lineHeight: '44px',
-          boxShadow: '0 0 0 3px #fff, 0 0 16px rgba(95,205,249,.7)'
-        }]
+        gridSize: 50
       });
+      relayoutMap();
     }
 
     function fitAllMarkers() {
@@ -962,13 +973,16 @@
     async function init() {
       const key = await getKakaoKey();
       await loadKakaoSdk(key);
+      await waitForLayout();
       initMap();
+
       const res = await apiFetch('/api/leads');
       if (!res.ok) throw new Error('데이터를 불러올 수 없습니다.');
       const data = await res.json();
       leads = data.leads || [];
       populateFilters();
       refreshUI();
+      setTimeout(relayoutMap, 200);
       refineCoordsViaApi();
 
       document.getElementById('search').addEventListener('input', e => {
@@ -1075,8 +1089,15 @@
         try {
           await init();
         } catch (err) {
-          alert('지도를 불러오지 못했습니다. 카카오맵 JavaScript 키와 soma.ai.kr 도메인 등록을 확인해주세요.');
           console.error(err);
+          alert(
+            '지도를 불러오지 못했습니다.\n\n' +
+            (err.message || err) + '\n\n' +
+            '확인 사항:\n' +
+            '1. 카카오 Developers → 플랫폼 키 → JavaScript 키 사용\n' +
+            '2. 앱 → 일반 → Web에 https://soma.ai.kr 등록\n' +
+            '3. 제품 설정 → 카카오맵 ON'
+          );
         }
         return;
       }
