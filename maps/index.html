@@ -577,7 +577,7 @@
 
     async function isAuthed() {
       try {
-        const res = await apiFetch('./data/leads.json', { method: 'HEAD' });
+        const res = await apiFetch('/api/leads', { method: 'HEAD' });
         if (res.ok) {
           sessionStorage.setItem(AUTH_FLAG, '1');
           return true;
@@ -859,7 +859,7 @@
 
     async function init() {
       initMap();
-      const res = await apiFetch('./data/leads.json');
+      const res = await apiFetch('/api/leads');
       if (!res.ok) throw new Error('데이터를 불러올 수 없습니다.');
       const data = await res.json();
       leads = data.leads || [];
