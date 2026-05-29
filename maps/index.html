@@ -250,7 +250,7 @@
     .map-wrap {
       position: relative;
       min-height: 0;
-      background: #0f1724;
+      background: #e8eaed;
     }
 
     #map {
@@ -258,17 +258,17 @@
       height: 100%;
     }
 
-    /* 지도: 살짝만 눌러서 마커가 돋보이게 */
+    /* 카카오맵 느낌: 밝고 채도 낮은 파스텔 톤, 선명도는 유지 */
     #map .leaflet-tile-pane {
-      filter: saturate(0.78) brightness(1.02) contrast(0.96);
-      opacity: 0.92;
+      filter: saturate(0.48) brightness(1.14) contrast(0.9) sepia(0.06);
+      opacity: 1;
     }
 
     .map-wrap::after {
       content: '';
       position: absolute;
       inset: 0;
-      background: linear-gradient(180deg, rgba(5, 12, 24, 0.03), rgba(5, 12, 24, 0.08));
+      background: rgba(255, 252, 247, 0.18);
       pointer-events: none;
       z-index: 401;
     }
@@ -745,12 +745,12 @@
     function makeIcon(status, isActive = false) {
       const color = STATUS_COLORS[status] || STATUS_COLORS.pending;
       const size = isActive ? 26 : 20;
-      const glow1 = isActive ? 22 : 14;
-      const glow2 = isActive ? 44 : 28;
+      const glow1 = isActive ? 24 : 16;
+      const glow2 = isActive ? 48 : 32;
       const cls = isActive ? 'marker-pin active' : 'marker-pin';
       return L.divIcon({
         className: 'custom-marker-wrap',
-        html: `<div class="${cls}" style="width:${size}px;height:${size}px;background:${color};box-shadow:0 0 0 3px #fff,0 0 ${glow1}px ${color},0 0 ${glow2}px ${color}99,0 4px 10px rgba(0,0,0,.35);"></div>`,
+        html: `<div class="${cls}" style="width:${size}px;height:${size}px;background:${color};box-shadow:0 0 0 3px #fff,0 0 ${glow1}px ${color},0 0 ${glow2}px ${color}cc,0 2px 8px rgba(0,0,0,.25);"></div>`,
         iconSize: [size, size],
         iconAnchor: [size / 2, size / 2]
       });
@@ -911,7 +911,7 @@
     function initMap() {
       map = L.map('map', { zoomControl: false }).setView([37.548, 126.88], 12);
       L.control.zoom({ position: 'bottomright' }).addTo(map);
-      L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+      L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
         attribution: '&copy; OpenStreetMap &copy; CARTO',
         subdomains: 'abcd',
         maxZoom: 19
