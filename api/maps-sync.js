@@ -13,6 +13,9 @@ async function supabaseFetch(path, options = {}) {
   if (!SUPABASE_KEY) {
     throw new Error('SUPABASE_SERVICE_ROLE_KEY not configured');
   }
+  if (!SUPABASE_URL) {
+    throw new Error('SUPABASE_URL not configured');
+  }
   const res = await fetch(`${SUPABASE_URL}/rest/v1/${path}`, {
     ...options,
     headers: {
@@ -39,7 +42,7 @@ module.exports = async (req, res) => {
     return res.status(401).json({ error: 'Unauthorized' });
   }
 
-  if (!SUPABASE_KEY) {
+  if (!SUPABASE_KEY || !SUPABASE_URL) {
     if (req.method === 'GET') {
       return res.status(200).json({ ...EMPTY, syncAvailable: false });
     }
