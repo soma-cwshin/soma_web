@@ -2,7 +2,7 @@ const crypto = require('crypto');
 
 const PASSWORD = process.env.MAPS_PASSWORD || 'asdf1234';
 const AUTH_TOKEN = crypto.createHash('sha256').update(`${PASSWORD}|soma-maps-v1`).digest('hex');
-const SUPABASE_URL = process.env.SUPABASE_URL || 'https://qbreoqkdusrrobilwidk.supabase.co';
+const SUPABASE_URL = process.env.SUPABASE_URL || '';
 const SUPABASE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY || '';
 
 function isAuthed(req) {
