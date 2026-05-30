@@ -2,7 +2,7 @@ const crypto = require('crypto');
 
 const PASSWORD = process.env.MAPS_PASSWORD || 'asdf1234';
 const AUTH_TOKEN = crypto.createHash('sha256').update(`${PASSWORD}|soma-maps-v1`).digest('hex');
-const KAKAO_KEY = process.env.KAKAO_REST_API_KEY || '';
+const KAKAO_KEY = process.env.KAKAO_REST_API_KEY || '5f0ac505b03a80ca8a0c3aba83488c66';
 
 module.exports = async (req, res) => {
   const authed = (req.headers.cookie || '').includes(`soma_maps_auth=${AUTH_TOKEN}`);

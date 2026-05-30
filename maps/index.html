@@ -702,7 +702,38 @@
         grid-template-rows: 42vh 1fr;
       }
 
+      .main.route-mode {
+        grid-template-rows: min(58vh, 520px) 1fr;
+      }
+
       .sidebar { border-right: none; border-bottom: 1px solid var(--line); }
+      .sidebar.route-open .list { display: none; }
+      .sidebar.route-open .route-panel {
+        flex: 1;
+        max-height: none;
+        min-height: 0;
+      }
+      .route-foot {
+        flex-shrink: 0;
+        position: sticky;
+        bottom: 0;
+        z-index: 5;
+        background: rgba(12, 31, 61, 0.98);
+        box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.25);
+        padding-bottom: max(10px, env(safe-area-inset-bottom));
+      }
+      .route-foot .btn {
+        flex: 1 1 calc(50% - 4px);
+        min-width: calc(50% - 4px);
+        text-align: center;
+        padding: 10px 6px;
+        font-size: 11px;
+      }
+      .route-banner {
+        right: 12px;
+        left: 12px;
+        font-size: 12px;
+      }
       .brand h1 { display: none; }
       .stats .stat:nth-child(n+3) { display: none; }
     }
@@ -729,7 +760,7 @@
     </header>
 
     <div class="main">
-      <aside class="sidebar">
+      <aside class="sidebar" id="sidebar">
         <div class="controls">
           <input type="search" class="search" id="search" placeholder="업체명, 주소, 동 검색…" autocomplete="off">
           <div class="filters">
@@ -799,6 +830,8 @@
     const STORAGE_KEY = 'soma-sales-map-v1';
     const COORDS_KEY = 'soma-sales-coords-v1';
     const ROUTE_STORAGE_KEY = 'soma-sales-route-v1';
+    const GEOCODE_SKIP_KEY = 'soma-sales-geocode-skip-v1';
+    const SYNC_AT_KEY = 'soma-sales-sync-at';
     const AUTH_FLAG = 'soma_maps_client_auth';
     const ALWAYS_PT_ID = 'be53bd068abd';
     const MONDAY_PRESET_IDS = [
@@ -828,6 +861,9 @@
     let routePolyline = null;
     let routePlan = loadRoutePlan();
     let routePanelOpen = false;
+    let geocodeSkipped = loadGeocodeSkipped();
+    let serverSyncAvailable = false;
+    let syncTimer = null;
     let filterStatus = '', filterGu = '', filterDong = '', query = '';
 
     function loadRoutePlan() {
@@ -849,7 +885,82 @@
     }
 
     function saveRoutePlan() {
+      scheduleSyncPush();
+    }
+
+    function loadGeocodeSkipped() {
+      try {
+        return new Set(JSON.parse(localStorage.getItem(GEOCODE_SKIP_KEY) || '[]'));
+      } catch {
+        return new Set();
+      }
+    }
+
+    function saveGeocodeSkipped() {
+      scheduleSyncPush();
+    }
+
+    function persistLocal() {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
       localStorage.setItem(ROUTE_STORAGE_KEY, JSON.stringify(routePlan));
+      localStorage.setItem(COORDS_KEY, JSON.stringify(coordOverrides));
+      localStorage.setItem(GEOCODE_SKIP_KEY, JSON.stringify([...geocodeSkipped]));
+    }
+
+    function scheduleSyncPush() {
+      persistLocal();
+      if (!serverSyncAvailable) return;
+      clearTimeout(syncTimer);
+      syncTimer = setTimeout(pushSyncToServer, 500);
+    }
+
+    async function loadSyncFromServer() {
+      try {
+        const res = await apiFetch('/api/maps-sync');
+        if (!res.ok) return;
+        const data = await res.json();
+        serverSyncAvailable = data.syncAvailable !== false;
+        if (!serverSyncAvailable) return;
+
+        const serverHas = Object.keys(data.visitState || {}).length > 0
+          || (data.routePlan && data.routePlan.stopIds && data.routePlan.stopIds.length > 0);
+        const localHas = Object.keys(state).length > 0
+          || (routePlan.stopIds && routePlan.stopIds.length > 0);
+        const localAt = localStorage.getItem(SYNC_AT_KEY);
+        const serverAt = data.updatedAt;
+        const serverIsNewer = serverAt && (!localAt || new Date(serverAt) >= new Date(localAt));
+
+        if (serverHas && serverIsNewer) {
+          state = data.visitState || {};
+          routePlan = { ...loadRoutePlan(), ...(data.routePlan || {}) };
+          coordOverrides = data.coordOverrides || {};
+          geocodeSkipped = new Set(data.geocodeSkipped || []);
+          persistLocal();
+          if (serverAt) localStorage.setItem(SYNC_AT_KEY, serverAt);
+        } else if (localHas) {
+          await pushSyncToServer();
+        }
+      } catch { /* offline — local only */ }
+    }
+
+    async function pushSyncToServer() {
+      if (!serverSyncAvailable) return;
+      try {
+        const res = await apiFetch('/api/maps-sync', {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            visitState: state,
+            routePlan,
+            coordOverrides,
+            geocodeSkipped: [...geocodeSkipped],
+          }),
+        });
+        if (res.ok) {
+          const data = await res.json();
+          if (data.updatedAt) localStorage.setItem(SYNC_AT_KEY, data.updatedAt);
+        }
+      } catch { /* ignore */ }
     }
 
     function getNextMondayISO() {
@@ -1133,9 +1244,12 @@
       routePanelOpen = !routePanelOpen;
       document.getElementById('routePanel').classList.toggle('hidden', !routePanelOpen);
       document.getElementById('btnRouteToggle').classList.toggle('route-on', routePanelOpen);
+      document.getElementById('sidebar').classList.toggle('route-open', routePanelOpen);
+      document.querySelector('.main').classList.toggle('route-mode', routePanelOpen);
       syncRouteForm();
       renderRoutePanel();
       renderRouteOverlay();
+      refreshUI();
       if (routePanelOpen && routePlan.stopIds.length) fitRouteBounds();
     }
 
@@ -1148,7 +1262,12 @@
     }
 
     function saveCoordOverrides() {
-      localStorage.setItem(COORDS_KEY, JSON.stringify(coordOverrides));
+      scheduleSyncPush();
+    }
+
+    function isGeocodable(lead) {
+      const addr = (lead.address || '').trim();
+      return addr && addr !== '정보 없음';
     }
 
     function leadCoords(lead) {
@@ -1209,16 +1328,18 @@
     }
 
     async function refineCoordsViaApi() {
-      const imprecise = leads.filter(l => !l.precise && !coordOverrides[l.id]);
+      const imprecise = leads.filter(l =>
+        !l.precise && !coordOverrides[l.id] && !geocodeSkipped.has(l.id) && isGeocodable(l)
+      );
       if (!imprecise.length) return;
 
       const statusEl = document.getElementById('geocodeStatus');
-      statusEl.classList.add('show');
       let done = 0;
       let failed = 0;
 
       for (const lead of imprecise) {
-        statusEl.textContent = `주소 좌표 변환 중… ${done + 1}/${imprecise.length}`;
+        statusEl.textContent = `주소 좌표 변환 중… ${done + failed + 1}/${imprecise.length}`;
+        statusEl.classList.add('show');
         try {
           const q = new URLSearchParams({
             address: lead.address,
@@ -1230,19 +1351,27 @@
             coordOverrides[lead.id] = { lat: data.lat, lng: data.lng, source: data.source };
             done += 1;
           } else {
+            geocodeSkipped.add(lead.id);
             failed += 1;
           }
         } catch {
+          geocodeSkipped.add(lead.id);
           failed += 1;
         }
         await new Promise(r => setTimeout(r, 120));
       }
 
+      saveGeocodeSkipped();
       saveCoordOverrides();
-      statusEl.textContent = failed
-        ? `좌표 변환 완료 (${done}건, 실패 ${failed}건)`
-        : `좌표 변환 완료 (${done}건)`;
-      setTimeout(() => statusEl.classList.remove('show'), 2500);
+
+      if (done > 0) {
+        statusEl.textContent = failed
+          ? `좌표 변환 완료 (${done}건, 실패 ${failed}건)`
+          : `좌표 변환 완료 (${done}건)`;
+        setTimeout(() => statusEl.classList.remove('show'), 2500);
+      } else {
+        statusEl.classList.remove('show');
+      }
       refreshUI();
     }
 
@@ -1255,7 +1384,7 @@
     }
 
     function saveState() {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+      scheduleSyncPush();
     }
 
     function getStatus(id) {
@@ -1517,7 +1646,10 @@
       if (!res.ok) throw new Error('데이터를 불러올 수 없습니다.');
       const data = await res.json();
       leads = data.leads || [];
+      leads.filter(l => !l.precise && !isGeocodable(l)).forEach(l => geocodeSkipped.add(l.id));
+      await loadSyncFromServer();
       populateFilters();
+      syncRouteForm();
       refreshUI();
 
       document.getElementById('btnRouteToggle').addEventListener('click', toggleRoutePanel);
