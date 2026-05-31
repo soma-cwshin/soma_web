@@ -369,6 +369,25 @@
     .hours-line .hours-day { min-width: 1.2em; color: #64748b; }
     .hours-line .hours-note { margin-top: 4px; color: #475569; font-size: 11px; }
 
+    .soma-line {
+      margin: 8px 0 4px;
+      padding: 8px 10px;
+      border-radius: 8px;
+      background: #f5f3ff;
+      border: 1px solid #ddd6fe;
+      font-size: 12px;
+      line-height: 1.45;
+      color: #334155;
+    }
+    .soma-line.loading { color: #64748b; font-style: italic; }
+    .soma-line .soma-badge { font-weight: 600; margin-bottom: 4px; }
+    .soma-line .soma-badge.ok { color: #6d28d9; }
+    .soma-line .soma-badge.none { color: #64748b; }
+    .soma-line .soma-row { display: flex; justify-content: space-between; gap: 8px; }
+    .soma-line .soma-label { color: #64748b; }
+    .soma-line .soma-section { margin-top: 6px; padding-top: 6px; border-top: 1px solid #e9e5ff; }
+    .soma-line .soma-section-title { font-weight: 600; color: #5b21b6; margin-bottom: 3px; font-size: 11px; }
+
     .popup-actions {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -626,6 +645,7 @@
     let serverSyncAvailable = false;
     let syncTimer = null;
     let hoursCache = {};
+    let insightsCache = {};
     let filterStatus = '', filterGu = '', filterDong = '', query = '';
 
     function normalizeStatus(st) {
@@ -886,6 +906,7 @@
           <p>${escapeHtml(lead.address)}</p>
           ${phoneHtml}
           <div class="hours-line loading" data-hours-id="${lead.id}">영업시간 불러오는 중…</div>
+          <div class="soma-line loading" data-soma-id="${lead.id}">소마 데이터 불러오는 중…</div>
           <textarea class="note-input" data-id="${lead.id}" placeholder="메모 (자동 저장)">${escapeHtml(note)}</textarea>
           <div class="popup-actions">
             <button class="pending" data-id="${lead.id}" data-status="pending">미방문</button>
@@ -954,6 +975,94 @@
       }
     }
 
+    function formatDateKo(iso) {
+      if (!iso) return '-';
+      const d = new Date(iso);
+      if (Number.isNaN(d.getTime())) return '-';
+      return `${d.getFullYear()}.${d.getMonth() + 1}.${d.getDate()}`;
+    }
+
+    function planLabel(planType) {
+      const map = { trial: '체험', monthly: '월간', yearly: '연간', none: '없음' };
+      return map[planType] || planType;
+    }
+
+    function renderInsightsHtml(data) {
+      if (!data) return '소마 데이터 없음';
+      if (!data.registered) {
+        return '<div class="soma-badge none">소마 미등록 센터</div>';
+      }
+      const b = data.bookingActivity || {};
+      const p = data.plans || {};
+      const parts = [];
+      parts.push(`<div class="soma-badge ok">소마 등록 · ${escapeHtml(data.match.name)}</div>`);
+      parts.push(`<div class="soma-row"><span class="soma-label">등록일</span><span>${formatDateKo(data.match.registeredAt)}</span></div>`);
+
+      parts.push('<div class="soma-section"><div class="soma-section-title">수업 예약 (누적)</div>');
+      parts.push(`<div class="soma-row"><span class="soma-label">전체</span><span>${b.total || 0}건</span></div>`);
+      parts.push(`<div class="soma-row"><span class="soma-label">완료/확정</span><span>${b.completed || 0}건</span></div>`);
+      if (b.firstAt) {
+        parts.push(`<div class="soma-row"><span class="soma-label">기간</span><span>${formatDateKo(b.firstAt)} ~ ${formatDateKo(b.lastAt)}</span></div>`);
+      }
+      parts.push('</div>');
+
+      const staffActive = (p.staff || []).filter(s => s.status === 'active').reduce((sum, s) => sum + s.count, 0);
+      const trainers = p.people?.trainers || {};
+      const members = p.people?.members || {};
+      parts.push('<div class="soma-section"><div class="soma-section-title">인원 · 플랜</div>');
+      parts.push(`<div class="soma-row"><span class="soma-label">트레이너</span><span>활성 ${trainers.active || 0} · 유료 ${staffActive}</span></div>`);
+      parts.push(`<div class="soma-row"><span class="soma-label">회원</span><span>활성 ${members.active || 0} · 초대 ${members.invited || 0}</span></div>`);
+      const passActive = (p.memberPasses || []).filter(x => x.status === 'active').reduce((sum, x) => sum + x.count, 0);
+      parts.push(`<div class="soma-row"><span class="soma-label">수강권</span><span>활성 ${passActive}건</span></div>`);
+      const staffSummary = (p.staff || [])
+        .filter(s => s.status === 'active' && s.planType !== 'none')
+        .map(s => `${planLabel(s.planType)} ${s.count}`)
+        .join(', ');
+      if (staffSummary) {
+        parts.push(`<div class="soma-row"><span class="soma-label">앱 구독</span><span>${escapeHtml(staffSummary)}</span></div>`);
+      }
+      parts.push('</div>');
+      return parts.join('');
+    }
+
+    function setInsightsInPopup(leadId, html, isError) {
+      const el = document.querySelector(`.soma-line[data-soma-id="${leadId}"]`);
+      if (!el) return;
+      el.classList.remove('loading');
+      if (isError) {
+        el.innerHTML = escapeHtml(html);
+        el.style.color = '#64748b';
+      } else {
+        el.innerHTML = html;
+      }
+    }
+
+    async function fetchInsightsForLead(lead) {
+      if (insightsCache[lead.id]) {
+        setInsightsInPopup(lead.id, renderInsightsHtml(insightsCache[lead.id]), false);
+        return;
+      }
+      setInsightsInPopup(lead.id, '소마 데이터 불러오는 중…', true);
+      try {
+        const q = new URLSearchParams({
+          name: lead.name,
+          address: lead.address || '',
+          phone: lead.phone || '',
+        });
+        const res = await apiFetch(`/api/center-insights?${q}`);
+        const data = await res.json();
+        if (!res.ok) {
+          const msg = data.message || data.error || '소마 데이터를 불러오지 못했습니다.';
+          setInsightsInPopup(lead.id, msg === 'not_configured' ? '소마 연동 미설정' : msg, true);
+          return;
+        }
+        insightsCache[lead.id] = data;
+        setInsightsInPopup(lead.id, renderInsightsHtml(data), false);
+      } catch {
+        setInsightsInPopup(lead.id, '소마 데이터 조회 실패', true);
+      }
+    }
+
     function openInfoForLead(lead) {
       activeId = lead.id;
       renderList(filteredLeads());
@@ -961,6 +1070,7 @@
       setTimeout(() => {
         bindPopupEvents();
         fetchHoursForLead(lead);
+        fetchInsightsForLead(lead);
       }, 30);
     }
 
@@ -1042,6 +1152,7 @@
         renderList(filteredLeads());
         bindPopupEvents();
         fetchHoursForLead(lead);
+        fetchInsightsForLead(lead);
       });
       return m;
     }
