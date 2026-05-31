@@ -351,6 +351,24 @@
       line-height: 1.4;
     }
 
+    .hours-line {
+      margin: 8px 0 4px;
+      padding: 8px 10px;
+      border-radius: 8px;
+      background: #f0f7ff;
+      border: 1px solid #dbeafe;
+      font-size: 12px;
+      line-height: 1.45;
+      color: #334155;
+    }
+
+    .hours-line.loading { color: #64748b; font-style: italic; }
+    .hours-line .hours-status { font-weight: 600; color: #0f766e; margin-bottom: 4px; }
+    .hours-line .hours-status.closed { color: #b45309; }
+    .hours-line .hours-row { display: flex; gap: 6px; }
+    .hours-line .hours-day { min-width: 1.2em; color: #64748b; }
+    .hours-line .hours-note { margin-top: 4px; color: #475569; font-size: 11px; }
+
     .popup-actions {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -607,6 +625,7 @@
     let geocodeSkipped = loadGeocodeSkipped();
     let serverSyncAvailable = false;
     let syncTimer = null;
+    let hoursCache = {};
     let filterStatus = '', filterGu = '', filterDong = '', query = '';
 
     function normalizeStatus(st) {
@@ -866,6 +885,7 @@
           <p>${escapeHtml(lead.gu)} ${escapeHtml(lead.dong)}</p>
           <p>${escapeHtml(lead.address)}</p>
           ${phoneHtml}
+          <div class="hours-line loading" data-hours-id="${lead.id}">영업시간 불러오는 중…</div>
           <textarea class="note-input" data-id="${lead.id}" placeholder="메모 (자동 저장)">${escapeHtml(note)}</textarea>
           <div class="popup-actions">
             <button class="pending" data-id="${lead.id}" data-status="pending">미방문</button>
@@ -883,11 +903,65 @@
         </div>`;
     }
 
+    function renderHoursHtml(data) {
+      if (!data) return '영업시간 정보 없음';
+      const parts = [];
+      if (data.status || data.statusDetail) {
+        const closed = /휴무|종료|닫/.test(data.status || '');
+        parts.push(`<div class="hours-status${closed ? ' closed' : ''}">${escapeHtml(data.status)}${data.statusDetail ? ' · ' + escapeHtml(data.statusDetail) : ''}</div>`);
+      }
+      if (data.schedule && data.schedule.length) {
+        parts.push(data.schedule.map(row =>
+          `<div class="hours-row"><span class="hours-day">${escapeHtml(row.day)}</span><span>${escapeHtml(row.hours)}</span></div>`
+        ).join(''));
+      }
+      if (data.note) {
+        parts.push(`<div class="hours-note">${escapeHtml(data.note)}</div>`);
+      }
+      return parts.length ? parts.join('') : '영업시간 정보 없음';
+    }
+
+    function setHoursInPopup(leadId, html, isError) {
+      const el = document.querySelector(`.hours-line[data-hours-id="${leadId}"]`);
+      if (!el) return;
+      el.classList.remove('loading');
+      if (isError) {
+        el.innerHTML = escapeHtml(html);
+        el.style.color = '#64748b';
+      } else {
+        el.innerHTML = html;
+      }
+    }
+
+    async function fetchHoursForLead(lead) {
+      if (hoursCache[lead.id]) {
+        setHoursInPopup(lead.id, renderHoursHtml(hoursCache[lead.id]), false);
+        return;
+      }
+      setHoursInPopup(lead.id, '영업시간 불러오는 중…', true);
+      try {
+        const q = new URLSearchParams({ name: lead.name, address: lead.address || '' });
+        const res = await apiFetch(`/api/place-hours?${q}`);
+        const data = await res.json();
+        if (!res.ok) {
+          setHoursInPopup(lead.id, data.message || '영업시간을 찾지 못했습니다.', true);
+          return;
+        }
+        hoursCache[lead.id] = data;
+        setHoursInPopup(lead.id, renderHoursHtml(data), false);
+      } catch {
+        setHoursInPopup(lead.id, '영업시간 조회 실패', true);
+      }
+    }
+
     function openInfoForLead(lead) {
       activeId = lead.id;
       renderList(filteredLeads());
       if (markers[lead.id]) markers[lead.id].openPopup();
-      setTimeout(bindPopupEvents, 30);
+      setTimeout(() => {
+        bindPopupEvents();
+        fetchHoursForLead(lead);
+      }, 30);
     }
 
     function escapeHtml(s) {
@@ -967,6 +1041,7 @@
         activeId = lead.id;
         renderList(filteredLeads());
         bindPopupEvents();
+        fetchHoursForLead(lead);
       });
       return m;
     }
