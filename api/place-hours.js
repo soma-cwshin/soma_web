@@ -72,6 +72,56 @@ function scorePlace(item, name, address) {
   return score;
 }
 
+function simplifyAddressForSearch(address, name) {
+  let addr = String(address || '').trim();
+  if (!addr) return '';
+
+  addr = addr
+    .replace(/\s+\d+\s*층.*$/u, '')
+    .replace(/\s*,\s*\d+\s*층.*$/u, '')
+    .replace(/\s+지하\s*\d*\s*층.*$/u, '')
+    .replace(/\s+B\d+.*$/i, '')
+    .replace(/\s+\d+호.*$/u, '')
+    .trim();
+
+  const n = String(name || '').trim();
+  if (n && addr.endsWith(n)) {
+    addr = addr.slice(0, -n.length).trim();
+  }
+
+  return addr;
+}
+
+function buildSearchQueries(name, address) {
+  const n = name.trim();
+  const full = address.trim();
+  const simple = simplifyAddressForSearch(full, n);
+  const queries = [];
+
+  if (simple) queries.push(`${n} ${simple}`);
+  queries.push(n);
+  if (full && full !== simple) queries.push(`${n} ${full}`);
+
+  return [...new Set(queries.filter(Boolean))];
+}
+
+async function searchPlaceId(name, address) {
+  const queries = buildSearchQueries(name, address);
+  let lastApollo = null;
+
+  for (const query of queries) {
+    const searchUrl = `https://pcmap.place.naver.com/place/list?query=${encodeURIComponent(query)}`;
+    const searchHtml = await fetchHtml(searchUrl);
+    const searchApollo = extractApolloState(searchHtml);
+    if (!searchApollo) continue;
+    lastApollo = searchApollo;
+    const placeId = findPlaceId(searchApollo, name, address || simplifyAddressForSearch(address, name));
+    if (placeId) return { placeId, searchUrl };
+  }
+
+  return { placeId: null, searchApollo: lastApollo };
+}
+
 function findPlaceId(apollo, name, address) {
   const items = Object.entries(apollo)
     .filter(([k]) => k.startsWith('PlaceListBusinessesItem:'))
@@ -208,16 +258,11 @@ module.exports = async (req, res) => {
   const address = (req.query.address || '').trim();
 
   try {
-    const query = address ? `${name} ${address}` : name;
-    const searchUrl = `https://pcmap.place.naver.com/place/list?query=${encodeURIComponent(query)}`;
-    const searchHtml = await fetchHtml(searchUrl);
-    const searchApollo = extractApolloState(searchHtml);
-    if (!searchApollo) {
-      return res.status(404).json({ error: 'not_found', message: '네이버 검색 결과를 찾지 못했습니다.' });
-    }
-
-    const placeId = findPlaceId(searchApollo, name, address);
+    const { placeId, searchUrl, searchApollo } = await searchPlaceId(name, address);
     if (!placeId) {
+      if (!searchApollo) {
+        return res.status(404).json({ error: 'not_found', message: '네이버 검색 결과를 찾지 못했습니다.' });
+      }
       return res.status(404).json({ error: 'not_found', message: '업체를 찾지 못했습니다.' });
     }
 
