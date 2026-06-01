@@ -278,17 +278,82 @@
       border: none !important;
     }
 
+    .marker-wrap {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      pointer-events: none;
+    }
+
     .marker-pin {
       border-radius: 50%;
       border: 3px solid #fff;
       box-sizing: border-box;
       animation: marker-glow 2.4s ease-in-out infinite;
+      flex-shrink: 0;
     }
 
     .marker-pin.active {
       animation: marker-glow-active 1.6s ease-in-out infinite;
       z-index: 1000 !important;
     }
+
+    .marker-side {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      align-items: flex-start;
+      pointer-events: none;
+    }
+
+    .open-pill {
+      font-size: 9px;
+      font-weight: 800;
+      line-height: 1;
+      padding: 2px 5px;
+      border-radius: 4px;
+      letter-spacing: 0.02em;
+      border: 1px solid rgba(255,255,255,0.9);
+      box-shadow: 0 1px 4px rgba(0,0,0,0.35);
+    }
+
+    .open-pill.on {
+      background: #22c55e;
+      color: #fff;
+    }
+
+    .open-pill.off {
+      background: #64748b;
+      color: #fff;
+    }
+
+    .open-pill.unk {
+      background: rgba(15, 23, 42, 0.75);
+      color: #cbd5e1;
+    }
+
+    .sub-pills {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      background: rgba(15, 23, 42, 0.88);
+      border: 1px solid rgba(255,255,255,0.25);
+      border-radius: 6px;
+      padding: 3px 5px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.35);
+    }
+
+    .sub-pill {
+      font-size: 9px;
+      line-height: 1.2;
+      color: #e2e8f0;
+      white-space: nowrap;
+    }
+
+    .sub-pill.delta.up { color: #4ade80; }
+    .sub-pill.delta.down { color: #f87171; }
+    .sub-pill.delta.flat { color: #94a3b8; }
+    .sub-pill.exp { color: #c4b5fd; }
 
     @keyframes marker-glow {
       0%, 100% { transform: scale(1); }
@@ -663,6 +728,8 @@
     let syncTimer = null;
     let hoursCache = {};
     let insightsCache = {};
+    let centerStatsIndex = [];
+    let leadCenterStats = {};
     let filterStatus = '', filterGu = '', filterDong = '', query = '';
 
     function normalizeStatus(st) {
@@ -983,6 +1050,9 @@
         } else {
           setHoursInPopup(lead.id, renderHoursHtml(cached), false);
         }
+        if (markers[lead.id]) {
+          markers[lead.id].setIcon(makeLeafletIcon(lead, getStatus(lead.id), lead.id === activeId));
+        }
         return;
       }
       setHoursInPopup(lead.id, '영업시간 불러오는 중…', true);
@@ -1000,6 +1070,9 @@
         }
         hoursCache[lead.id] = data;
         setHoursInPopup(lead.id, renderHoursHtml(data), false);
+        if (markers[lead.id]) {
+          markers[lead.id].setIcon(makeLeafletIcon(lead, getStatus(lead.id), lead.id === activeId));
+        }
       } catch {
         setHoursInPopup(lead.id, '영업시간 조회 실패', true);
       }
@@ -1241,21 +1314,170 @@
       }).join('');
     }
 
-    function makeLeafletIcon(status, isActive) {
+    function normalizeMatch(s) {
+      return String(s || '')
+        .toLowerCase()
+        .replace(/\s+/g, '')
+        .replace(/[^a-z0-9가-힣]/g, '');
+    }
+
+    function scoreCenterMatch(lead, center) {
+      const nName = normalizeMatch(lead.name);
+      const nItem = normalizeMatch(center.name);
+      let score = 0;
+      if (nItem === nName) score += 100;
+      else if (nItem.includes(nName) || nName.includes(nItem)) score += 60;
+      else {
+        const a = nName.slice(0, Math.min(6, nName.length));
+        if (a && nItem.includes(a)) score += 25;
+      }
+      const addr = normalizeMatch(lead.address);
+      const itemAddr = normalizeMatch(center.address);
+      if (addr && itemAddr && (itemAddr.includes(addr.slice(0, 12)) || addr.includes(itemAddr.slice(0, 12)))) {
+        score += 30;
+      }
+      return score;
+    }
+
+    function buildLeadCenterStatsMap() {
+      leadCenterStats = {};
+      leads.forEach(lead => {
+        let best = null;
+        let bestScore = -1;
+        centerStatsIndex.forEach(center => {
+          const s = scoreCenterMatch(lead, center);
+          if (s > bestScore) {
+            bestScore = s;
+            best = center;
+          }
+        });
+        if (best && bestScore >= 40) {
+          leadCenterStats[lead.id] = best.stats || {};
+        }
+      });
+    }
+
+    const KST_DAYS = ['일', '월', '화', '수', '목', '금', '토'];
+
+    function getKoreaNow() {
+      return new Date(new Date().toLocaleString('en-US', { timeZone: 'Asia/Seoul' }));
+    }
+
+    function parseMinutes(hm) {
+      const m = String(hm || '').match(/(\d{1,2}):(\d{2})/);
+      if (!m) return null;
+      return parseInt(m[1], 10) * 60 + parseInt(m[2], 10);
+    }
+
+    function isOpenNow(hoursData) {
+      if (!hoursData || hoursData.ok === false) return null;
+      const now = getKoreaNow();
+      const dayName = KST_DAYS[now.getDay()];
+      const nowMin = now.getHours() * 60 + now.getMinutes();
+      const schedule = hoursData.schedule || [];
+
+      const todayRow = schedule.find(row => {
+        const d = String(row.day || '').replace(/\(.*\)/, '').trim();
+        return d === dayName || d.startsWith(dayName);
+      });
+
+      if (todayRow) {
+        const hoursText = todayRow.hours || '';
+        if (/휴무|closed/i.test(hoursText)) return false;
+        const range = hoursText.match(/(\d{1,2}:\d{2})\s*[-–]\s*(\d{1,2}:\d{2})/);
+        if (range) {
+          const start = parseMinutes(range[1]);
+          const end = parseMinutes(range[2]);
+          if (start != null && end != null) {
+            if (end <= start) return nowMin >= start || nowMin <= end;
+            return nowMin >= start && nowMin <= end;
+          }
+        }
+      }
+
+      const status = `${hoursData.status || ''} ${hoursData.statusDetail || ''}`;
+      if (/영업\s*중|운영\s*중/i.test(status)) return true;
+      if (/종료|휴무|닫|브레이크/i.test(status)) return false;
+      return null;
+    }
+
+    function formatDelta(n) {
+      if (n == null || Number.isNaN(n)) return { text: '-', cls: 'flat' };
+      if (n > 0) return { text: `+${n}`, cls: 'up' };
+      if (n < 0) return { text: `${n}`, cls: 'down' };
+      return { text: '0', cls: 'flat' };
+    }
+
+    function formatSubExpiry(iso) {
+      if (!iso) return '-';
+      const d = new Date(iso);
+      if (Number.isNaN(d.getTime())) return '-';
+      return `${String(d.getFullYear()).slice(2)}.${d.getMonth() + 1}.${d.getDate()}`;
+    }
+
+    function markerBadgesHtml(lead) {
+      const hours = hoursCache[lead.id];
+      const open = isOpenNow(hours);
+      let openClass = 'unk';
+      let openLabel = '?';
+      if (open === true) {
+        openClass = 'on';
+        openLabel = 'ON';
+      } else if (open === false) {
+        openClass = 'off';
+        openLabel = 'OFF';
+      }
+
+      const stats = leadCenterStats[lead.id];
+      let subHtml = '';
+      if (stats) {
+        const delta = formatDelta(stats.bookingDelta);
+        subHtml = `<div class="sub-pills" title="소마 등록 센터">
+          <span class="sub-pill">예약 ${stats.bookingTotal ?? 0}</span>
+          <span class="sub-pill delta ${delta.cls}">전일 ${delta.text}</span>
+          <span class="sub-pill exp">만료 ${formatSubExpiry(stats.trainerSubExpiresMax)}</span>
+        </div>`;
+      }
+
+      return `<div class="marker-side">
+        <span class="open-pill ${openClass}" title="현재 영업 여부 (한국시간)">${openLabel}</span>
+        ${subHtml}
+      </div>`;
+    }
+
+    function makeLeafletIcon(lead, status, isActive) {
       const color = STATUS_COLORS[status] || STATUS_COLORS.pending;
       const size = isActive ? 26 : 20;
+      const hasSub = !!leadCenterStats[lead.id];
+      const w = hasSub ? 88 : 52;
+      const h = Math.max(size, hasSub ? 52 : size);
+      const html = `<div class="marker-wrap">
+        <div class="marker-pin${isActive ? ' active' : ''}" style="width:${size}px;height:${size}px;background:${color};box-shadow:0 0 0 3px #fff,0 0 16px ${color};"></div>
+        ${markerBadgesHtml(lead)}
+      </div>`;
       return L.divIcon({
         className: 'custom-marker-wrap',
-        html: `<div class="marker-pin${isActive ? ' active' : ''}" style="width:${size}px;height:${size}px;background:${color};box-shadow:0 0 0 3px #fff,0 0 16px ${color};"></div>`,
-        iconSize: [size, size],
-        iconAnchor: [size / 2, size / 2]
+        html,
+        iconSize: [w, h],
+        iconAnchor: [size / 2, h / 2]
       });
+    }
+
+    async function loadMarkerStats() {
+      try {
+        const res = await apiFetch('/api/maps-marker-stats');
+        const data = await res.json();
+        if (!res.ok || !data.ok) return;
+        centerStatsIndex = data.centers || [];
+        buildLeadCenterStatsMap();
+        if (map) refreshUI();
+      } catch { /* optional */ }
     }
 
     function createMarker(lead, isActive) {
       const c = leadCoords(lead);
       const st = getStatus(lead.id);
-      const m = L.marker([c.lat, c.lng], { icon: makeLeafletIcon(st, isActive) });
+      const m = L.marker([c.lat, c.lng], { icon: makeLeafletIcon(lead, st, isActive) });
       m.bindPopup(popupContent(lead), { maxWidth: 280 });
       m.on('popupopen', () => {
         activeId = lead.id;
@@ -1279,6 +1501,13 @@
         markers[l.id] = m;
         markerLayer.addLayer(m);
       });
+      if (Object.keys(leadCenterStats).length) {
+        items.forEach(l => {
+          if (markers[l.id]) {
+            markers[l.id].setIcon(makeLeafletIcon(l, getStatus(l.id), l.id === activeId));
+          }
+        });
+      }
       markerLayer.addTo(map);
     }
 
@@ -1373,6 +1602,7 @@
       populateFilters();
       refreshUI();
       startLocationTracking();
+      loadMarkerStats();
 
       refineCoordsViaApi();
 
