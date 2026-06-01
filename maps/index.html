@@ -249,6 +249,20 @@
       line-height: 1.4;
     }
 
+    .lead-dist {
+      color: var(--cyan);
+      font-weight: 600;
+    }
+
+    .list-sort-hint {
+      font-size: 11px;
+      color: var(--cyan);
+      padding: 0 4px 6px;
+      line-height: 1.35;
+    }
+
+    .list-sort-hint.muted { color: var(--ink-3); }
+
     .map-wrap {
       position: relative;
       min-height: 0;
@@ -587,6 +601,7 @@
             <button class="btn" id="btnReset">초기화</button>
           </div>
         </div>
+        <div class="list-sort-hint muted" id="listSortHint">위치 허용 시 가까운 업체부터 표시됩니다</div>
         <div class="list" id="list"></div>
       </aside>
 
@@ -640,6 +655,8 @@
     let state = loadState();
     let map, markers = {}, activeId = null;
     let myLocationMarker = null;
+    let myLocation = null;
+    let locationWatchId = null;
     let markerLayer = null;
     let geocodeSkipped = loadGeocodeSkipped();
     let serverSyncAvailable = false;
@@ -1078,7 +1095,7 @@
 
     function openInfoForLead(lead) {
       activeId = lead.id;
-      renderList(filteredLeads());
+      renderList(getDisplayLeads());
       if (markers[lead.id]) markers[lead.id].openPopup();
       setTimeout(() => {
         bindPopupEvents();
@@ -1109,6 +1126,82 @@
       });
     }
 
+    function distanceKm(lat1, lng1, lat2, lng2) {
+      const R = 6371;
+      const toRad = d => (d * Math.PI) / 180;
+      const dLat = toRad(lat2 - lat1);
+      const dLng = toRad(lng2 - lng1);
+      const a =
+        Math.sin(dLat / 2) ** 2 +
+        Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) * Math.sin(dLng / 2) ** 2;
+      return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    }
+
+    function leadDistanceKm(lead) {
+      if (!myLocation) return null;
+      const c = leadCoords(lead);
+      return distanceKm(myLocation.lat, myLocation.lng, c.lat, c.lng);
+    }
+
+    function formatDistanceKm(km) {
+      if (km == null || Number.isNaN(km)) return '';
+      if (km < 1) return `${Math.round(km * 1000)}m`;
+      return `${km.toFixed(1)}km`;
+    }
+
+    function getDisplayLeads() {
+      const items = filteredLeads();
+      if (!myLocation) return items;
+      return [...items].sort((a, b) => leadDistanceKm(a) - leadDistanceKm(b));
+    }
+
+    function updateListSortHint() {
+      const el = document.getElementById('listSortHint');
+      if (!el) return;
+      if (myLocation) {
+        el.textContent = '내 위치 기준 가까운순';
+        el.classList.remove('muted');
+      } else {
+        el.textContent = '위치 허용 시 가까운 업체부터 표시됩니다';
+        el.classList.add('muted');
+      }
+    }
+
+    function applyMyLocation(lat, lng, panMap) {
+      myLocation = { lat, lng };
+      updateListSortHint();
+      if (!map) {
+        refreshUI();
+        return;
+      }
+      if (myLocationMarker) map.removeLayer(myLocationMarker);
+      myLocationMarker = L.circleMarker([lat, lng], {
+        radius: 8,
+        color: '#2E8CD5',
+        fillColor: '#5FCDF9',
+        fillOpacity: 0.85,
+        weight: 2,
+      }).addTo(map).bindPopup('내 위치');
+      if (panMap) map.setView([lat, lng], Math.max(map.getZoom(), 15));
+      refreshUI();
+    }
+
+    function startLocationTracking() {
+      if (!navigator.geolocation) return;
+      const opts = { enableHighAccuracy: true, maximumAge: 30000, timeout: 20000 };
+      navigator.geolocation.getCurrentPosition(
+        pos => applyMyLocation(pos.coords.latitude, pos.coords.longitude, false),
+        () => {},
+        opts
+      );
+      if (locationWatchId != null) navigator.geolocation.clearWatch(locationWatchId);
+      locationWatchId = navigator.geolocation.watchPosition(
+        pos => applyMyLocation(pos.coords.latitude, pos.coords.longitude, false),
+        () => {},
+        opts
+      );
+    }
+
     function renderStats() {
       const counts = Object.fromEntries(STATUS_KEYS.map(k => [k, 0]));
       leads.forEach(l => {
@@ -1133,13 +1226,17 @@
       }
       el.innerHTML = items.map(l => {
         const st = getStatus(l.id);
+        const dist = leadDistanceKm(l);
+        const distHtml = dist != null
+          ? `<span class="lead-dist">${formatDistanceKm(dist)}</span> · `
+          : '';
         return `
           <div class="lead-item${l.id === activeId ? ' active' : ''}" data-id="${l.id}">
             <div class="lead-top">
               <span class="dot ${st}"></span>
               <span class="lead-name">${escapeHtml(l.name)}</span>
             </div>
-            <div class="lead-meta">${escapeHtml(l.gu)} ${escapeHtml(l.dong)} · ${STATUS_LABELS[st]}</div>
+            <div class="lead-meta">${distHtml}${escapeHtml(l.gu)} ${escapeHtml(l.dong)} · ${STATUS_LABELS[st]}</div>
           </div>`;
       }).join('');
     }
@@ -1162,7 +1259,7 @@
       m.bindPopup(popupContent(lead), { maxWidth: 280 });
       m.on('popupopen', () => {
         activeId = lead.id;
-        renderList(filteredLeads());
+        renderList(getDisplayLeads());
         bindPopupEvents();
         fetchHoursForLead(lead);
         fetchInsightsForLead(lead);
@@ -1201,7 +1298,8 @@
 
     function refreshUI(focusId) {
       renderStats();
-      const items = filteredLeads();
+      updateListSortHint();
+      const items = getDisplayLeads();
       renderList(items);
       renderMarkers(items);
       if (focusId && markers[focusId]) {
@@ -1252,7 +1350,7 @@
     }
 
     function fitAllMarkers() {
-      const items = filteredLeads();
+      const items = getDisplayLeads();
       if (!items.length) return;
       const bounds = L.latLngBounds(items.map(l => {
         const c = leadCoords(l);
@@ -1274,6 +1372,7 @@
       migrateLegacyStatuses();
       populateFilters();
       refreshUI();
+      startLocationTracking();
 
       refineCoordsViaApi();
 
@@ -1317,14 +1416,11 @@
 
       document.getElementById('btnLocate').addEventListener('click', () => {
         if (!navigator.geolocation) return alert('위치 정보를 사용할 수 없습니다.');
-        navigator.geolocation.getCurrentPosition(pos => {
-          const { latitude, longitude } = pos.coords;
-          map.setView([latitude, longitude], 15);
-          if (myLocationMarker) map.removeLayer(myLocationMarker);
-          myLocationMarker = L.circleMarker([latitude, longitude], {
-            radius: 8, color: '#2E8CD5', fillColor: '#5FCDF9', fillOpacity: 0.8
-          }).addTo(map).bindPopup('내 위치').openPopup();
-        }, () => alert('위치 권한이 필요합니다.'));
+        navigator.geolocation.getCurrentPosition(
+          pos => applyMyLocation(pos.coords.latitude, pos.coords.longitude, true),
+          () => alert('위치 권한이 필요합니다.'),
+          { enableHighAccuracy: true, timeout: 20000, maximumAge: 0 }
+        );
       });
 
       document.getElementById('btnExport').addEventListener('click', () => {
