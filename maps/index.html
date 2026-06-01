@@ -534,34 +534,22 @@
     .popup-actions .exclude { background: var(--exclude); }
     .popup-actions .refuse { background: var(--refuse); }
 
-    .subscribe-row {
+    .popup-status-badges {
       display: flex;
-      align-items: center;
-      gap: 8px;
-      margin-top: 10px;
-      flex-wrap: wrap;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 4px;
+      margin: 0 0 8px;
     }
 
-    .subscribe-btn {
-      padding: 8px 12px;
-      border-radius: 8px;
-      border: 1px solid #c4b5fd;
-      background: #f5f3ff;
-      color: #5b21b6;
-      font-size: 12px;
-      font-weight: 600;
-      cursor: pointer;
-    }
-
-    .subscribe-btn.active {
-      background: #7c3aed;
-      border-color: #6d28d9;
-      color: #fff;
-    }
-
-    .subscribe-date {
+    .popup-status-badges .open-pill {
       font-size: 11px;
-      color: #64748b;
+      padding: 3px 8px;
+    }
+
+    .popup-status-badges .soma-sub-tag {
+      font-size: 10px;
+      padding: 3px 8px;
     }
 
     .popup-nav {
@@ -1081,12 +1069,32 @@
       return null;
     }
 
-    function isLeadSubscribed(id) {
-      return !!(state[id] && state[id].subscribedAt);
+    function isSomaSubscribedLead(leadId) {
+      return leadCenterStats[leadId]?.isSubscribed === true;
     }
 
-    function getSubscribedAt(id) {
-      return (state[id] && state[id].subscribedAt) || null;
+    function renderPopupStatusBadgesHtml(leadId) {
+      const hours = hoursCache[leadId];
+      const open = isOpenNow(hours);
+      let openClass = 'unk';
+      let openLabel = '?';
+      if (open === true) {
+        openClass = 'on';
+        openLabel = 'ON';
+      } else if (open === false) {
+        openClass = 'off';
+        openLabel = 'OFF';
+      }
+      const subTag = isSomaSubscribedLead(leadId)
+        ? '<span class="soma-sub-tag" title="소마 앱 구독 중">구독</span>'
+        : '';
+      return `<span class="open-pill ${openClass}" title="현재 영업 여부 (한국시간)">${openLabel}</span>${subTag}`;
+    }
+
+    function updatePopupStatusBadges(leadId) {
+      const el = document.querySelector(`[data-status-badges-id="${leadId}"]`);
+      if (!el) return;
+      el.innerHTML = renderPopupStatusBadgesHtml(leadId);
     }
 
     function setLeadStatus(id, status, note) {
@@ -1100,25 +1108,9 @@
         note: note !== undefined ? note : (prev.note || ''),
         updatedAt: now,
         statusUpdatedAt: statusChanged ? now : (prev.statusUpdatedAt || null),
-        subscribedAt: prev.subscribedAt || null,
       };
       saveState();
       if (map && map.closePopup) map.closePopup();
-      refreshUI(id);
-    }
-
-    function toggleLeadSubscribed(id) {
-      const prev = state[id] || {};
-      const now = new Date().toISOString();
-      const turningOn = !prev.subscribedAt;
-      state[id] = {
-        status: normalizeStatus(prev.status || 'pending'),
-        note: prev.note || '',
-        updatedAt: now,
-        statusUpdatedAt: prev.statusUpdatedAt || null,
-        subscribedAt: turningOn ? now : null,
-      };
-      saveState();
       refreshUI(id);
     }
 
@@ -1132,13 +1124,13 @@
       Object.keys(state).forEach(id => {
         const entry = state[id];
         if (!entry) return;
-        if (getKstDateKey(entry.subscribedAt) === today) subscribed += 1;
         const changedAt = getStatusChangedAt(entry);
         if (getKstDateKey(changedAt) !== today) return;
         visited += 1;
         const st = normalizeStatus(entry.status);
         if (st === 'face') face += 1;
         if (st === 'note') note += 1;
+        if (isSomaSubscribedLead(id)) subscribed += 1;
       });
 
       const conversion = visited > 0
@@ -1155,14 +1147,13 @@
         : '<p>전화번호 없음</p>';
       const addrQuery = encodeURIComponent(lead.address || lead.name);
       const nameQuery = encodeURIComponent(lead.name);
-      const subOn = isLeadSubscribed(lead.id);
-      const subAt = getSubscribedAt(lead.id);
       return `<div class="kakao-info-wrap popup">
           <h3>${escapeHtml(lead.name)}</h3>
           <p>${escapeHtml(lead.gu)} ${escapeHtml(lead.dong)}</p>
           <p>${escapeHtml(lead.address)}</p>
           ${phoneHtml}
           <div class="hours-line loading" data-hours-id="${lead.id}">영업시간 불러오는 중…</div>
+          <div class="popup-status-badges" data-status-badges-id="${lead.id}"></div>
           <div class="soma-line loading" data-soma-id="${lead.id}">소마 데이터 불러오는 중…</div>
           <textarea class="note-input" data-id="${lead.id}" placeholder="메모 (자동 저장)">${escapeHtml(note)}</textarea>
           <div class="popup-actions">
@@ -1172,12 +1163,6 @@
             <button class="hold" data-id="${lead.id}" data-status="hold">보류</button>
             <button class="exclude" data-id="${lead.id}" data-status="exclude">제외</button>
             <button class="refuse" data-id="${lead.id}" data-status="refuse">거절</button>
-          </div>
-          <div class="subscribe-row">
-            <button type="button" class="subscribe-btn${subOn ? ' active' : ''}" data-id="${lead.id}">
-              ${subOn ? '구독 체결됨' : '구독 체결'}
-            </button>
-            ${subAt ? `<span class="subscribe-date">체결 ${formatDateKo(subAt)}</span>` : ''}
           </div>
           <div class="popup-nav">
             <a href="https://map.kakao.com/?q=${addrQuery}" target="_blank" rel="noopener">카카오 지도</a>
@@ -1215,6 +1200,7 @@
       } else {
         el.innerHTML = html;
       }
+      updatePopupStatusBadges(leadId);
     }
 
     async function fetchHoursForLead(lead) {
@@ -1347,6 +1333,7 @@
       if (markers[lead.id]) markers[lead.id].openPopup();
       setTimeout(() => {
         bindPopupEvents();
+        updatePopupStatusBadges(lead.id);
         fetchHoursForLead(lead);
         fetchInsightsForLead(lead);
       }, 30);
@@ -1474,8 +1461,8 @@
           <span class="stat">방문 <strong>${day.visited}</strong></span>
           <span class="stat">대면 <strong>${day.face}</strong></span>
           <span class="stat">쪽지 <strong>${day.note}</strong></span>
-          <span class="stat">구독 <strong>${day.subscribed}</strong></span>
-          <span class="stat">전환율 <strong>${day.conversion}</strong></span>`;
+          <span class="stat" title="오늘 방문한 업장 중 DB 구독 센터">구독 <strong>${day.subscribed}</strong></span>
+          <span class="stat" title="구독 센터 방문 ÷ 오늘 방문">전환율 <strong>${day.conversion}</strong></span>`;
       }
     }
 
@@ -1709,6 +1696,7 @@
         if (!res.ok || !data.ok) return;
         centerStatsIndex = data.centers || [];
         buildLeadCenterStatsMap();
+        if (activeId) updatePopupStatusBadges(activeId);
         if (map) refreshUI();
       } catch { /* optional */ }
     }
@@ -1754,9 +1742,6 @@
       document.querySelectorAll('.note-input').forEach(ta => {
         ta.onchange = () => setLeadStatus(ta.dataset.id, getStatus(ta.dataset.id), ta.value);
         ta.onblur = ta.onchange;
-      });
-      document.querySelectorAll('.subscribe-btn').forEach(btn => {
-        btn.onclick = () => toggleLeadSubscribed(btn.dataset.id);
       });
     }
 
