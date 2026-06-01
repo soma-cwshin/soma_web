@@ -1501,13 +1501,6 @@
         markers[l.id] = m;
         markerLayer.addLayer(m);
       });
-      if (Object.keys(leadCenterStats).length) {
-        items.forEach(l => {
-          if (markers[l.id]) {
-            markers[l.id].setIcon(makeLeafletIcon(l, getStatus(l.id), l.id === activeId));
-          }
-        });
-      }
       markerLayer.addTo(map);
     }
 
