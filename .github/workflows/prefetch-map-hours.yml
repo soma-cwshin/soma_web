@@ -1,0 +1,39 @@
+# 영업시간 380건 일괄 수집 (GitHub 서버에서 실행 — 로컬 PC 불필요)
+name: Prefetch map hours
+
+on:
+  workflow_dispatch:
+
+jobs:
+  prefetch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    steps:
+      - name: Batch fetch until done
+        env:
+          MAPS_PASSWORD: ${{ secrets.MAPS_PASSWORD }}
+          BASE_URL: https://soma.ai.kr
+        run: |
+          if [ -z "$MAPS_PASSWORD" ]; then
+            echo "GitHub repo Secrets에 MAPS_PASSWORD를 추가하세요."
+            exit 1
+          fi
+          remaining=999
+          round=0
+          while [ "$remaining" != "0" ] && [ "$round" -lt 300 ]; do
+            round=$((round + 1))
+            echo "--- round $round ---"
+            resp=$(curl -sf "${BASE_URL}/api/prefetch-hours-batch?limit=3" \
+              -H "x-prefetch-secret: ${MAPS_PASSWORD}" || echo '{"remaining":-1}')
+            echo "$resp"
+            remaining=$(node -e "try{const d=JSON.parse(process.argv[1]);process.stdout.write(String(d.remaining??0))}catch{process.stdout.write('0')}" "$resp")
+            if [ "$remaining" = "-1" ]; then
+              echo "API 오류 — Vercel 배포·환경변수 확인"
+              exit 1
+            fi
+            if [ "$remaining" = "0" ]; then
+              echo "완료"
+              break
+            fi
+            sleep 6
+          done

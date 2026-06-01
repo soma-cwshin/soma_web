@@ -31,11 +31,15 @@ async function getSyncRow() {
 
 const HOURS_CACHE_MAX_AGE_MS = 90 * 24 * 60 * 60 * 1000;
 
+const HOURS_FAIL_CACHE_MS = 7 * 24 * 60 * 60 * 1000;
+
 function isFreshHoursEntry(entry) {
-  if (!entry || entry.error) return false;
-  const at = entry.fetchedAt ? new Date(entry.fetchedAt).getTime() : 0;
-  if (!at || Number.isNaN(at)) return false;
-  return Date.now() - at < HOURS_CACHE_MAX_AGE_MS;
+  if (!entry || !entry.fetchedAt) return false;
+  const at = new Date(entry.fetchedAt).getTime();
+  if (Number.isNaN(at)) return false;
+  const age = Date.now() - at;
+  if (entry.ok === false) return age < HOURS_FAIL_CACHE_MS;
+  return age < HOURS_CACHE_MAX_AGE_MS;
 }
 
 async function getHoursCache(leadId) {
@@ -80,7 +84,9 @@ async function saveHoursCache(leadId, data) {
 
 module.exports = {
   isMapsDbConfigured,
+  getSyncRow,
   getHoursCache,
   saveHoursCache,
+  isFreshHoursEntry,
   HOURS_CACHE_MAX_AGE_MS,
 };

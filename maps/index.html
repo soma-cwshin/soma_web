@@ -959,8 +959,13 @@
     }
 
     async function fetchHoursForLead(lead) {
-      if (hoursCache[lead.id]) {
-        setHoursInPopup(lead.id, renderHoursHtml(hoursCache[lead.id]), false);
+      const cached = hoursCache[lead.id];
+      if (cached) {
+        if (cached.ok === false) {
+          setHoursInPopup(lead.id, cached.message || '영업시간을 찾지 못했습니다.', true);
+        } else {
+          setHoursInPopup(lead.id, renderHoursHtml(cached), false);
+        }
         return;
       }
       setHoursInPopup(lead.id, '영업시간 불러오는 중…', true);
