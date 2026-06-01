@@ -1,8 +1,11 @@
+const crypto = require('crypto');
 const fs = require('fs');
 const path = require('path');
 const { fetchPlaceHoursFromNaver } = require('./place-hours-core');
 const { getSyncRow, saveHoursCache, isMapsDbConfigured, isFreshHoursEntry } = require('./maps-supabase');
 
+const PASSWORD = process.env.MAPS_PASSWORD || 'asdf1234';
+const AUTH_TOKEN = crypto.createHash('sha256').update(`${PASSWORD}|soma-maps-v1`).digest('hex');
 const LEADS_PATH = path.join(process.cwd(), 'private', 'leads.json');
 const DELAY_MS = Number(process.env.PREFETCH_DELAY_MS || 2500);
 const MAX_LIMIT = 8;
@@ -12,10 +15,10 @@ function sleep(ms) {
 }
 
 function isPrefetchAuthed(req) {
-  const secret = process.env.PREFETCH_HOURS_SECRET || process.env.MAPS_PASSWORD || '';
-  if (!secret) return false;
   const cron = process.env.CRON_SECRET;
   if (cron && req.headers.authorization === `Bearer ${cron}`) return true;
+  if ((req.headers.cookie || '').includes(`soma_maps_auth=${AUTH_TOKEN}`)) return true;
+  const secret = process.env.PREFETCH_HOURS_SECRET || PASSWORD;
   const header = req.headers['x-prefetch-secret'] || req.query.secret || '';
   return header === secret;
 }
