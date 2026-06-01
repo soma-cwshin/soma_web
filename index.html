@@ -464,6 +464,130 @@
             font-weight: 500;
         }
 
+        /* App Features Showcase */
+        .app-features-section {
+            position: relative;
+            padding: 110px 0 120px;
+            overflow: hidden;
+            background-color: var(--navy-deep);
+        }
+
+        .app-features-bg {
+            position: absolute;
+            inset: 0;
+            background: url('백그라운드이미지.png') center center / cover no-repeat;
+            z-index: 0;
+        }
+
+        .app-features-bg::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg,
+                    rgba(7, 20, 40, 0.72) 0%,
+                    rgba(10, 28, 55, 0.55) 45%,
+                    rgba(7, 20, 40, 0.78) 100%);
+        }
+
+        .app-features-section .container {
+            position: relative;
+            z-index: 1;
+        }
+
+        .app-features-header {
+            text-align: center;
+            max-width: 720px;
+            margin: 0 auto 56px;
+        }
+
+        .app-features-header .section-desc {
+            max-width: 560px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .app-features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 28px;
+            align-items: start;
+        }
+
+        .app-feature-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .app-feature-video-wrap {
+            width: 100%;
+            max-width: 300px;
+            aspect-ratio: 9 / 19.5;
+            border-radius: 28px;
+            overflow: hidden;
+            background: #000;
+            border: 1px solid rgba(95, 205, 249, 0.28);
+            box-shadow:
+                0 24px 48px rgba(0, 0, 0, 0.45),
+                0 0 0 1px rgba(255, 255, 255, 0.06) inset,
+                0 0 40px rgba(95, 205, 249, 0.08);
+            position: relative;
+        }
+
+        .app-feature-video-wrap::before {
+            content: '';
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 72px;
+            height: 5px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.18);
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .app-feature-video-wrap video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: top center;
+        }
+
+        .app-feature-card h3 {
+            margin-top: 22px;
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--white);
+            word-break: keep-all;
+            line-height: 1.35;
+        }
+
+        .app-feature-card p {
+            margin-top: 10px;
+            font-size: 14px;
+            line-height: 1.65;
+            color: rgba(255, 255, 255, 0.72);
+            word-break: keep-all;
+            max-width: 280px;
+        }
+
+        .app-feature-num {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: rgba(95, 205, 249, 0.15);
+            color: var(--cyan);
+            font-size: 12px;
+            font-weight: 800;
+            margin-bottom: 14px;
+        }
+
         .video-points {
             display: flex;
             flex-direction: column;
@@ -1380,8 +1504,15 @@
         @media (max-width: 1024px) {
             .connection-cards,
             .pillars-grid,
-            .stats-grid {
+            .stats-grid,
+            .app-features-grid {
                 grid-template-columns: 1fr;
+            }
+
+            .app-features-grid {
+                gap: 48px;
+                max-width: 340px;
+                margin: 0 auto;
             }
 
             .video-grid,
@@ -1493,12 +1624,25 @@
             }
 
             .video-section,
+            .app-features-section,
             .why-section,
             .pillars-section,
             .data-section,
             .stats-section,
             .tools-section {
                 padding: 64px 0;
+            }
+
+            .app-features-header {
+                margin-bottom: 36px;
+            }
+
+            .app-feature-card h3 {
+                font-size: 17px;
+            }
+
+            .app-feature-card p {
+                font-size: 13px;
             }
 
             .video-grid,
@@ -2505,6 +2649,53 @@
         </button>
     </section>
 
+    <!-- App Features -->
+    <section class="app-features-section" id="app-features">
+        <div class="app-features-bg" aria-hidden="true"></div>
+        <div class="container">
+            <div class="app-features-header reveal">
+                <span class="section-label">App Features</span>
+                <h2 class="section-title">앱 속 <span class="text-cyan">핵심 기능</span>을 직접 확인하세요</h2>
+                <p class="section-desc">수업 예약부터 AI 분석 리포트까지, 센터 운영의 핵심 흐름을 한눈에 보여드립니다.</p>
+            </div>
+            <div class="app-features-grid">
+                <article class="app-feature-card reveal">
+                    <span class="app-feature-num">01</span>
+                    <div class="app-feature-video-wrap">
+                        <video class="feature-demo-video" muted playsinline preload="metadata"
+                            data-end="37"
+                            src="수업예약.mp4"
+                            title="회원과의 수업 예약"></video>
+                    </div>
+                    <h3>회원과의 수업 예약</h3>
+                    <p>캘린더에서 일정을 잡고 회원과 바로 연결되는 간편한 예약 흐름입니다.</p>
+                </article>
+                <article class="app-feature-card reveal">
+                    <span class="app-feature-num">02</span>
+                    <div class="app-feature-video-wrap">
+                        <video class="feature-demo-video" muted playsinline preload="metadata"
+                            data-max-auto="33"
+                            src="videos/feature-lesson-report.mp4"
+                            title="지난 수업 AI 분석 리포트"></video>
+                    </div>
+                    <h3>지난 수업 AI 분석 리포트</h3>
+                    <p>수업 직후 AI가 관절·자세 데이터를 정리해 회원에게 전달하는 리포트입니다.</p>
+                </article>
+                <article class="app-feature-card reveal">
+                    <span class="app-feature-num">03</span>
+                    <div class="app-feature-video-wrap">
+                        <video class="feature-demo-video" muted playsinline preload="metadata"
+                            data-max-auto="48"
+                            src="나의 몸변화 AI 분석 리포트.mp4"
+                            title="나의 몸변화 AI 분석 리포트"></video>
+                    </div>
+                    <h3>나의 몸변화 AI 분석 리포트</h3>
+                    <p>체형 변화와 핵심 지표를 시각화해, 데이터로 증명하는 몸의 변화를 보여줍니다.</p>
+                </article>
+            </div>
+        </div>
+    </section>
+
     <!-- Video Story -->
     <section class="video-section">
         <div class="container">
@@ -3069,6 +3260,76 @@
         window.addEventListener('load', () => {
             document.querySelectorAll('.hero.reveal').forEach(el => el.classList.add('active'));
         });
+
+        (function initFeatureDemoVideos() {
+            const videos = document.querySelectorAll('.feature-demo-video');
+            if (!videos.length) return;
+
+            const getPlayStart = (video) => {
+                const start = parseFloat(video.dataset.start);
+                return !Number.isNaN(start) && start > 0 ? start : 0;
+            };
+
+            const seekToStart = (video) => {
+                const start = getPlayStart(video);
+                if (start > 0 && video.currentTime < start - 0.1) {
+                    video.currentTime = start;
+                }
+            };
+
+            videos.forEach((video) => {
+                const fixedEnd = parseFloat(video.dataset.end);
+                const maxAuto = parseFloat(video.dataset.maxAuto) || 48;
+
+                const applyPlaybackRange = () => {
+                    const start = getPlayStart(video);
+                    video.dataset.playStart = String(start);
+
+                    if (!Number.isNaN(fixedEnd) && fixedEnd > start) {
+                        video.dataset.playEnd = String(fixedEnd);
+                        return;
+                    }
+                    if (!video.duration) return;
+
+                    const segmentEnd = start + maxAuto;
+                    video.dataset.playEnd = String(
+                        segmentEnd < video.duration ? segmentEnd : video.duration
+                    );
+                };
+
+                video.addEventListener('loadedmetadata', () => {
+                    applyPlaybackRange();
+                    seekToStart(video);
+                });
+                if (video.readyState >= 1) {
+                    applyPlaybackRange();
+                    seekToStart(video);
+                }
+
+                video.addEventListener('timeupdate', () => {
+                    const start = getPlayStart(video);
+                    const end = parseFloat(video.dataset.playEnd);
+                    if (end && video.currentTime >= end - 0.05) {
+                        video.currentTime = start;
+                    }
+                });
+            });
+
+            const playObserver = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    const video = entry.target;
+                    if (entry.isIntersecting) {
+                        seekToStart(video);
+                        video.play().catch(() => {});
+                    } else {
+                        video.pause();
+                        video.currentTime = getPlayStart(video);
+                    }
+                });
+            }, { threshold: 0.35 });
+
+            videos.forEach((video) => playObserver.observe(video));
+        })();
 
         const header = document.querySelector('header');
         window.addEventListener('scroll', () => {
