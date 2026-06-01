@@ -26,7 +26,7 @@
       --hold: #f59e0b;
       --exclude: #64748b;
       --refuse: #ef4444;
-      --header-h: 56px;
+      --header-h: auto;
       --sidebar-w: 360px;
     }
 
@@ -50,11 +50,41 @@
       align-items: center;
       justify-content: space-between;
       gap: 12px;
-      padding: 0 16px;
+      padding: 8px 16px;
+      min-height: 56px;
       background: rgba(5, 12, 24, 0.95);
       border-bottom: 1px solid var(--line);
       backdrop-filter: blur(12px);
       z-index: 1000;
+    }
+
+    .header-stats {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 6px;
+      min-width: 0;
+      flex: 1;
+    }
+
+    .stats-day-wrap {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .stats-day-label {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--cyan);
+      white-space: nowrap;
+    }
+
+    .stats.stats-day .stat {
+      border-color: rgba(95, 205, 249, 0.35);
+      background: rgba(46, 140, 213, 0.12);
     }
 
     .brand {
@@ -491,6 +521,36 @@
     .popup-actions .exclude { background: var(--exclude); }
     .popup-actions .refuse { background: var(--refuse); }
 
+    .subscribe-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 10px;
+      flex-wrap: wrap;
+    }
+
+    .subscribe-btn {
+      padding: 8px 12px;
+      border-radius: 8px;
+      border: 1px solid #c4b5fd;
+      background: #f5f3ff;
+      color: #5b21b6;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .subscribe-btn.active {
+      background: #7c3aed;
+      border-color: #6d28d9;
+      color: #fff;
+    }
+
+    .subscribe-date {
+      font-size: 11px;
+      color: #64748b;
+    }
+
     .popup-nav {
       display: flex;
       flex-wrap: wrap;
@@ -617,8 +677,10 @@
 
       .sidebar { border-right: none; border-bottom: 1px solid var(--line); }
       .brand h1 { display: none; }
-      .stats { overflow-x: auto; flex-wrap: nowrap; max-width: 55vw; }
+      .header-stats { max-width: 58vw; }
+      .stats { overflow-x: auto; flex-wrap: nowrap; max-width: 100%; }
       .stats .stat { font-size: 10px; padding: 3px 7px; }
+      .stats-day-label { font-size: 10px; }
     }
   </style>
 </head>
@@ -639,7 +701,13 @@
         <a href="https://soma.ai.kr">SoMa</a>
         <h1>마포·강서·양천 PT 영업 지도</h1>
       </div>
-      <div class="stats" id="stats"></div>
+      <div class="header-stats">
+        <div class="stats" id="stats"></div>
+        <div class="stats-day-wrap">
+          <span class="stats-day-label" id="statsDayLabel"></span>
+          <div class="stats stats-day" id="statsDay"></div>
+        </div>
+      </div>
     </header>
 
     <div class="main">
@@ -970,15 +1038,101 @@
       return (state[id] && state[id].note) || '';
     }
 
+    function getKstDateKey(iso) {
+      if (!iso) return null;
+      const d = new Date(iso);
+      if (Number.isNaN(d.getTime())) return null;
+      return new Intl.DateTimeFormat('en-CA', { timeZone: 'Asia/Seoul' }).format(d);
+    }
+
+    function getTodayKstKey() {
+      return getKstDateKey(new Date().toISOString());
+    }
+
+    function formatTodayKstLabel() {
+      const now = new Date();
+      const parts = new Intl.DateTimeFormat('ko-KR', {
+        timeZone: 'Asia/Seoul',
+        month: 'numeric',
+        day: 'numeric',
+        weekday: 'short',
+      }).formatToParts(now);
+      const get = type => parts.find(p => p.type === type)?.value || '';
+      return `${get('month')}월 ${get('day')}일 (${get('weekday')})`;
+    }
+
+    function getStatusChangedAt(entry) {
+      if (!entry) return null;
+      if (entry.statusUpdatedAt) return entry.statusUpdatedAt;
+      if (entry.updatedAt && normalizeStatus(entry.status) !== 'pending') return entry.updatedAt;
+      return null;
+    }
+
+    function isLeadSubscribed(id) {
+      return !!(state[id] && state[id].subscribedAt);
+    }
+
+    function getSubscribedAt(id) {
+      return (state[id] && state[id].subscribedAt) || null;
+    }
+
     function setLeadStatus(id, status, note) {
+      const prev = state[id] || {};
+      const prevStatus = normalizeStatus(prev.status || 'pending');
+      const nextStatus = normalizeStatus(status);
+      const statusChanged = nextStatus !== prevStatus;
+      const now = new Date().toISOString();
       state[id] = {
-        status,
-        note: note !== undefined ? note : getNote(id),
-        updatedAt: new Date().toISOString()
+        status: nextStatus,
+        note: note !== undefined ? note : (prev.note || ''),
+        updatedAt: now,
+        statusUpdatedAt: statusChanged ? now : (prev.statusUpdatedAt || null),
+        subscribedAt: prev.subscribedAt || null,
       };
       saveState();
       if (map && map.closePopup) map.closePopup();
       refreshUI(id);
+    }
+
+    function toggleLeadSubscribed(id) {
+      const prev = state[id] || {};
+      const now = new Date().toISOString();
+      const turningOn = !prev.subscribedAt;
+      state[id] = {
+        status: normalizeStatus(prev.status || 'pending'),
+        note: prev.note || '',
+        updatedAt: now,
+        statusUpdatedAt: prev.statusUpdatedAt || null,
+        subscribedAt: turningOn ? now : null,
+      };
+      saveState();
+      refreshUI(id);
+    }
+
+    function computeDayStats() {
+      const today = getTodayKstKey();
+      let visited = 0;
+      let face = 0;
+      let note = 0;
+      let subscribed = 0;
+
+      Object.keys(state).forEach(id => {
+        const entry = state[id];
+        if (!entry) return;
+        if (getKstDateKey(entry.subscribedAt) === today) subscribed += 1;
+        const changedAt = getStatusChangedAt(entry);
+        if (getKstDateKey(changedAt) !== today) return;
+        visited += 1;
+        const st = normalizeStatus(entry.status);
+        if (st === 'face') face += 1;
+        if (st === 'note') note += 1;
+      });
+
+      const conversion = visited > 0
+        ? `${Math.round((subscribed / visited) * 1000) / 10}%`
+        : '-';
+
+      return { visited, face, note, subscribed, conversion };
     }
 
     function popupContent(lead) {
@@ -988,6 +1142,8 @@
         : '<p>전화번호 없음</p>';
       const addrQuery = encodeURIComponent(lead.address || lead.name);
       const nameQuery = encodeURIComponent(lead.name);
+      const subOn = isLeadSubscribed(lead.id);
+      const subAt = getSubscribedAt(lead.id);
       return `<div class="kakao-info-wrap popup">
           <h3>${escapeHtml(lead.name)}</h3>
           <p>${escapeHtml(lead.gu)} ${escapeHtml(lead.dong)}</p>
@@ -1003,6 +1159,12 @@
             <button class="hold" data-id="${lead.id}" data-status="hold">보류</button>
             <button class="exclude" data-id="${lead.id}" data-status="exclude">제외</button>
             <button class="refuse" data-id="${lead.id}" data-status="refuse">거절</button>
+          </div>
+          <div class="subscribe-row">
+            <button type="button" class="subscribe-btn${subOn ? ' active' : ''}" data-id="${lead.id}">
+              ${subOn ? '구독 체결됨' : '구독 체결'}
+            </button>
+            ${subAt ? `<span class="subscribe-date">체결 ${formatDateKo(subAt)}</span>` : ''}
           </div>
           <div class="popup-nav">
             <a href="https://map.kakao.com/?q=${addrQuery}" target="_blank" rel="noopener">카카오 지도</a>
@@ -1289,6 +1451,19 @@
         <span class="stat">보류 <strong>${counts.hold}</strong></span>
         <span class="stat">제외 <strong>${counts.exclude}</strong></span>
         <span class="stat">거절 <strong>${counts.refuse}</strong></span>`;
+
+      const day = computeDayStats();
+      const labelEl = document.getElementById('statsDayLabel');
+      if (labelEl) labelEl.textContent = `${formatTodayKstLabel()} 실적`;
+      const dayEl = document.getElementById('statsDay');
+      if (dayEl) {
+        dayEl.innerHTML = `
+          <span class="stat">방문 <strong>${day.visited}</strong></span>
+          <span class="stat">대면 <strong>${day.face}</strong></span>
+          <span class="stat">쪽지 <strong>${day.note}</strong></span>
+          <span class="stat">구독 <strong>${day.subscribed}</strong></span>
+          <span class="stat">전환율 <strong>${day.conversion}</strong></span>`;
+      }
     }
 
     function renderList(items) {
@@ -1561,6 +1736,9 @@
       document.querySelectorAll('.note-input').forEach(ta => {
         ta.onchange = () => setLeadStatus(ta.dataset.id, getStatus(ta.dataset.id), ta.value);
         ta.onblur = ta.onchange;
+      });
+      document.querySelectorAll('.subscribe-btn').forEach(btn => {
+        btn.onclick = () => toggleLeadSubscribed(btn.dataset.id);
       });
     }
 
