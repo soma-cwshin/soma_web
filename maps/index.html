@@ -362,6 +362,19 @@
       color: #cbd5e1;
     }
 
+    .soma-sub-tag {
+      font-size: 9px;
+      font-weight: 800;
+      line-height: 1;
+      padding: 2px 5px;
+      border-radius: 4px;
+      background: #7c3aed;
+      color: #fff;
+      border: 1px solid rgba(255, 255, 255, 0.85);
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.35);
+      letter-spacing: 0.04em;
+    }
+
     .sub-pills {
       display: flex;
       flex-direction: column;
@@ -1650,10 +1663,14 @@
       }
 
       const stats = leadCenterStats[lead.id];
+      const somaSub = stats?.isSubscribed === true;
+      const somaSubTag = somaSub
+        ? '<span class="soma-sub-tag" title="소마 앱 구독 중 (production DB)">구독</span>'
+        : '';
       let subHtml = '';
-      if (stats) {
+      if (somaSub) {
         const delta = formatDelta(stats.bookingDelta);
-        subHtml = `<div class="sub-pills" title="소마 등록 센터">
+        subHtml = `<div class="sub-pills" title="소마 구독 센터">
           <span class="sub-pill">예약 ${stats.bookingTotal ?? 0}</span>
           <span class="sub-pill delta ${delta.cls}">전일 ${delta.text}</span>
           <span class="sub-pill exp">만료 ${formatSubExpiry(stats.trainerSubExpiresMax)}</span>
@@ -1662,6 +1679,7 @@
 
       return `<div class="marker-side">
         <span class="open-pill ${openClass}" title="현재 영업 여부 (한국시간)">${openLabel}</span>
+        ${somaSubTag}
         ${subHtml}
       </div>`;
     }
@@ -1669,9 +1687,9 @@
     function makeLeafletIcon(lead, status, isActive) {
       const color = STATUS_COLORS[status] || STATUS_COLORS.pending;
       const size = isActive ? 26 : 20;
-      const hasSub = !!leadCenterStats[lead.id];
-      const w = hasSub ? 88 : 52;
-      const h = Math.max(size, hasSub ? 52 : size);
+      const somaSub = leadCenterStats[lead.id]?.isSubscribed === true;
+      const w = somaSub ? 88 : 52;
+      const h = Math.max(size, somaSub ? 58 : size);
       const html = `<div class="marker-wrap">
         <div class="marker-pin${isActive ? ' active' : ''}" style="width:${size}px;height:${size}px;background:${color};box-shadow:0 0 0 3px #fff,0 0 16px ${color};"></div>
         ${markerBadgesHtml(lead)}
