@@ -1366,38 +1366,84 @@
     function parseMinutes(hm) {
       const m = String(hm || '').match(/(\d{1,2}):(\d{2})/);
       if (!m) return null;
-      return parseInt(m[1], 10) * 60 + parseInt(m[2], 10);
+      let h = parseInt(m[1], 10);
+      const min = parseInt(m[2], 10);
+      if (h === 24 && min === 0) return 24 * 60;
+      if (h > 23) h = 23;
+      return h * 60 + min;
+    }
+
+    function hoursTextBlob(hoursData) {
+      const schedule = hoursData?.schedule || [];
+      const rows = schedule.map(r => `${r.day || ''} ${r.hours || ''}`).join(' ');
+      return `${hoursData?.status || ''} ${hoursData?.statusDetail || ''} ${hoursData?.note || ''} ${rows}`;
+    }
+
+    function hasUsableHoursData(hoursData) {
+      if (!hoursData || hoursData.ok === false) return false;
+      const blob = hoursTextBlob(hoursData);
+      if (/정보\s*없음|영업시간\s*(정보\s*)?없|찾지\s*못|조회\s*실패/i.test(blob)) return false;
+      const schedule = hoursData.schedule || [];
+      const hasSchedule = schedule.some(r => r.hours && !/^(정보\s*없음|-)$/i.test(String(r.hours).trim()));
+      const hasStatus = !!(hoursData.status || hoursData.statusDetail || hoursData.note);
+      return hasSchedule || hasStatus;
+    }
+
+    function is24HourOperation(hoursData) {
+      const blob = hoursTextBlob(hoursData);
+      if (/24\s*시간/i.test(blob)) return true;
+      if (/\b00:00\s*[-–]\s*24:00\b/.test(blob)) return true;
+      return false;
+    }
+
+    function normalizeScheduleDay(day) {
+      return String(day || '').replace(/\(.*\)/, '').replace(/요일/g, '').trim();
+    }
+
+    function findTodayScheduleRow(schedule, dayName) {
+      return (schedule || []).find(row => {
+        const d = normalizeScheduleDay(row.day);
+        if (!d) return false;
+        if (d === '매일' || d === '전체' || /연중/i.test(d)) return true;
+        return d === dayName || d.startsWith(dayName);
+      });
+    }
+
+    function isOpenFromHoursText(hoursText, nowMin) {
+      const text = String(hoursText || '');
+      if (/휴무|closed/i.test(text)) return false;
+      const range = text.match(/(\d{1,2}:\d{2})\s*[-–]\s*(\d{1,2}:\d{2})/);
+      if (!range) return null;
+      const start = parseMinutes(range[1]);
+      let end = parseMinutes(range[2]);
+      if (start == null || end == null) return null;
+      if (end >= 24 * 60 || (start === 0 && /24:00/.test(range[2]))) return true;
+      if (end <= start) return nowMin >= start || nowMin < end;
+      return nowMin >= start && nowMin < end;
     }
 
     function isOpenNow(hoursData) {
-      if (!hoursData || hoursData.ok === false) return null;
+      if (!hasUsableHoursData(hoursData)) return null;
+
       const now = getKoreaNow();
       const dayName = KST_DAYS[now.getDay()];
       const nowMin = now.getHours() * 60 + now.getMinutes();
       const schedule = hoursData.schedule || [];
+      const status = `${hoursData.status || ''} ${hoursData.statusDetail || ''}`;
 
-      const todayRow = schedule.find(row => {
-        const d = String(row.day || '').replace(/\(.*\)/, '').trim();
-        return d === dayName || d.startsWith(dayName);
-      });
-
-      if (todayRow) {
-        const hoursText = todayRow.hours || '';
-        if (/휴무|closed/i.test(hoursText)) return false;
-        const range = hoursText.match(/(\d{1,2}:\d{2})\s*[-–]\s*(\d{1,2}:\d{2})/);
-        if (range) {
-          const start = parseMinutes(range[1]);
-          const end = parseMinutes(range[2]);
-          if (start != null && end != null) {
-            if (end <= start) return nowMin >= start || nowMin <= end;
-            return nowMin >= start && nowMin <= end;
-          }
-        }
+      if (is24HourOperation(hoursData)) {
+        if (/오늘\s*휴무|지금\s*휴무|영업\s*종료/i.test(status)) return false;
+        return true;
       }
 
-      const status = `${hoursData.status || ''} ${hoursData.statusDetail || ''}`;
-      if (/영업\s*중|운영\s*중/i.test(status)) return true;
-      if (/종료|휴무|닫|브레이크/i.test(status)) return false;
+      const todayRow = findTodayScheduleRow(schedule, dayName);
+      if (todayRow) {
+        const fromRow = isOpenFromHoursText(todayRow.hours, nowMin);
+        if (fromRow !== null) return fromRow;
+      }
+
+      if (/영업\s*중|운영\s*중|24\s*시간/i.test(status)) return true;
+      if (/오늘\s*휴무|지금\s*휴무|영업\s*종료|브레이크\s*타임/i.test(status)) return false;
       return null;
     }
 
