@@ -34,6 +34,7 @@ const EMPTY = {
   routePlan: {},
   coordOverrides: {},
   geocodeSkipped: [],
+  hoursCache: {},
   updatedAt: null,
 };
 
@@ -65,6 +66,7 @@ module.exports = async (req, res) => {
         routePlan: row.route_plan || {},
         coordOverrides: row.coord_overrides || {},
         geocodeSkipped: row.geocode_skipped || [],
+        hoursCache: row.hours_cache || {},
         updatedAt: row.updated_at,
         syncAvailable: true,
       });

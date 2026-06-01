@@ -707,6 +707,10 @@
         const serverAt = data.updatedAt;
         const serverIsNewer = serverAt && (!localAt || new Date(serverAt) >= new Date(localAt));
 
+        if (data.hoursCache && typeof data.hoursCache === 'object') {
+          hoursCache = { ...hoursCache, ...data.hoursCache };
+        }
+
         if (serverHas && serverIsNewer) {
           state = data.visitState || {};
           coordOverrides = data.coordOverrides || {};
@@ -961,7 +965,11 @@
       }
       setHoursInPopup(lead.id, '영업시간 불러오는 중…', true);
       try {
-        const q = new URLSearchParams({ name: lead.name, address: lead.address || '' });
+        const q = new URLSearchParams({
+          leadId: lead.id,
+          name: lead.name,
+          address: lead.address || '',
+        });
         const res = await apiFetch(`/api/place-hours?${q}`);
         const data = await res.json();
         if (!res.ok) {

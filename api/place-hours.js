@@ -1,4 +1,5 @@
 const crypto = require('crypto');
+const { getHoursCache, saveHoursCache } = require('./maps-supabase');
 
 const PASSWORD = process.env.MAPS_PASSWORD || 'asdf1234';
 const AUTH_TOKEN = crypto.createHash('sha256').update(`${PASSWORD}|soma-maps-v1`).digest('hex');
@@ -256,8 +257,17 @@ module.exports = async (req, res) => {
     return res.status(400).json({ error: 'name required' });
   }
   const address = (req.query.address || '').trim();
+  const leadId = (req.query.leadId || '').trim();
 
   try {
+    if (leadId) {
+      const cached = await getHoursCache(leadId);
+      if (cached) {
+        res.setHeader('Cache-Control', 'private, max-age=3600');
+        return res.status(200).json({ ...cached, fromCache: true });
+      }
+    }
+
     const { placeId, searchUrl, searchApollo } = await searchPlaceId(name, address);
     if (!placeId) {
       if (!searchApollo) {
@@ -286,8 +296,13 @@ module.exports = async (req, res) => {
       });
     }
 
+    const payload = { ok: true, ...hours };
+    if (leadId) {
+      await saveHoursCache(leadId, payload);
+    }
+
     res.setHeader('Cache-Control', 'private, max-age=3600');
-    return res.status(200).json({ ok: true, ...hours });
+    return res.status(200).json(payload);
   } catch (err) {
     return res.status(500).json({ error: 'fetch_failed', message: err.message || '조회 실패' });
   }
