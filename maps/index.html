@@ -670,10 +670,18 @@
 
     .app.hidden { display: none; }
 
+    .mobile-detail {
+      display: none;
+    }
+
+    .mobile-detail-backdrop {
+      display: none;
+    }
+
     @media (max-width: 900px) {
       .main {
         grid-template-columns: 1fr;
-        grid-template-rows: 42vh 1fr;
+        grid-template-rows: 38vh 1fr;
       }
 
       .sidebar { border-right: none; border-bottom: 1px solid var(--line); }
@@ -682,6 +690,139 @@
       .stats { overflow-x: auto; flex-wrap: nowrap; max-width: 100%; }
       .stats .stat { font-size: 10px; padding: 3px 7px; }
       .stats-day-label { font-size: 10px; }
+
+      .map-wrap .leaflet-popup-pane {
+        display: none;
+      }
+
+      .legend.compact {
+        bottom: 12px;
+        left: 8px;
+        max-width: calc(100% - 16px);
+        font-size: 10px;
+      }
+
+      .map-actions {
+        top: 8px;
+        right: 8px;
+      }
+
+      .mobile-detail-backdrop {
+        display: block;
+        position: fixed;
+        inset: 0;
+        z-index: 1500;
+        background: rgba(0, 0, 0, 0.45);
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.22s ease;
+      }
+
+      .mobile-detail-backdrop.open {
+        opacity: 1;
+        pointer-events: auto;
+      }
+
+      .mobile-detail {
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 1600;
+        max-height: min(72vh, 520px);
+        background: #fff;
+        color: #1e293b;
+        border-radius: 16px 16px 0 0;
+        box-shadow: 0 -8px 32px rgba(0, 0, 0, 0.35);
+        transform: translateY(105%);
+        transition: transform 0.28s cubic-bezier(0.32, 0.72, 0, 1);
+        padding-bottom: env(safe-area-inset-bottom, 0);
+      }
+
+      .mobile-detail.open {
+        transform: translateY(0);
+      }
+
+      .mobile-detail-handle {
+        flex-shrink: 0;
+        padding: 10px 16px 6px;
+        cursor: grab;
+        touch-action: none;
+      }
+
+      .mobile-detail-handle::before {
+        content: '';
+        display: block;
+        width: 40px;
+        height: 4px;
+        margin: 0 auto 8px;
+        border-radius: 999px;
+        background: #cbd5e1;
+      }
+
+      .mobile-detail-header {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 12px;
+        padding: 0 16px 10px;
+        border-bottom: 1px solid #e2e8f0;
+      }
+
+      .mobile-detail-header h3 {
+        font-size: 17px;
+        font-weight: 700;
+        line-height: 1.35;
+        color: #0f172a;
+      }
+
+      .mobile-detail-close {
+        flex-shrink: 0;
+        width: 36px;
+        height: 36px;
+        border: none;
+        border-radius: 50%;
+        background: #f1f5f9;
+        color: #475569;
+        font-size: 20px;
+        line-height: 1;
+        cursor: pointer;
+      }
+
+      .mobile-detail-body {
+        flex: 1;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+        overscroll-behavior: contain;
+        padding: 12px 16px 16px;
+      }
+
+      .mobile-detail-body .kakao-info-wrap {
+        padding: 0;
+        min-width: 0;
+        max-width: none;
+      }
+
+      .mobile-detail-body .popup h3 {
+        display: none;
+      }
+
+      .mobile-detail-body .popup-actions button {
+        padding: 10px 6px;
+        font-size: 12px;
+      }
+
+      .mobile-detail-body .note-input {
+        min-height: 56px;
+        font-size: 14px;
+      }
+
+      .mobile-detail-body .popup-nav a {
+        padding: 10px;
+        font-size: 13px;
+      }
     }
   </style>
 </head>
@@ -758,6 +899,16 @@
     </div>
   </div>
 
+  <div class="mobile-detail-backdrop" id="mobileDetailBackdrop" aria-hidden="true"></div>
+  <div class="mobile-detail" id="mobileDetail" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="mobile-detail-handle" id="mobileDetailHandle"></div>
+    <div class="mobile-detail-header">
+      <h3 id="mobileDetailTitle"></h3>
+      <button type="button" class="mobile-detail-close" id="mobileDetailClose" aria-label="닫기">×</button>
+    </div>
+    <div class="mobile-detail-body" id="mobileDetailBody"></div>
+  </div>
+
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
   <script>
@@ -800,6 +951,11 @@
     let centerStatsIndex = [];
     let leadCenterStats = {};
     let filterStatus = '', filterGu = '', filterDong = '', query = '';
+    let mobileDetailLeadId = null;
+
+    function isMobileView() {
+      return window.matchMedia('(max-width: 900px)').matches;
+    }
 
     function normalizeStatus(st) {
       if (st === 'visited') return 'face';
@@ -1110,8 +1266,12 @@
         statusUpdatedAt: statusChanged ? now : (prev.statusUpdatedAt || null),
       };
       saveState();
-      if (map && map.closePopup) map.closePopup();
-      refreshUI(id);
+      if (isMobileView()) {
+        refreshUI(id, { skipMarkers: true, keepMobileDetail: true });
+      } else {
+        if (map && map.closePopup) map.closePopup();
+        refreshUI(id);
+      }
     }
 
     function computeDayStats() {
@@ -1327,9 +1487,61 @@
       }
     }
 
+    function closeMobileDetail() {
+      mobileDetailLeadId = null;
+      document.body.style.overflow = '';
+      const panel = document.getElementById('mobileDetail');
+      const backdrop = document.getElementById('mobileDetailBackdrop');
+      if (panel) {
+        panel.classList.remove('open');
+        panel.setAttribute('aria-hidden', 'true');
+      }
+      if (backdrop) {
+        backdrop.classList.remove('open');
+        backdrop.setAttribute('aria-hidden', 'true');
+      }
+    }
+
+    function showMobileDetail(lead) {
+      const panel = document.getElementById('mobileDetail');
+      const backdrop = document.getElementById('mobileDetailBackdrop');
+      const body = document.getElementById('mobileDetailBody');
+      const title = document.getElementById('mobileDetailTitle');
+      if (!panel || !body || !lead) return;
+
+      mobileDetailLeadId = lead.id;
+      document.body.style.overflow = 'hidden';
+      if (title) title.textContent = lead.name;
+      body.innerHTML = popupContent(lead);
+      panel.classList.add('open');
+      panel.setAttribute('aria-hidden', 'false');
+      if (backdrop) {
+        backdrop.classList.add('open');
+        backdrop.setAttribute('aria-hidden', 'false');
+      }
+
+      bindPopupEvents();
+      updatePopupStatusBadges(lead.id);
+      fetchHoursForLead(lead);
+      fetchInsightsForLead(lead);
+
+      if (map && markers[lead.id]) {
+        const c = leadCoords(lead);
+        map.panTo([c.lat, c.lng], { animate: true, duration: 0.35 });
+      }
+    }
+
     function openInfoForLead(lead) {
       activeId = lead.id;
       renderList(getDisplayLeads());
+      updateMarkerActiveState();
+
+      if (isMobileView()) {
+        if (map && map.closePopup) map.closePopup();
+        showMobileDetail(lead);
+        return;
+      }
+
       if (markers[lead.id]) markers[lead.id].openPopup();
       setTimeout(() => {
         bindPopupEvents();
@@ -1418,7 +1630,7 @@
         weight: 2,
       }).addTo(map).bindPopup('내 위치');
       if (panMap) map.setView([lat, lng], Math.max(map.getZoom(), 15));
-      refreshUI();
+      refreshUI(null, { skipMarkers: true, keepMobileDetail: !!mobileDetailLeadId });
     }
 
     function startLocationTracking() {
@@ -1697,7 +1909,7 @@
         centerStatsIndex = data.centers || [];
         buildLeadCenterStatsMap();
         if (activeId) updatePopupStatusBadges(activeId);
-        if (map) refreshUI();
+        if (map) refreshUI(null, { skipMarkers: !!mobileDetailLeadId, keepMobileDetail: !!mobileDetailLeadId });
       } catch { /* optional */ }
     }
 
@@ -1705,15 +1917,39 @@
       const c = leadCoords(lead);
       const st = getStatus(lead.id);
       const m = L.marker([c.lat, c.lng], { icon: makeLeafletIcon(lead, st, isActive) });
-      m.bindPopup(popupContent(lead), { maxWidth: 280 });
-      m.on('popupopen', () => {
-        activeId = lead.id;
-        renderList(getDisplayLeads());
-        bindPopupEvents();
-        fetchHoursForLead(lead);
-        fetchInsightsForLead(lead);
-      });
+
+      if (isMobileView()) {
+        m.on('click', () => openInfoForLead(lead));
+      } else {
+        m.bindPopup(popupContent(lead), {
+          maxWidth: 300,
+          minWidth: 260,
+          closeOnClick: false,
+          autoPan: true,
+          autoPanPadding: [48, 48],
+          keepInView: true,
+        });
+        m.on('popupopen', () => {
+          activeId = lead.id;
+          renderList(getDisplayLeads());
+          updateMarkerActiveState();
+          bindPopupEvents();
+          fetchHoursForLead(lead);
+          fetchInsightsForLead(lead);
+        });
+      }
       return m;
+    }
+
+    function updateMarkerActiveState() {
+      Object.keys(markers).forEach(id => {
+        const lead = leads.find(l => l.id === id);
+        if (!lead || !markers[id]) return;
+        const isActive = id === activeId;
+        markers[id].setIcon(makeLeafletIcon(lead, getStatus(id), isActive));
+        if (isActive) markers[id].setZIndexOffset(1000);
+        else markers[id].setZIndexOffset(0);
+      });
     }
 
     function renderMarkers(items) {
@@ -1745,15 +1981,35 @@
       });
     }
 
-    function refreshUI(focusId) {
+    function refreshUI(focusId, options = {}) {
+      const { skipMarkers = false, keepMobileDetail = false } = options;
       renderStats();
       updateListSortHint();
       const items = getDisplayLeads();
       renderList(items);
-      renderMarkers(items);
-      if (focusId && markers[focusId]) {
+      if (!skipMarkers) {
+        const reopenId = keepMobileDetail ? mobileDetailLeadId : null;
+        if (!keepMobileDetail && isMobileView()) closeMobileDetail();
+        renderMarkers(items);
+        if (reopenId) {
+          const lead = leads.find(l => l.id === reopenId);
+          if (lead) showMobileDetail(lead);
+        }
+      } else {
+        updateMarkerActiveState();
+        if (keepMobileDetail && mobileDetailLeadId) {
+          const lead = leads.find(l => l.id === mobileDetailLeadId);
+          if (lead) {
+            updatePopupStatusBadges(lead.id);
+            if (markers[lead.id]) {
+              markers[lead.id].setIcon(makeLeafletIcon(lead, getStatus(lead.id), true));
+            }
+          }
+        }
+      }
+      if (focusId) {
         const lead = leads.find(l => l.id === focusId);
-        if (lead) {
+        if (lead && map) {
           const c = leadCoords(lead);
           map.setView([c.lat, c.lng], Math.max(map.getZoom(), 16));
           openInfoForLead(lead);
@@ -1826,9 +2082,13 @@
 
       refineCoordsViaApi();
 
+      document.getElementById('mobileDetailClose').addEventListener('click', closeMobileDetail);
+      document.getElementById('mobileDetailBackdrop').addEventListener('click', closeMobileDetail);
+
       document.getElementById('search').addEventListener('input', e => {
         query = e.target.value.trim();
         if (map && map.closePopup) map.closePopup();
+        closeMobileDetail();
         refreshUI();
       });
 
@@ -1836,12 +2096,14 @@
         filterGu = e.target.value;
         updateDongFilter();
         if (map && map.closePopup) map.closePopup();
+        closeMobileDetail();
         refreshUI();
       });
 
       document.getElementById('filterDong').addEventListener('change', e => {
         filterDong = e.target.value;
         if (map && map.closePopup) map.closePopup();
+        closeMobileDetail();
         refreshUI();
       });
 
@@ -1852,6 +2114,7 @@
         tab.classList.add('active');
         filterStatus = tab.dataset.status;
         if (map && map.closePopup) map.closePopup();
+        closeMobileDetail();
         refreshUI();
       });
 
@@ -1908,7 +2171,18 @@
         if (!confirm('모든 영업 기록(방문 상태·메모)을 초기화할까요?')) return;
         state = {};
         saveState();
+        closeMobileDetail();
         refreshUI();
+      });
+
+      let wasMobileView = isMobileView();
+      window.addEventListener('resize', () => {
+        const nowMobile = isMobileView();
+        if (nowMobile === wasMobileView) return;
+        wasMobileView = nowMobile;
+        if (map && map.closePopup) map.closePopup();
+        if (!nowMobile) closeMobileDetail();
+        refreshUI(null, { keepMobileDetail: nowMobile && !!mobileDetailLeadId });
       });
     }
 
