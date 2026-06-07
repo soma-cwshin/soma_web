@@ -336,6 +336,77 @@
       border-top: 1px solid var(--line);
     }
 
+    .stack-picker-backdrop {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 1600;
+      background: rgba(0, 0, 0, 0.45);
+    }
+
+    .stack-picker-backdrop.open { display: block; }
+
+    .stack-picker {
+      display: none;
+      position: fixed;
+      left: 50%;
+      bottom: 16px;
+      transform: translateX(-50%);
+      z-index: 1601;
+      width: min(92vw, 360px);
+      max-height: 50vh;
+      background: var(--panel-2);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.45);
+      overflow: hidden;
+    }
+
+    .stack-picker.open { display: flex; flex-direction: column; }
+
+    .stack-picker-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--line);
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .stack-picker-close {
+      border: none;
+      background: transparent;
+      color: var(--ink-2);
+      font-size: 22px;
+      line-height: 1;
+      cursor: pointer;
+      padding: 0 4px;
+    }
+
+    .stack-picker-list {
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .stack-picker-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      width: 100%;
+      border: none;
+      border-bottom: 1px solid var(--line);
+      background: transparent;
+      color: var(--ink);
+      text-align: left;
+      padding: 12px 14px;
+      font-size: 13px;
+      cursor: pointer;
+    }
+
+    .stack-picker-item:last-child { border-bottom: none; }
+    .stack-picker-item:active { background: rgba(46, 140, 213, 0.15); }
+
     .marker-side {
       display: flex;
       flex-direction: column;
@@ -926,6 +997,15 @@
     </div>
   </div>
 
+  <div class="stack-picker-backdrop" id="stackPickerBackdrop" aria-hidden="true"></div>
+  <div class="stack-picker" id="stackPicker" role="dialog" aria-hidden="true">
+    <div class="stack-picker-head">
+      <span id="stackPickerTitle">같은 건물 업체</span>
+      <button type="button" class="stack-picker-close" id="stackPickerClose" aria-label="닫기">×</button>
+    </div>
+    <div class="stack-picker-list" id="stackPickerList"></div>
+  </div>
+
   <div class="mobile-detail-backdrop" id="mobileDetailBackdrop" aria-hidden="true"></div>
   <div class="mobile-detail" id="mobileDetail" role="dialog" aria-modal="true" aria-hidden="true">
     <div class="mobile-detail-handle" id="mobileDetailHandle"></div>
@@ -987,6 +1067,9 @@
     let leadCenterStats = {};
     let filterStatus = '', filterGu = '', filterDong = '', query = '';
     let mobileDetailLeadId = null;
+    let coordStackIndex = {};
+    let markerPositionOffsets = {};
+    let mapLayoutTimer = null;
 
     function isMobileView() {
       return window.matchMedia('(max-width: 900px)').matches;
@@ -1117,6 +1200,130 @@
       const o = coordOverrides[lead.id];
       if (o) return { lat: o.lat, lng: o.lng };
       return { lat: lead.lat, lng: lead.lng };
+    }
+
+    function coordGroupKey(lat, lng) {
+      return `${lat.toFixed(5)},${lng.toFixed(5)}`;
+    }
+
+    function markerPosition(lead) {
+      return markerPositionOffsets[lead.id] || leadCoords(lead);
+    }
+
+    function buildMarkerLayout(items) {
+      coordStackIndex = {};
+      markerPositionOffsets = {};
+      const groups = new Map();
+
+      items.forEach(lead => {
+        const c = leadCoords(lead);
+        const key = coordGroupKey(c.lat, c.lng);
+        if (!groups.has(key)) groups.set(key, []);
+        groups.get(key).push(lead);
+      });
+
+      const zoom = map ? map.getZoom() : 16;
+      const radius = 0.000028 * Math.max(1.1, (19 - zoom) * 0.5);
+
+      groups.forEach(group => {
+        if (group.length < 2) return;
+        const center = leadCoords(group[0]);
+        const key = coordGroupKey(center.lat, center.lng);
+        coordStackIndex[key] = group.map(l => l.id).sort();
+        const sorted = [...group].sort((a, b) => a.name.localeCompare(b.name, 'ko'));
+        const n = sorted.length;
+        const lngScale = 1 / Math.cos((center.lat * Math.PI) / 180);
+
+        sorted.forEach((lead, i) => {
+          const angle = ((2 * Math.PI) * i) / n - Math.PI / 2;
+          const ring = Math.floor(i / 10);
+          const r = radius * (1 + ring * 0.75);
+          markerPositionOffsets[lead.id] = {
+            lat: center.lat + r * Math.cos(angle),
+            lng: center.lng + r * Math.sin(angle) * lngScale,
+          };
+        });
+      });
+    }
+
+    function getStackedLeads(lead) {
+      const c = leadCoords(lead);
+      const key = coordGroupKey(c.lat, c.lng);
+      const ids = coordStackIndex[key];
+      if (!ids || ids.length < 2) return [lead];
+      return ids.map(id => leads.find(l => l.id === id)).filter(Boolean);
+    }
+
+    function closeStackPicker() {
+      const panel = document.getElementById('stackPicker');
+      const backdrop = document.getElementById('stackPickerBackdrop');
+      if (panel) {
+        panel.classList.remove('open');
+        panel.setAttribute('aria-hidden', 'true');
+      }
+      if (backdrop) {
+        backdrop.classList.remove('open');
+        backdrop.setAttribute('aria-hidden', 'true');
+      }
+    }
+
+    function showStackPicker(lead, stackedLeads) {
+      const panel = document.getElementById('stackPicker');
+      const backdrop = document.getElementById('stackPickerBackdrop');
+      const list = document.getElementById('stackPickerList');
+      const title = document.getElementById('stackPickerTitle');
+      if (!panel || !list) return;
+
+      if (title) title.textContent = `같은 건물 ${stackedLeads.length}곳`;
+      list.innerHTML = stackedLeads.map(l => {
+        const st = getStatus(l.id);
+        return `<button type="button" class="stack-picker-item" data-id="${l.id}">
+          <span class="dot ${st}"></span>
+          <span>${escapeHtml(l.name)}</span>
+        </button>`;
+      }).join('');
+
+      list.querySelectorAll('.stack-picker-item').forEach(btn => {
+        btn.onclick = () => {
+          const picked = leads.find(l => l.id === btn.dataset.id);
+          closeStackPicker();
+          if (picked) openInfoForLead(picked);
+        };
+      });
+
+      panel.classList.add('open');
+      panel.setAttribute('aria-hidden', 'false');
+      if (backdrop) {
+        backdrop.classList.add('open');
+        backdrop.setAttribute('aria-hidden', 'false');
+      }
+    }
+
+    function handleMarkerClick(lead) {
+      const stacked = getStackedLeads(lead);
+      if (stacked.length > 1) {
+        showStackPicker(lead, stacked);
+        return;
+      }
+      openInfoForLead(lead);
+    }
+
+    function applyMarkerPositions(items) {
+      items.forEach(lead => {
+        const layer = markers[lead.id];
+        if (!layer) return;
+        const p = markerPosition(lead);
+        layer.setLatLng([p.lat, p.lng]);
+      });
+    }
+
+    function scheduleMarkerLayoutRefresh() {
+      clearTimeout(mapLayoutTimer);
+      mapLayoutTimer = setTimeout(() => {
+        const items = getDisplayLeads();
+        buildMarkerLayout(items);
+        applyMarkerPositions(items);
+      }, 180);
     }
 
     async function apiFetch(url, options = {}) {
@@ -1566,7 +1773,7 @@
       fetchInsightsForLead(lead);
 
       if (map && markers[lead.id]) {
-        const c = leadCoords(lead);
+        const c = markerPosition(lead);
         map.panTo([c.lat, c.lng], { animate: true, duration: 0.35 });
       }
     }
@@ -2050,8 +2257,8 @@
     }
 
     function bindMarkerEvents(m, lead) {
+      m.on('click', () => handleMarkerClick(lead));
       if (isMobileView()) {
-        m.on('click', () => openInfoForLead(lead));
         return;
       }
       m.bindPopup(popupContent(lead), {
@@ -2073,7 +2280,7 @@
     }
 
     function createMarker(lead, isActive) {
-      const c = leadCoords(lead);
+      const c = markerPosition(lead);
       const st = getStatus(lead.id);
       const color = STATUS_COLORS[st] || STATUS_COLORS.pending;
 
@@ -2161,6 +2368,7 @@
 
     function renderMarkers(items) {
       if (!map) return;
+      buildMarkerLayout(items);
       clearMarkerCluster();
       markerClusterGroup = createMarkerClusterGroup();
       const layers = items.map(l => {
@@ -2269,6 +2477,8 @@
         updateWhenIdle: true,
         keepBuffer: isMobileView() ? 2 : 4,
       }).addTo(map);
+
+      map.on('zoomend', scheduleMarkerLayoutRefresh);
     }
 
     function fitAllMarkers() {
