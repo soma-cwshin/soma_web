@@ -708,6 +708,20 @@
         animation: none !important;
       }
 
+      .mobile-sub-icon .open-pill {
+        font-size: 8px;
+        padding: 1px 4px;
+      }
+
+      .mobile-sub-icon .soma-sub-tag {
+        font-size: 8px;
+        padding: 1px 4px;
+      }
+
+      .mobile-sub-icon .marker-pin {
+        box-shadow: 0 0 0 2px #fff !important;
+      }
+
       .legend.compact {
         bottom: 12px;
         left: 8px;
@@ -1401,9 +1415,7 @@
         } else {
           setHoursInPopup(lead.id, renderHoursHtml(cached), false);
         }
-        if (markers[lead.id]) {
-          markers[lead.id].setIcon(makeLeafletIcon(lead, getStatus(lead.id), lead.id === activeId));
-        }
+        refreshMarkerIcon(lead);
         return;
       }
       setHoursInPopup(lead.id, '영업시간 불러오는 중…', true);
@@ -1421,9 +1433,7 @@
         }
         hoursCache[lead.id] = data;
         setHoursInPopup(lead.id, renderHoursHtml(data), false);
-        if (markers[lead.id]) {
-          markers[lead.id].setIcon(makeLeafletIcon(lead, getStatus(lead.id), lead.id === activeId));
-        }
+        refreshMarkerIcon(lead);
       } catch {
         setHoursInPopup(lead.id, '영업시간 조회 실패', true);
       }
@@ -1926,6 +1936,58 @@
       </div>`;
     }
 
+    function isSomaSubscribedLead(leadId) {
+      return leadCenterStats[leadId]?.isSubscribed === true;
+    }
+
+    function mobileOpenBadgeHtml(leadId) {
+      const hours = hoursCache[leadId];
+      const open = isOpenNow(hours);
+      let openClass = 'unk';
+      let openLabel = '?';
+      if (open === true) {
+        openClass = 'on';
+        openLabel = 'ON';
+      } else if (open === false) {
+        openClass = 'off';
+        openLabel = 'OFF';
+      }
+      return `<span class="open-pill ${openClass}" title="현재 영업 여부">${openLabel}</span>`;
+    }
+
+    function refreshMarkerIcon(lead) {
+      if (!markers[lead.id]) return;
+      const st = getStatus(lead.id);
+      const isActive = lead.id === activeId;
+      if (isMobileView()) {
+        if (isSomaSubscribedLead(lead.id)) {
+          markers[lead.id].setIcon(makeMobileSubscribedIcon(lead, st, isActive));
+          return;
+        }
+        updateMarkerStyle(lead.id, isActive);
+        return;
+      }
+      markers[lead.id].setIcon(makeLeafletIcon(lead, st, isActive));
+    }
+
+    function makeMobileSubscribedIcon(lead, status, isActive) {
+      const color = STATUS_COLORS[status] || STATUS_COLORS.pending;
+      const size = isActive ? 14 : 11;
+      const html = `<div class="marker-wrap">
+        <div class="marker-pin${isActive ? ' active' : ''}" style="width:${size}px;height:${size}px;background:${color};box-shadow:0 0 0 2px #fff;"></div>
+        <div class="marker-side">
+          ${mobileOpenBadgeHtml(lead.id)}
+          <span class="soma-sub-tag" title="소마 앱 구독 중">구독</span>
+        </div>
+      </div>`;
+      return L.divIcon({
+        className: 'custom-marker-wrap mobile-sub-icon',
+        html,
+        iconSize: [54, 36],
+        iconAnchor: [size / 2, 18],
+      });
+    }
+
     function makeLeafletIcon(lead, status, isActive) {
       const color = STATUS_COLORS[status] || STATUS_COLORS.pending;
       const size = isActive ? 26 : 20;
@@ -1952,7 +2014,7 @@
         centerStatsIndex = data.centers || [];
         buildLeadCenterStatsMap();
         if (activeId) updatePopupStatusBadges(activeId);
-        if (map) refreshUI(null, { skipMarkers: !!mobileDetailLeadId, keepMobileDetail: !!mobileDetailLeadId });
+        if (map) refreshUI(null, { keepMobileDetail: !!mobileDetailLeadId });
       } catch { /* optional */ }
     }
 
@@ -1985,6 +2047,11 @@
       const color = STATUS_COLORS[st] || STATUS_COLORS.pending;
 
       if (isMobileView()) {
+        if (isSomaSubscribedLead(lead.id)) {
+          const m = L.marker([c.lat, c.lng], { icon: makeMobileSubscribedIcon(lead, st, isActive) });
+          bindMarkerEvents(m, lead);
+          return m;
+        }
         const m = L.circleMarker([c.lat, c.lng], {
           radius: isActive ? 10 : 7,
           color: '#fff',
@@ -2007,6 +2074,11 @@
       if (!lead || !layer) return;
       const st = getStatus(id);
       if (isMobileView()) {
+        if (isSomaSubscribedLead(id)) {
+          layer.setIcon(makeMobileSubscribedIcon(lead, st, isActive));
+          layer.setZIndexOffset(isActive ? 1000 : 0);
+          return;
+        }
         const color = STATUS_COLORS[st] || STATUS_COLORS.pending;
         layer.setStyle({
           radius: isActive ? 10 : 7,
