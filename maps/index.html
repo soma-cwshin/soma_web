@@ -1246,12 +1246,35 @@
       });
     }
 
+    function leadQualityScore(l) {
+      let score = 0;
+      const addr = String(l.address || '');
+      if (l.gu && addr.includes(l.gu)) score += 30;
+      if (l.dong && addr.includes(l.dong)) score += 15;
+      if (l.phone && l.phone !== '정보 없음') score += 10;
+      if (l.precise) score += 5;
+      return score;
+    }
+
+    function uniqueLeadsByName(items) {
+      const seen = new Map();
+      items.forEach(l => {
+        const key = normalizeMatch(l.name);
+        const prev = seen.get(key);
+        if (!prev || leadQualityScore(l) > leadQualityScore(prev)) {
+          seen.set(key, l);
+        }
+      });
+      return [...seen.values()].sort((a, b) => a.name.localeCompare(b.name, 'ko'));
+    }
+
     function getStackedLeads(lead) {
       const c = leadCoords(lead);
       const key = coordGroupKey(c.lat, c.lng);
       const ids = coordStackIndex[key];
       if (!ids || ids.length < 2) return [lead];
-      return ids.map(id => leads.find(l => l.id === id)).filter(Boolean);
+      const stacked = ids.map(id => leads.find(l => l.id === id)).filter(Boolean);
+      return uniqueLeadsByName(stacked);
     }
 
     function closeStackPicker() {
@@ -1305,7 +1328,7 @@
         showStackPicker(lead, stacked);
         return;
       }
-      openInfoForLead(lead);
+      openInfoForLead(stacked[0] || lead);
     }
 
     function applyMarkerPositions(items) {
@@ -2428,7 +2451,7 @@
       if (focusId) {
         const lead = leads.find(l => l.id === focusId);
         if (lead && map) {
-          const c = leadCoords(lead);
+          const c = markerPosition(lead);
           map.setView([c.lat, c.lng], Math.max(map.getZoom(), 16));
           openInfoForLead(lead);
         }
@@ -2511,12 +2534,15 @@
 
       document.getElementById('mobileDetailClose').addEventListener('click', closeMobileDetail);
       document.getElementById('mobileDetailBackdrop').addEventListener('click', closeMobileDetail);
+      document.getElementById('stackPickerClose').addEventListener('click', closeStackPicker);
+      document.getElementById('stackPickerBackdrop').addEventListener('click', closeStackPicker);
 
       document.getElementById('search').addEventListener('input', e => {
         query = e.target.value.trim();
         invalidateFilteredCache();
         if (map && map.closePopup) map.closePopup();
         closeMobileDetail();
+        closeStackPicker();
         clearTimeout(searchDebounceTimer);
         searchDebounceTimer = setTimeout(() => refreshUI(), isMobileView() ? 280 : 120);
       });
