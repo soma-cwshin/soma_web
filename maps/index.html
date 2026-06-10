@@ -319,7 +319,6 @@
       border-radius: 50%;
       border: 3px solid #fff;
       box-sizing: border-box;
-      animation: marker-glow 2.4s ease-in-out infinite;
       flex-shrink: 0;
     }
 
@@ -1044,8 +1043,10 @@
       exclude: '제외',
       refuse: '거절'
     };
+    const HIDE_PILATES_LEADS = true;
 
     let leads = [];
+    let leadsById = {};
     let coordOverrides = loadCoordOverrides();
     let state = loadState();
     let map, markers = {}, activeId = null;
@@ -1079,9 +1080,30 @@
       return isMobileView() ? 120 : 400;
     }
 
+    function rebuildLeadsIndex() {
+      leadsById = Object.create(null);
+      leads.forEach(l => { leadsById[l.id] = l; });
+    }
+
+    function getLeadById(id) {
+      return leadsById[id] || null;
+    }
+
     function invalidateFilteredCache() {
       filteredLeadsCache = null;
       filteredLeadsCacheKey = '';
+    }
+
+    function isPilatesOnlyLead(lead) {
+      const name = lead.name || '';
+      if (!/필라테스|pilates/i.test(name)) return false;
+      if (/\bPT\b|피티|pt&|&pt|&\s*pt|\+pt|pt\+|헬스|짐\b|gym|fitness|피\.?T/i.test(name)) return false;
+      return true;
+    }
+
+    function isVisibleLead(lead) {
+      if (HIDE_PILATES_LEADS && isPilatesOnlyLead(lead)) return false;
+      return true;
     }
 
     function normalizeStatus(st) {
@@ -1273,7 +1295,7 @@
       const key = coordGroupKey(c.lat, c.lng);
       const ids = coordStackIndex[key];
       if (!ids || ids.length < 2) return [lead];
-      const stacked = ids.map(id => leads.find(l => l.id === id)).filter(Boolean);
+      const stacked = ids.map(id => getLeadById(id)).filter(Boolean);
       return uniqueLeadsByName(stacked);
     }
 
@@ -1308,7 +1330,7 @@
 
       list.querySelectorAll('.stack-picker-item').forEach(btn => {
         btn.onclick = () => {
-          const picked = leads.find(l => l.id === btn.dataset.id);
+          const picked = getLeadById(btn.dataset.id);
           closeStackPicker();
           if (picked) openInfoForLead(picked);
         };
@@ -1333,6 +1355,7 @@
 
     function applyMarkerPositions(items) {
       items.forEach(lead => {
+        if (!markerPositionOffsets[lead.id]) return;
         const layer = markers[lead.id];
         if (!layer) return;
         const p = markerPosition(lead);
@@ -1445,7 +1468,16 @@
       } else {
         statusEl.classList.remove('show');
       }
-      refreshUI();
+      refreshUI(null, { skipMarkers: true });
+      const items = getDisplayLeads();
+      buildMarkerLayout(items);
+      items.forEach(lead => {
+        if (!coordOverrides[lead.id] && !markerPositionOffsets[lead.id]) return;
+        const layer = markers[lead.id];
+        if (!layer) return;
+        const p = markerPosition(lead);
+        layer.setLatLng([p.lat, p.lng]);
+      });
     }
 
     function loadState() {
@@ -1544,7 +1576,9 @@
         refreshUI(id, { skipMarkers: true, keepMobileDetail: true });
       } else {
         if (map && map.closePopup) map.closePopup();
-        refreshUI(id);
+        refreshUI(null, { skipMarkers: true });
+        const lead = getLeadById(id);
+        if (lead && markers[id]) refreshMarkerIcon(lead);
       }
     }
 
@@ -1836,6 +1870,7 @@
       }
       filteredLeadsCacheKey = key;
       filteredLeadsCache = leads.filter(l => {
+        if (!isVisibleLead(l)) return false;
         if (filterGu && l.gu !== filterGu) return false;
         if (filterDong && l.dong !== filterDong) return false;
         if (filterStatus && getStatus(l.id) !== filterStatus) return false;
@@ -1927,12 +1962,13 @@
 
     function renderStats() {
       const counts = Object.fromEntries(STATUS_KEYS.map(k => [k, 0]));
-      leads.forEach(l => {
+      const visibleLeads = leads.filter(isVisibleLead);
+      visibleLeads.forEach(l => {
         const st = getStatus(l.id);
         counts[st] = (counts[st] || 0) + 1;
       });
       document.getElementById('stats').innerHTML = `
-        <span class="stat">전체 <strong>${leads.length}</strong></span>
+        <span class="stat">전체 <strong>${visibleLeads.length}</strong></span>
         <span class="stat">미방문 <strong>${counts.pending}</strong></span>
         <span class="stat">대면 <strong>${counts.face}</strong></span>
         <span class="stat">쪽지 <strong>${counts.note}</strong></span>
@@ -2010,15 +2046,25 @@
     function buildLeadCenterStatsMap() {
       leadCenterStats = {};
       if (!centerStatsIndex.length) return;
+
+      const exactIndex = new Map();
+      centerStatsIndex.forEach(center => {
+        const key = normalizeMatch(center.name);
+        if (!exactIndex.has(key)) exactIndex.set(key, center);
+      });
+
       leads.forEach(lead => {
-        let best = null;
-        let bestScore = -1;
-        for (const center of centerStatsIndex) {
-          const s = scoreCenterMatch(lead, center);
-          if (s > bestScore) {
-            bestScore = s;
-            best = center;
-            if (s >= 130) break;
+        const nName = normalizeMatch(lead.name);
+        let best = exactIndex.get(nName) || null;
+        let bestScore = best ? scoreCenterMatch(lead, best) : -1;
+        if (bestScore < 130) {
+          for (const center of centerStatsIndex) {
+            const s = scoreCenterMatch(lead, center);
+            if (s > bestScore) {
+              bestScore = s;
+              best = center;
+              if (s >= 130) break;
+            }
           }
         }
         if (best && bestScore >= 40) {
@@ -2190,8 +2236,29 @@
       return isOpenNow(hoursCache[lead.id]) === false;
     }
 
+    function usesRichMarker(lead) {
+      if (isMobileView()) return isMobileCompactMarker(lead);
+      return isSomaSubscribedLead(lead.id);
+    }
+
     function isCircleMarkerLayer(layer) {
       return layer && typeof layer.setRadius === 'function';
+    }
+
+    function markerTypeMismatch(lead, layer) {
+      return usesRichMarker(lead) === isCircleMarkerLayer(layer);
+    }
+
+    function circleMarkerStyle(status, isActive) {
+      const color = STATUS_COLORS[status] || STATUS_COLORS.pending;
+      const compact = isMobileView();
+      return {
+        radius: isActive ? (compact ? 10 : 9) : (compact ? 7 : 6),
+        color: '#fff',
+        weight: isActive ? 3 : 2,
+        fillColor: color,
+        fillOpacity: 0.92,
+      };
     }
 
     function replaceMarkerInCluster(lead) {
@@ -2206,24 +2273,12 @@
 
     function refreshMarkerIcon(lead) {
       if (!markers[lead.id]) return;
-      const st = getStatus(lead.id);
-      const isActive = lead.id === activeId;
-      if (isMobileView()) {
-        const wantsCompact = isMobileCompactMarker(lead);
-        const isCircle = isCircleMarkerLayer(markers[lead.id]);
-        if (wantsCompact !== isCircle) {
-          replaceMarkerInCluster(lead);
-          return;
-        }
-        if (wantsCompact) {
-          markers[lead.id].setIcon(makeMobileCompactIcon(lead, st, isActive));
-          markers[lead.id].setZIndexOffset(isActive ? 1000 : 0);
-          return;
-        }
-        updateMarkerStyle(lead.id, isActive);
+      const layer = markers[lead.id];
+      if (markerTypeMismatch(lead, layer)) {
+        replaceMarkerInCluster(lead);
         return;
       }
-      markers[lead.id].setIcon(makeLeafletIcon(lead, st, isActive));
+      updateMarkerStyle(lead.id, lead.id === activeId);
     }
 
     function makeMobileCompactIcon(lead, status, isActive) {
@@ -2256,7 +2311,7 @@
       const w = somaSub ? 88 : 52;
       const h = Math.max(size, somaSub ? 58 : size);
       const html = `<div class="marker-wrap">
-        <div class="marker-pin${isActive ? ' active' : ''}" style="width:${size}px;height:${size}px;background:${color};box-shadow:0 0 0 3px #fff,0 0 16px ${color};"></div>
+        <div class="marker-pin${isActive ? ' active' : ''}" style="width:${size}px;height:${size}px;background:${color};box-shadow:0 0 0 3px #fff;"></div>
         ${markerBadgesHtml(lead)}
       </div>`;
       return L.divIcon({
@@ -2275,16 +2330,18 @@
         centerStatsIndex = data.centers || [];
         buildLeadCenterStatsMap();
         if (activeId) updatePopupStatusBadges(activeId);
-        if (map) refreshUI(null, { keepMobileDetail: !!mobileDetailLeadId });
+        if (map) {
+          getDisplayLeads().forEach(lead => {
+            if (markers[lead.id] && usesRichMarker(lead)) refreshMarkerIcon(lead);
+          });
+        }
       } catch { /* optional */ }
     }
 
     function bindMarkerEvents(m, lead) {
       m.on('click', () => handleMarkerClick(lead));
-      if (isMobileView()) {
-        return;
-      }
-      m.bindPopup(popupContent(lead), {
+      if (isMobileView()) return;
+      m.bindPopup(() => popupContent(lead), {
         maxWidth: 300,
         minWidth: 260,
         closeOnClick: false,
@@ -2305,60 +2362,44 @@
     function createMarker(lead, isActive) {
       const c = markerPosition(lead);
       const st = getStatus(lead.id);
-      const color = STATUS_COLORS[st] || STATUS_COLORS.pending;
 
-      if (isMobileView()) {
-        if (isMobileCompactMarker(lead)) {
-          const m = L.marker([c.lat, c.lng], { icon: makeMobileCompactIcon(lead, st, isActive) });
-          bindMarkerEvents(m, lead);
-          return m;
-        }
-        const m = L.circleMarker([c.lat, c.lng], {
-          radius: isActive ? 10 : 7,
-          color: '#fff',
-          weight: isActive ? 3 : 2,
-          fillColor: color,
-          fillOpacity: 0.92,
-        });
+      if (usesRichMarker(lead)) {
+        const icon = isMobileView()
+          ? makeMobileCompactIcon(lead, st, isActive)
+          : makeLeafletIcon(lead, st, isActive);
+        const m = L.marker([c.lat, c.lng], { icon });
         bindMarkerEvents(m, lead);
         return m;
       }
 
-      const m = L.marker([c.lat, c.lng], { icon: makeLeafletIcon(lead, st, isActive) });
+      const m = L.circleMarker([c.lat, c.lng], circleMarkerStyle(st, isActive));
       bindMarkerEvents(m, lead);
       return m;
     }
 
     function updateMarkerStyle(id, isActive) {
-      const lead = leads.find(l => l.id === id);
+      const lead = getLeadById(id);
       const layer = markers[id];
       if (!lead || !layer) return;
       const st = getStatus(id);
-      if (isMobileView()) {
-        if (isMobileCompactMarker(lead)) {
-          if (isCircleMarkerLayer(layer)) {
-            replaceMarkerInCluster(lead);
-            return;
-          }
-          layer.setIcon(makeMobileCompactIcon(lead, st, isActive));
-          layer.setZIndexOffset(isActive ? 1000 : 0);
-          return;
-        }
-        if (!isCircleMarkerLayer(layer)) {
+      if (usesRichMarker(lead)) {
+        if (isCircleMarkerLayer(layer)) {
           replaceMarkerInCluster(lead);
           return;
         }
-        const color = STATUS_COLORS[st] || STATUS_COLORS.pending;
-        layer.setStyle({
-          radius: isActive ? 10 : 7,
-          weight: isActive ? 3 : 2,
-          fillColor: color,
-        });
-        if (isActive) layer.bringToFront();
+        const icon = isMobileView()
+          ? makeMobileCompactIcon(lead, st, isActive)
+          : makeLeafletIcon(lead, st, isActive);
+        layer.setIcon(icon);
+        layer.setZIndexOffset(isActive ? 1000 : 0);
         return;
       }
-      layer.setIcon(makeLeafletIcon(lead, st, isActive));
-      layer.setZIndexOffset(isActive ? 1000 : 0);
+      if (!isCircleMarkerLayer(layer)) {
+        replaceMarkerInCluster(lead);
+        return;
+      }
+      layer.setStyle(circleMarkerStyle(st, isActive));
+      if (isActive) layer.bringToFront();
     }
 
     function updateMarkerActiveState() {
@@ -2379,34 +2420,70 @@
     function createMarkerClusterGroup() {
       return L.markerClusterGroup({
         chunkedLoading: true,
-        chunkInterval: isMobileView() ? 180 : 120,
-        chunkDelay: isMobileView() ? 40 : 25,
-        maxClusterRadius: isMobileView() ? 72 : 56,
-        disableClusteringAtZoom: isMobileView() ? 14 : 15,
+        chunkInterval: 200,
+        chunkDelay: 30,
+        maxClusterRadius: isMobileView() ? 72 : 64,
+        disableClusteringAtZoom: isMobileView() ? 14 : 16,
         spiderfyOnMaxZoom: true,
         showCoverageOnHover: false,
-        removeOutsideVisibleBounds: isMobileView(),
+        removeOutsideVisibleBounds: true,
+        animate: false,
+        animateAddingMarkers: false,
       });
     }
 
-    function renderMarkers(items) {
+    function renderMarkers(items, options = {}) {
+      const { forceRebuild = false } = options;
       if (!map) return;
       buildMarkerLayout(items);
-      clearMarkerCluster();
-      markerClusterGroup = createMarkerClusterGroup();
-      const layers = items.map(l => {
+
+      if (forceRebuild || !markerClusterGroup) {
+        clearMarkerCluster();
+        markerClusterGroup = createMarkerClusterGroup();
+        const layers = items.map(l => {
+          const m = createMarker(l, l.id === activeId);
+          markers[l.id] = m;
+          return m;
+        });
+        markerClusterGroup.addLayers(layers);
+        markerClusterGroup.addTo(map);
+        prevActiveId = activeId;
+        return;
+      }
+
+      const nextIds = new Set(items.map(l => l.id));
+      Object.keys(markers).forEach(id => {
+        if (!nextIds.has(id)) {
+          markerClusterGroup.removeLayer(markers[id]);
+          delete markers[id];
+        }
+      });
+
+      const toAdd = [];
+      items.forEach(l => {
+        const layer = markers[l.id];
+        if (layer) {
+          if (markerPositionOffsets[l.id]) {
+            const p = markerPosition(l);
+            layer.setLatLng([p.lat, p.lng]);
+          }
+          if (markerTypeMismatch(l, layer)) replaceMarkerInCluster(l);
+          return;
+        }
         const m = createMarker(l, l.id === activeId);
         markers[l.id] = m;
-        return m;
+        toAdd.push(m);
       });
-      markerClusterGroup.addLayers(layers);
-      markerClusterGroup.addTo(map);
+      if (toAdd.length) markerClusterGroup.addLayers(toAdd);
       prevActiveId = activeId;
     }
 
-    function scheduleMarkerRender(items) {
+    function scheduleMarkerRender(items, options = {}) {
       clearTimeout(markerRenderTimer);
-      markerRenderTimer = setTimeout(() => renderMarkers(items), isMobileView() ? 180 : 60);
+      markerRenderTimer = setTimeout(
+        () => renderMarkers(items, options),
+        isMobileView() ? 180 : 150
+      );
     }
 
     function bindPopupEvents() {
@@ -2424,24 +2501,25 @@
     }
 
     function refreshUI(focusId, options = {}) {
-      const { skipMarkers = false, keepMobileDetail = false } = options;
+      const { skipMarkers = false, keepMobileDetail = false, forceMarkerRebuild = false } = options;
       renderStats();
       updateListSortHint();
       const items = getDisplayLeads();
       renderList(items);
       if (!skipMarkers) {
         const reopenId = keepMobileDetail ? mobileDetailLeadId : null;
+        const markerOptions = { forceRebuild: forceMarkerRebuild };
         if (!keepMobileDetail && isMobileView()) closeMobileDetail();
-        if (focusId) renderMarkers(items);
-        else scheduleMarkerRender(items);
+        if (focusId) updateMarkerActiveState();
+        else scheduleMarkerRender(items, markerOptions);
         if (reopenId) {
-          const lead = leads.find(l => l.id === reopenId);
+          const lead = getLeadById(reopenId);
           if (lead) showMobileDetail(lead);
         }
       } else {
         updateMarkerActiveState();
         if (keepMobileDetail && mobileDetailLeadId) {
-          const lead = leads.find(l => l.id === mobileDetailLeadId);
+          const lead = getLeadById(mobileDetailLeadId);
           if (lead) {
             updatePopupStatusBadges(lead.id);
             if (markers[lead.id]) updateMarkerStyle(lead.id, true);
@@ -2449,7 +2527,7 @@
         }
       }
       if (focusId) {
-        const lead = leads.find(l => l.id === focusId);
+        const lead = getLeadById(focusId);
         if (lead && map) {
           const c = markerPosition(lead);
           map.setView([c.lat, c.lng], Math.max(map.getZoom(), 16));
@@ -2488,9 +2566,9 @@
     function initMap() {
       const container = document.getElementById('map');
       map = L.map(container, {
-        preferCanvas: isMobileView(),
-        zoomAnimation: !isMobileView(),
-        fadeAnimation: !isMobileView(),
+        preferCanvas: true,
+        zoomAnimation: true,
+        fadeAnimation: false,
       }).setView([37.548, 126.88], 12);
       L.control.zoom({ position: 'bottomright' }).addTo(map);
       L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -2498,7 +2576,7 @@
         maxZoom: 19,
         updateWhenZooming: false,
         updateWhenIdle: true,
-        keepBuffer: isMobileView() ? 2 : 4,
+        keepBuffer: 2,
       }).addTo(map);
 
       map.on('zoomend', scheduleMarkerLayoutRefresh);
@@ -2522,6 +2600,7 @@
       if (!res.ok) throw new Error('데이터를 불러올 수 없습니다.');
       const data = await res.json();
       leads = data.leads || [];
+      rebuildLeadsIndex();
       leads.filter(l => !l.precise && !isGeocodable(l)).forEach(l => geocodeSkipped.add(l.id));
       await loadSyncFromServer();
       migrateLegacyStatuses();
@@ -2544,7 +2623,7 @@
         closeMobileDetail();
         closeStackPicker();
         clearTimeout(searchDebounceTimer);
-        searchDebounceTimer = setTimeout(() => refreshUI(), isMobileView() ? 280 : 120);
+        searchDebounceTimer = setTimeout(() => refreshUI(), isMobileView() ? 280 : 200);
       });
 
       document.getElementById('filterGu').addEventListener('change', e => {
@@ -2640,7 +2719,10 @@
         wasMobileView = nowMobile;
         if (map && map.closePopup) map.closePopup();
         if (!nowMobile) closeMobileDetail();
-        refreshUI(null, { keepMobileDetail: nowMobile && !!mobileDetailLeadId });
+        refreshUI(null, {
+          keepMobileDetail: nowMobile && !!mobileDetailLeadId,
+          forceMarkerRebuild: true,
+        });
       });
     }
 
