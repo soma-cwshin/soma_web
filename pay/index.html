@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+  <meta name="robots" content="noindex" />
+  <title>소마 구독 결제</title>
+  <script src="https://cdn.portone.io/v2/browser-sdk.js"></script>
+  <style>
+    :root { --bg:#0f0f1a; --card:#1e1e30; --accent:#6c63ff; --muted:#9c9cff; }
+    * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+    body {
+      margin: 0; min-height: 100vh; background: var(--bg);
+      color: #fff; font-family: -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+      display: flex; align-items: center; justify-content: center; padding: 20px;
+    }
+    .card {
+      width: 100%; max-width: 420px; background: var(--card);
+      border-radius: 18px; padding: 28px 22px; box-shadow: 0 12px 40px rgba(0,0,0,.4);
+    }
+    .logo { font-size: 22px; font-weight: 800; letter-spacing: -0.5px; margin-bottom: 4px; }
+    .sub { color: #ffffff66; font-size: 13px; margin-bottom: 24px; }
+    .row { display: flex; justify-content: space-between; align-items: center; padding: 14px 0; border-bottom: 1px solid #ffffff14; }
+    .row .k { color: #ffffff80; font-size: 14px; }
+    .row .v { font-size: 15px; font-weight: 600; }
+    .amount { font-size: 28px; font-weight: 800; color: #fff; margin: 22px 0 6px; }
+    .amount small { font-size: 15px; color: #ffffff80; font-weight: 500; }
+    button {
+      width: 100%; border: none; border-radius: 12px; padding: 16px;
+      font-size: 16px; font-weight: 700; color: #fff; background: var(--accent);
+      margin-top: 24px; cursor: pointer; transition: opacity .15s;
+    }
+    button:disabled { opacity: .5; cursor: default; }
+    .notice { color: #ffffff55; font-size: 12px; line-height: 1.6; margin-top: 16px; text-align: center; }
+    .center { text-align: center; padding: 24px 0; }
+    .spinner { width: 36px; height: 36px; border: 3px solid #ffffff22; border-top-color: var(--accent); border-radius: 50%; animation: spin .8s linear infinite; margin: 0 auto 16px; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .ico { font-size: 44px; margin-bottom: 12px; }
+    .msg-title { font-size: 18px; font-weight: 700; margin-bottom: 6px; }
+    .msg-desc { color: #ffffff80; font-size: 14px; line-height: 1.6; }
+    .ok { color: #66bb6a; } .err { color: #ff6b6b; }
+    .hidden { display: none; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="logo">SOMA</div>
+    <div class="sub">구독 결제</div>
+
+    <!-- 로딩 -->
+    <div id="loading" class="center">
+      <div class="spinner"></div>
+      <div class="msg-desc">불러오는 중...</div>
+    </div>
+
+    <!-- 결제 폼 -->
+    <div id="form" class="hidden">
+      <div class="row"><span class="k">플랜</span><span class="v" id="f-plan">-</span></div>
+      <div class="row"><span class="k">결제 대상</span><span class="v" id="f-member">-</span></div>
+      <div class="amount" id="f-amount">-</div>
+      <button id="payBtn" onclick="startPayment()">결제하기</button>
+      <div class="notice">카드 결제로 즉시 진행됩니다.<br/>결제 완료 후 앱에서 구독이 활성화됩니다.</div>
+    </div>
+
+    <!-- 결과 -->
+    <div id="result" class="center hidden">
+      <div class="ico" id="r-ico">✅</div>
+      <div class="msg-title" id="r-title">-</div>
+      <div class="msg-desc" id="r-desc">-</div>
+    </div>
+  </div>
+
+  <script>
+    // 공개값 (anon key·PortOne store/channel 은 비밀값 아님)
+    const SUPABASE_URL = 'https://qbreoqkdusrrobilwidk.supabase.co';
+    const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFicmVvcWtkdXNycm9iaWx3aWRrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDk0NDc4NzUsImV4cCI6MjA2NTAyMzg3NX0.IHSWKHZl2hI3amGeGnZBuXY2oIGntvbtQ9KS5WsDhqk';
+    const PORTONE_STORE_ID = 'store-7c81453a-85d6-4e41-b9e7-9aec42c00225';
+    const PORTONE_CHANNEL_KEY = 'channel-key-9663bf08-0275-4748-bb47-cf484cd876d3';
+
+    const params = new URLSearchParams(location.search);
+    const token = params.get('token');
+    let order = null; // get-payment-link 결과
+
+    function show(id) {
+      for (const x of ['loading', 'form', 'result']) document.getElementById(x).classList.add('hidden');
+      document.getElementById(id).classList.remove('hidden');
+    }
+    function showResult(ok, title, desc) {
+      document.getElementById('r-ico').textContent = ok ? '✅' : '⚠️';
+      document.getElementById('r-ico').className = 'ico ' + (ok ? 'ok' : 'err');
+      document.getElementById('r-title').textContent = title;
+      document.getElementById('r-desc').textContent = desc;
+      show('result');
+    }
+    async function callEf(name, payload) {
+      const res = await fetch(`${SUPABASE_URL}/functions/v1/${name}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'apikey': SUPABASE_ANON, 'Authorization': 'Bearer ' + SUPABASE_ANON },
+        body: JSON.stringify(payload),
+      });
+      return res.json();
+    }
+    function shortenUserId(uid) { return uid.replace(/-/g, '').slice(0, 20); }
+    function won(n) { return n.toLocaleString('ko-KR') + '원'; }
+
+    async function verify(paymentId) {
+      show('loading');
+      try {
+        const r = await callEf('verify-payment-link', { token, paymentId });
+        if (r.success) {
+          showResult(true, '결제 완료', '구독이 활성화됐어요. 앱에서 확인해보세요.');
+        } else {
+          const map = {
+            iap_exists: '기존 앱스토어/플레이스토어 구독을 해지한 뒤 다시 시도해주세요.',
+            amount_mismatch: '결제 금액이 일치하지 않습니다. 고객센터로 문의해주세요.',
+            user_mismatch: '결제 정보가 일치하지 않습니다. 고객센터로 문의해주세요.',
+            payment_not_paid: '결제가 완료되지 않았습니다.',
+            link_expired: '결제 링크가 만료됐습니다. 담당자에게 다시 요청해주세요.',
+          };
+          showResult(false, '결제 확인 실패', map[r.error] || (r.message || '잠시 후 다시 시도해주세요.'));
+        }
+      } catch (e) {
+        showResult(false, '오류', '결제 확인 중 문제가 발생했습니다. 고객센터로 문의해주세요.');
+      }
+    }
+
+    async function startPayment() {
+      if (!order) return;
+      document.getElementById('payBtn').disabled = true;
+      const paymentId = `pl_${shortenUserId(order.user_id).slice(0, 8)}_${Date.now()}`;
+      try {
+        const response = await PortOne.requestPayment({
+          storeId: PORTONE_STORE_ID,
+          channelKey: PORTONE_CHANNEL_KEY,
+          paymentId,
+          orderName: order.plan_label || '소마 구독',
+          totalAmount: order.amount,
+          currency: 'CURRENCY_KRW',
+          payMethod: 'CARD',
+          customer: { customerId: shortenUserId(order.user_id) },
+          customData: JSON.stringify({ userId: order.user_id }),
+          // 모바일 카드결제 리다이렉트 복귀용 (token 유지)
+          redirectUrl: `${location.origin}/pay?token=${encodeURIComponent(token)}`,
+        });
+        // 데스크탑/비리다이렉트: promise 로 복귀
+        if (response) {
+          if (response.code != null && response.code !== '') {
+            document.getElementById('payBtn').disabled = false;
+            if (!/CANCEL/i.test(response.code)) {
+              showResult(false, '결제 실패', response.message || '결제를 완료하지 못했습니다.');
+            }
+            return;
+          }
+          await verify(response.paymentId || paymentId);
+        }
+        // 리다이렉트 방식이면 여기 도달 전에 페이지 이동됨
+      } catch (e) {
+        document.getElementById('payBtn').disabled = false;
+        showResult(false, '오류', '결제 처리 중 문제가 발생했습니다.');
+      }
+    }
+
+    async function init() {
+      // 리다이렉트 복귀 처리 (PortOne 이 redirectUrl 에 결과 파라미터 추가)
+      const returnedPaymentId = params.get('paymentId');
+      const returnedCode = params.get('code');
+      if (returnedPaymentId) {
+        if (returnedCode && returnedCode !== '' && !/CANCEL/i.test(returnedCode)) {
+          showResult(false, '결제 실패', params.get('message') || '결제를 완료하지 못했습니다.');
+          return;
+        }
+        if (returnedCode && /CANCEL/i.test(returnedCode)) {
+          showResult(false, '결제 취소됨', '결제가 취소되었습니다.');
+          return;
+        }
+        await verify(returnedPaymentId);
+        return;
+      }
+
+      // 신규 진입: 토큰 검증 + 주문 표시
+      if (!token) { showResult(false, '잘못된 접근', '유효하지 않은 링크입니다.'); return; }
+      try {
+        const r = await callEf('get-payment-link', { token });
+        if (!r.valid) {
+          const map = { expired: '결제 링크가 만료됐습니다.', already_paid: '이미 결제가 완료된 링크입니다.', not_found: '유효하지 않은 링크입니다.', cancelled: '취소된 링크입니다.' };
+          showResult(false, '결제 불가', map[r.reason] || '유효하지 않은 링크입니다.');
+          return;
+        }
+        order = r;
+        document.getElementById('f-plan').textContent = r.plan_label || r.plan_code;
+        document.getElementById('f-member').textContent = r.member_name || '회원';
+        document.getElementById('f-amount').innerHTML = won(r.amount) + ' <small>/ ' + (r.billing_period === 'yearly' ? '연' : '월') + '</small>';
+        show('form');
+      } catch (e) {
+        showResult(false, '오류', '결제 정보를 불러오지 못했습니다.');
+      }
+    }
+    init();
+  </script>
+</body>
+</html>
