@@ -127,7 +127,8 @@
     async function startPayment() {
       if (!order) return;
       document.getElementById('payBtn').disabled = true;
-      const paymentId = `pl_${shortenUserId(order.user_id).slice(0, 8)}_${Date.now()}`;
+      // paymentId는 영대소문자+숫자만 허용(KPN). 언더스코어/특수문자 금지.
+      const paymentId = `pl${shortenUserId(order.user_id).slice(0, 8)}${Date.now()}`;
       try {
         const response = await PortOne.requestPayment({
           storeId: PORTONE_STORE_ID,
