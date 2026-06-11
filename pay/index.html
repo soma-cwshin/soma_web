@@ -174,8 +174,7 @@
         }
       } catch (e) {
         document.getElementById('payBtn').disabled = false;
-        var detail = (e && (e.message || e.code)) ? (e.message || e.code) : JSON.stringify(e);
-        showResult(false, '오류(진단-빌링)', '빌링키 발급 문제: ' + detail);
+        showResult(false, '오류', '결제 처리 중 문제가 발생했습니다. 잠시 후 다시 시도해주세요.');
       }
     }
 
