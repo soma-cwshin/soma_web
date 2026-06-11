@@ -76,6 +76,7 @@
     const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFicmVvcWtkdXNycm9iaWx3aWRrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDk0NDc4NzUsImV4cCI6MjA2NTAyMzg3NX0.IHSWKHZl2hI3amGeGnZBuXY2oIGntvbtQ9KS5WsDhqk';
     const PORTONE_STORE_ID = 'store-7c81453a-85d6-4e41-b9e7-9aec42c00225';
     const PORTONE_CHANNEL_KEY = 'channel-key-e8936fae-eaf9-436d-96f2-ffe3d2a7c437';
+    const PORTONE_BILLING_CHANNEL_KEY = 'channel-key-5b717442-83eb-4fad-89da-bfc07d86d2dd';
 
     const params = new URLSearchParams(location.search);
     const token = params.get('token');
@@ -124,8 +125,61 @@
       }
     }
 
+    async function verifyBilling(billingKey) {
+      show('loading');
+      try {
+        const r = await callEf('verify-billing-link', { token, billingKey });
+        if (r.success) {
+          showResult(true, '구독 등록 완료', '정기결제가 시작됐어요. 앱에서 확인해보세요.');
+        } else {
+          const map = {
+            iap_exists: '기존 앱스토어/플레이스토어 구독을 해지한 뒤 다시 시도해주세요.',
+            charge_failed: '카드 결제에 실패했습니다. 카드 정보를 확인해주세요.',
+            customer_mismatch: '결제 정보가 일치하지 않습니다. 고객센터로 문의해주세요.',
+            link_expired: '결제 링크가 만료됐습니다. 담당자에게 다시 요청해주세요.',
+            unsupported_plan: '이 플랜은 정기결제 대상이 아닙니다.',
+          };
+          showResult(false, '구독 등록 실패', map[r.error] || (r.message || '잠시 후 다시 시도해주세요.'));
+        }
+      } catch (e) {
+        showResult(false, '오류', '구독 확인 중 문제가 발생했습니다. 고객센터로 문의해주세요.');
+      }
+    }
+
+    async function startBillingKey() {
+      if (!order) return;
+      document.getElementById('payBtn').disabled = true;
+      const issueId = `bk${shortenUserId(order.user_id).slice(0, 8)}${Date.now()}`;
+      try {
+        const response = await PortOne.requestIssueBillingKey({
+          storeId: PORTONE_STORE_ID,
+          channelKey: PORTONE_BILLING_CHANNEL_KEY,
+          billingKeyMethod: 'CARD',
+          issueId,
+          issueName: order.plan_label || '소마 정기결제',
+          customer: { customerId: shortenUserId(order.user_id) },
+          customData: JSON.stringify({ userId: order.user_id }),
+          redirectUrl: `${location.origin}/pay?token=${encodeURIComponent(token)}`,
+        });
+        if (response) {
+          if (response.code != null && response.code !== '') {
+            document.getElementById('payBtn').disabled = false;
+            if (!/CANCEL/i.test(response.code)) {
+              showResult(false, '카드 등록 실패', response.message || '카드 등록을 완료하지 못했습니다.');
+            }
+            return;
+          }
+          await verifyBilling(response.billingKey);
+        }
+      } catch (e) {
+        document.getElementById('payBtn').disabled = false;
+        showResult(false, '오류', '결제 처리 중 문제가 발생했습니다. 잠시 후 다시 시도해주세요.');
+      }
+    }
+
     async function startPayment() {
       if (!order) return;
+      if (order.plan_code && order.plan_code.endsWith('_monthly')) return startBillingKey();
       document.getElementById('payBtn').disabled = true;
       // paymentId는 영대소문자+숫자만 허용(KPN). 언더스코어/특수문자 금지.
       const paymentId = `pl${shortenUserId(order.user_id).slice(0, 8)}${Date.now()}`;
@@ -164,18 +218,19 @@
     async function init() {
       // 리다이렉트 복귀 처리 (PortOne 이 redirectUrl 에 결과 파라미터 추가)
       const returnedPaymentId = params.get('paymentId');
+      const returnedBillingKey = params.get('billingKey');
       const returnedCode = params.get('code');
-      if (returnedPaymentId) {
-        if (returnedCode && returnedCode !== '' && !/CANCEL/i.test(returnedCode)) {
-          showResult(false, '결제 실패', params.get('message') || '결제를 완료하지 못했습니다.');
-          return;
-        }
+      if (returnedPaymentId || returnedBillingKey || returnedCode) {
         if (returnedCode && /CANCEL/i.test(returnedCode)) {
-          showResult(false, '결제 취소됨', '결제가 취소되었습니다.');
+          showResult(false, '취소됨', '결제가 취소되었습니다.');
           return;
         }
-        await verify(returnedPaymentId);
-        return;
+        if (returnedCode && returnedCode !== '') {
+          showResult(false, '실패', params.get('message') || '완료하지 못했습니다.');
+          return;
+        }
+        if (returnedBillingKey) { await verifyBilling(returnedBillingKey); return; }
+        if (returnedPaymentId) { await verify(returnedPaymentId); return; }
       }
 
       // 신규 진입: 토큰 검증 + 주문 표시
