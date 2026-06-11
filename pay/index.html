@@ -156,7 +156,8 @@
         // 리다이렉트 방식이면 여기 도달 전에 페이지 이동됨
       } catch (e) {
         document.getElementById('payBtn').disabled = false;
-        showResult(false, '오류', '결제 처리 중 문제가 발생했습니다.');
+        var detail = (e && (e.message || e.code)) ? (e.message || e.code) : JSON.stringify(e);
+        showResult(false, '오류(진단)', '결제 처리 중 문제: ' + detail);
       }
     }
 
