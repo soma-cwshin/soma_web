@@ -157,7 +157,8 @@
           billingKeyMethod: 'CARD',
           issueId,
           issueName: order.plan_label || '소마 정기결제',
-          customer: { customerId: shortenUserId(order.user_id) },
+          // KPN 빌링키 발급은 구매자 이름(fullName) 필수
+          customer: { customerId: shortenUserId(order.user_id), fullName: order.member_name || '소마 회원' },
           customData: JSON.stringify({ userId: order.user_id }),
           redirectUrl: `${location.origin}/pay?token=${encodeURIComponent(token)}`,
         });
