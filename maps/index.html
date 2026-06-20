@@ -350,6 +350,7 @@
     }
 
     .dot.pending { background: var(--pending); }
+    .dot.chain { background: #c084fc; }
     .dot.face { background: var(--face); }
     .dot.note { background: var(--note); }
     .dot.hold { background: var(--hold); }
@@ -1084,6 +1085,7 @@
         </div>
         <div class="legend compact">
           <div class="legend-row"><span class="dot pending"></span> 미방문</div>
+          <div class="legend-row"><span class="dot chain"></span> 3지점+ 체인</div>
           <div class="legend-row"><span class="dot face"></span> 대면 완료</div>
           <div class="legend-row"><span class="dot note"></span> 쪽지 완료</div>
           <div class="legend-row"><span class="dot hold"></span> 보류</div>
@@ -1142,6 +1144,8 @@
       refuse: '거절'
     };
     const HIDE_PILATES_LEADS = true;
+    const CHAIN_MARKER_MIN = 3;
+    const CHAIN_MARKER_COLOR = '#c084fc';
 
     let leads = [];
     let leadsById = {};
@@ -1169,6 +1173,7 @@
     let viewMode = 'leads';
     let selectedChainBrand = '';
     let chainLeadIdSet = null;
+    let multiChainLeadIds = new Set();
     let mobileDetailLeadId = null;
     let coordStackIndex = {};
     let markerPositionOffsets = {};
@@ -1189,6 +1194,23 @@
 
     function getLeadById(id) {
       return leadsById[id] || null;
+    }
+
+    function rebuildMultiChainLeadIds() {
+      multiChainLeadIds = new Set();
+      chains.filter(c => c.total >= CHAIN_MARKER_MIN).forEach(c => {
+        (c.leadIds || []).forEach(id => multiChainLeadIds.add(id));
+      });
+    }
+
+    function isMultiChainLead(leadId) {
+      return multiChainLeadIds.has(leadId);
+    }
+
+    function markerColorForLead(leadId, status) {
+      if (status !== 'pending') return STATUS_COLORS[status] || STATUS_COLORS.pending;
+      if (isMultiChainLead(leadId)) return CHAIN_MARKER_COLOR;
+      return STATUS_COLORS.pending;
     }
 
     function invalidateFilteredCache() {
@@ -2435,8 +2457,8 @@
       return usesRichMarker(lead) === isCircleMarkerLayer(layer);
     }
 
-    function circleMarkerStyle(status, isActive) {
-      const color = STATUS_COLORS[status] || STATUS_COLORS.pending;
+    function circleMarkerStyle(status, isActive, leadId) {
+      const color = markerColorForLead(leadId, status);
       const compact = isMobileView();
       return {
         radius: isActive ? (compact ? 10 : 9) : (compact ? 7 : 6),
@@ -2468,7 +2490,7 @@
     }
 
     function makeMobileCompactIcon(lead, status, isActive) {
-      const color = STATUS_COLORS[status] || STATUS_COLORS.pending;
+      const color = markerColorForLead(lead.id, status);
       const size = isActive ? 14 : 11;
       const somaSub = isSomaSubscribedLead(lead.id);
       const subTag = somaSub
@@ -2491,7 +2513,7 @@
     }
 
     function makeLeafletIcon(lead, status, isActive) {
-      const color = STATUS_COLORS[status] || STATUS_COLORS.pending;
+      const color = markerColorForLead(lead.id, status);
       const size = isActive ? 26 : 20;
       const somaSub = leadCenterStats[lead.id]?.isSubscribed === true;
       const w = somaSub ? 88 : 52;
@@ -2558,7 +2580,7 @@
         return m;
       }
 
-      const m = L.circleMarker([c.lat, c.lng], circleMarkerStyle(st, isActive));
+      const m = L.circleMarker([c.lat, c.lng], circleMarkerStyle(st, isActive, lead.id));
       bindMarkerEvents(m, lead);
       return m;
     }
@@ -2584,7 +2606,7 @@
         replaceMarkerInCluster(lead);
         return;
       }
-      layer.setStyle(circleMarkerStyle(st, isActive));
+      layer.setStyle(circleMarkerStyle(st, isActive, id));
       if (isActive) layer.bringToFront();
     }
 
@@ -2804,6 +2826,7 @@
       if (chainsRes.ok) {
         const chainsData = await chainsRes.json();
         chains = chainsData.chains || [];
+        rebuildMultiChainLeadIds();
       }
       rebuildLeadsIndex();
       leads.filter(l => !l.precise && !isGeocodable(l)).forEach(l => geocodeSkipped.add(l.id));
