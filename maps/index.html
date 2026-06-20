@@ -204,6 +204,95 @@
       color: var(--ink);
     }
 
+    .view-tabs {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 2px;
+    }
+
+    .view-tabs .tab {
+      flex: 1;
+      font-size: 12px;
+      padding: 8px 10px;
+    }
+
+    .chain-back {
+      display: none;
+      align-items: center;
+      gap: 8px;
+      padding: 0 2px 6px;
+      font-size: 12px;
+      color: var(--ink-2);
+    }
+
+    .chain-back.visible { display: flex; }
+
+    .chain-back button {
+      padding: 5px 8px;
+      border-radius: 8px;
+      border: 1px solid var(--line);
+      background: rgba(0, 0, 0, 0.2);
+      color: var(--ink);
+      font-size: 11px;
+      cursor: pointer;
+    }
+
+    .chain-item {
+      padding: 10px 12px;
+      border-radius: 10px;
+      border: 1px solid transparent;
+      cursor: pointer;
+      margin-bottom: 4px;
+      transition: 0.12s;
+    }
+
+    .chain-item:hover { background: rgba(255, 255, 255, 0.04); }
+    .chain-item.active {
+      background: rgba(46, 140, 213, 0.15);
+      border-color: rgba(46, 140, 213, 0.4);
+    }
+
+    .chain-name {
+      font-weight: 600;
+      font-size: 14px;
+      color: var(--ink);
+    }
+
+    .chain-meta {
+      font-size: 11px;
+      color: var(--ink-2);
+      margin-top: 4px;
+    }
+
+    .chain-badge {
+      display: inline-block;
+      padding: 1px 6px;
+      border-radius: 999px;
+      background: rgba(46, 140, 213, 0.18);
+      color: #7dd3fc;
+      font-size: 10px;
+      margin-left: 4px;
+    }
+
+    .map-chain-hint {
+      display: none;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 500;
+      padding: 14px 18px;
+      border-radius: 12px;
+      background: rgba(15, 23, 42, 0.88);
+      border: 1px solid var(--line);
+      color: var(--ink-2);
+      font-size: 13px;
+      text-align: center;
+      pointer-events: none;
+    }
+
+    .map-chain-hint.visible { display: block; }
+
     .toolbar {
       display: flex;
       gap: 6px;
@@ -927,7 +1016,7 @@
   <div class="login-screen" id="loginScreen">
     <div class="login-card">
       <h2>소마 영업 지도</h2>
-      <p>마포·강서·양천·금천·영등포·구로 PT 영업 리스트입니다.<br>접속 비밀번호를 입력하세요.</p>
+      <p>수도권 PT·헬스·피티샵 영업 리스트입니다.<br>접속 비밀번호를 입력하세요.</p>
       <div class="login-error" id="loginError"></div>
       <input type="password" id="loginPassword" placeholder="비밀번호" autocomplete="current-password">
       <button class="btn primary" id="btnLogin">입장</button>
@@ -938,7 +1027,7 @@
     <header>
       <div class="brand">
         <a href="https://soma.ai.kr">SoMa</a>
-        <h1>마포·강서·양천·금천·영등포·구로 PT 영업 지도</h1>
+        <h1>수도권 PT·헬스 영업 지도</h1>
       </div>
       <div class="header-stats">
         <div class="stats" id="stats"></div>
@@ -953,6 +1042,14 @@
       <aside class="sidebar" id="sidebar">
         <div class="controls">
           <input type="search" class="search" id="search" placeholder="업체명, 주소, 동 검색…" autocomplete="off">
+          <div class="view-tabs" id="viewTabs">
+            <button class="tab active" data-view="leads" type="button">업체</button>
+            <button class="tab" data-view="chains" type="button">체인 (3+)</button>
+          </div>
+          <div class="chain-back" id="chainBack">
+            <button type="button" id="btnChainBack">← 체인 목록</button>
+            <span id="chainBackLabel"></span>
+          </div>
           <div class="filters">
             <select id="filterGu"><option value="">전체 구</option></select>
             <select id="filterDong"><option value="">전체 동</option></select>
@@ -979,6 +1076,7 @@
 
       <div class="map-wrap">
         <div id="geocodeStatus" class="geocode-status"></div>
+        <div id="mapChainHint" class="map-chain-hint">체인을 선택하면 지점이 표시됩니다</div>
         <div id="map"></div>
         <div class="map-actions">
           <button class="btn" id="btnLocate" title="내 위치">📍 내 위치</button>
@@ -1067,6 +1165,10 @@
     let centerStatsIndex = [];
     let leadCenterStats = {};
     let filterStatus = '', filterGu = '', filterDong = '', query = '';
+    let chains = [];
+    let viewMode = 'leads';
+    let selectedChainBrand = '';
+    let chainLeadIdSet = null;
     let mobileDetailLeadId = null;
     let coordStackIndex = {};
     let markerPositionOffsets = {};
@@ -1864,13 +1966,14 @@
     }
 
     function filteredLeads() {
-      const key = `${filterGu}|${filterDong}|${filterStatus}|${query}`;
+      const key = `${viewMode}|${selectedChainBrand}|${filterGu}|${filterDong}|${filterStatus}|${query}`;
       if (filteredLeadsCache && filteredLeadsCacheKey === key) {
         return filteredLeadsCache;
       }
       filteredLeadsCacheKey = key;
       filteredLeadsCache = leads.filter(l => {
         if (!isVisibleLead(l)) return false;
+        if (viewMode === 'chains' && chainLeadIdSet && !chainLeadIdSet.has(l.id)) return false;
         if (filterGu && l.gu !== filterGu) return false;
         if (filterDong && l.dong !== filterDong) return false;
         if (filterStatus && getStatus(l.id) !== filterStatus) return false;
@@ -1988,6 +2091,86 @@
           <span class="stat" title="오늘 방문한 업장 중 DB 구독 센터">구독 <strong>${day.subscribed}</strong></span>
           <span class="stat" title="구독 센터 방문 ÷ 오늘 방문">전환율 <strong>${day.conversion}</strong></span>`;
       }
+    }
+
+    function getFilteredChains() {
+      if (!query) return chains;
+      const q = query.toLowerCase();
+      return chains.filter(c => c.brand.toLowerCase().includes(q));
+    }
+
+    function updateChainUI() {
+      const isChain = viewMode === 'chains';
+      const hasSelection = !!selectedChainBrand;
+      document.getElementById('chainBack').classList.toggle('visible', isChain && hasSelection);
+      document.getElementById('mapChainHint').classList.toggle('visible', isChain && !hasSelection);
+      document.getElementById('chainBackLabel').textContent = hasSelection ? selectedChainBrand : '';
+      document.getElementById('statusTabs').style.display = isChain && !hasSelection ? 'none' : '';
+      const sortHint = document.getElementById('listSortHint');
+      if (isChain && !hasSelection) {
+        sortHint.style.display = 'none';
+      } else {
+        sortHint.style.display = '';
+        updateListSortHint();
+      }
+      const searchEl = document.getElementById('search');
+      searchEl.placeholder = isChain && !hasSelection ? '브랜드명 검색…' : '업체명, 주소, 동 검색…';
+    }
+
+    function renderChainList() {
+      const el = document.getElementById('list');
+      const items = getFilteredChains();
+      if (!items.length) {
+        el.innerHTML = '<div class="empty">체인 결과가 없습니다.</div>';
+        return;
+      }
+      el.innerHTML = items.map(c => `
+        <div class="chain-item" data-brand="${escapeHtml(c.brand)}">
+          <div class="chain-name">${escapeHtml(c.brand)}<span class="chain-badge">${c.total}지점</span></div>
+          <div class="chain-meta">서울 ${c.areas.서울} · 경기 ${c.areas.경기} · 인천 ${c.areas.인천}${c.crossMetro ? ' · 광역' : ''}</div>
+        </div>`).join('');
+    }
+
+    function selectChain(brand) {
+      const chain = chains.find(c => c.brand === brand);
+      if (!chain) return;
+      selectedChainBrand = brand;
+      chainLeadIdSet = new Set(chain.leadIds);
+      invalidateFilteredCache();
+      if (map && map.closePopup) map.closePopup();
+      closeMobileDetail();
+      closeStackPicker();
+      updateChainUI();
+      const items = getDisplayLeads();
+      renderList(items);
+      renderStats();
+      scheduleMarkerRender(items, { forceRebuild: true });
+      if (items.length) fitAllMarkers();
+    }
+
+    function clearChainSelection() {
+      selectedChainBrand = '';
+      chainLeadIdSet = null;
+      invalidateFilteredCache();
+      if (map && map.closePopup) map.closePopup();
+      closeMobileDetail();
+      refreshUI(null, { forceMarkerRebuild: true });
+    }
+
+    function setViewMode(mode) {
+      viewMode = mode;
+      document.querySelectorAll('#viewTabs .tab').forEach(t => {
+        t.classList.toggle('active', t.dataset.view === mode);
+      });
+      if (mode === 'leads') {
+        selectedChainBrand = '';
+        chainLeadIdSet = null;
+      }
+      invalidateFilteredCache();
+      if (map && map.closePopup) map.closePopup();
+      closeMobileDetail();
+      closeStackPicker();
+      refreshUI(null, { forceMarkerRebuild: true });
     }
 
     function renderList(items) {
@@ -2502,7 +2685,21 @@
 
     function refreshUI(focusId, options = {}) {
       const { skipMarkers = false, keepMobileDetail = false, forceMarkerRebuild = false } = options;
+      updateChainUI();
       renderStats();
+      if (viewMode === 'chains' && !selectedChainBrand) {
+        renderChainList();
+        if (!skipMarkers) {
+          const reopenId = keepMobileDetail ? mobileDetailLeadId : null;
+          if (!keepMobileDetail && isMobileView()) closeMobileDetail();
+          scheduleMarkerRender([], { forceRebuild: true });
+          if (reopenId) {
+            const lead = getLeadById(reopenId);
+            if (lead) showMobileDetail(lead);
+          }
+        }
+        return;
+      }
       updateListSortHint();
       const items = getDisplayLeads();
       renderList(items);
@@ -2595,11 +2792,16 @@
     async function init() {
       await waitForLayout();
       const leadsPromise = apiFetch('/api/leads');
+      const chainsPromise = apiFetch('/api/chains');
       initMap();
-      const res = await leadsPromise;
+      const [res, chainsRes] = await Promise.all([leadsPromise, chainsPromise]);
       if (!res.ok) throw new Error('데이터를 불러올 수 없습니다.');
       const data = await res.json();
       leads = data.leads || [];
+      if (chainsRes.ok) {
+        const chainsData = await chainsRes.json();
+        chains = chainsData.chains || [];
+      }
       rebuildLeadsIndex();
       leads.filter(l => !l.precise && !isGeocodable(l)).forEach(l => geocodeSkipped.add(l.id));
       await loadSyncFromServer();
@@ -2615,6 +2817,14 @@
       document.getElementById('mobileDetailBackdrop').addEventListener('click', closeMobileDetail);
       document.getElementById('stackPickerClose').addEventListener('click', closeStackPicker);
       document.getElementById('stackPickerBackdrop').addEventListener('click', closeStackPicker);
+
+      document.getElementById('viewTabs').addEventListener('click', e => {
+        const tab = e.target.closest('.tab');
+        if (!tab || !tab.dataset.view) return;
+        setViewMode(tab.dataset.view);
+      });
+
+      document.getElementById('btnChainBack').addEventListener('click', clearChainSelection);
 
       document.getElementById('search').addEventListener('input', e => {
         query = e.target.value.trim();
@@ -2656,6 +2866,11 @@
       });
 
       document.getElementById('list').addEventListener('click', e => {
+        const chainItem = e.target.closest('.chain-item');
+        if (chainItem && viewMode === 'chains' && !selectedChainBrand) {
+          selectChain(chainItem.dataset.brand);
+          return;
+        }
         const item = e.target.closest('.lead-item');
         if (!item) return;
         activeId = item.dataset.id;
