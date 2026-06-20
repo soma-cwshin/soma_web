@@ -1,5 +1,7 @@
 /**
  * leads.json → private/chains.json (3지점+ 브랜드, maps 체인 탭용)
+ * 업체명에서 브랜드를 자동 추출 — 화이트리스트 없음
+ *
  * node scripts/build-map-chains.js
  */
 const fs = require('fs');
@@ -7,48 +9,34 @@ const path = require('path');
 
 const LEADS_PATH = path.join(__dirname, '..', 'private', 'leads.json');
 const OUT_PATH = path.join(__dirname, '..', 'private', 'chains.json');
-const MIN_LOCATIONS = 3;
+const MIN_LOCATIONS = 2;
 
-const BRAND_RULES = [
-  ['스포애니', /스포애니/i],
-  ['프리원핏', /프리원핏/i],
-  ['짐박스', /짐박스/i],
-  ['헬스보이', /헬스보이/i],
-  ['에이블짐', /에이블\s*짐|에이블짐/i],
-  ['F45', /\bf45\b/i],
-  ['휘트니스피플', /휘트니스\s*피플|휘트니스피플/i],
-  ['좋은습관', /좋은\s*습관|좋은습관/i],
-  ['카인드짐', /카인드\s*짐|카인드짐/i],
-  ['커브스', /커브스/i],
-  ['바디채널', /바디\s*채널|바디채널/i],
-  ['휘트니스엠', /휘트니스\s*[mM]|휘트니스엠/i],
-  ['버핏그라운드', /버핏\s*그라운드|버핏그라운드/i],
-  ['스포짐', /스포\s*짐|스포짐/i],
-  ['아크로짐', /아크로\s*짐|아크로짐/i],
-  ['와이투짐', /와이\s*투\s*짐|와이투\s*짐|와이투짐/i],
-  ['랩스휘트니스', /랩스\s*휘트니스|랩스휘트니스/i],
-  ['더블에스', /더블\s*에스|더블에스/i],
-  ['인싸짐', /인싸\s*짐|인싸짐/i],
-  ['휴메이크휘트니스', /휴메이크\s*휘트니스|휴메이크휘트니스/i],
-  ['빅브로', /빅\s*브로|빅브로/i],
-  ['엔터핏', /엔터\s*핏|엔터핏/i],
-  ['바디앤짐', /바디\s*[&＆]\s*짐|바디앤\s*짐|바디앤짐/i],
-  ['모던필라테스', /모던\s*필라테스|모던필라테스/i],
-  ['어반필드', /어반\s*필드|어반필드/i],
-  ['빌리프짐', /빌리프\s*짐|빌리프짐/i],
-  ['비타민휘트니스', /비타민\s*휘트니스|비타민휘트니스/i],
-  ['스포벡', /스포\s*벡|스포벡/i],
-  ['온플릭', /온\s*플릭|온플릭/i],
-  ['어메이징휘트니스', /어메이징\s*휘트니스|어메이징휘트니스/i],
-  ['골드스짐', /골드\s*스\s*짐|gold'?s?\s*gym|골드스짐/i],
-  ['애니타임', /애니\s*타임|anytime\s*fitness|애니타임/i],
-  ['UFC짐', /\bUFC\b/i],
-  ['1986피트니스', /1986\s*피트니스|1986피트니스/i],
-  ['빌드업피트니스', /빌드\s*업\s*피트니스|빌드업피트니스/i],
-  ['MVM피트니스', /mvm\s*피트니스/i],
-  ['원티어', /원\s*티어|원티어/i],
-  ['짐퍼스트', /짐\s*퍼스트|짐퍼스트/i],
-  ['건강해짐', /건강해\s*짐|건강해짐/i],
+const BLOCKLIST = new Set([
+  '올리브영', '샐러디', '스타벅스', '이디야', '투썸', '맥도날드', '버거킹', '파리바게뜨',
+  'cu', 'gs25', '세븐일레븐', '이마트', '다이소', '네일', '미용', '뷰티', '학원', '어린이',
+]);
+
+const GENERIC_BRANDS = new Set([
+  '헬스', '피티', 'pt', '짐', 'gym', '바디', '센터', '클럽', '스튜디오', '피트니스', '트레이닝',
+  '필라테스', 'pilates', '요가', 'yoga', '퍼스널', 'personal', '크로스핏', 'crossfit',
+  '여성', '여성전용', '남성', '키즈', '프리미엄', '24시', '24', 'the', 'the짐',
+  '스포', '데일리', '라이프', '위드', '보이', '인싸', '더', 'new', 'vip', 'pro',
+]);
+
+const BRANCH_TAIL =
+  /\s+(?:\d+\s*호?\s*)?(?:[\w가-힣]{1,10}(?:역|본|지)?점|본점|지점|점)\s*$/gi;
+const TRAILING_NOISE =
+  /\s+(?:pt|피티|헬스|헬스장|피트니스|짐|gym|fitness|휘트니스|필라테스|pilates|요가|yoga|studio|스튜디오|클럽|club|personal|training|트레이닝|샵|shop|센터|center)\b.*$/gi;
+
+/** 긴 브랜드명은 우선 매칭 (표기 통일) */
+const KNOWN_BRANDS = [
+  '스포애니', '프리원핏', '짐박스피트니스', '짐박스', '헬스보이', '에이블짐', '휘트니스피플',
+  '좋은습관', '카인드짐', '바디채널', '휘트니스엠', '버핏그라운드', '와이투짐', '랩스휘트니스',
+  '더블에스휘트니스', '더블에스', '휴메이크휘트니스', '비타민휘트니스', '어메이징휘트니스',
+  '온플릭휘트니스', '온플릭', '스포벡휘트니스', '스포벡', '건강과땀', '건강해짐', '건강해',
+  '1986피트니스', '빌드업피트니스', '원티어피트니스', 'MVM피트니스', '골드스짐', '애니타임',
+  '어반필드', '모던필라테스', '바디앤짐', '빌리프짐', '아크로짐', '스포짐', '인싸짐', '엔터핏',
+  '빅브로', '커브스', 'F45', 'UFC',
 ];
 
 function metroArea(addr) {
@@ -59,12 +47,73 @@ function metroArea(addr) {
   return null;
 }
 
-function detectBrand(name) {
+function normalizeBrandKey(brand) {
+  return String(brand || '').toLowerCase().replace(/\s+/g, '');
+}
+
+function detectKnownBrand(name) {
   const n = String(name || '');
-  for (const [brand, re] of BRAND_RULES) {
-    if (re.test(n)) return brand;
+  const lower = n.toLowerCase();
+  for (const brand of KNOWN_BRANDS.sort((a, b) => b.length - a.length)) {
+    if (lower.includes(brand.toLowerCase())) return brand;
   }
   return null;
+}
+
+function extractBrand(name) {
+  const known = detectKnownBrand(name);
+  if (known) return known;
+
+  let s = String(name || '').trim();
+  if (!s) return '';
+
+  s = s.split(/\s+[&＆]\s+/)[0].trim();
+  s = s.replace(BRANCH_TAIL, '').trim();
+  s = s.replace(TRAILING_NOISE, '').trim();
+  s = s.replace(BRANCH_TAIL, '').trim();
+
+  const tokens = s.split(/\s+/).filter(Boolean);
+  if (!tokens.length) return '';
+
+  const first = tokens[0];
+  if (/^[A-Za-z0-9]{2,}$/.test(first)) return first.toUpperCase();
+  if (/^[가-힣]{2,12}$/.test(first)) return first;
+  if (tokens.length >= 2 && /^[가-힣]{2,}$/.test(tokens[0]) && /^[가-힣]{1,4}$/.test(tokens[1])) {
+    return tokens[0] + tokens[1];
+  }
+  const ko = s.match(/[가-힣]{2,10}/);
+  return ko ? ko[0] : first.slice(0, 10);
+}
+
+function isFitnessLead(name) {
+  if (detectKnownBrand(name)) return true;
+  const n = String(name || '').toLowerCase();
+  if (/필라테스|pilates|yoga|요가/.test(n) && !/헬스|pt|피티|짐|gym|fitness|휘트니스|건강|스포|트레이닝|땀/.test(n)) {
+    return false;
+  }
+  return true;
+}
+
+function looksLikePlaceName(brand) {
+  if (/^[가-힣]{2,8}동$/.test(brand)) return true;
+  if (/^[가-힣]{2,8}구$/.test(brand)) return true;
+  if (/^[가-힣]{2,8}역$/.test(brand)) return true;
+  return false;
+}
+
+function isValidChain(brand, entries) {
+  const key = normalizeBrandKey(brand);
+  if (!key || key.length < 2) return false;
+  if (BLOCKLIST.has(key) || BLOCKLIST.has(brand)) return false;
+  if (GENERIC_BRANDS.has(key)) return false;
+  if (looksLikePlaceName(brand)) return false;
+
+  const matchCount = entries.filter(e => e.name.includes(brand) || normalizeBrandKey(e.name).includes(key)).length;
+  const minMatch = Math.max(2, Math.ceil(entries.length * 0.45));
+  if (matchCount < minMatch) return false;
+
+  if (GENERIC_BRANDS.has(key) || brand.length <= 2) return false;
+  return true;
 }
 
 function main() {
@@ -75,26 +124,38 @@ function main() {
   for (const lead of leads) {
     const area = metroArea(lead.address);
     if (!area) continue;
-    const brand = detectBrand(lead.name);
+    if (!isFitnessLead(lead.name)) continue;
+
+    const brand = extractBrand(lead.name);
     if (!brand) continue;
-    if (!groups.has(brand)) {
-      groups.set(brand, { brand, leadIds: [], areas: { 서울: 0, 경기: 0, 인천: 0 } });
+
+    const bKey = normalizeBrandKey(brand);
+    if (!groups.has(bKey)) {
+      groups.set(bKey, { brand, entries: new Map() });
     }
-    const g = groups.get(brand);
-    g.leadIds.push(lead.id);
-    g.areas[area] += 1;
+    const g = groups.get(bKey);
+    g.entries.set(lead.id, { id: lead.id, name: lead.name, area });
   }
 
-  const chains = [...groups.values()]
-    .filter(g => g.leadIds.length >= MIN_LOCATIONS)
-    .map(g => ({
+  const chains = [];
+  for (const g of groups.values()) {
+    const entries = [...g.entries.values()];
+    if (entries.length < MIN_LOCATIONS) continue;
+    if (!isValidChain(g.brand, entries)) continue;
+
+    const areas = { 서울: 0, 경기: 0, 인천: 0 };
+    entries.forEach(e => { areas[e.area] += 1; });
+
+    chains.push({
       brand: g.brand,
-      total: g.leadIds.length,
-      areas: g.areas,
-      crossMetro: Object.values(g.areas).filter(n => n > 0).length >= 2,
-      leadIds: g.leadIds,
-    }))
-    .sort((a, b) => b.total - a.total || a.brand.localeCompare(b.brand, 'ko'));
+      total: entries.length,
+      areas,
+      crossMetro: Object.values(areas).filter(n => n > 0).length >= 2,
+      leadIds: entries.map(e => e.id),
+    });
+  }
+
+  chains.sort((a, b) => b.total - a.total || a.brand.localeCompare(b.brand, 'ko'));
 
   const payload = {
     updatedAt: new Date().toISOString().slice(0, 19),
@@ -105,7 +166,14 @@ function main() {
 
   fs.writeFileSync(OUT_PATH, JSON.stringify(payload, null, 2), 'utf8');
   console.log(`Saved ${chains.length} chains -> ${OUT_PATH}`);
-  chains.slice(0, 15).forEach((c, i) => {
+
+  const sample = ['건강과땀', '스포애니', '프리원핏', '좋은습관'];
+  sample.forEach(name => {
+    const c = chains.find(x => x.brand === name || normalizeBrandKey(x.brand) === normalizeBrandKey(name));
+    console.log(`  ${name}: ${c ? c.total + '지점' : '없음 (데이터 ' + (groups.get(normalizeBrandKey(name))?.entries.size || 0) + '곳)'}`);
+  });
+
+  chains.slice(0, 20).forEach((c, i) => {
     console.log(`${i + 1}. ${c.brand} (${c.total}) 서울${c.areas.서울} 경기${c.areas.경기} 인천${c.areas.인천}`);
   });
 }

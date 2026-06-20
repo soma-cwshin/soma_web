@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-06-20T06:36:41",
-  "minLocations": 3,
-  "total": 37,
+  "updatedAt": "2026-06-20T06:43:54",
+  "minLocations": 2,
+  "total": 747,
   "chains": [
     {
       "brand": "스포애니",
@@ -117,10 +117,10 @@
       ]
     },
     {
-      "brand": "짐박스",
-      "total": 53,
+      "brand": "짐박스피트니스",
+      "total": 52,
       "areas": {
-        "서울": 45,
+        "서울": 44,
         "경기": 7,
         "인천": 1
       },
@@ -138,7 +138,6 @@
         "b790a59b94b8",
         "21cf4ea09a8d",
         "c88745144247",
-        "48aab797560c",
         "76dde3c03a96",
         "5f6bf741ecc6",
         "261c6c3980db",
@@ -298,6 +297,63 @@
         "6958cb98f62f",
         "4b2b08c3219c",
         "ce6c108cfaf0"
+      ]
+    },
+    {
+      "brand": "휘트니스",
+      "total": 45,
+      "areas": {
+        "서울": 17,
+        "경기": 27,
+        "인천": 1
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "046c2574e465",
+        "f2a7ff79954e",
+        "183185ee1b74",
+        "6059f6317ff7",
+        "ab1425f1fd5c",
+        "e6a1df03ad37",
+        "f8d55534c026",
+        "fbadb8aa1bac",
+        "f543d28555be",
+        "170edf2a5c85",
+        "5d95de647226",
+        "5935db81c10a",
+        "01590ce8fab3",
+        "d7204380d8ff",
+        "e7e41b7c60ad",
+        "2a3fc99bca45",
+        "717b33d5a13e",
+        "5fbde5628f4f",
+        "ecb039da4578",
+        "74b847ce0256",
+        "5a2802b4b40b",
+        "e84c06610d55",
+        "7c73fd82773a",
+        "e978d0f0a9d5",
+        "13d2ed54d6b3",
+        "2563c285f843",
+        "489b347e5c50",
+        "6731fecaeacf",
+        "adf2cd471b5d",
+        "1abda6c79bca",
+        "fcf47cbbdaaa",
+        "6deeb6373fed",
+        "f4b7dcf635a1",
+        "edd3d1b315f7",
+        "0f1f7adf5bab",
+        "38bab86805e9",
+        "238af471b817",
+        "20aaca49204f",
+        "e9a501e110bd",
+        "bb2829a6b111",
+        "3b4ca9b38edd",
+        "b517225ab312",
+        "38e0d95dec44",
+        "22b8c618296c",
+        "8d9d90972f9b"
       ]
     },
     {
@@ -704,6 +760,31 @@
       ]
     },
     {
+      "brand": "에이치짐",
+      "total": 13,
+      "areas": {
+        "서울": 11,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "8becec41adb1",
+        "7c50b33356da",
+        "2378a3b17f5f",
+        "dc39415927ed",
+        "e845c9a79c23",
+        "c4f6a63b12ac",
+        "e367045f49d3",
+        "394f8a239109",
+        "eab81bd826ba",
+        "f25334adf00c",
+        "28705685daaf",
+        "5672e5e3ea12",
+        "5e3e2dfded3e"
+      ]
+    },
+    {
       "brand": "와이투짐",
       "total": 13,
       "areas": {
@@ -753,50 +834,6 @@
       ]
     },
     {
-      "brand": "더블에스",
-      "total": 10,
-      "areas": {
-        "서울": 7,
-        "경기": 3,
-        "인천": 0
-      },
-      "crossMetro": true,
-      "leadIds": [
-        "756bb2c8957b",
-        "9b2e9eece8d4",
-        "bc7ceef103dd",
-        "be7356883a59",
-        "59ca92195254",
-        "c8300a82c792",
-        "226e167f2665",
-        "fb3a09f6d47c",
-        "829b06936dfd",
-        "b8cd14d1a4fe"
-      ]
-    },
-    {
-      "brand": "모던필라테스",
-      "total": 10,
-      "areas": {
-        "서울": 7,
-        "경기": 3,
-        "인천": 0
-      },
-      "crossMetro": true,
-      "leadIds": [
-        "ee9cef2ee4f7",
-        "0ed5cb2f183f",
-        "dd1c6125eec4",
-        "699dc72fcf12",
-        "203f30a001a7",
-        "0dea7442de21",
-        "8278489dc34b",
-        "1e4bddc4d790",
-        "6067aedc7815",
-        "bb3c9b6adadd"
-      ]
-    },
-    {
       "brand": "어반필드",
       "total": 10,
       "areas": {
@@ -838,6 +875,48 @@
         "af56f21505bc",
         "dd52570cf7f7",
         "491d8be031b3"
+      ]
+    },
+    {
+      "brand": "라이프짐",
+      "total": 9,
+      "areas": {
+        "서울": 2,
+        "경기": 5,
+        "인천": 2
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "c4daa3a15605",
+        "b489bedb16a9",
+        "0f9b008059f5",
+        "15cd2b1b660c",
+        "cbe8a9e1733c",
+        "9f20af1b6e30",
+        "4e7274983245",
+        "f49a50bc4a2f",
+        "720f4f0b965f"
+      ]
+    },
+    {
+      "brand": "모던필라테스",
+      "total": 9,
+      "areas": {
+        "서울": 6,
+        "경기": 3,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "ee9cef2ee4f7",
+        "0ed5cb2f183f",
+        "699dc72fcf12",
+        "203f30a001a7",
+        "0dea7442de21",
+        "8278489dc34b",
+        "1e4bddc4d790",
+        "6067aedc7815",
+        "bb3c9b6adadd"
       ]
     },
     {
@@ -904,6 +983,27 @@
       ]
     },
     {
+      "brand": "휘트니스클럽",
+      "total": 9,
+      "areas": {
+        "서울": 0,
+        "경기": 9,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "e422dd2868ff",
+        "abe7345f2091",
+        "1ef565346600",
+        "2dd559088a92",
+        "e944b7b2d1fc",
+        "8818d2699ba2",
+        "b5d5d3d9a91b",
+        "15dd876a3a4c",
+        "7505737a393b"
+      ]
+    },
+    {
       "brand": "휴메이크휘트니스",
       "total": 9,
       "areas": {
@@ -922,6 +1022,86 @@
         "039c04f05061",
         "96a1740246f7",
         "c460d2ca7e9e"
+      ]
+    },
+    {
+      "brand": "넥스트짐",
+      "total": 8,
+      "areas": {
+        "서울": 0,
+        "경기": 8,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "eb20b20d3841",
+        "7d062d0929d3",
+        "cebe8e428156",
+        "0c707253f6ff",
+        "dea1c3aee810",
+        "647579ac6cd4",
+        "eb98f1eff3b7",
+        "9a9ba51d0844"
+      ]
+    },
+    {
+      "brand": "더블에스휘트니스",
+      "total": 8,
+      "areas": {
+        "서울": 7,
+        "경기": 1,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "756bb2c8957b",
+        "9b2e9eece8d4",
+        "bc7ceef103dd",
+        "be7356883a59",
+        "59ca92195254",
+        "c8300a82c792",
+        "226e167f2665",
+        "829b06936dfd"
+      ]
+    },
+    {
+      "brand": "더블유짐",
+      "total": 8,
+      "areas": {
+        "서울": 0,
+        "경기": 7,
+        "인천": 1
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "dae11ed69cdb",
+        "9fb9a9ff14a5",
+        "225306dfd55a",
+        "08bd4c987644",
+        "2ddc1878e481",
+        "7aa6f2104d97",
+        "37f06d300100",
+        "d774bda40a1d"
+      ]
+    },
+    {
+      "brand": "무브짐",
+      "total": 8,
+      "areas": {
+        "서울": 5,
+        "경기": 3,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "9e50556f9f47",
+        "6d478e9419c7",
+        "21a2c4b80b5a",
+        "b7c3786b34b7",
+        "8128d1e5259d",
+        "609c16cdf823",
+        "df3437b2e444",
+        "74be5e8ae1e8"
       ]
     },
     {
@@ -965,27 +1145,47 @@
       ]
     },
     {
-      "brand": "스포벡",
+      "brand": "석세스짐",
       "total": 8,
       "areas": {
-        "서울": 8,
-        "경기": 0,
+        "서울": 0,
+        "경기": 8,
         "인천": 0
       },
       "crossMetro": false,
       "leadIds": [
-        "db8673369814",
-        "7444f1bc21ee",
-        "c6ac8159aefc",
-        "3905be934145",
-        "5d658fdeaa67",
-        "8f6861aaf0d5",
-        "0af7060d4276",
-        "7ef17a00bcf8"
+        "ad308eacc477",
+        "d482660bb7a4",
+        "5bbe95e87c24",
+        "3489465b0df0",
+        "c43aaccf3d96",
+        "3377a045b879",
+        "2be69e05505f",
+        "5d016b826ded"
       ]
     },
     {
-      "brand": "온플릭",
+      "brand": "센스짐",
+      "total": 8,
+      "areas": {
+        "서울": 0,
+        "경기": 3,
+        "인천": 5
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "ca307788927b",
+        "40a549edec8b",
+        "e5324dd05477",
+        "66e7176d92cc",
+        "29f0b766254e",
+        "2b151a9bf157",
+        "0dfe5282ff61",
+        "84f359f0f442"
+      ]
+    },
+    {
+      "brand": "온플릭휘트니스",
       "total": 8,
       "areas": {
         "서울": 1,
@@ -1002,6 +1202,143 @@
         "fcc435f2695c",
         "52cf658aface",
         "e5b5db1b9a50"
+      ]
+    },
+    {
+      "brand": "파크짐",
+      "total": 8,
+      "areas": {
+        "서울": 8,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "d5520162f8d9",
+        "3bac1df8f659",
+        "b409448d4f96",
+        "63ddc0a128eb",
+        "c357559790e0",
+        "a3036b9cb724",
+        "4ca060a6e0e1",
+        "c70912af6de8"
+      ]
+    },
+    {
+      "brand": "플렉스짐",
+      "total": 8,
+      "areas": {
+        "서울": 1,
+        "경기": 5,
+        "인천": 2
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "9c5ad79f7fdf",
+        "70fe1c2f5272",
+        "0138a4130b1f",
+        "72aaf51fcbc2",
+        "9bb28cce32db",
+        "92439858e878",
+        "d7c33cac1d8c",
+        "a5946182c21c"
+      ]
+    },
+    {
+      "brand": "피타짐",
+      "total": 8,
+      "areas": {
+        "서울": 1,
+        "경기": 5,
+        "인천": 2
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "edc053b9a757",
+        "9b539d2eaa6d",
+        "ab6748312d41",
+        "012fa8e3a22d",
+        "b2803f0ae60e",
+        "3e220a9e0c27",
+        "a53cd27bc419",
+        "96a969b14a98"
+      ]
+    },
+    {
+      "brand": "화이트짐",
+      "total": 8,
+      "areas": {
+        "서울": 1,
+        "경기": 7,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "56d020ec958d",
+        "5a2b5bbccd51",
+        "4dcae5d50382",
+        "3125a057dde8",
+        "ed3143ac8188",
+        "fa9f51f78636",
+        "fa7b7fac42a8",
+        "d76f91cf45c6"
+      ]
+    },
+    {
+      "brand": "달라짐",
+      "total": 7,
+      "areas": {
+        "서울": 0,
+        "경기": 7,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "3ef072febbdb",
+        "fbf949fda799",
+        "db115d7651bb",
+        "2d76a2c10792",
+        "a6175c237f9b",
+        "914b4f4e5702",
+        "b71687cb738a"
+      ]
+    },
+    {
+      "brand": "바디플렉스짐",
+      "total": 7,
+      "areas": {
+        "서울": 7,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "77d9a84734df",
+        "3ba4219e6fb0",
+        "8a9e64f2b892",
+        "b6de7e2b229a",
+        "5e843faa5f92",
+        "ca6857c86047",
+        "ad78da6b6989"
+      ]
+    },
+    {
+      "brand": "베럴짐",
+      "total": 7,
+      "areas": {
+        "서울": 6,
+        "경기": 1,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "0ab4ded8451c",
+        "938505578449",
+        "2ee2d39fc46d",
+        "9bc9b1c68f74",
+        "4da9efd90020",
+        "96542223a8f6",
+        "98310a98c356"
       ]
     },
     {
@@ -1024,6 +1361,44 @@
       ]
     },
     {
+      "brand": "스포벡휘트니스",
+      "total": 7,
+      "areas": {
+        "서울": 7,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "db8673369814",
+        "7444f1bc21ee",
+        "c6ac8159aefc",
+        "3905be934145",
+        "5d658fdeaa67",
+        "8f6861aaf0d5",
+        "7ef17a00bcf8"
+      ]
+    },
+    {
+      "brand": "시티짐",
+      "total": 7,
+      "areas": {
+        "서울": 6,
+        "경기": 1,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "68f70df1a4fe",
+        "0ad9f306c336",
+        "715f02aa224e",
+        "ef5aff79b38a",
+        "abeaa070dad0",
+        "cb3747cea63b",
+        "2948175dad1e"
+      ]
+    },
+    {
       "brand": "어메이징휘트니스",
       "total": 7,
       "areas": {
@@ -1040,6 +1415,234 @@
         "b234a6ded2fb",
         "1d2efb59db11",
         "7d875cb95be2"
+      ]
+    },
+    {
+      "brand": "에스짐",
+      "total": 7,
+      "areas": {
+        "서울": 6,
+        "경기": 0,
+        "인천": 1
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "d75cf544461e",
+        "360644b87790",
+        "329607966aef",
+        "ab827a89ae2e",
+        "23206048084c",
+        "7e8ccc43de01",
+        "003195f3bd38"
+      ]
+    },
+    {
+      "brand": "영자피트니스",
+      "total": 7,
+      "areas": {
+        "서울": 5,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "2eea2ac15570",
+        "1a1634922921",
+        "176bec6741f1",
+        "eb4a431dec4b",
+        "c724357a3981",
+        "9b231afd6479",
+        "fc45ce622651"
+      ]
+    },
+    {
+      "brand": "위드짐",
+      "total": 7,
+      "areas": {
+        "서울": 1,
+        "경기": 6,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "3dd899bbb4c8",
+        "dcc4ca62dbbd",
+        "a2589346386b",
+        "b0a0188eade9",
+        "8238bbd0633c",
+        "7249fa3e1f4b",
+        "2510ac184292"
+      ]
+    },
+    {
+      "brand": "제이짐",
+      "total": 7,
+      "areas": {
+        "서울": 3,
+        "경기": 4,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "a27869389079",
+        "b589ec2a1774",
+        "d16c664ae29b",
+        "7c61b5bc8aba",
+        "15b2f40fdff5",
+        "c776b9772495",
+        "56ac4f092fda"
+      ]
+    },
+    {
+      "brand": "짐원휘트니스",
+      "total": 7,
+      "areas": {
+        "서울": 0,
+        "경기": 7,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "d19208e69a7e",
+        "057fc550e1e2",
+        "03d85765e0ef",
+        "f5233c8bd5db",
+        "5a288b05a040",
+        "9e79f82dffee",
+        "ea2ba3fe84fb"
+      ]
+    },
+    {
+      "brand": "터닝포인트짐",
+      "total": 7,
+      "areas": {
+        "서울": 0,
+        "경기": 1,
+        "인천": 6
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "024e481b8b77",
+        "3c4f93197943",
+        "cf448f1aa0ab",
+        "beeba4a4a3eb",
+        "b902640eb790",
+        "0714ed70f604",
+        "f0792dafcaed"
+      ]
+    },
+    {
+      "brand": "트레이닝센터",
+      "total": 7,
+      "areas": {
+        "서울": 2,
+        "경기": 5,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "4d941b328a30",
+        "5d525e3cc86a",
+        "8bf4917a0428",
+        "939a95ef8b5c",
+        "6c8755316896",
+        "37c4099677d0",
+        "585aa9e1feec"
+      ]
+    },
+    {
+      "brand": "팀버핏",
+      "total": 7,
+      "areas": {
+        "서울": 7,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "99a80d3ded6c",
+        "afd505bb5e6e",
+        "98ca47932d9c",
+        "5c76aa3c6d7e",
+        "e34a61336050",
+        "b40851763cd8",
+        "208e51640b3f"
+      ]
+    },
+    {
+      "brand": "퍼스널트레이닝",
+      "total": 7,
+      "areas": {
+        "서울": 4,
+        "경기": 1,
+        "인천": 2
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "c7c97e457b55",
+        "9507f472af0c",
+        "2755ab53ecd2",
+        "b4d84870d038",
+        "63a8789cf22b",
+        "5857facadccf",
+        "4d9fbafc277c"
+      ]
+    },
+    {
+      "brand": "피지오스튜디오",
+      "total": 7,
+      "areas": {
+        "서울": 4,
+        "경기": 2,
+        "인천": 1
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "e61811b39b93",
+        "2683a49d19df",
+        "f0c0ba7a3a6c",
+        "1d41836840dc",
+        "cad60282f67f",
+        "e15adebdc882",
+        "7b0dcbadf2b2"
+      ]
+    },
+    {
+      "brand": "헤일로짐",
+      "total": 7,
+      "areas": {
+        "서울": 2,
+        "경기": 5,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "4f8f41aaf073",
+        "486246aa0d7e",
+        "f60fae681f1b",
+        "d126fc956b34",
+        "6fd9beb354e8",
+        "5b63e3710552",
+        "9e9a8bffcf31"
+      ]
+    },
+    {
+      "brand": "POKE",
+      "total": 7,
+      "areas": {
+        "서울": 5,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "c7aebc8aafc3",
+        "e2bba677ede4",
+        "5aa1ac880f14",
+        "7a4f4cdde329",
+        "c30b2caba97e",
+        "1158717a6c6b",
+        "7b1a898a439f"
       ]
     },
     {
@@ -1061,6 +1664,348 @@
       ]
     },
     {
+      "brand": "남스짐",
+      "total": 6,
+      "areas": {
+        "서울": 0,
+        "경기": 6,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "bbcbcecc2c5b",
+        "ce4a8128fa78",
+        "be5ecb7bdfe0",
+        "ccba07ec6abf",
+        "95b80f794c50",
+        "db114ae48cd9"
+      ]
+    },
+    {
+      "brand": "다짐필라테스",
+      "total": 6,
+      "areas": {
+        "서울": 0,
+        "경기": 6,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "6762d70dea59",
+        "7d21f4b08e01",
+        "b62eb7a4b3df",
+        "64450142b1d5",
+        "45e990a2bacb",
+        "cadfbaba9c05"
+      ]
+    },
+    {
+      "brand": "대성샷다",
+      "total": 6,
+      "areas": {
+        "서울": 6,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "07c8531fb802",
+        "09fe5a0f08e6",
+        "7e87920b5535",
+        "6e43c8288cfa",
+        "2daba84dcbe2",
+        "143ac083fe1d"
+      ]
+    },
+    {
+      "brand": "메타짐",
+      "total": 6,
+      "areas": {
+        "서울": 0,
+        "경기": 5,
+        "인천": 1
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "166c2dd6e3ab",
+        "4150f8ce1c20",
+        "5658aa711cc2",
+        "81497643a4cc",
+        "f584a629b827",
+        "8e47095b943d"
+      ]
+    },
+    {
+      "brand": "무브먼트",
+      "total": 6,
+      "areas": {
+        "서울": 3,
+        "경기": 3,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "81609ed5bb7f",
+        "19b61e344d92",
+        "2fbe263e2b10",
+        "f08884cc7cc8",
+        "8937e8ec7510",
+        "a87fc6f6578a"
+      ]
+    },
+    {
+      "brand": "밀라노짐",
+      "total": 6,
+      "areas": {
+        "서울": 0,
+        "경기": 6,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "7fcd72a00160",
+        "6f63b8da69e1",
+        "2d039b78489c",
+        "c05b556ffa0b",
+        "a770cab24178",
+        "58c5c5fd09c2"
+      ]
+    },
+    {
+      "brand": "바디코드",
+      "total": 6,
+      "areas": {
+        "서울": 5,
+        "경기": 1,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "9986bc75e94a",
+        "62f6b55b3cb4",
+        "7af806ff3668",
+        "4bc44e244a04",
+        "3d39bc8945cb",
+        "86084649dd7a"
+      ]
+    },
+    {
+      "brand": "바운드짐",
+      "total": 6,
+      "areas": {
+        "서울": 6,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "e0aa39536faf",
+        "bbf57cecf77b",
+        "0c32e4c541e3",
+        "a7aeb9457d28",
+        "4880be0d79e7",
+        "30430205c5d8"
+      ]
+    },
+    {
+      "brand": "범휘트니스",
+      "total": 6,
+      "areas": {
+        "서울": 0,
+        "경기": 6,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "c7d960376aff",
+        "c03b213a7047",
+        "427ab40aa65f",
+        "fc933ff79ec3",
+        "b33771d7a2dc",
+        "14e98c2ea529"
+      ]
+    },
+    {
+      "brand": "보라카이짐",
+      "total": 6,
+      "areas": {
+        "서울": 0,
+        "경기": 6,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "af305fdfb07e",
+        "a8c48967652e",
+        "c85edddf53e9",
+        "1b5dbbb0dbbf",
+        "e315f9663bb4",
+        "bca47a74dad4"
+      ]
+    },
+    {
+      "brand": "비전휘트니스",
+      "total": 6,
+      "areas": {
+        "서울": 0,
+        "경기": 6,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "8ebda9100f1f",
+        "53470eb6ed3d",
+        "ec1b27447a71",
+        "b4b6a0e99d75",
+        "272d6a189393",
+        "e93f08629853"
+      ]
+    },
+    {
+      "brand": "스타짐",
+      "total": 6,
+      "areas": {
+        "서울": 1,
+        "경기": 3,
+        "인천": 2
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "2f48bbcde8ee",
+        "1a94e9a35680",
+        "295d079213e7",
+        "066c8cfa480a",
+        "ddbe83e99ebd",
+        "8bee57d91e63"
+      ]
+    },
+    {
+      "brand": "아크짐",
+      "total": 6,
+      "areas": {
+        "서울": 1,
+        "경기": 2,
+        "인천": 3
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "026f7b002eac",
+        "87fcabd7538f",
+        "8937e1cba11b",
+        "08270492a4f0",
+        "3360106e7d0d",
+        "2f11acbd060b"
+      ]
+    },
+    {
+      "brand": "운동에반하다",
+      "total": 6,
+      "areas": {
+        "서울": 0,
+        "경기": 6,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "1091f4baadc4",
+        "1ab677061a23",
+        "8d7e0af0ed08",
+        "7fe36286cb89",
+        "a462fd60a7ef",
+        "1caee6eb72ea"
+      ]
+    },
+    {
+      "brand": "운동하는날",
+      "total": 6,
+      "areas": {
+        "서울": 5,
+        "경기": 1,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "1d182bd86edc",
+        "ed35796b1b26",
+        "f7c871b27bcc",
+        "ba48d74c6192",
+        "d34061d76334",
+        "17b036ab2c8b"
+      ]
+    },
+    {
+      "brand": "일루고짐",
+      "total": 6,
+      "areas": {
+        "서울": 2,
+        "경기": 4,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "2327b8eeff3d",
+        "56d977039121",
+        "5b5a9c59186e",
+        "f9fa87df7b72",
+        "20a0a9e227d1",
+        "0711e49f0289"
+      ]
+    },
+    {
+      "brand": "짐구공",
+      "total": 6,
+      "areas": {
+        "서울": 6,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "a8f45bd0178c",
+        "53dda73d9aaf",
+        "4f22d5db6e11",
+        "55665cbb8800",
+        "f4af2acbbeff",
+        "501f33bcd401"
+      ]
+    },
+    {
+      "brand": "짐라이트",
+      "total": 6,
+      "areas": {
+        "서울": 6,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "c3bee613b86d",
+        "56637ab32598",
+        "c8cb34e1a747",
+        "eff9948f2c30",
+        "9c0e0acb5cbf",
+        "2e5274519c14"
+      ]
+    },
+    {
+      "brand": "투엑스휘트니스",
+      "total": 6,
+      "areas": {
+        "서울": 6,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "78b6e15a9e4e",
+        "0c6e60e3f9c2",
+        "f7f5c58d1837",
+        "40e804c5d9f9",
+        "2b802295fbec",
+        "f9cbe05569ad"
+      ]
+    },
+    {
       "brand": "1986피트니스",
       "total": 5,
       "areas": {
@@ -1075,6 +2020,312 @@
         "128729adee2e",
         "1d575aa381a5",
         "c42ca7fb5c25"
+      ]
+    },
+    {
+      "brand": "고다짐",
+      "total": 5,
+      "areas": {
+        "서울": 0,
+        "경기": 1,
+        "인천": 4
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "5b6872b8ec99",
+        "fc2c5c3a4715",
+        "4181f4b198f6",
+        "0f7c5d5a6901",
+        "63042a76d140"
+      ]
+    },
+    {
+      "brand": "김관장의착한",
+      "total": 5,
+      "areas": {
+        "서울": 0,
+        "경기": 5,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "dd40b1e4010d",
+        "d58b1f1b3488",
+        "8ad218aa902a",
+        "4bcc25d1d776",
+        "81bf5c234868"
+      ]
+    },
+    {
+      "brand": "더찬스짐",
+      "total": 5,
+      "areas": {
+        "서울": 0,
+        "경기": 5,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "d667f61ca860",
+        "dfe850199b84",
+        "d830bdf41b73",
+        "2932327dddb4",
+        "3d845c95acc3"
+      ]
+    },
+    {
+      "brand": "더피티짐",
+      "total": 5,
+      "areas": {
+        "서울": 0,
+        "경기": 0,
+        "인천": 5
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "bca172270936",
+        "697c5dc22e8c",
+        "f7d328319061",
+        "00bf1f362e34",
+        "e5085ab4014c"
+      ]
+    },
+    {
+      "brand": "디클리셰",
+      "total": 5,
+      "areas": {
+        "서울": 0,
+        "경기": 5,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "827add9d1309",
+        "0604a2cdc295",
+        "9298cc715886",
+        "7863eba3dcdd",
+        "287cc3b2f553"
+      ]
+    },
+    {
+      "brand": "리조트휘트니스",
+      "total": 5,
+      "areas": {
+        "서울": 2,
+        "경기": 3,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "0bb3804ec929",
+        "5041b01e7482",
+        "9e1f5f849d0b",
+        "da1e1f387913",
+        "02dc03ad219c"
+      ]
+    },
+    {
+      "brand": "리커버리",
+      "total": 5,
+      "areas": {
+        "서울": 5,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "c4058f7f82f5",
+        "6318ed57fda9",
+        "bebb4eab6b1a",
+        "7d9303f05f1d",
+        "664734afd5ba"
+      ]
+    },
+    {
+      "brand": "바디밸런스",
+      "total": 5,
+      "areas": {
+        "서울": 3,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "711515525095",
+        "e8ea08905a39",
+        "737f4aac8532",
+        "fd1b4e8aa719",
+        "7418ec0694ca"
+      ]
+    },
+    {
+      "brand": "바른피티",
+      "total": 5,
+      "areas": {
+        "서울": 2,
+        "경기": 3,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "a260a666a8c5",
+        "2cdd8a313cee",
+        "5c7f66019d26",
+        "6aaec9cfc504",
+        "7fa741dff6b1"
+      ]
+    },
+    {
+      "brand": "보스턴짐",
+      "total": 5,
+      "areas": {
+        "서울": 0,
+        "경기": 5,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "fa0c3df56852",
+        "d97b4d6ea1d4",
+        "86cd3e3bf882",
+        "52535d523e00",
+        "23b487178970"
+      ]
+    },
+    {
+      "brand": "슬릭부스트",
+      "total": 5,
+      "areas": {
+        "서울": 1,
+        "경기": 3,
+        "인천": 1
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "3ea15193ea42",
+        "18a644a886cd",
+        "ccf1119a9681",
+        "2ff133a877d6",
+        "d413077c7160"
+      ]
+    },
+    {
+      "brand": "에이펙스",
+      "total": 5,
+      "areas": {
+        "서울": 3,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "6c12634180b3",
+        "b0b031f975bf",
+        "136536df6d0b",
+        "c41d15c4b497",
+        "25c060684a27"
+      ]
+    },
+    {
+      "brand": "와이짐",
+      "total": 5,
+      "areas": {
+        "서울": 1,
+        "경기": 4,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "449f100ab641",
+        "8b9c7137c545",
+        "b06802f3d51e",
+        "d3d6f56282a5",
+        "82e1c938b104"
+      ]
+    },
+    {
+      "brand": "워너비짐",
+      "total": 5,
+      "areas": {
+        "서울": 3,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "60b3be62bcc1",
+        "16f573f15c58",
+        "5f3593135e78",
+        "7d8ffcde7c10",
+        "7b8adca376cc"
+      ]
+    },
+    {
+      "brand": "원더바레",
+      "total": 5,
+      "areas": {
+        "서울": 4,
+        "경기": 1,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "34f02e095a60",
+        "8ca34275371b",
+        "c3a7de2ee17e",
+        "62688c50ae9c",
+        "fb4529e0a8cb"
+      ]
+    },
+    {
+      "brand": "이루어짐",
+      "total": 5,
+      "areas": {
+        "서울": 3,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "08d51090d7b6",
+        "803529896267",
+        "968de2653a04",
+        "1d1fb8c6f01f",
+        "ba9b4073c635"
+      ]
+    },
+    {
+      "brand": "자마이카",
+      "total": 5,
+      "areas": {
+        "서울": 5,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "5c682fd600d0",
+        "8812b83a8144",
+        "bf89f2f29e4b",
+        "276f2b46c868",
+        "213caec02847"
+      ]
+    },
+    {
+      "brand": "제이핏",
+      "total": 5,
+      "areas": {
+        "서울": 5,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "05f594360325",
+        "0eba8c8a2e31",
+        "b0fb89792ef4",
+        "403aadc44cd7",
+        "b2e00c3e0fa9"
       ]
     },
     {
@@ -1095,7 +2346,1107 @@
       ]
     },
     {
-      "brand": "MVM피트니스",
+      "brand": "카우짐",
+      "total": 5,
+      "areas": {
+        "서울": 0,
+        "경기": 1,
+        "인천": 4
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "91887fa48747",
+        "41f5a889924f",
+        "eb491c8d679f",
+        "8b350403161b",
+        "03046e084386"
+      ]
+    },
+    {
+      "brand": "콤마짐",
+      "total": 5,
+      "areas": {
+        "서울": 4,
+        "경기": 1,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "b647c419cfe1",
+        "1961c0c98bc1",
+        "7af63ee17a7d",
+        "ba20a9f66f12",
+        "c80c21a4324c"
+      ]
+    },
+    {
+      "brand": "크로스핏손오공",
+      "total": 5,
+      "areas": {
+        "서울": 0,
+        "경기": 5,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "febca5139f1d",
+        "1c11f786371b",
+        "0f206c3d5323",
+        "2f6184f15488",
+        "997ebd10c048"
+      ]
+    },
+    {
+      "brand": "테이스트피트니스",
+      "total": 5,
+      "areas": {
+        "서울": 1,
+        "경기": 3,
+        "인천": 1
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "893aaee7ea04",
+        "d7c7961c37e7",
+        "c968cc455b49",
+        "4a88064d4db8",
+        "e9ba53b47497"
+      ]
+    },
+    {
+      "brand": "트렌디우먼휘트니스",
+      "total": 5,
+      "areas": {
+        "서울": 5,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "920063085255",
+        "a5ad2050fa38",
+        "9281bd37bed0",
+        "17b22f61b6c8",
+        "398d05214e5f"
+      ]
+    },
+    {
+      "brand": "포유짐",
+      "total": 5,
+      "areas": {
+        "서울": 0,
+        "경기": 5,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "5673cd3d0cfb",
+        "693e8c1c64c8",
+        "00f98e6f220f",
+        "43beef196254",
+        "532938183c17"
+      ]
+    },
+    {
+      "brand": "포텐휘트니스",
+      "total": 5,
+      "areas": {
+        "서울": 1,
+        "경기": 1,
+        "인천": 3
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "aed31debdaeb",
+        "4cbc5ef50b59",
+        "86adc4cedf84",
+        "02b125529c80",
+        "bd916fbfd7fc"
+      ]
+    },
+    {
+      "brand": "프로핏",
+      "total": 5,
+      "areas": {
+        "서울": 2,
+        "경기": 3,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "4631df965130",
+        "628ccb48f5ff",
+        "e62587e5c072",
+        "109dda56d4e1",
+        "4ef607ca07c1"
+      ]
+    },
+    {
+      "brand": "하이클래스짐",
+      "total": 5,
+      "areas": {
+        "서울": 0,
+        "경기": 5,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "c97b1dc87a14",
+        "36ca50831cff",
+        "1b1c266a3aef",
+        "403dad83b349",
+        "1aa56c621560"
+      ]
+    },
+    {
+      "brand": "휘트니스칸",
+      "total": 5,
+      "areas": {
+        "서울": 1,
+        "경기": 3,
+        "인천": 1
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "b0549e39c252",
+        "e2c133415b55",
+        "3f371b923657",
+        "9076ef839ffd",
+        "910d4da6486a"
+      ]
+    },
+    {
+      "brand": "힛더핏",
+      "total": 5,
+      "areas": {
+        "서울": 0,
+        "경기": 5,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "2fbcbf65bfa2",
+        "32c7dc7a51a9",
+        "1d4367cd9b20",
+        "37ea3501c766",
+        "76c5153b5bbf"
+      ]
+    },
+    {
+      "brand": "MCTGYM",
+      "total": 5,
+      "areas": {
+        "서울": 5,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "2ca762bfbf35",
+        "3fa50382d7eb",
+        "bfa172fd260e",
+        "dcee64d4da91",
+        "b719c83f03dc"
+      ]
+    },
+    {
+      "brand": "고릴라멀티짐",
+      "total": 4,
+      "areas": {
+        "서울": 3,
+        "경기": 1,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "0efaa330524a",
+        "65f4ff892f27",
+        "97179620557b",
+        "18df29ce6dc6"
+      ]
+    },
+    {
+      "brand": "그래비티",
+      "total": 4,
+      "areas": {
+        "서울": 0,
+        "경기": 4,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "08260cb2052c",
+        "3228d463ff3e",
+        "96662fe829e6",
+        "9f243f84072d"
+      ]
+    },
+    {
+      "brand": "근력학교",
+      "total": 4,
+      "areas": {
+        "서울": 4,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "dca9a362165e",
+        "0e3d40127dd9",
+        "4a611ec52149",
+        "c2b464ecfdc2"
+      ]
+    },
+    {
+      "brand": "노벨짐",
+      "total": 4,
+      "areas": {
+        "서울": 0,
+        "경기": 4,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "e4334fb6db92",
+        "b19e4a15e61c",
+        "1cb8de215160",
+        "238a294988b8"
+      ]
+    },
+    {
+      "brand": "더블와이짐",
+      "total": 4,
+      "areas": {
+        "서울": 4,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "3c63204d1b63",
+        "58d7d2624ac8",
+        "d7dde92c70e5",
+        "466aef9b0d6d"
+      ]
+    },
+    {
+      "brand": "데일리짐",
+      "total": 4,
+      "areas": {
+        "서울": 3,
+        "경기": 1,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "8676c1481f22",
+        "d8de83576703",
+        "079e0f0961e3",
+        "b235166bdf06"
+      ]
+    },
+    {
+      "brand": "라이트짐",
+      "total": 4,
+      "areas": {
+        "서울": 1,
+        "경기": 3,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "5d85c9158a5c",
+        "abd9388100ca",
+        "61584aaa2d54",
+        "e923f6d6c266"
+      ]
+    },
+    {
+      "brand": "레드핏휘트니스",
+      "total": 4,
+      "areas": {
+        "서울": 3,
+        "경기": 1,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "72550473af24",
+        "4fce9486dd9f",
+        "0ddf68e2d57a",
+        "24982bd79693"
+      ]
+    },
+    {
+      "brand": "리커버",
+      "total": 4,
+      "areas": {
+        "서울": 4,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "6880d1e73e3a",
+        "b50600dc0dec",
+        "988f7ddd6046",
+        "2940c19c2cc0"
+      ]
+    },
+    {
+      "brand": "마이크로스튜디오",
+      "total": 4,
+      "areas": {
+        "서울": 4,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "f400a2f64a94",
+        "71e7c0d00c8a",
+        "defaddce4c17",
+        "a5c4fd8de623"
+      ]
+    },
+    {
+      "brand": "머슬마인드",
+      "total": 4,
+      "areas": {
+        "서울": 4,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "f2cddf9afd29",
+        "50babef792d4",
+        "0436ac7999e5",
+        "b6a14b05efdd"
+      ]
+    },
+    {
+      "brand": "밀리언짐",
+      "total": 4,
+      "areas": {
+        "서울": 3,
+        "경기": 1,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "d0c37bfab58e",
+        "14b10b362ad6",
+        "e84f5e4a17a0",
+        "6afb9aea6ed4"
+      ]
+    },
+    {
+      "brand": "바디코치",
+      "total": 4,
+      "areas": {
+        "서울": 0,
+        "경기": 4,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "fdd90bda174f",
+        "35416c964206",
+        "c49d0c32436c",
+        "b4f3ef3056d6"
+      ]
+    },
+    {
+      "brand": "바로피트니스",
+      "total": 4,
+      "areas": {
+        "서울": 0,
+        "경기": 3,
+        "인천": 1
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "1012d9882861",
+        "564f7ffbc902",
+        "d6397c174564",
+        "baf5003d0c60"
+      ]
+    },
+    {
+      "brand": "바른핏",
+      "total": 4,
+      "areas": {
+        "서울": 2,
+        "경기": 1,
+        "인천": 1
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "a5f224d5a6c2",
+        "eae9474f50f1",
+        "a9c6398fd30f",
+        "dee7aa7a90b8"
+      ]
+    },
+    {
+      "brand": "밸런스",
+      "total": 4,
+      "areas": {
+        "서울": 3,
+        "경기": 1,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "d2a62e246ec5",
+        "6a0c6d2ff7ee",
+        "c5ac36262421",
+        "51a67b9064bb"
+      ]
+    },
+    {
+      "brand": "베네짐",
+      "total": 4,
+      "areas": {
+        "서울": 4,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "196138c1c1ac",
+        "8e989c98041f",
+        "cfb193663619",
+        "a088ca88aac0"
+      ]
+    },
+    {
+      "brand": "비스짐",
+      "total": 4,
+      "areas": {
+        "서울": 0,
+        "경기": 4,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "6ca032afbaac",
+        "5a865a54f7ca",
+        "178439c7b9fd",
+        "b95658582bec"
+      ]
+    },
+    {
+      "brand": "빌리버짐",
+      "total": 4,
+      "areas": {
+        "서울": 4,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "3b4601922af8",
+        "5e91e2077026",
+        "1af46cd2604b",
+        "1f145a195e1a"
+      ]
+    },
+    {
+      "brand": "샤인휘트니스",
+      "total": 4,
+      "areas": {
+        "서울": 1,
+        "경기": 3,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "120598eb1280",
+        "8f8cc88ac40d",
+        "eac9f3173222",
+        "f23bd9d11fb2"
+      ]
+    },
+    {
+      "brand": "슈퍼짐",
+      "total": 4,
+      "areas": {
+        "서울": 4,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "d70b2f303c06",
+        "3ea450271945",
+        "105375fd43ad",
+        "deb98dbba2f8"
+      ]
+    },
+    {
+      "brand": "스카이짐",
+      "total": 4,
+      "areas": {
+        "서울": 1,
+        "경기": 3,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "9efe2adde151",
+        "209351c7daf6",
+        "2cc4ecff1643",
+        "7bd00f41d776"
+      ]
+    },
+    {
+      "brand": "스퀘어짐",
+      "total": 4,
+      "areas": {
+        "서울": 4,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "f683a7d53e6d",
+        "fcfdc695f8e6",
+        "3f35cf0015c5",
+        "4d33c5343ba6"
+      ]
+    },
+    {
+      "brand": "스포데이휘트니스",
+      "total": 4,
+      "areas": {
+        "서울": 0,
+        "경기": 4,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "89e911abb4a0",
+        "1d4dda775147",
+        "9d190b3ec1ae",
+        "a013dc502887"
+      ]
+    },
+    {
+      "brand": "안다르",
+      "total": 4,
+      "areas": {
+        "서울": 1,
+        "경기": 3,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "c26695327e2a",
+        "17b050949951",
+        "5560585aa531",
+        "48e564d9d0b7"
+      ]
+    },
+    {
+      "brand": "어라운드짐",
+      "total": 4,
+      "areas": {
+        "서울": 4,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "04b14c535324",
+        "59f307dafc7a",
+        "3e376842bb23",
+        "a722c2411e17"
+      ]
+    },
+    {
+      "brand": "어반짐",
+      "total": 4,
+      "areas": {
+        "서울": 2,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "d8dc4da35c87",
+        "60c08317e8cd",
+        "2c883daf3f83",
+        "48562a64e3c5"
+      ]
+    },
+    {
+      "brand": "에센셜짐",
+      "total": 4,
+      "areas": {
+        "서울": 3,
+        "경기": 1,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "a4a1f004042b",
+        "3dd088f2c58f",
+        "1bc7e5c6bd9e",
+        "6c96be0dcf92"
+      ]
+    },
+    {
+      "brand": "에스웨이",
+      "total": 4,
+      "areas": {
+        "서울": 4,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "e8cc1b1e3bf0",
+        "5b04d3743e1d",
+        "36f355824f32",
+        "478c0c0bab4d"
+      ]
+    },
+    {
+      "brand": "에스핏",
+      "total": 4,
+      "areas": {
+        "서울": 2,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "37a41486cf1c",
+        "f87a3c533488",
+        "d5710a2e018e",
+        "7bf2c73f06d3"
+      ]
+    },
+    {
+      "brand": "에이원짐",
+      "total": 4,
+      "areas": {
+        "서울": 1,
+        "경기": 3,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "40e3aa42b203",
+        "11d73a35b2ae",
+        "35cd1ed6669b",
+        "c25e778df9e0"
+      ]
+    },
+    {
+      "brand": "에이펙스피트니스",
+      "total": 4,
+      "areas": {
+        "서울": 4,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "087217a94404",
+        "05c514d02998",
+        "6658eb02e5a6",
+        "38b5efd74c61"
+      ]
+    },
+    {
+      "brand": "엘투휘트니스",
+      "total": 4,
+      "areas": {
+        "서울": 4,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "89a455412bca",
+        "ec4924063806",
+        "55761032dce5",
+        "868da0f2b42f"
+      ]
+    },
+    {
+      "brand": "영스짐",
+      "total": 4,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 2
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "1e6666deb854",
+        "b6d23555541b",
+        "cc96197c03be",
+        "cda6d00aa5c8"
+      ]
+    },
+    {
+      "brand": "오버맥스짐",
+      "total": 4,
+      "areas": {
+        "서울": 0,
+        "경기": 4,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "814a7954b638",
+        "c5525513617c",
+        "8d697928672b",
+        "096b632bf4ae"
+      ]
+    },
+    {
+      "brand": "오버탑휘트니스",
+      "total": 4,
+      "areas": {
+        "서울": 2,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "cd4bb9b8f966",
+        "a055dd2af45e",
+        "0c0db377a14b",
+        "0697fb421eb1"
+      ]
+    },
+    {
+      "brand": "용인대",
+      "total": 4,
+      "areas": {
+        "서울": 2,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "ebd70eae440b",
+        "66af19efc347",
+        "bb3be7d489cf",
+        "b5d90761456f"
+      ]
+    },
+    {
+      "brand": "우리짐",
+      "total": 4,
+      "areas": {
+        "서울": 3,
+        "경기": 0,
+        "인천": 1
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "ef5a2a22d98d",
+        "c3430a704cd6",
+        "330bbf9768e8",
+        "ddd073b6501a"
+      ]
+    },
+    {
+      "brand": "웰니스짐",
+      "total": 4,
+      "areas": {
+        "서울": 3,
+        "경기": 1,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "06c99975deb6",
+        "0213e9379672",
+        "676e8596cf11",
+        "25eb17f1e168"
+      ]
+    },
+    {
+      "brand": "점핑하이",
+      "total": 4,
+      "areas": {
+        "서울": 2,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "7ede8aef82a6",
+        "a2136eac9fe7",
+        "e29c0b892fa3",
+        "b8565598008e"
+      ]
+    },
+    {
+      "brand": "쥬비스",
+      "total": 4,
+      "areas": {
+        "서울": 3,
+        "경기": 1,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "dd5538847d10",
+        "845cf7181e4e",
+        "5c363f720347",
+        "d849e3a3fcc1"
+      ]
+    },
+    {
+      "brand": "지니짐",
+      "total": 4,
+      "areas": {
+        "서울": 2,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "0544e4c36fb9",
+        "2d45523b16c1",
+        "e576c7ffedd8",
+        "a95cbee38588"
+      ]
+    },
+    {
+      "brand": "짐코사트",
+      "total": 4,
+      "areas": {
+        "서울": 4,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "89f215c6b3b2",
+        "b00d8654c350",
+        "f56654365227",
+        "70084d455378"
+      ]
+    },
+    {
+      "brand": "짐타임",
+      "total": 4,
+      "areas": {
+        "서울": 3,
+        "경기": 1,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "fe629b0e764b",
+        "9f5c2bd8c831",
+        "e45a05a56da3",
+        "b37cc6aace45"
+      ]
+    },
+    {
+      "brand": "클라우드짐",
+      "total": 4,
+      "areas": {
+        "서울": 4,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "3f6c147cd0f5",
+        "393e31ed3a21",
+        "c39e55bb9599",
+        "4b7b79bb65f0"
+      ]
+    },
+    {
+      "brand": "킹스짐",
+      "total": 4,
+      "areas": {
+        "서울": 2,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "ba97a9f1ac6f",
+        "e24dc4b9dd8d",
+        "b4dc7d4c3696",
+        "4ac52c75c59d"
+      ]
+    },
+    {
+      "brand": "팀제이맥스",
+      "total": 4,
+      "areas": {
+        "서울": 0,
+        "경기": 4,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "fcd0fd039f61",
+        "78f45917c448",
+        "e5711beb306b",
+        "8389c4f53033"
+      ]
+    },
+    {
+      "brand": "파인핏",
+      "total": 4,
+      "areas": {
+        "서울": 0,
+        "경기": 4,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "06a47cdc3e27",
+        "5d4ad710b764",
+        "82ecab3958a0",
+        "6565b57b5905"
+      ]
+    },
+    {
+      "brand": "프로원휘트니스",
+      "total": 4,
+      "areas": {
+        "서울": 4,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "0863c2e2671a",
+        "2bf0cd60ea20",
+        "ee9baf5cd439",
+        "6f6787c0928c"
+      ]
+    },
+    {
+      "brand": "피티루트",
+      "total": 4,
+      "areas": {
+        "서울": 4,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "ab1f6241b948",
+        "3d3702f171c3",
+        "6368c7ff8461",
+        "ecfa5767edea"
+      ]
+    },
+    {
+      "brand": "필라걸",
+      "total": 4,
+      "areas": {
+        "서울": 4,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "09b91ef54fcc",
+        "983dd2c107e1",
+        "e38a364b204c",
+        "6969f8eea95e"
+      ]
+    },
+    {
+      "brand": "하이엔드짐",
+      "total": 4,
+      "areas": {
+        "서울": 3,
+        "경기": 1,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "e098ad69436f",
+        "f97addce0323",
+        "96cf73ea7bb2",
+        "a76e31b9dfa4"
+      ]
+    },
+    {
+      "brand": "헬스장",
+      "total": 4,
+      "areas": {
+        "서울": 2,
+        "경기": 1,
+        "인천": 1
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "b9d3d8ff7b76",
+        "aeea05b1bec1",
+        "4ff4b26fce35",
+        "10989931d6ae"
+      ]
+    },
+    {
+      "brand": "헬스케어",
+      "total": 4,
+      "areas": {
+        "서울": 0,
+        "경기": 3,
+        "인천": 1
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "e5d2e46e7b8a",
+        "df673ca1e17f",
+        "61709d4e44c2",
+        "51eaacb5703a"
+      ]
+    },
+    {
+      "brand": "헬스플러스",
+      "total": 4,
+      "areas": {
+        "서울": 2,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "1c1cd4a783e7",
+        "4ddfb0b7611a",
+        "6841e63de51e",
+        "2b5cf49a03ee"
+      ]
+    },
+    {
+      "brand": "휘트니스링크",
+      "total": 4,
+      "areas": {
+        "서울": 0,
+        "경기": 4,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "4274cc1586b2",
+        "989f389b5b2f",
+        "261e8c6e5667",
+        "f62d8da72f4d"
+      ]
+    },
+    {
+      "brand": "MVM",
       "total": 4,
       "areas": {
         "서울": 1,
@@ -1106,8 +3457,1119 @@
       "leadIds": [
         "1c4cdf1c3f84",
         "37183696d189",
-        "474611b372b5",
-        "d58fca860906"
+        "5194e4a3e134",
+        "474611b372b5"
+      ]
+    },
+    {
+      "brand": "SNPE",
+      "total": 4,
+      "areas": {
+        "서울": 3,
+        "경기": 1,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "9c7f3b009d70",
+        "8a2f396548cc",
+        "bddafdb26d9c",
+        "6eb7f5a9b1be"
+      ]
+    },
+    {
+      "brand": "강종근트레이닝센터",
+      "total": 3,
+      "areas": {
+        "서울": 0,
+        "경기": 3,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "cab83e194f06",
+        "f48253664d83",
+        "107c29ffade6"
+      ]
+    },
+    {
+      "brand": "겟바디",
+      "total": 3,
+      "areas": {
+        "서울": 3,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "2e7c84cbcd03",
+        "2802cf31e695",
+        "7c80c05e7c9b"
+      ]
+    },
+    {
+      "brand": "경춘체육관",
+      "total": 3,
+      "areas": {
+        "서울": 3,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "01aea62d8553",
+        "6b5fe8c6bfc5",
+        "cac1d85c8267"
+      ]
+    },
+    {
+      "brand": "굿데이짐",
+      "total": 3,
+      "areas": {
+        "서울": 1,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "d2f69a5a1511",
+        "8a105f94a892",
+        "0c58ef78a113"
+      ]
+    },
+    {
+      "brand": "그레이짐",
+      "total": 3,
+      "areas": {
+        "서울": 0,
+        "경기": 0,
+        "인천": 3
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "bf409d6ebdb2",
+        "a77d1fc4f818",
+        "7e9cf056ef19"
+      ]
+    },
+    {
+      "brand": "그루비짐",
+      "total": 3,
+      "areas": {
+        "서울": 0,
+        "경기": 1,
+        "인천": 2
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "9f82899d72e1",
+        "0649b483839e",
+        "f2cf3bb5e5ad"
+      ]
+    },
+    {
+      "brand": "그린공간운동센터",
+      "total": 3,
+      "areas": {
+        "서울": 0,
+        "경기": 3,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "12b54da916cc",
+        "6c489370bf29",
+        "3bc5c637c49b"
+      ]
+    },
+    {
+      "brand": "나나짐",
+      "total": 3,
+      "areas": {
+        "서울": 1,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "fe19ff18550b",
+        "5e5304737a8b",
+        "51171ba0548e"
+      ]
+    },
+    {
+      "brand": "뉴라이프짐",
+      "total": 3,
+      "areas": {
+        "서울": 0,
+        "경기": 3,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "39d3b27086e7",
+        "264d1fc8b094",
+        "026e183f353e"
+      ]
+    },
+    {
+      "brand": "다미트짐",
+      "total": 3,
+      "areas": {
+        "서울": 0,
+        "경기": 3,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "0895d62eb213",
+        "dcfd63d3c6ca",
+        "d3f2427152e7"
+      ]
+    },
+    {
+      "brand": "더루트짐",
+      "total": 3,
+      "areas": {
+        "서울": 3,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "d93c5396e30b",
+        "3c30e8fe3449",
+        "589d0a7fa6b7"
+      ]
+    },
+    {
+      "brand": "더블에이짐",
+      "total": 3,
+      "areas": {
+        "서울": 2,
+        "경기": 1,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "3a37d97f36e2",
+        "2b3eaaad605b",
+        "a3f2867bd65d"
+      ]
+    },
+    {
+      "brand": "더스카이짐",
+      "total": 3,
+      "areas": {
+        "서울": 0,
+        "경기": 3,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "e168e9bdd94a",
+        "f924033ea7a5",
+        "2c8f605979e6"
+      ]
+    },
+    {
+      "brand": "데이원",
+      "total": 3,
+      "areas": {
+        "서울": 1,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "0395a839852c",
+        "f6654f1fbab3",
+        "bfffe847f4e5"
+      ]
+    },
+    {
+      "brand": "동광모닝스카이아파트",
+      "total": 3,
+      "areas": {
+        "서울": 0,
+        "경기": 3,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "45e062d7469d",
+        "3de9a48540ec",
+        "6926e7f20e27"
+      ]
+    },
+    {
+      "brand": "동현피트니스",
+      "total": 3,
+      "areas": {
+        "서울": 0,
+        "경기": 3,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "54fdd87d4c0e",
+        "dc59f532a79d",
+        "937382b20504"
+      ]
+    },
+    {
+      "brand": "드래곤짐",
+      "total": 3,
+      "areas": {
+        "서울": 1,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "e8e9ce057bf1",
+        "42b8ac1e9a97",
+        "cd11e622fc5a"
+      ]
+    },
+    {
+      "brand": "디엔엠",
+      "total": 3,
+      "areas": {
+        "서울": 0,
+        "경기": 3,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "44eb6341d083",
+        "cd5fe64fbcb1",
+        "8e72e3c8d55f"
+      ]
+    },
+    {
+      "brand": "라곰트레이닝",
+      "total": 3,
+      "areas": {
+        "서울": 1,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "640caaccc684",
+        "7d04a33013d7",
+        "e430651fee86"
+      ]
+    },
+    {
+      "brand": "라반휘트니스",
+      "total": 3,
+      "areas": {
+        "서울": 0,
+        "경기": 3,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "2c2dd7a7119b",
+        "23919328062f",
+        "efd258c5c4c4"
+      ]
+    },
+    {
+      "brand": "라이언짐",
+      "total": 3,
+      "areas": {
+        "서울": 1,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "d7704967789f",
+        "9f213a1e64c9",
+        "38b2f0d3bcc1"
+      ]
+    },
+    {
+      "brand": "라이즈짐",
+      "total": 3,
+      "areas": {
+        "서울": 0,
+        "경기": 3,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "523946713d19",
+        "2d457fc503c9",
+        "05f1d2c8dbf7"
+      ]
+    },
+    {
+      "brand": "라이프플러스휘트니스",
+      "total": 3,
+      "areas": {
+        "서울": 2,
+        "경기": 1,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "69a241a129aa",
+        "bc30a69ea7ed",
+        "da92e3203ee4"
+      ]
+    },
+    {
+      "brand": "라인짐",
+      "total": 3,
+      "areas": {
+        "서울": 1,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "19db270047e4",
+        "6af7e8330b86",
+        "7a3d741b889d"
+      ]
+    },
+    {
+      "brand": "라피끄피트니스온",
+      "total": 3,
+      "areas": {
+        "서울": 3,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "6f5d4534c654",
+        "fb253956b53b",
+        "a8d94dc7bdbf"
+      ]
+    },
+    {
+      "brand": "런앤짐",
+      "total": 3,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 1
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "15ebef79342b",
+        "9398be76c2f7",
+        "43381b9b486e"
+      ]
+    },
+    {
+      "brand": "레벨업휘트니스",
+      "total": 3,
+      "areas": {
+        "서울": 2,
+        "경기": 1,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "20d88009e976",
+        "82e23b7dcd49",
+        "ac4fa2865fd9"
+      ]
+    },
+    {
+      "brand": "로망휘트니스",
+      "total": 3,
+      "areas": {
+        "서울": 2,
+        "경기": 1,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "a8a38a4bb43d",
+        "b9304d43378a",
+        "239c9251636e"
+      ]
+    },
+    {
+      "brand": "로얄짐",
+      "total": 3,
+      "areas": {
+        "서울": 3,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "2396ec0425b7",
+        "fba7e13c3a93",
+        "7703848cf569"
+      ]
+    },
+    {
+      "brand": "리뉴핏",
+      "total": 3,
+      "areas": {
+        "서울": 2,
+        "경기": 0,
+        "인천": 1
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "7e6931e81a7f",
+        "a2944b5affb8",
+        "584ccfa86f8d"
+      ]
+    },
+    {
+      "brand": "리본짐",
+      "total": 3,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 1
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "3253a067faba",
+        "7f42a27047a8",
+        "5e7036a0eded"
+      ]
+    },
+    {
+      "brand": "리스펙짐",
+      "total": 3,
+      "areas": {
+        "서울": 0,
+        "경기": 3,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "a1280ae193ed",
+        "5a885fb1a356",
+        "e8c878248d1d"
+      ]
+    },
+    {
+      "brand": "리얼무브먼트",
+      "total": 3,
+      "areas": {
+        "서울": 2,
+        "경기": 0,
+        "인천": 1
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "20671360c53a",
+        "d8deb712a43e",
+        "a091a18f0d5f"
+      ]
+    },
+    {
+      "brand": "리얼바디짐",
+      "total": 3,
+      "areas": {
+        "서울": 3,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "f8b13684506a",
+        "2e0a14e49a7f",
+        "f11951b6a80e"
+      ]
+    },
+    {
+      "brand": "리와인드",
+      "total": 3,
+      "areas": {
+        "서울": 0,
+        "경기": 3,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "83d816c6969b",
+        "3a444a69bffb",
+        "1637605221b0"
+      ]
+    },
+    {
+      "brand": "리폼드",
+      "total": 3,
+      "areas": {
+        "서울": 1,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "8749e1ba7aa4",
+        "eec9c93310f0",
+        "2acb7d922ad4"
+      ]
+    },
+    {
+      "brand": "마이짐",
+      "total": 3,
+      "areas": {
+        "서울": 1,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "7e4945cc0333",
+        "77b3be345f70",
+        "2b0f9f129b34"
+      ]
+    },
+    {
+      "brand": "맥스짐",
+      "total": 3,
+      "areas": {
+        "서울": 1,
+        "경기": 1,
+        "인천": 1
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "bf4d042a7680",
+        "352457a69c5e",
+        "4412e3356d00"
+      ]
+    },
+    {
+      "brand": "머슬팩토리",
+      "total": 3,
+      "areas": {
+        "서울": 0,
+        "경기": 3,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "12e3d33f5b0f",
+        "91539370bcd1",
+        "222f8a83ed0e"
+      ]
+    },
+    {
+      "brand": "모던복싱클럽",
+      "total": 3,
+      "areas": {
+        "서울": 0,
+        "경기": 3,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "76ea644e8418",
+        "f205b399a03b",
+        "8cb90a719319"
+      ]
+    },
+    {
+      "brand": "미라클짐",
+      "total": 3,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 1
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "db2f760f2df2",
+        "3d9052a22251",
+        "58fce51a5935"
+      ]
+    },
+    {
+      "brand": "믹스짐",
+      "total": 3,
+      "areas": {
+        "서울": 0,
+        "경기": 3,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "6054f3787c95",
+        "722751de80fd",
+        "60bcf2e46355"
+      ]
+    },
+    {
+      "brand": "바디어필",
+      "total": 3,
+      "areas": {
+        "서울": 2,
+        "경기": 1,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "8a0933fd0c97",
+        "f5173d9d0ff3",
+        "8b073a489b96"
+      ]
+    },
+    {
+      "brand": "바디와이짐",
+      "total": 3,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 1
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "e76e0eed23ab",
+        "a707dcc1ef85",
+        "e11b2375a008"
+      ]
+    },
+    {
+      "brand": "바디코어핏",
+      "total": 3,
+      "areas": {
+        "서울": 3,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "917c6f399730",
+        "bd76df7d1fd2",
+        "dd94cd71bad4"
+      ]
+    },
+    {
+      "brand": "바디클래스",
+      "total": 3,
+      "areas": {
+        "서울": 2,
+        "경기": 1,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "4a0c9f4d40ea",
+        "90bd040b8453",
+        "34dfc4839bf2"
+      ]
+    },
+    {
+      "brand": "바디플래너",
+      "total": 3,
+      "areas": {
+        "서울": 2,
+        "경기": 1,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "8993af575e44",
+        "85186d437517",
+        "60e3c05f8143"
+      ]
+    },
+    {
+      "brand": "바레톤",
+      "total": 3,
+      "areas": {
+        "서울": 2,
+        "경기": 1,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "67e529e259fa",
+        "e2ec1c1795a1",
+        "1d8c4bab99a6"
+      ]
+    },
+    {
+      "brand": "바론짐",
+      "total": 3,
+      "areas": {
+        "서울": 3,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "d4d812e42a5b",
+        "d4ff2c686644",
+        "9eeb7e611408"
+      ]
+    },
+    {
+      "brand": "바르다짐",
+      "total": 3,
+      "areas": {
+        "서울": 3,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "032a89a5f77a",
+        "50a96a91e73c",
+        "17e8b62edd2b"
+      ]
+    },
+    {
+      "brand": "바른몸",
+      "total": 3,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 1
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "9842414c5e3c",
+        "2360ac9cadd4",
+        "dcf8e3ed2329"
+      ]
+    },
+    {
+      "brand": "바름핏",
+      "total": 3,
+      "areas": {
+        "서울": 0,
+        "경기": 0,
+        "인천": 3
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "b1616e1c837a",
+        "1898f636d335",
+        "21307d618edc"
+      ]
+    },
+    {
+      "brand": "백퍼센트짐",
+      "total": 3,
+      "areas": {
+        "서울": 3,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "8524a3996c29",
+        "bb2c855fe419",
+        "49b07e03b8a0"
+      ]
+    },
+    {
+      "brand": "베리타스",
+      "total": 3,
+      "areas": {
+        "서울": 0,
+        "경기": 3,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "02dbcccc330e",
+        "7d8471e4441b",
+        "6416bf384dc3"
+      ]
+    },
+    {
+      "brand": "베스트짐",
+      "total": 3,
+      "areas": {
+        "서울": 0,
+        "경기": 3,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "f66d35f5b032",
+        "8fcd85261869",
+        "dbaf63498120"
+      ]
+    },
+    {
+      "brand": "부티크짐",
+      "total": 3,
+      "areas": {
+        "서울": 0,
+        "경기": 3,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "f80529047447",
+        "6c403b9db830",
+        "66f03f40b5bb"
+      ]
+    },
+    {
+      "brand": "브이업짐",
+      "total": 3,
+      "areas": {
+        "서울": 3,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "c22c7bd0d13f",
+        "a80c9e8f7b24",
+        "4bf3e3986a45"
+      ]
+    },
+    {
+      "brand": "비오엠",
+      "total": 3,
+      "areas": {
+        "서울": 0,
+        "경기": 3,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "87027dd63bd1",
+        "d16661ed9596",
+        "0bc5317a1d85"
+      ]
+    },
+    {
+      "brand": "비피엠짐",
+      "total": 3,
+      "areas": {
+        "서울": 0,
+        "경기": 3,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "7a51303fb282",
+        "b52d3c810213",
+        "8d44e6dc0c20"
+      ]
+    },
+    {
+      "brand": "새몸사랑",
+      "total": 3,
+      "areas": {
+        "서울": 2,
+        "경기": 1,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "e3caef807fbd",
+        "65c158481970",
+        "3d5391c6be36"
+      ]
+    },
+    {
+      "brand": "샤머니짐",
+      "total": 3,
+      "areas": {
+        "서울": 1,
+        "경기": 1,
+        "인천": 1
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "6ac4130f5869",
+        "75e976e37ecc",
+        "fd43c9f38152"
+      ]
+    },
+    {
+      "brand": "샤인바디짐",
+      "total": 3,
+      "areas": {
+        "서울": 0,
+        "경기": 3,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "f3de8c4b1926",
+        "b2ec0d2714dd",
+        "352efe2f8b94"
+      ]
+    },
+    {
+      "brand": "샤크짐",
+      "total": 3,
+      "areas": {
+        "서울": 2,
+        "경기": 1,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "fc140e85c562",
+        "1ed36b066f16",
+        "46ca45f9487a"
+      ]
+    },
+    {
+      "brand": "스카이피트니스",
+      "total": 3,
+      "areas": {
+        "서울": 0,
+        "경기": 3,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "3fa2cea7e75f",
+        "a66de0c24996",
+        "102e5381c61d"
+      ]
+    },
+    {
+      "brand": "스타디온",
+      "total": 3,
+      "areas": {
+        "서울": 0,
+        "경기": 3,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "05ce7d833298",
+        "9f539b3bdbbc",
+        "9c91a3a34bc3"
+      ]
+    },
+    {
+      "brand": "스타칼리휘트니스",
+      "total": 3,
+      "areas": {
+        "서울": 3,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "2a1794de02be",
+        "7773a1ef194f",
+        "d6c670cf3b17"
+      ]
+    },
+    {
+      "brand": "스타트짐",
+      "total": 3,
+      "areas": {
+        "서울": 1,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "0c4b746da4ab",
+        "104f926c6f53",
+        "ccbca8be1fda"
+      ]
+    },
+    {
+      "brand": "스트롱짐",
+      "total": 3,
+      "areas": {
+        "서울": 0,
+        "경기": 3,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "be2714945ff1",
+        "96219f2b7e97",
+        "ce80e7bedaed"
+      ]
+    },
+    {
+      "brand": "스포니스",
+      "total": 3,
+      "areas": {
+        "서울": 3,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "53e792a07f85",
+        "41db1d09b983",
+        "6c6e5abc4d68"
+      ]
+    },
+    {
+      "brand": "쏘마휘트니스",
+      "total": 3,
+      "areas": {
+        "서울": 0,
+        "경기": 3,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "08078fce2dd0",
+        "197e4a965b92",
+        "7cfc87c26f66"
+      ]
+    },
+    {
+      "brand": "쓰리핏",
+      "total": 3,
+      "areas": {
+        "서울": 0,
+        "경기": 3,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "b0466ef6bafe",
+        "6efb50ab9b9d",
+        "2eedcd8d893b"
+      ]
+    },
+    {
+      "brand": "아루카",
+      "total": 3,
+      "areas": {
+        "서울": 0,
+        "경기": 3,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "15246b0b22b1",
+        "ea84cff40646",
+        "a3dc065a8658"
+      ]
+    },
+    {
+      "brand": "아트짐",
+      "total": 3,
+      "areas": {
+        "서울": 1,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "4db624d5ba79",
+        "ee43af1cb8c8",
+        "658abaf30696"
       ]
     },
     {
@@ -1126,7 +4588,217 @@
       ]
     },
     {
-      "brand": "원티어",
+      "brand": "어게인짐",
+      "total": 3,
+      "areas": {
+        "서울": 3,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "f8b7fbf852ec",
+        "a578da27c7b3",
+        "ec60cb26d9b9"
+      ]
+    },
+    {
+      "brand": "에스짐헬스",
+      "total": 3,
+      "areas": {
+        "서울": 3,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "8401fc9ad8b8",
+        "d564d4e677b8",
+        "5c830ee6922b"
+      ]
+    },
+    {
+      "brand": "에이원팀휘트니스",
+      "total": 3,
+      "areas": {
+        "서울": 0,
+        "경기": 3,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "13be6f67228d",
+        "91cd631121cc",
+        "80c1905a8f79"
+      ]
+    },
+    {
+      "brand": "에이짐",
+      "total": 3,
+      "areas": {
+        "서울": 2,
+        "경기": 0,
+        "인천": 1
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "7f156277557d",
+        "41234e892b58",
+        "7dcbc20e2c87"
+      ]
+    },
+    {
+      "brand": "에이투짐",
+      "total": 3,
+      "areas": {
+        "서울": 3,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "c2b589b48c2f",
+        "eedc66b963d3",
+        "d9469d54de5d"
+      ]
+    },
+    {
+      "brand": "에이플러스짐",
+      "total": 3,
+      "areas": {
+        "서울": 0,
+        "경기": 3,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "403a0088441c",
+        "bd2754ac2733",
+        "d26c74b4eb9f"
+      ]
+    },
+    {
+      "brand": "엘리트핏",
+      "total": 3,
+      "areas": {
+        "서울": 3,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "0a5ed8ec8e50",
+        "597618237542",
+        "7ecb9378cbb5"
+      ]
+    },
+    {
+      "brand": "엠투엠피트니스",
+      "total": 3,
+      "areas": {
+        "서울": 0,
+        "경기": 3,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "113d5b897329",
+        "0de24719bc09",
+        "95ea90ffde41"
+      ]
+    },
+    {
+      "brand": "여성전용피트니스",
+      "total": 3,
+      "areas": {
+        "서울": 0,
+        "경기": 3,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "6ef5ef2d03c0",
+        "757d731e31b9",
+        "9fc6d6823cf0"
+      ]
+    },
+    {
+      "brand": "오픈짐",
+      "total": 3,
+      "areas": {
+        "서울": 0,
+        "경기": 3,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "de14b112d5c9",
+        "73770d9cf8b1",
+        "11f5ba803102"
+      ]
+    },
+    {
+      "brand": "올나잇",
+      "total": 3,
+      "areas": {
+        "서울": 0,
+        "경기": 0,
+        "인천": 3
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "f13a91dd29f0",
+        "3f939ceba795",
+        "b7910ea617d2"
+      ]
+    },
+    {
+      "brand": "올데이짐",
+      "total": 3,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 1
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "45864e5f32e8",
+        "c43a60150fb8",
+        "c4ca5625cf6f"
+      ]
+    },
+    {
+      "brand": "올바른",
+      "total": 3,
+      "areas": {
+        "서울": 1,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "50efe6da0e12",
+        "5fb89aa7580a",
+        "743c6c117708"
+      ]
+    },
+    {
+      "brand": "운동가짐",
+      "total": 3,
+      "areas": {
+        "서울": 0,
+        "경기": 3,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "c915e2ce1d8e",
+        "043a36cefd95",
+        "c8a37a31f58a"
+      ]
+    },
+    {
+      "brand": "원티어피트니스",
       "total": 3,
       "areas": {
         "서울": 2,
@@ -1138,6 +4810,6880 @@
         "19e7a9b1a289",
         "b18e59880a15",
         "f773f33327f6"
+      ]
+    },
+    {
+      "brand": "웨스트짐",
+      "total": 3,
+      "areas": {
+        "서울": 2,
+        "경기": 0,
+        "인천": 1
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "30b9272f57bc",
+        "c5e889185e60",
+        "ac7236ccc623"
+      ]
+    },
+    {
+      "brand": "웨이트랩",
+      "total": 3,
+      "areas": {
+        "서울": 3,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "6fd6044b6dd2",
+        "de8f82211fb5",
+        "3d605a823f38"
+      ]
+    },
+    {
+      "brand": "유얼스짐",
+      "total": 3,
+      "areas": {
+        "서울": 3,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "89853bfc8e42",
+        "c66e61b9cb97",
+        "941394d5c37a"
+      ]
+    },
+    {
+      "brand": "이로운",
+      "total": 3,
+      "areas": {
+        "서울": 1,
+        "경기": 1,
+        "인천": 1
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "f1e582ef3fad",
+        "159874c0bc27",
+        "363da0425eb7"
+      ]
+    },
+    {
+      "brand": "이안피티",
+      "total": 3,
+      "areas": {
+        "서울": 3,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "84df7d830565",
+        "7b9391f082f2",
+        "38c3abd29617"
+      ]
+    },
+    {
+      "brand": "익스트림에스",
+      "total": 3,
+      "areas": {
+        "서울": 3,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "6f0fa0ec3c03",
+        "dafc6e5818bd",
+        "9727b0a168c6"
+      ]
+    },
+    {
+      "brand": "익스홀릭",
+      "total": 3,
+      "areas": {
+        "서울": 0,
+        "경기": 3,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "ab60e935fb25",
+        "3548a5b8699e",
+        "67f77fbf828b"
+      ]
+    },
+    {
+      "brand": "인스타짐",
+      "total": 3,
+      "areas": {
+        "서울": 2,
+        "경기": 1,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "ff10c8475ca4",
+        "a7913df8ec82",
+        "d327e6a2f214"
+      ]
+    },
+    {
+      "brand": "일호핏",
+      "total": 3,
+      "areas": {
+        "서울": 0,
+        "경기": 3,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "f2d7106595f3",
+        "03a0eb26f26e",
+        "5cf0f75f4022"
+      ]
+    },
+    {
+      "brand": "자마이카피트니스앤스파",
+      "total": 3,
+      "areas": {
+        "서울": 2,
+        "경기": 1,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "c53bb5b4b961",
+        "65e383d13b33",
+        "4b817afd01bf"
+      ]
+    },
+    {
+      "brand": "제로초이스",
+      "total": 3,
+      "areas": {
+        "서울": 1,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "7bc459bf46b3",
+        "8f0741ffd50e",
+        "29601505ca93"
+      ]
+    },
+    {
+      "brand": "제이에스",
+      "total": 3,
+      "areas": {
+        "서울": 0,
+        "경기": 3,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "4640933c2383",
+        "cb14b8af5403",
+        "e4fb3633ed64"
+      ]
+    },
+    {
+      "brand": "조인성퍼스널트레이닝",
+      "total": 3,
+      "areas": {
+        "서울": 3,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "b4f0c3fa5824",
+        "12b5d0fc9d15",
+        "d4116df9814e"
+      ]
+    },
+    {
+      "brand": "짐토스",
+      "total": 3,
+      "areas": {
+        "서울": 1,
+        "경기": 1,
+        "인천": 1
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "303e4d3fba4d",
+        "bdbcd0611e77",
+        "6c2ed1d0eb62"
+      ]
+    },
+    {
+      "brand": "짐피티",
+      "total": 3,
+      "areas": {
+        "서울": 2,
+        "경기": 1,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "b53f7a1c125b",
+        "198f443f43e4",
+        "777fe3c5525d"
+      ]
+    },
+    {
+      "brand": "청년피티",
+      "total": 3,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 1
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "7892af6480c6",
+        "ee11f2244363",
+        "7d30d1123eb6"
+      ]
+    },
+    {
+      "brand": "케이짐",
+      "total": 3,
+      "areas": {
+        "서울": 1,
+        "경기": 1,
+        "인천": 1
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "3cc298f82bb7",
+        "e36d08ba5c8e",
+        "a150ddd6072f"
+      ]
+    },
+    {
+      "brand": "코어짐",
+      "total": 3,
+      "areas": {
+        "서울": 0,
+        "경기": 3,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "e2d9ac795466",
+        "709af0cb6ff9",
+        "b99fc26c91cd"
+      ]
+    },
+    {
+      "brand": "쿠타짐",
+      "total": 3,
+      "areas": {
+        "서울": 3,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "9454bbbd6876",
+        "f9965485026d",
+        "20ad02e8f1e1"
+      ]
+    },
+    {
+      "brand": "팀윤짐",
+      "total": 3,
+      "areas": {
+        "서울": 0,
+        "경기": 1,
+        "인천": 2
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "76c03028c6cc",
+        "177836f19834",
+        "1a6d4ec4825c"
+      ]
+    },
+    {
+      "brand": "팀키스짐",
+      "total": 3,
+      "areas": {
+        "서울": 2,
+        "경기": 1,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "8a2c6cd43f53",
+        "04eeb573c2df",
+        "1466c1cf69a6"
+      ]
+    },
+    {
+      "brand": "파워존",
+      "total": 3,
+      "areas": {
+        "서울": 2,
+        "경기": 1,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "94d33698fbfc",
+        "19dfe4b5c428",
+        "d80ff16d14f5"
+      ]
+    },
+    {
+      "brand": "파워짐",
+      "total": 3,
+      "areas": {
+        "서울": 1,
+        "경기": 1,
+        "인천": 1
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "1d1f685f762a",
+        "981ad67762fe",
+        "fe6469fcc395"
+      ]
+    },
+    {
+      "brand": "파이어짐",
+      "total": 3,
+      "areas": {
+        "서울": 3,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "1fbf5b884964",
+        "9fca18342669",
+        "a459ae2e2aac"
+      ]
+    },
+    {
+      "brand": "파프짐",
+      "total": 3,
+      "areas": {
+        "서울": 3,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "34867fddf26b",
+        "3fc1a49e9fa5",
+        "bf5a0c74a8f2"
+      ]
+    },
+    {
+      "brand": "패트릭스아웃컴",
+      "total": 3,
+      "areas": {
+        "서울": 3,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "5ddb27f8b40a",
+        "0dd3d7f74ae2",
+        "1db9c5b695c2"
+      ]
+    },
+    {
+      "brand": "팩토리짐",
+      "total": 3,
+      "areas": {
+        "서울": 2,
+        "경기": 1,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "fd4487fb5ce3",
+        "151e50b55978",
+        "6276862135ea"
+      ]
+    },
+    {
+      "brand": "퍼센트짐",
+      "total": 3,
+      "areas": {
+        "서울": 1,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "24a00c220a68",
+        "c0ebc75c0f82",
+        "f3e7803797c9"
+      ]
+    },
+    {
+      "brand": "퍼펙트짐",
+      "total": 3,
+      "areas": {
+        "서울": 1,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "1cf3c582523e",
+        "211a3fc639a3",
+        "690bebd803fb"
+      ]
+    },
+    {
+      "brand": "펀휘트니스",
+      "total": 3,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 1
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "edbd1d2f1a8a",
+        "50c44845ad9e",
+        "49aba6bb2210"
+      ]
+    },
+    {
+      "brand": "프라임짐",
+      "total": 3,
+      "areas": {
+        "서울": 1,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "a4a8af039983",
+        "3ec0f235fc14",
+        "196b68abb514"
+      ]
+    },
+    {
+      "brand": "프롬바디",
+      "total": 3,
+      "areas": {
+        "서울": 0,
+        "경기": 0,
+        "인천": 3
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "d5b92ed06cf0",
+        "a1eb1800852e",
+        "9dc51532bc77"
+      ]
+    },
+    {
+      "brand": "피트니스더클럽",
+      "total": 3,
+      "areas": {
+        "서울": 0,
+        "경기": 3,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "11c94079c987",
+        "0ec28b5f15c8",
+        "90e2acd8e664"
+      ]
+    },
+    {
+      "brand": "피트니스온",
+      "total": 3,
+      "areas": {
+        "서울": 2,
+        "경기": 1,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "1aa09470d9a5",
+        "a600a4678273",
+        "1beb5633a7d6"
+      ]
+    },
+    {
+      "brand": "하이짐",
+      "total": 3,
+      "areas": {
+        "서울": 1,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "374dee988460",
+        "b5ccdcd6a288",
+        "43bb31fbb4c0"
+      ]
+    },
+    {
+      "brand": "하이퍼짐",
+      "total": 3,
+      "areas": {
+        "서울": 1,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "a8804c2c5deb",
+        "becf80b8b8ee",
+        "b86f9fcb5937"
+      ]
+    },
+    {
+      "brand": "해적짐",
+      "total": 3,
+      "areas": {
+        "서울": 3,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "10c358af4912",
+        "f48fdf6c3616",
+        "119ac4c307a6"
+      ]
+    },
+    {
+      "brand": "헬로우짐",
+      "total": 3,
+      "areas": {
+        "서울": 0,
+        "경기": 3,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "8fd3af1db6ad",
+        "ef25b9191476",
+        "5510640cc10f"
+      ]
+    },
+    {
+      "brand": "휘트니스인",
+      "total": 3,
+      "areas": {
+        "서울": 3,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "1458d2cd05da",
+        "ba1552977a15",
+        "f3e3b72c2b9e"
+      ]
+    },
+    {
+      "brand": "히트앤핏",
+      "total": 3,
+      "areas": {
+        "서울": 3,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "050432e91965",
+        "5e784906f96f",
+        "5c4d215fee3b"
+      ]
+    },
+    {
+      "brand": "힙디자인팩토리",
+      "total": 3,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 1
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "0d69591d38ba",
+        "4f56e260cd48",
+        "980ad3d06b73"
+      ]
+    },
+    {
+      "brand": "LIKE",
+      "total": 3,
+      "areas": {
+        "서울": 3,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "03c90c7e49aa",
+        "53d28e03326c",
+        "b98ebb438f61"
+      ]
+    },
+    {
+      "brand": "45GYM",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "f0020369277a",
+        "49651c16072a"
+      ]
+    },
+    {
+      "brand": "건강과땀",
+      "total": 2,
+      "areas": {
+        "서울": 1,
+        "경기": 1,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "308c8b9b5aab",
+        "1299d7e3627f"
+      ]
+    },
+    {
+      "brand": "고물상",
+      "total": 2,
+      "areas": {
+        "서울": 2,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "0c03df75e6d1",
+        "d62615c0fcd3"
+      ]
+    },
+    {
+      "brand": "고트짐",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 1,
+        "인천": 1
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "01dea6af9a9e",
+        "ff405d1591c4"
+      ]
+    },
+    {
+      "brand": "골든타임",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "287f655d5011",
+        "a993faedc0c1"
+      ]
+    },
+    {
+      "brand": "구스짐",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "879eb09c3b03",
+        "175c7585f5a5"
+      ]
+    },
+    {
+      "brand": "그리드짐",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 1,
+        "인천": 1
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "0c790d83f533",
+        "5394202d6ff7"
+      ]
+    },
+    {
+      "brand": "그린짐",
+      "total": 2,
+      "areas": {
+        "서울": 1,
+        "경기": 0,
+        "인천": 1
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "dead45d97942",
+        "1e4fa0b42011"
+      ]
+    },
+    {
+      "brand": "근본짐",
+      "total": 2,
+      "areas": {
+        "서울": 2,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "51a0100c14e8",
+        "cd6ee76f9c0e"
+      ]
+    },
+    {
+      "brand": "글래드짐",
+      "total": 2,
+      "areas": {
+        "서울": 2,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "cb03444ec1a2",
+        "80a874da2776"
+      ]
+    },
+    {
+      "brand": "글로리",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "3d16c81b3253",
+        "1e19978ef4ab"
+      ]
+    },
+    {
+      "brand": "꿀핏휘트니스",
+      "total": 2,
+      "areas": {
+        "서울": 1,
+        "경기": 1,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "2634f8963984",
+        "28f9b8762a46"
+      ]
+    },
+    {
+      "brand": "나는필라테스",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "bffb731065c8",
+        "f425826981d1"
+      ]
+    },
+    {
+      "brand": "나만의짐",
+      "total": 2,
+      "areas": {
+        "서울": 2,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "aaddc85b47ef",
+        "bff84376f4d6"
+      ]
+    },
+    {
+      "brand": "나의근육사용설명서",
+      "total": 2,
+      "areas": {
+        "서울": 2,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "ef42ce2aa396",
+        "7e9e8097067c"
+      ]
+    },
+    {
+      "brand": "나인원피트니스",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "cd83fb499187",
+        "ea38334bf568"
+      ]
+    },
+    {
+      "brand": "나홀로짐에",
+      "total": 2,
+      "areas": {
+        "서울": 2,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "f95f42475c6a",
+        "1be028f4a9a4"
+      ]
+    },
+    {
+      "brand": "내셔널짐",
+      "total": 2,
+      "areas": {
+        "서울": 2,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "fd7250adf0b7",
+        "8416f51fc471"
+      ]
+    },
+    {
+      "brand": "내추럴짐",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "97758b826d3a",
+        "b7eb3755b3a6"
+      ]
+    },
+    {
+      "brand": "네스트짐헬스피티",
+      "total": 2,
+      "areas": {
+        "서울": 2,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "702d53e924aa",
+        "de12c0638bf6"
+      ]
+    },
+    {
+      "brand": "네이브핏",
+      "total": 2,
+      "areas": {
+        "서울": 2,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "438b32962b58",
+        "97f6cb610fe9"
+      ]
+    },
+    {
+      "brand": "노블핏짐",
+      "total": 2,
+      "areas": {
+        "서울": 2,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "75a1a778d541",
+        "2840e87dab91"
+      ]
+    },
+    {
+      "brand": "뉴바디짐",
+      "total": 2,
+      "areas": {
+        "서울": 1,
+        "경기": 0,
+        "인천": 1
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "2351d5aebd6f",
+        "08c0fabfe236"
+      ]
+    },
+    {
+      "brand": "뉴웨이브",
+      "total": 2,
+      "areas": {
+        "서울": 1,
+        "경기": 1,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "da24baad5c91",
+        "a923285b1a19"
+      ]
+    },
+    {
+      "brand": "뉴웨이짐",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "2594dbcb724e",
+        "43e8a7bd5c84"
+      ]
+    },
+    {
+      "brand": "뉴짐스",
+      "total": 2,
+      "areas": {
+        "서울": 1,
+        "경기": 1,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "9642b0e73f22",
+        "24c74d014485"
+      ]
+    },
+    {
+      "brand": "뉴핏휘트니스",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 1,
+        "인천": 1
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "d59f1e5e8944",
+        "9ef91057a02f"
+      ]
+    },
+    {
+      "brand": "니드짐",
+      "total": 2,
+      "areas": {
+        "서울": 2,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "a351bd790175",
+        "0df51bc1eb57"
+      ]
+    },
+    {
+      "brand": "다이아짐",
+      "total": 2,
+      "areas": {
+        "서울": 1,
+        "경기": 1,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "d2ddb311f5b5",
+        "b52707ee7af5"
+      ]
+    },
+    {
+      "brand": "닥터바디짐",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "f20013aa14fe",
+        "dd16fcf5caea"
+      ]
+    },
+    {
+      "brand": "당근짐",
+      "total": 2,
+      "areas": {
+        "서울": 1,
+        "경기": 1,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "196c3a734173",
+        "8c56624f0fe1"
+      ]
+    },
+    {
+      "brand": "더라인핏",
+      "total": 2,
+      "areas": {
+        "서울": 2,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "4d00aa1da949",
+        "d29ef3b40488"
+      ]
+    },
+    {
+      "brand": "더메이커짐",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "f43d6026ade4",
+        "ff30ad404dbf"
+      ]
+    },
+    {
+      "brand": "더문짐",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "723a33379931",
+        "9c2be8a54234"
+      ]
+    },
+    {
+      "brand": "더바른몸",
+      "total": 2,
+      "areas": {
+        "서울": 1,
+        "경기": 0,
+        "인천": 1
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "598d9a974a67",
+        "03feb7050b7f"
+      ]
+    },
+    {
+      "brand": "더바른핏",
+      "total": 2,
+      "areas": {
+        "서울": 2,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "3b20620ca280",
+        "cd86c6eace89"
+      ]
+    },
+    {
+      "brand": "더블에스",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "fb3a09f6d47c",
+        "b8cd14d1a4fe"
+      ]
+    },
+    {
+      "brand": "더블엠",
+      "total": 2,
+      "areas": {
+        "서울": 1,
+        "경기": 1,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "de2f47339a6a",
+        "ff0e3874fd3a"
+      ]
+    },
+    {
+      "brand": "더블유스토어",
+      "total": 2,
+      "areas": {
+        "서울": 1,
+        "경기": 1,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "60e82a8cf20f",
+        "e534cb75d1bd"
+      ]
+    },
+    {
+      "brand": "더피티",
+      "total": 2,
+      "areas": {
+        "서울": 1,
+        "경기": 1,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "271c927267f3",
+        "5c60e2f210c3"
+      ]
+    },
+    {
+      "brand": "더핏퍼스널트레이닝",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "a082996e588b",
+        "fd483cfc9d73"
+      ]
+    },
+    {
+      "brand": "데스런",
+      "total": 2,
+      "areas": {
+        "서울": 1,
+        "경기": 1,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "3968282c5d91",
+        "62805bfc26eb"
+      ]
+    },
+    {
+      "brand": "데이원짐",
+      "total": 2,
+      "areas": {
+        "서울": 2,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "4d50a5073949",
+        "e79b32d018b5"
+      ]
+    },
+    {
+      "brand": "데일리피트니스",
+      "total": 2,
+      "areas": {
+        "서울": 2,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "b9eecc194f56",
+        "25f713f35123"
+      ]
+    },
+    {
+      "brand": "도미디",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "f4ecce06defe",
+        "503da45a435e"
+      ]
+    },
+    {
+      "brand": "독립문체육관",
+      "total": 2,
+      "areas": {
+        "서울": 2,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "045055ebf9a5",
+        "0949a727969c"
+      ]
+    },
+    {
+      "brand": "디바짐",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 0,
+        "인천": 2
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "388673b8aeef",
+        "61f6e8e87af0"
+      ]
+    },
+    {
+      "brand": "디벨롭짐",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "3d453ad633d9",
+        "3b1635c9bb61"
+      ]
+    },
+    {
+      "brand": "디에이트짐",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "afc9a5aa8a2b",
+        "78a70b102aa8"
+      ]
+    },
+    {
+      "brand": "디오필라앤핏",
+      "total": 2,
+      "areas": {
+        "서울": 2,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "0776e2f9b971",
+        "fbc7797a9985"
+      ]
+    },
+    {
+      "brand": "딜라이트짐",
+      "total": 2,
+      "areas": {
+        "서울": 1,
+        "경기": 1,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "8c8694f3ce4a",
+        "0c4a56ff23b6"
+      ]
+    },
+    {
+      "brand": "라비다",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "04be3ceb98a5",
+        "968217e56277"
+      ]
+    },
+    {
+      "brand": "라온휘트니스",
+      "total": 2,
+      "areas": {
+        "서울": 1,
+        "경기": 1,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "854f66ea8945",
+        "6a8f6b644788"
+      ]
+    },
+    {
+      "brand": "라이브짐",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "10491eedad9b",
+        "8732e62d05fb"
+      ]
+    },
+    {
+      "brand": "라이프빌딩짐",
+      "total": 2,
+      "areas": {
+        "서울": 2,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "a370606ff069",
+        "27771844c910"
+      ]
+    },
+    {
+      "brand": "라인업",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "3e2b9f2abc73",
+        "5312220bfd6a"
+      ]
+    },
+    {
+      "brand": "라프그라운드",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 1,
+        "인천": 1
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "945ad315e7f3",
+        "10d48d337085"
+      ]
+    },
+    {
+      "brand": "락바디짐",
+      "total": 2,
+      "areas": {
+        "서울": 2,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "0aa1ae4c06e1",
+        "68b8164b619c"
+      ]
+    },
+    {
+      "brand": "러너스하이피트니스",
+      "total": 2,
+      "areas": {
+        "서울": 2,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "a5b68185887a",
+        "46505204f46c"
+      ]
+    },
+    {
+      "brand": "런던피트니스",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "3d8d29429019",
+        "ba8d706347cd"
+      ]
+    },
+    {
+      "brand": "레드짐",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "42316242144d",
+        "5ebecabea865"
+      ]
+    },
+    {
+      "brand": "레몬짐",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 1,
+        "인천": 1
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "c723e4137cba",
+        "55b046aa1adb"
+      ]
+    },
+    {
+      "brand": "레인헬스",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 0,
+        "인천": 2
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "2e18c179a7d5",
+        "9bb29608c28a"
+      ]
+    },
+    {
+      "brand": "레조나헬스랩",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "0e622a37392c",
+        "e8558d6027f0"
+      ]
+    },
+    {
+      "brand": "렛츠핏",
+      "total": 2,
+      "areas": {
+        "서울": 1,
+        "경기": 1,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "ca3a552a9cb3",
+        "f12652b3b721"
+      ]
+    },
+    {
+      "brand": "로마짐",
+      "total": 2,
+      "areas": {
+        "서울": 1,
+        "경기": 1,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "dc6cc8d9043b",
+        "d7885b17af96"
+      ]
+    },
+    {
+      "brand": "로얄바디짐",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "e7f387c04acc",
+        "b260d52ce0f2"
+      ]
+    },
+    {
+      "brand": "룰루레몬",
+      "total": 2,
+      "areas": {
+        "서울": 1,
+        "경기": 1,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "53e6fd53c30f",
+        "cb3301f15964"
+      ]
+    },
+    {
+      "brand": "리메이크바디샵",
+      "total": 2,
+      "areas": {
+        "서울": 2,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "ad7f847e459e",
+        "8793e3efceb4"
+      ]
+    },
+    {
+      "brand": "리브바레",
+      "total": 2,
+      "areas": {
+        "서울": 2,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "22d123884b89",
+        "2adc7e5faa17"
+      ]
+    },
+    {
+      "brand": "리얼타임피트니스",
+      "total": 2,
+      "areas": {
+        "서울": 1,
+        "경기": 1,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "9bac94fd098f",
+        "8a936fe00e19"
+      ]
+    },
+    {
+      "brand": "리지트",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "bef961185a26",
+        "5b40eb9e09d0"
+      ]
+    },
+    {
+      "brand": "리케어짐",
+      "total": 2,
+      "areas": {
+        "서울": 2,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "e0966b4a2d8a",
+        "2d369072352c"
+      ]
+    },
+    {
+      "brand": "리피티",
+      "total": 2,
+      "areas": {
+        "서울": 2,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "32da6af418f7",
+        "50039c498dcf"
+      ]
+    },
+    {
+      "brand": "리핏트레이닝센터",
+      "total": 2,
+      "areas": {
+        "서울": 1,
+        "경기": 1,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "af735139e8be",
+        "279cfee69259"
+      ]
+    },
+    {
+      "brand": "마스터",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 0,
+        "인천": 2
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "6863196853f1",
+        "ade1b5f2f78d"
+      ]
+    },
+    {
+      "brand": "마이트레이너짐",
+      "total": 2,
+      "areas": {
+        "서울": 2,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "666215bbebe0",
+        "7ec4ba97b128"
+      ]
+    },
+    {
+      "brand": "마이핏",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "4cdab6c1a0f7",
+        "984e0e98572d"
+      ]
+    },
+    {
+      "brand": "마인딩",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "ac3f9c553757",
+        "04518e0a0c9e"
+      ]
+    },
+    {
+      "brand": "마일스톤",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "0fd8b8ef7e0e",
+        "b210260fc232"
+      ]
+    },
+    {
+      "brand": "맞춤운동센터",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "09e63a00ffde",
+        "e35880ccf0f1"
+      ]
+    },
+    {
+      "brand": "매스짐",
+      "total": 2,
+      "areas": {
+        "서울": 1,
+        "경기": 1,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "85e631413f71",
+        "15206f57d345"
+      ]
+    },
+    {
+      "brand": "매일피트니스",
+      "total": 2,
+      "areas": {
+        "서울": 2,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "3bb4eb72687f",
+        "de177b91cc93"
+      ]
+    },
+    {
+      "brand": "맥스아웃휘트니스",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "26e8c77727ae",
+        "663f963ff436"
+      ]
+    },
+    {
+      "brand": "맨투맨",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "1305a0530af0",
+        "51b363c27000"
+      ]
+    },
+    {
+      "brand": "머스타드피트니스",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "acbb9b36f24b",
+        "bdca461eb564"
+      ]
+    },
+    {
+      "brand": "머슬라운지",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 0,
+        "인천": 2
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "af60adbb4393",
+        "e89605a8311f"
+      ]
+    },
+    {
+      "brand": "머슬스푼",
+      "total": 2,
+      "areas": {
+        "서울": 2,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "f30ff04ed986",
+        "7d71066b0251"
+      ]
+    },
+    {
+      "brand": "머슬앤피플",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 0,
+        "인천": 2
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "19a0eb5a0763",
+        "de4f2186d0ea"
+      ]
+    },
+    {
+      "brand": "머슬원핏",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "30be766784fa",
+        "9f04138d62f0"
+      ]
+    },
+    {
+      "brand": "머슬짐",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "33e54f441fee",
+        "f30225f7c239"
+      ]
+    },
+    {
+      "brand": "머슬카페",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 0,
+        "인천": 2
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "44e708d7e594",
+        "beb7d2952042"
+      ]
+    },
+    {
+      "brand": "머슬코어",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "328a2a80144c",
+        "a6346a69da4c"
+      ]
+    },
+    {
+      "brand": "멋을채움",
+      "total": 2,
+      "areas": {
+        "서울": 2,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "4ea0d7d79789",
+        "0b7aecc258b7"
+      ]
+    },
+    {
+      "brand": "멋GYM",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "06e41b0a462f",
+        "ea328127eea3"
+      ]
+    },
+    {
+      "brand": "메디앤핏",
+      "total": 2,
+      "areas": {
+        "서울": 2,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "12cb0225d964",
+        "ed9faa938c46"
+      ]
+    },
+    {
+      "brand": "메디핏",
+      "total": 2,
+      "areas": {
+        "서울": 2,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "5c744a39a331",
+        "db34ceb47e95"
+      ]
+    },
+    {
+      "brand": "메루치양식장",
+      "total": 2,
+      "areas": {
+        "서울": 2,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "709b7b263868",
+        "565d071e6758"
+      ]
+    },
+    {
+      "brand": "메이드",
+      "total": 2,
+      "areas": {
+        "서울": 1,
+        "경기": 0,
+        "인천": 1
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "ff889488dd89",
+        "ed6b7d72faf7"
+      ]
+    },
+    {
+      "brand": "메이드짐",
+      "total": 2,
+      "areas": {
+        "서울": 1,
+        "경기": 1,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "5afec60e5a2a",
+        "0fc2309b5b1f"
+      ]
+    },
+    {
+      "brand": "메이크바디",
+      "total": 2,
+      "areas": {
+        "서울": 2,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "0ee90924615e",
+        "93fc75e8e1aa"
+      ]
+    },
+    {
+      "brand": "메이크핏",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "0d5b083d05a3",
+        "eca666bcff06"
+      ]
+    },
+    {
+      "brand": "모두짐",
+      "total": 2,
+      "areas": {
+        "서울": 1,
+        "경기": 0,
+        "인천": 1
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "35b69f22fa32",
+        "083869faba3f"
+      ]
+    },
+    {
+      "brand": "모멘핏",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "55c15f0a42ea",
+        "d3ea38f6fa2d"
+      ]
+    },
+    {
+      "brand": "모티브짐",
+      "total": 2,
+      "areas": {
+        "서울": 1,
+        "경기": 1,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "53be14c8ef90",
+        "75757eacde2e"
+      ]
+    },
+    {
+      "brand": "모하짐",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "a56c8a8d3029",
+        "95f77a32bc11"
+      ]
+    },
+    {
+      "brand": "무무짐",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 0,
+        "인천": 2
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "0f357deb023d",
+        "5e15bfe5317d"
+      ]
+    },
+    {
+      "brand": "무브데이",
+      "total": 2,
+      "areas": {
+        "서울": 1,
+        "경기": 1,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "400ca766d34d",
+        "1f0a1b720074"
+      ]
+    },
+    {
+      "brand": "무브웰",
+      "total": 2,
+      "areas": {
+        "서울": 2,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "0d2a614cd35c",
+        "71ca89fff59f"
+      ]
+    },
+    {
+      "brand": "뮬라웨어",
+      "total": 2,
+      "areas": {
+        "서울": 2,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "245de8b58c3b",
+        "4a06bc7df277"
+      ]
+    },
+    {
+      "brand": "미니휘트니스",
+      "total": 2,
+      "areas": {
+        "서울": 2,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "8f266a8cd02b",
+        "98ae6064a8ca"
+      ]
+    },
+    {
+      "brand": "미스트짐",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "b3f64f37daf1",
+        "a4718a934b8d"
+      ]
+    },
+    {
+      "brand": "바도스짐",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "8aedf1e1fba0",
+        "6e78f43a32a5"
+      ]
+    },
+    {
+      "brand": "바디라인",
+      "total": 2,
+      "areas": {
+        "서울": 2,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "c92ee95b5a3d",
+        "7671f9edb96e"
+      ]
+    },
+    {
+      "brand": "바디랩",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "1c543a706753",
+        "995b1d976647"
+      ]
+    },
+    {
+      "brand": "바디랩그룹트레이닝",
+      "total": 2,
+      "areas": {
+        "서울": 2,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "e57c6449558a",
+        "81da485a6d48"
+      ]
+    },
+    {
+      "brand": "바디메이트짐",
+      "total": 2,
+      "areas": {
+        "서울": 2,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "ad485c1d9631",
+        "8e9674eda151"
+      ]
+    },
+    {
+      "brand": "바디소나타",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 0,
+        "인천": 2
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "b2fce38a29a5",
+        "dec7cc2411f5"
+      ]
+    },
+    {
+      "brand": "바디스케치",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "8b5927f8a505",
+        "911cf5c549e0"
+      ]
+    },
+    {
+      "brand": "바디스튜디오",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "82926250bff1",
+        "054db3a5cd72"
+      ]
+    },
+    {
+      "brand": "바디업피티",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "1a8fca19fa2f",
+        "de79ad7a5e1c"
+      ]
+    },
+    {
+      "brand": "바디에프오",
+      "total": 2,
+      "areas": {
+        "서울": 2,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "e465a6ce94af",
+        "292f4571281e"
+      ]
+    },
+    {
+      "brand": "바디체크짐",
+      "total": 2,
+      "areas": {
+        "서울": 1,
+        "경기": 1,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "f67ca5056521",
+        "1cd92a0a8e9c"
+      ]
+    },
+    {
+      "brand": "바디패션짐",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "c59df37494a2",
+        "313ebf8968f2"
+      ]
+    },
+    {
+      "brand": "바디프로짐",
+      "total": 2,
+      "areas": {
+        "서울": 2,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "bcda1d4fc1b6",
+        "6654064e4101"
+      ]
+    },
+    {
+      "brand": "바르지",
+      "total": 2,
+      "areas": {
+        "서울": 2,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "4dda952ccd21",
+        "1a7f2da8a297"
+      ]
+    },
+    {
+      "brand": "바른헬스",
+      "total": 2,
+      "areas": {
+        "서울": 2,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "dfdc30b8cb23",
+        "f6cff5aa1129"
+      ]
+    },
+    {
+      "brand": "바모스짐",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "0b3fa5a7096b",
+        "b35831d51385"
+      ]
+    },
+    {
+      "brand": "바벨짐",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "38d35ad8f2aa",
+        "188cde337a31"
+      ]
+    },
+    {
+      "brand": "바비짐",
+      "total": 2,
+      "areas": {
+        "서울": 1,
+        "경기": 1,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "cf59387130d2",
+        "9a6c52f3f091"
+      ]
+    },
+    {
+      "brand": "바이칼휘트니스",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "27f3a4132293",
+        "14c139f73c04"
+      ]
+    },
+    {
+      "brand": "바키짐",
+      "total": 2,
+      "areas": {
+        "서울": 1,
+        "경기": 1,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "524b8a8bb12d",
+        "11bce49a7d78"
+      ]
+    },
+    {
+      "brand": "백프로짐",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "ef2c5893573a",
+        "a2209a67464e"
+      ]
+    },
+    {
+      "brand": "밸런스짐",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "a14a99f28dbd",
+        "1477ed1d1163"
+      ]
+    },
+    {
+      "brand": "밸런스핏",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "65194f2dc906",
+        "9c7aa6827b52"
+      ]
+    },
+    {
+      "brand": "뱅크짐",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "0807b37e916d",
+        "f126768d1445"
+      ]
+    },
+    {
+      "brand": "버클다운짐",
+      "total": 2,
+      "areas": {
+        "서울": 1,
+        "경기": 1,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "a68148edabe8",
+        "b9ae49fde093"
+      ]
+    },
+    {
+      "brand": "버텍스짐",
+      "total": 2,
+      "areas": {
+        "서울": 1,
+        "경기": 1,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "a899b19ae123",
+        "7674733cb2e9"
+      ]
+    },
+    {
+      "brand": "벙커짐",
+      "total": 2,
+      "areas": {
+        "서울": 1,
+        "경기": 1,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "0ed996cb5398",
+        "4ddc1fed4ca0"
+      ]
+    },
+    {
+      "brand": "베라짐",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "f6a107a28de8",
+        "871e90cbbd64"
+      ]
+    },
+    {
+      "brand": "베리짐",
+      "total": 2,
+      "areas": {
+        "서울": 1,
+        "경기": 1,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "84797595847a",
+        "554144a306a2"
+      ]
+    },
+    {
+      "brand": "베이스짐",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "c49daa726952",
+        "4c4cc3b3d60b"
+      ]
+    },
+    {
+      "brand": "베이스피티",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "dd54a4f04a60",
+        "fe8511bdc33a"
+      ]
+    },
+    {
+      "brand": "베이직",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "e7544a85dbdc",
+        "3d3e56d8d6da"
+      ]
+    },
+    {
+      "brand": "벨로짐",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "cfc11fdc262d",
+        "0efc95ead3bf"
+      ]
+    },
+    {
+      "brand": "벨르핏",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "663942ae2a91",
+        "4970916d682b"
+      ]
+    },
+    {
+      "brand": "본어게인",
+      "total": 2,
+      "areas": {
+        "서울": 1,
+        "경기": 0,
+        "인천": 1
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "3d28e75159f9",
+        "785103705970"
+      ]
+    },
+    {
+      "brand": "봉스짐",
+      "total": 2,
+      "areas": {
+        "서울": 2,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "f49cf3cd28d6",
+        "65731acd4c76"
+      ]
+    },
+    {
+      "brand": "부르스타짐",
+      "total": 2,
+      "areas": {
+        "서울": 2,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "79939eac2035",
+        "31a095b1d23a"
+      ]
+    },
+    {
+      "brand": "브라운핏",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "de28a4167786",
+        "f0f15fc0173e"
+      ]
+    },
+    {
+      "brand": "브랜뉴핏",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "2e3d82c03020",
+        "497f63534604"
+      ]
+    },
+    {
+      "brand": "브레인퍼스널트레이닝",
+      "total": 2,
+      "areas": {
+        "서울": 2,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "194083e3f109",
+        "9e014d3d3b4f"
+      ]
+    },
+    {
+      "brand": "브릭스짐",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "ccbc423927db",
+        "61a7a8ae3099"
+      ]
+    },
+    {
+      "brand": "블랙멀티짐",
+      "total": 2,
+      "areas": {
+        "서울": 2,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "1d751c2e2bb4",
+        "6ee6b7302c60"
+      ]
+    },
+    {
+      "brand": "블랙짐",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "c878c0ce99c9",
+        "d5a3140a0c54"
+      ]
+    },
+    {
+      "brand": "비볼드",
+      "total": 2,
+      "areas": {
+        "서울": 2,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "d19f887a498f",
+        "57b90952644e"
+      ]
+    },
+    {
+      "brand": "비비짐",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "dc05faadea82",
+        "4c43cd53243d"
+      ]
+    },
+    {
+      "brand": "비스트짐",
+      "total": 2,
+      "areas": {
+        "서울": 1,
+        "경기": 1,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "b68c52aaa377",
+        "30c5194bdc3f"
+      ]
+    },
+    {
+      "brand": "비프로",
+      "total": 2,
+      "areas": {
+        "서울": 2,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "fdadae3047e5",
+        "6d4be5e952f1"
+      ]
+    },
+    {
+      "brand": "빅스짐",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "6a772df7702f",
+        "35c95b32d112"
+      ]
+    },
+    {
+      "brand": "빌드짐",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "5a4109614f60",
+        "b559a000b471"
+      ]
+    },
+    {
+      "brand": "빽스짐",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "58bb038be45c",
+        "c0112062ae55"
+      ]
+    },
+    {
+      "brand": "상가철거",
+      "total": 2,
+      "areas": {
+        "서울": 1,
+        "경기": 1,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "69d76184de9b",
+        "dfa28c7d58e8"
+      ]
+    },
+    {
+      "brand": "새로이짐",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 1,
+        "인천": 1
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "4afb81d8385d",
+        "f1802a86df9c"
+      ]
+    },
+    {
+      "brand": "새로핏",
+      "total": 2,
+      "areas": {
+        "서울": 1,
+        "경기": 1,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "10aa04c79877",
+        "35b9b2e42b0c"
+      ]
+    },
+    {
+      "brand": "서울스쿼시",
+      "total": 2,
+      "areas": {
+        "서울": 2,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "935fbf3020ff",
+        "ef633fa6467c"
+      ]
+    },
+    {
+      "brand": "세븐짐",
+      "total": 2,
+      "areas": {
+        "서울": 1,
+        "경기": 1,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "47562d41be8f",
+        "ddf0c74e7899"
+      ]
+    },
+    {
+      "brand": "세심한",
+      "total": 2,
+      "areas": {
+        "서울": 2,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "5e57afaf22bf",
+        "79191ebe66cd"
+      ]
+    },
+    {
+      "brand": "센트럴짐",
+      "total": 2,
+      "areas": {
+        "서울": 1,
+        "경기": 1,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "03c1ad1628bc",
+        "b7756106d85f"
+      ]
+    },
+    {
+      "brand": "셀프메이드짐",
+      "total": 2,
+      "areas": {
+        "서울": 2,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "9235ebca0d0a",
+        "f26b0d585586"
+      ]
+    },
+    {
+      "brand": "송민종짐",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "81b48cf0da62",
+        "4fd76344f4e2"
+      ]
+    },
+    {
+      "brand": "슈퍼바디짐",
+      "total": 2,
+      "areas": {
+        "서울": 2,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "f6a48f1e41d1",
+        "027eb3ef5b17"
+      ]
+    },
+    {
+      "brand": "슈퍼스타",
+      "total": 2,
+      "areas": {
+        "서울": 2,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "8ef8a73a1e63",
+        "64fc4866f98d"
+      ]
+    },
+    {
+      "brand": "스마일휘트니스",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "44d23a836612",
+        "e2f33abd8164"
+      ]
+    },
+    {
+      "brand": "스마트짐",
+      "total": 2,
+      "areas": {
+        "서울": 2,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "08e6c56857e0",
+        "5c5a2d673e56"
+      ]
+    },
+    {
+      "brand": "스케일짐",
+      "total": 2,
+      "areas": {
+        "서울": 1,
+        "경기": 1,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "a807ed7dd811",
+        "d06996f7856e"
+      ]
+    },
+    {
+      "brand": "스탠다드",
+      "total": 2,
+      "areas": {
+        "서울": 1,
+        "경기": 1,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "808501eacda0",
+        "676edc6b4518"
+      ]
+    },
+    {
+      "brand": "스탠다드짐",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "86592b664fdc",
+        "c1e6cb9411ca"
+      ]
+    },
+    {
+      "brand": "스테디휘트니스",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "ef37e79350a5",
+        "bc137288e5f1"
+      ]
+    },
+    {
+      "brand": "스테이션",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "c79449da19b3",
+        "59bd42ed31d9"
+      ]
+    },
+    {
+      "brand": "스테이피트니스",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "efb3abd33747",
+        "88544f0be93f"
+      ]
+    },
+    {
+      "brand": "스트레치뱅",
+      "total": 2,
+      "areas": {
+        "서울": 1,
+        "경기": 1,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "33206f11da23",
+        "3b396cb181db"
+      ]
+    },
+    {
+      "brand": "스트롱라인",
+      "total": 2,
+      "areas": {
+        "서울": 1,
+        "경기": 1,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "f952861f6142",
+        "1a868009bc85"
+      ]
+    },
+    {
+      "brand": "스파렉스",
+      "total": 2,
+      "areas": {
+        "서울": 1,
+        "경기": 1,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "8fddf457a74c",
+        "f1cfdb7dadf2"
+      ]
+    },
+    {
+      "brand": "스포웰짐",
+      "total": 2,
+      "areas": {
+        "서울": 2,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "c4c5d95f7a44",
+        "d7e3ede86e15"
+      ]
+    },
+    {
+      "brand": "스포츠",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "414a2debec4d",
+        "ed4a7cb440a4"
+      ]
+    },
+    {
+      "brand": "스포하이",
+      "total": 2,
+      "areas": {
+        "서울": 2,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "b09ad69bdf70",
+        "c980d1aaed91"
+      ]
+    },
+    {
+      "brand": "스포힐휘트니스",
+      "total": 2,
+      "areas": {
+        "서울": 2,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "cd69d7bf4e45",
+        "09eaa06f6a95"
+      ]
+    },
+    {
+      "brand": "시험연구원",
+      "total": 2,
+      "areas": {
+        "서울": 1,
+        "경기": 1,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "1ac995abdb96",
+        "3ea33f939ff7"
+      ]
+    },
+    {
+      "brand": "쏭클보컬피티샵",
+      "total": 2,
+      "areas": {
+        "서울": 2,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "a82cae632155",
+        "121ba946a97c"
+      ]
+    },
+    {
+      "brand": "쓰리핸드짐",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "7cf61e0aeeb7",
+        "8ede2ba1b4cf"
+      ]
+    },
+    {
+      "brand": "아놀드홍짐",
+      "total": 2,
+      "areas": {
+        "서울": 1,
+        "경기": 0,
+        "인천": 1
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "0025fd6a66a9",
+        "548c15344f20"
+      ]
+    },
+    {
+      "brand": "아르더짐",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "59890bb42be1",
+        "a2c9545ce153"
+      ]
+    },
+    {
+      "brand": "아르젠",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "c207414e8e7f",
+        "053326fa54f8"
+      ]
+    },
+    {
+      "brand": "아리스",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 0,
+        "인천": 2
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "817811254536",
+        "56e4b0e0f0fd"
+      ]
+    },
+    {
+      "brand": "아세로짐",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "cb5cfbd6a98f",
+        "b0d25fde05dc"
+      ]
+    },
+    {
+      "brand": "아우라짐",
+      "total": 2,
+      "areas": {
+        "서울": 1,
+        "경기": 1,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "2fe845062de5",
+        "0dc93321b33d"
+      ]
+    },
+    {
+      "brand": "아움피트니스",
+      "total": 2,
+      "areas": {
+        "서울": 2,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "87b98ba7a2cb",
+        "049356d823b3"
+      ]
+    },
+    {
+      "brand": "아이앤지짐",
+      "total": 2,
+      "areas": {
+        "서울": 1,
+        "경기": 1,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "32812111537a",
+        "688fdbc04455"
+      ]
+    },
+    {
+      "brand": "아이언짐",
+      "total": 2,
+      "areas": {
+        "서울": 2,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "e5d9cc86739b",
+        "31a9e1e9fe34"
+      ]
+    },
+    {
+      "brand": "아이짐",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 1,
+        "인천": 1
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "396e8154d06c",
+        "29d9e1cc30cf"
+      ]
+    },
+    {
+      "brand": "아지트짐",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "b088afd0ee0d",
+        "1581a95aab59"
+      ]
+    },
+    {
+      "brand": "아현스포렉스",
+      "total": 2,
+      "areas": {
+        "서울": 2,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "66b35cc0621e",
+        "dcb953c719e1"
+      ]
+    },
+    {
+      "brand": "안녕휘트니스",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "5e7766444fe4",
+        "2939d3d83775"
+      ]
+    },
+    {
+      "brand": "안산대학교",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "cdecedffc3be",
+        "f137abc7ce62"
+      ]
+    },
+    {
+      "brand": "애블바디",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "88abca42a58b",
+        "9d688f19fded"
+      ]
+    },
+    {
+      "brand": "애플피트니스",
+      "total": 2,
+      "areas": {
+        "서울": 2,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "153f50fc5920",
+        "7310ebe84255"
+      ]
+    },
+    {
+      "brand": "액티브짐",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 0,
+        "인천": 2
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "049f945e847e",
+        "58955cf71c3f"
+      ]
+    },
+    {
+      "brand": "어게인핏",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 0,
+        "인천": 2
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "2d61cd6c8d50",
+        "5d546aaf1439"
+      ]
+    },
+    {
+      "brand": "어뮤즈피트니스",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "91d16445da4c",
+        "eeff7173fedc"
+      ]
+    },
+    {
+      "brand": "어스짐",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "4568699f0ae2",
+        "17c17f9d68ca"
+      ]
+    },
+    {
+      "brand": "어테인휘트니스",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 0,
+        "인천": 2
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "3c54d371218b",
+        "16367367d4fb"
+      ]
+    },
+    {
+      "brand": "어트루짐",
+      "total": 2,
+      "areas": {
+        "서울": 2,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "fc3f1c265896",
+        "ac62cc08553d"
+      ]
+    },
+    {
+      "brand": "언노운짐",
+      "total": 2,
+      "areas": {
+        "서울": 2,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "d5112452b6a7",
+        "11d8aa42d608"
+      ]
+    },
+    {
+      "brand": "언바운드짐",
+      "total": 2,
+      "areas": {
+        "서울": 1,
+        "경기": 1,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "fd93bc45c6b8",
+        "341ddeffa010"
+      ]
+    },
+    {
+      "brand": "얼리버드짐",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "e2dab7d851d6",
+        "cc6a5edaeb78"
+      ]
+    },
+    {
+      "brand": "얼티밋트레이닝",
+      "total": 2,
+      "areas": {
+        "서울": 2,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "ad53f9636173",
+        "adbc71da827d"
+      ]
+    },
+    {
+      "brand": "업타운",
+      "total": 2,
+      "areas": {
+        "서울": 2,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "f0a0f0e0bf29",
+        "31667a7bcc6e"
+      ]
+    },
+    {
+      "brand": "업타운휘트니스",
+      "total": 2,
+      "areas": {
+        "서울": 2,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "c169b426e838",
+        "ed2f0c9ce46e"
+      ]
+    },
+    {
+      "brand": "업템포짐",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "1c7c94a7adf9",
+        "111170e0a80c"
+      ]
+    },
+    {
+      "brand": "에그짐",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "feeb9eac7956",
+        "fcf2bc876fba"
+      ]
+    },
+    {
+      "brand": "에너메카휘트니스",
+      "total": 2,
+      "areas": {
+        "서울": 2,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "d2eec75bc01e",
+        "34e7c1935fdc"
+      ]
+    },
+    {
+      "brand": "에너짐",
+      "total": 2,
+      "areas": {
+        "서울": 1,
+        "경기": 1,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "41db851528d2",
+        "aa824d5f5825"
+      ]
+    },
+    {
+      "brand": "에버휘트니스",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 1,
+        "인천": 1
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "ea958094ae3f",
+        "5c2cb2883970"
+      ]
+    },
+    {
+      "brand": "에스엘짐",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "26abc8787e39",
+        "4f5fd80c9955"
+      ]
+    },
+    {
+      "brand": "에스핏휘트니스",
+      "total": 2,
+      "areas": {
+        "서울": 1,
+        "경기": 1,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "9e7f8f8b40b4",
+        "fc0f510ebafb"
+      ]
+    },
+    {
+      "brand": "에이스짐",
+      "total": 2,
+      "areas": {
+        "서울": 1,
+        "경기": 1,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "99eb7814a9b1",
+        "fbbc2eddfa75"
+      ]
+    },
+    {
+      "brand": "에이스핏",
+      "total": 2,
+      "areas": {
+        "서울": 2,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "5e4ca4f1b3aa",
+        "81e9cde9c7d5"
+      ]
+    },
+    {
+      "brand": "에이탑짐",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "26b4f114f219",
+        "50d05cb2e518"
+      ]
+    },
+    {
+      "brand": "에펠짐",
+      "total": 2,
+      "areas": {
+        "서울": 2,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "f6bac8cffa36",
+        "9dc0fb1c1f97"
+      ]
+    },
+    {
+      "brand": "엑스온",
+      "total": 2,
+      "areas": {
+        "서울": 2,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "ab0bb14e5811",
+        "6d1e69d2be9d"
+      ]
+    },
+    {
+      "brand": "엑스짐",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 1,
+        "인천": 1
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "0e2d24951806",
+        "6e4f19d3866b"
+      ]
+    },
+    {
+      "brand": "엔브이짐",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "c3af6cf94078",
+        "b80a6a9f5f73"
+      ]
+    },
+    {
+      "brand": "엔에스짐",
+      "total": 2,
+      "areas": {
+        "서울": 1,
+        "경기": 1,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "95b6ae2aa6d5",
+        "f92276ec7ed7"
+      ]
+    },
+    {
+      "brand": "엔오짐",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "7def2744229a",
+        "af5acff5b5dd"
+      ]
+    },
+    {
+      "brand": "엠에스짐",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 1,
+        "인천": 1
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "a90cded3b81a",
+        "fc505e118c15"
+      ]
+    },
+    {
+      "brand": "엠크루짐",
+      "total": 2,
+      "areas": {
+        "서울": 2,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "c7513d0b1f33",
+        "574763ddd128"
+      ]
+    },
+    {
+      "brand": "여성전용헬스",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "b538afbf8292",
+        "c445abde11e5"
+      ]
+    },
+    {
+      "brand": "역전헬스장",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "0d4a229212c2",
+        "7e41e9bfe8e1"
+      ]
+    },
+    {
+      "brand": "영앤짐",
+      "total": 2,
+      "areas": {
+        "서울": 1,
+        "경기": 1,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "53913a01dbd0",
+        "4886a01f71a6"
+      ]
+    },
+    {
+      "brand": "예스짐",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 1,
+        "인천": 1
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "7a1e0c295eca",
+        "01fa58ab36ff"
+      ]
+    },
+    {
+      "brand": "오가닉피티",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "0dcf7f411315",
+        "7bcaeeb87615"
+      ]
+    },
+    {
+      "brand": "오리진휘트니스",
+      "total": 2,
+      "areas": {
+        "서울": 1,
+        "경기": 1,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "ae126b80e3f8",
+        "7725a4ac68c5"
+      ]
+    },
+    {
+      "brand": "오버탑",
+      "total": 2,
+      "areas": {
+        "서울": 1,
+        "경기": 1,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "77c30af81b09",
+        "3cab218f7158"
+      ]
+    },
+    {
+      "brand": "온누리헬스케어",
+      "total": 2,
+      "areas": {
+        "서울": 2,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "272ea7b2f201",
+        "1721c375cc03"
+      ]
+    },
+    {
+      "brand": "온바디짐",
+      "total": 2,
+      "areas": {
+        "서울": 2,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "e02cf05561c3",
+        "f80d4df35194"
+      ]
+    },
+    {
+      "brand": "온앤온",
+      "total": 2,
+      "areas": {
+        "서울": 1,
+        "경기": 1,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "9eb6ec7a47fc",
+        "422829ba7a86"
+      ]
+    },
+    {
+      "brand": "온핏스마트짐",
+      "total": 2,
+      "areas": {
+        "서울": 2,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "4eb5c725e395",
+        "e6c8718c991f"
+      ]
+    },
+    {
+      "brand": "올데이피트니스",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "418e31d06e76",
+        "f470d3214fec"
+      ]
+    },
+    {
+      "brand": "올레이디짐",
+      "total": 2,
+      "areas": {
+        "서울": 2,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "8edfe27e0830",
+        "16304ee054c9"
+      ]
+    },
+    {
+      "brand": "올스타짐",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 1,
+        "인천": 1
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "70bcb064f442",
+        "ce163d1dd746"
+      ]
+    },
+    {
+      "brand": "올인짐",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "5addb3c515ff",
+        "d16187ac0ac3"
+      ]
+    },
+    {
+      "brand": "올피플",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 0,
+        "인천": 2
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "128508a666c7",
+        "dc5184e8a1cd"
+      ]
+    },
+    {
+      "brand": "와이키키짐",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 1,
+        "인천": 1
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "1c90e2c1e062",
+        "e61c202b4345"
+      ]
+    },
+    {
+      "brand": "와이피트니스",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "32b5358a2813",
+        "556093512006"
+      ]
+    },
+    {
+      "brand": "와일드짐",
+      "total": 2,
+      "areas": {
+        "서울": 1,
+        "경기": 1,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "4c0dc18e89ee",
+        "c8775ce45b3c"
+      ]
+    },
+    {
+      "brand": "우리동네",
+      "total": 2,
+      "areas": {
+        "서울": 1,
+        "경기": 1,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "046b09237638",
+        "62f8a22eedaa"
+      ]
+    },
+    {
+      "brand": "우주짐",
+      "total": 2,
+      "areas": {
+        "서울": 2,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "bb4b2137667b",
+        "63362a77febf"
+      ]
+    },
+    {
+      "brand": "운동공간",
+      "total": 2,
+      "areas": {
+        "서울": 1,
+        "경기": 1,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "bf5f85fbde78",
+        "3369b5d300c3"
+      ]
+    },
+    {
+      "brand": "운동과학센터",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 1,
+        "인천": 1
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "00b7cb8a4f1c",
+        "760b7b541a09"
+      ]
+    },
+    {
+      "brand": "운동의",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "b33052335379",
+        "d3be7be37aef"
+      ]
+    },
+    {
+      "brand": "운동창고",
+      "total": 2,
+      "areas": {
+        "서울": 2,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "518f2c69c377",
+        "89baa86cf999"
+      ]
+    },
+    {
+      "brand": "울프짐",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "f7bf46fcb8e9",
+        "d72c0fce931b"
+      ]
+    },
+    {
+      "brand": "워너블짐",
+      "total": 2,
+      "areas": {
+        "서울": 2,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "1bb215022f2d",
+        "7ea6bbeeb5b6"
+      ]
+    },
+    {
+      "brand": "워라밸",
+      "total": 2,
+      "areas": {
+        "서울": 2,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "14676bcd3dc4",
+        "05ee57cfa189"
+      ]
+    },
+    {
+      "brand": "워라밸피트니스",
+      "total": 2,
+      "areas": {
+        "서울": 2,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "c59bce2fce5e",
+        "e2769c1a7058"
+      ]
+    },
+    {
+      "brand": "워크아웃짐",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "38117b2dca37",
+        "9dbdfcb051f4"
+      ]
+    },
+    {
+      "brand": "원더핏휘트니스",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "3fb01dffbb0a",
+        "2fb89e35a127"
+      ]
+    },
+    {
+      "brand": "원마운트",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "2e52bdfe3376",
+        "31832b0bfb80"
+      ]
+    },
+    {
+      "brand": "원썸피트니스",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "f6abf2d4d8ed",
+        "879d86c21c74"
+      ]
+    },
+    {
+      "brand": "원알엠",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "4b949334267a",
+        "92c8e4b28740"
+      ]
+    },
+    {
+      "brand": "원테이크짐",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "c3176ee171eb",
+        "4c9d02598427"
+      ]
+    },
+    {
+      "brand": "웨슬리짐",
+      "total": 2,
+      "areas": {
+        "서울": 2,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "47c8fddc345f",
+        "3322952648cd"
+      ]
+    },
+    {
+      "brand": "웨이브짐",
+      "total": 2,
+      "areas": {
+        "서울": 1,
+        "경기": 1,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "21b968925cc2",
+        "660bad2545f1"
+      ]
+    },
+    {
+      "brand": "웰니스",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "37314ebebde6",
+        "6083fc1cfe90"
+      ]
+    },
+    {
+      "brand": "위너스타짐",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "356db553a181",
+        "40ecba3feabd"
+      ]
+    },
+    {
+      "brand": "위더스짐",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "fd7bfaafdeca",
+        "cae23e66740d"
+      ]
+    },
+    {
+      "brand": "위스테이피트니스",
+      "total": 2,
+      "areas": {
+        "서울": 2,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "fdfcba0b389c",
+        "7d6d6842ebc8"
+      ]
+    },
+    {
+      "brand": "위아짐",
+      "total": 2,
+      "areas": {
+        "서울": 2,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "95a171dcd6a5",
+        "db42a2329dc8"
+      ]
+    },
+    {
+      "brand": "위캔방문운동센터",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 1,
+        "인천": 1
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "ba0502a624dc",
+        "689633d1d6c2"
+      ]
+    },
+    {
+      "brand": "유앤미짐",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "af8745a344ae",
+        "0a16b6a6578c"
+      ]
+    },
+    {
+      "brand": "유앤아이짐",
+      "total": 2,
+      "areas": {
+        "서울": 2,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "7864588d4a38",
+        "fa7b527e2c17"
+      ]
+    },
+    {
+      "brand": "유엠짐",
+      "total": 2,
+      "areas": {
+        "서울": 2,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "8516e1212e76",
+        "f757115418e7"
+      ]
+    },
+    {
+      "brand": "유포리아",
+      "total": 2,
+      "areas": {
+        "서울": 2,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "d05935db7497",
+        "ec61f65f09c5"
+      ]
+    },
+    {
+      "brand": "이로운짐",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "e9774fc137f4",
+        "20be9de13a9d"
+      ]
+    },
+    {
+      "brand": "이엘피티",
+      "total": 2,
+      "areas": {
+        "서울": 1,
+        "경기": 1,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "5a22f4c9bfa1",
+        "6525a7b4d146"
+      ]
+    },
+    {
+      "brand": "이지슬림다이어트",
+      "total": 2,
+      "areas": {
+        "서울": 1,
+        "경기": 1,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "32d194027cd9",
+        "ac1ce80d0703"
+      ]
+    },
+    {
+      "brand": "이클립스짐",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "b22138cbd368",
+        "e81b6587b9ee"
+      ]
+    },
+    {
+      "brand": "이태원짐",
+      "total": 2,
+      "areas": {
+        "서울": 2,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "ee149973e659",
+        "b8af1ac32cdd"
+      ]
+    },
+    {
+      "brand": "이화운동연구소",
+      "total": 2,
+      "areas": {
+        "서울": 2,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "6f1101d42ba9",
+        "139041e148e7"
+      ]
+    },
+    {
+      "brand": "인피니티짐",
+      "total": 2,
+      "areas": {
+        "서울": 2,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "e25f51976d7f",
+        "f2fe6018b3ed"
+      ]
+    },
+    {
+      "brand": "인헬서짐",
+      "total": 2,
+      "areas": {
+        "서울": 2,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "df8a987872bd",
+        "9a36f82b2e15"
+      ]
+    },
+    {
+      "brand": "자마이카피트니스",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "3fff1e9f941c",
+        "8de54a79b50c"
+      ]
+    },
+    {
+      "brand": "자이로토닉",
+      "total": 2,
+      "areas": {
+        "서울": 1,
+        "경기": 1,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "916c1762c354",
+        "9413c279e19e"
+      ]
+    },
+    {
+      "brand": "저스트",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 1,
+        "인천": 1
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "6f06aaf9068f",
+        "23c9e27b439b"
+      ]
+    },
+    {
+      "brand": "점핑다이어트",
+      "total": 2,
+      "areas": {
+        "서울": 1,
+        "경기": 1,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "de15171e4294",
+        "95d2daaa2d3d"
+      ]
+    },
+    {
+      "brand": "정스짐",
+      "total": 2,
+      "areas": {
+        "서울": 2,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "2afe0882d083",
+        "fde18f22e6f7"
+      ]
+    },
+    {
+      "brand": "정피트니스",
+      "total": 2,
+      "areas": {
+        "서울": 2,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "a5bf6786d044",
+        "dfc54228ae17"
+      ]
+    },
+    {
+      "brand": "제니스짐",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "9fd82ed57421",
+        "14673881abfa"
+      ]
+    },
+    {
+      "brand": "제로핏",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "7d0f1b35cabe",
+        "961520cc516c"
+      ]
+    },
+    {
+      "brand": "제이바디짐",
+      "total": 2,
+      "areas": {
+        "서울": 1,
+        "경기": 1,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "e33ae1b14b34",
+        "e6dd86c9bad2"
+      ]
+    },
+    {
+      "brand": "제이제이",
+      "total": 2,
+      "areas": {
+        "서울": 2,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "102d12639a9a",
+        "738ae13143e5"
+      ]
+    },
+    {
+      "brand": "제이치피트니스",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "0329b3408ce5",
+        "c3046d40f3b0"
+      ]
+    },
+    {
+      "brand": "제이핏짐",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 0,
+        "인천": 2
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "03596fba47b4",
+        "6c4a712c55ea"
+      ]
+    },
+    {
+      "brand": "조아짐",
+      "total": 2,
+      "areas": {
+        "서울": 2,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "ab250500e432",
+        "339f547c7549"
+      ]
+    },
+    {
+      "brand": "존버짐",
+      "total": 2,
+      "areas": {
+        "서울": 2,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "f357dc2b361d",
+        "d78e12469e68"
+      ]
+    },
+    {
+      "brand": "존프랭클",
+      "total": 2,
+      "areas": {
+        "서울": 1,
+        "경기": 1,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "81bb6b5065b5",
+        "6eb47380f69b"
+      ]
+    },
+    {
+      "brand": "지니핏",
+      "total": 2,
+      "areas": {
+        "서울": 2,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "a8152488f546",
+        "01d03b1959e6"
+      ]
+    },
+    {
+      "brand": "지엘핏",
+      "total": 2,
+      "areas": {
+        "서울": 1,
+        "경기": 1,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "ed855102f62e",
+        "bd48267836e8"
+      ]
+    },
+    {
+      "brand": "지엠짐",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "2cdf271ea791",
+        "7a84c8c17784"
+      ]
+    },
+    {
+      "brand": "지오짐",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "047120576729",
+        "4edf2f3aef94"
+      ]
+    },
+    {
+      "brand": "지투피트니스",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 0,
+        "인천": 2
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "57f3a41f0a45",
+        "8d51601a15a9"
+      ]
+    },
+    {
+      "brand": "짐마니",
+      "total": 2,
+      "areas": {
+        "서울": 2,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "9e6c5907ec9f",
+        "6791096664a6"
+      ]
+    },
+    {
+      "brand": "짐민호휘트니스",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "641412d88fe2",
+        "4809fdf8f098"
+      ]
+    },
+    {
+      "brand": "짐베스트",
+      "total": 2,
+      "areas": {
+        "서울": 2,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "91967de6de5b",
+        "7b0f553ae0cb"
+      ]
+    },
+    {
+      "brand": "짐브라운",
+      "total": 2,
+      "areas": {
+        "서울": 2,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "b53d8d41825f",
+        "1332baf4c23c"
+      ]
+    },
+    {
+      "brand": "짐어클락",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "8c66999ea111",
+        "6be10d28f7f9"
+      ]
+    },
+    {
+      "brand": "짐에이치",
+      "total": 2,
+      "areas": {
+        "서울": 1,
+        "경기": 1,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "5e8b60adb00e",
+        "2753f5e54764"
+      ]
+    },
+    {
+      "brand": "짐웨이",
+      "total": 2,
+      "areas": {
+        "서울": 2,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "38dab8baa7d2",
+        "33055a9a83dd"
+      ]
+    },
+    {
+      "brand": "짐케어",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "74346d602018",
+        "0336450af36a"
+      ]
+    },
+    {
+      "brand": "짐트리",
+      "total": 2,
+      "areas": {
+        "서울": 1,
+        "경기": 1,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "de8fe0c2b6a5",
+        "52fb2db91926"
+      ]
+    },
+    {
+      "brand": "짐플릭스",
+      "total": 2,
+      "areas": {
+        "서울": 1,
+        "경기": 1,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "a3d92c2e60c9",
+        "3358ecaff37f"
+      ]
+    },
+    {
+      "brand": "짐피닉스",
+      "total": 2,
+      "areas": {
+        "서울": 2,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "4f0313b050c2",
+        "71706cb226e2"
+      ]
+    },
+    {
+      "brand": "차선생",
+      "total": 2,
+      "areas": {
+        "서울": 2,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "320243a85e4e",
+        "ca8df8d5e134"
+      ]
+    },
+    {
+      "brand": "차차짐",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "f527dbf2fc23",
+        "155910f5aea8"
+      ]
+    },
+    {
+      "brand": "착한피티샵",
+      "total": 2,
+      "areas": {
+        "서울": 2,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "9f2daa2b55b3",
+        "979a92f87913"
+      ]
+    },
+    {
+      "brand": "찬스짐",
+      "total": 2,
+      "areas": {
+        "서울": 1,
+        "경기": 1,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "638df4eab271",
+        "54707c4eef7c"
+      ]
+    },
+    {
+      "brand": "청년헬스장",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 1,
+        "인천": 1
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "b02c63dc1514",
+        "ff983173f7f1"
+      ]
+    },
+    {
+      "brand": "체리피트니스",
+      "total": 2,
+      "areas": {
+        "서울": 1,
+        "경기": 1,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "d5b1911f9fba",
+        "698d540deabd"
+      ]
+    },
+    {
+      "brand": "초이스짐",
+      "total": 2,
+      "areas": {
+        "서울": 1,
+        "경기": 1,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "9b6788ef1f18",
+        "f6657242f93f"
+      ]
+    },
+    {
+      "brand": "치유짐",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "e8ac2f414ff7",
+        "b75a3a0fcee5"
+      ]
+    },
+    {
+      "brand": "치유핏",
+      "total": 2,
+      "areas": {
+        "서울": 2,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "0aa8e1c9f8a2",
+        "8c9a4c91cd0f"
+      ]
+    },
+    {
+      "brand": "케이핏",
+      "total": 2,
+      "areas": {
+        "서울": 1,
+        "경기": 1,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "085de6a90e8b",
+        "3c63869c40cf"
+      ]
+    },
+    {
+      "brand": "코드짐",
+      "total": 2,
+      "areas": {
+        "서울": 2,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "fab6109e837a",
+        "2b4bb7c174c0"
+      ]
+    },
+    {
+      "brand": "코카머슬",
+      "total": 2,
+      "areas": {
+        "서울": 2,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "67a3f0abb9c3",
+        "b51c0813c995"
+      ]
+    },
+    {
+      "brand": "크로스핏더킬",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "0a7a86152c78",
+        "5c7dfba8c297"
+      ]
+    },
+    {
+      "brand": "크로스핏라온",
+      "total": 2,
+      "areas": {
+        "서울": 2,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "76c305896ee7",
+        "6e21ffae53e8"
+      ]
+    },
+    {
+      "brand": "크로스핏빅풋",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 1,
+        "인천": 1
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "7a7ddbdd8117",
+        "a9150f34b396"
+      ]
+    },
+    {
+      "brand": "크로스핏슈팅스타",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "f638036be5ad",
+        "c8a4846c176b"
+      ]
+    },
+    {
+      "brand": "크로스핏에이드",
+      "total": 2,
+      "areas": {
+        "서울": 1,
+        "경기": 0,
+        "인천": 1
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "7dc50658b012",
+        "62edbbb1500b"
+      ]
+    },
+    {
+      "brand": "크린업",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "e973d038bc34",
+        "588ccef7a3c2"
+      ]
+    },
+    {
+      "brand": "클락짐",
+      "total": 2,
+      "areas": {
+        "서울": 2,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "943fdf708860",
+        "e6f1b42b7fff"
+      ]
+    },
+    {
+      "brand": "클럽인디고",
+      "total": 2,
+      "areas": {
+        "서울": 2,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "8f27f3881161",
+        "01afcc3e744e"
+      ]
+    },
+    {
+      "brand": "클리어짐",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "a8d98b5325cd",
+        "38eb2af4daca"
+      ]
+    },
+    {
+      "brand": "클린짐",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 1,
+        "인천": 1
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "5de8f81410e9",
+        "3f59734e6131"
+      ]
+    },
+    {
+      "brand": "키네틱",
+      "total": 2,
+      "areas": {
+        "서울": 1,
+        "경기": 1,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "dcfa38796d3a",
+        "932030e1724d"
+      ]
+    },
+    {
+      "brand": "키스짐",
+      "total": 2,
+      "areas": {
+        "서울": 1,
+        "경기": 1,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "1c8bc60a0037",
+        "979cb44658bc"
+      ]
+    },
+    {
+      "brand": "킹바디짐",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "67489e74da63",
+        "09be3bc65cb8"
+      ]
+    },
+    {
+      "brand": "타이거짐",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "4011fcb2fb5e",
+        "4965f2e1eafd"
+      ]
+    },
+    {
+      "brand": "타임피트니스",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "0ed8a6fa7383",
+        "1a519d43f5c7"
+      ]
+    },
+    {
+      "brand": "탐휘트니스",
+      "total": 2,
+      "areas": {
+        "서울": 2,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "7c57ee879ac5",
+        "b8183c503eaa"
+      ]
+    },
+    {
+      "brand": "터닝그라운드",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "32cd6817c990",
+        "661801dc808a"
+      ]
+    },
+    {
+      "brand": "터치앤고",
+      "total": 2,
+      "areas": {
+        "서울": 2,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "9507e66ee326",
+        "a512bb725a55"
+      ]
+    },
+    {
+      "brand": "터틀짐",
+      "total": 2,
+      "areas": {
+        "서울": 1,
+        "경기": 1,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "fb5a08d6fe69",
+        "ac4a29981145"
+      ]
+    },
+    {
+      "brand": "턴온피트니스",
+      "total": 2,
+      "areas": {
+        "서울": 2,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "1ce5609438a8",
+        "a8e4f6d5ff53"
+      ]
+    },
+    {
+      "brand": "테라피티",
+      "total": 2,
+      "areas": {
+        "서울": 2,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "88a3e367d51a",
+        "3523f1c174d3"
+      ]
+    },
+    {
+      "brand": "테일러",
+      "total": 2,
+      "areas": {
+        "서울": 1,
+        "경기": 1,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "ea035055f93d",
+        "d5116365ce8a"
+      ]
+    },
+    {
+      "brand": "토니바디",
+      "total": 2,
+      "areas": {
+        "서울": 2,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "67c1b8c48479",
+        "fd4153bd92ef"
+      ]
+    },
+    {
+      "brand": "토탈휘트니스",
+      "total": 2,
+      "areas": {
+        "서울": 2,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "ab3880273fac",
+        "3ebf5654d5c7"
+      ]
+    },
+    {
+      "brand": "투게더피트니스",
+      "total": 2,
+      "areas": {
+        "서울": 2,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "2902f9b3d198",
+        "f62d8fe0e85d"
+      ]
+    },
+    {
+      "brand": "투모로우짐",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 0,
+        "인천": 2
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "7c7c86c73ece",
+        "a10892f71c26"
+      ]
+    },
+    {
+      "brand": "트라이던피트니스",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "49e6b364f7be",
+        "7d143f0ac79a"
+      ]
+    },
+    {
+      "brand": "트레이닝랩",
+      "total": 2,
+      "areas": {
+        "서울": 2,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "613ca447f632",
+        "d98a5c8e31e0"
+      ]
+    },
+    {
+      "brand": "트레이브짐",
+      "total": 2,
+      "areas": {
+        "서울": 2,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "fc598e78fad0",
+        "b43da5602924"
+      ]
+    },
+    {
+      "brand": "트렌드짐",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "5a02283abf1d",
+        "f2b9d61ef46f"
+      ]
+    },
+    {
+      "brand": "트루머슬짐",
+      "total": 2,
+      "areas": {
+        "서울": 2,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "80418212b621",
+        "18c249286e9b"
+      ]
+    },
+    {
+      "brand": "트루핏",
+      "total": 2,
+      "areas": {
+        "서울": 2,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "b62266156655",
+        "59b274edd285"
+      ]
+    },
+    {
+      "brand": "팀글로리어스",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "e207ac40b7aa",
+        "96e833a2b191"
+      ]
+    },
+    {
+      "brand": "팀람다",
+      "total": 2,
+      "areas": {
+        "서울": 1,
+        "경기": 1,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "e49cf7ebb3ae",
+        "2a04694c2d85"
+      ]
+    },
+    {
+      "brand": "팀레드",
+      "total": 2,
+      "areas": {
+        "서울": 1,
+        "경기": 1,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "24ff980b3d4c",
+        "1fdd307a3744"
+      ]
+    },
+    {
+      "brand": "팀엑스핏",
+      "total": 2,
+      "areas": {
+        "서울": 2,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "026685cfc6db",
+        "ae6413ac14a7"
+      ]
+    },
+    {
+      "brand": "팀터틀랫",
+      "total": 2,
+      "areas": {
+        "서울": 1,
+        "경기": 1,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "e4361b83a061",
+        "19690e44dfda"
+      ]
+    },
+    {
+      "brand": "파모스짐",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "84546ebd6009",
+        "48e4b55ef25e"
+      ]
+    },
+    {
+      "brand": "판타스틱짐",
+      "total": 2,
+      "areas": {
+        "서울": 2,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "d457016a016e",
+        "72f7a8d595e3"
+      ]
+    },
+    {
+      "brand": "팔로우짐",
+      "total": 2,
+      "areas": {
+        "서울": 2,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "0ce4ae92a343",
+        "940748a1ee4e"
+      ]
+    },
+    {
+      "brand": "팰리스짐",
+      "total": 2,
+      "areas": {
+        "서울": 1,
+        "경기": 1,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "119d9d95bb7f",
+        "05bd80d0f7bc"
+      ]
+    },
+    {
+      "brand": "퍼스널바디",
+      "total": 2,
+      "areas": {
+        "서울": 2,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "9036382c01f0",
+        "0df1ecf784d3"
+      ]
+    },
+    {
+      "brand": "퍼스트짐",
+      "total": 2,
+      "areas": {
+        "서울": 1,
+        "경기": 0,
+        "인천": 1
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "d2272136a9e1",
+        "eae463772ef4"
+      ]
+    },
+    {
+      "brand": "퍼팩트핏짐",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "77e2694ae9ec",
+        "ed8712036a94"
+      ]
+    },
+    {
+      "brand": "퍼포먼스피지오트레이",
+      "total": 2,
+      "areas": {
+        "서울": 1,
+        "경기": 1,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "4468b614d201",
+        "5c8b83073d42"
+      ]
+    },
+    {
+      "brand": "펄스짐",
+      "total": 2,
+      "areas": {
+        "서울": 1,
+        "경기": 1,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "828eb4e3ccdd",
+        "025a1656e473"
+      ]
+    },
+    {
+      "brand": "포그로스",
+      "total": 2,
+      "areas": {
+        "서울": 1,
+        "경기": 1,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "70585bc2b52d",
+        "c08bb3767d4e"
+      ]
+    },
+    {
+      "brand": "포시즌휘트니스",
+      "total": 2,
+      "areas": {
+        "서울": 1,
+        "경기": 1,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "b3648f95ac06",
+        "a22b069193b0"
+      ]
+    },
+    {
+      "brand": "포인티",
+      "total": 2,
+      "areas": {
+        "서울": 2,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "fca5d597becf",
+        "991220293129"
+      ]
+    },
+    {
+      "brand": "퓨어핏",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "3383a8195470",
+        "7451097eb8d9"
+      ]
+    },
+    {
+      "brand": "프라이빗",
+      "total": 2,
+      "areas": {
+        "서울": 1,
+        "경기": 1,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "bdf8928a47bc",
+        "7cc07abfe478"
+      ]
+    },
+    {
+      "brand": "프라이빗코어앤핏",
+      "total": 2,
+      "areas": {
+        "서울": 2,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "c969a89fefe0",
+        "f50224e5e5e1"
+      ]
+    },
+    {
+      "brand": "프라임",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "98187e59dc19",
+        "acc0a4564127"
+      ]
+    },
+    {
+      "brand": "프레임짐",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 0,
+        "인천": 2
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "684ec5734b59",
+        "272fcb6b73a2"
+      ]
+    },
+    {
+      "brand": "프레퍼스",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "a1bc8bb9227e",
+        "5212ad1088ca"
+      ]
+    },
+    {
+      "brand": "프렌드짐",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "669e9c29dd81",
+        "be2797692b05"
+      ]
+    },
+    {
+      "brand": "프롬더스트릿",
+      "total": 2,
+      "areas": {
+        "서울": 1,
+        "경기": 1,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "76133c9e53f5",
+        "2bce867ce8b9"
+      ]
+    },
+    {
+      "brand": "프리미어",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "acd2676ba67a",
+        "3a2d045ae483"
+      ]
+    },
+    {
+      "brand": "프리베핏",
+      "total": 2,
+      "areas": {
+        "서울": 2,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "19cb6e23962f",
+        "6e21d204bc2d"
+      ]
+    },
+    {
+      "brand": "프리빗",
+      "total": 2,
+      "areas": {
+        "서울": 2,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "ae8f055906a3",
+        "d386194663b0"
+      ]
+    },
+    {
+      "brand": "플랜원피트니스",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "212bf1f0676c",
+        "dc9424547ae7"
+      ]
+    },
+    {
+      "brand": "피스트엑스",
+      "total": 2,
+      "areas": {
+        "서울": 2,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "a1bd17fa9cf1",
+        "6c11801f023f"
+      ]
+    },
+    {
+      "brand": "피아트짐",
+      "total": 2,
+      "areas": {
+        "서울": 1,
+        "경기": 1,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "0470799a74ee",
+        "5f5b6e8a63f0"
+      ]
+    },
+    {
+      "brand": "피앤디",
+      "total": 2,
+      "areas": {
+        "서울": 2,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "87cc3e9ec7ac",
+        "06c68a9cdba9"
+      ]
+    },
+    {
+      "brand": "피지오숲",
+      "total": 2,
+      "areas": {
+        "서울": 1,
+        "경기": 1,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "c109d23ffb7b",
+        "7deefe8ae808"
+      ]
+    },
+    {
+      "brand": "피트니스디",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "b113dcaf4cae",
+        "94128e52cd55"
+      ]
+    },
+    {
+      "brand": "피트니스랩",
+      "total": 2,
+      "areas": {
+        "서울": 2,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "94ac72571bc1",
+        "0fe606cf013c"
+      ]
+    },
+    {
+      "brand": "피트니스벨",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "9dd172bae771",
+        "7a73b9e91233"
+      ]
+    },
+    {
+      "brand": "피트니스써밋",
+      "total": 2,
+      "areas": {
+        "서울": 2,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "00ca3a378ed1",
+        "b2a90a3ea000"
+      ]
+    },
+    {
+      "brand": "피트니스에이치",
+      "total": 2,
+      "areas": {
+        "서울": 1,
+        "경기": 1,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "638b3d387c55",
+        "ca67e20cc8e2"
+      ]
+    },
+    {
+      "brand": "피트니스오브",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "97ab2359a435",
+        "0a89b967f36b"
+      ]
+    },
+    {
+      "brand": "피트니스플레이스",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "d79c13cb1408",
+        "134a4ea7df0f"
+      ]
+    },
+    {
+      "brand": "피트니즈",
+      "total": 2,
+      "areas": {
+        "서울": 2,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "f25b127f56dc",
+        "40cfd4aee3e1"
+      ]
+    },
+    {
+      "brand": "피트엑스",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "52edecf77685",
+        "57c9a1f0d3f8"
+      ]
+    },
+    {
+      "brand": "피티스테이션",
+      "total": 2,
+      "areas": {
+        "서울": 2,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "5ac00ffe2ac5",
+        "369b485e8174"
+      ]
+    },
+    {
+      "brand": "피티스토리",
+      "total": 2,
+      "areas": {
+        "서울": 1,
+        "경기": 1,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "b708594bb5a4",
+        "aeaf2e49f4d4"
+      ]
+    },
+    {
+      "brand": "피티스튜디오",
+      "total": 2,
+      "areas": {
+        "서울": 2,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "1f01e3c242e6",
+        "c219fd289202"
+      ]
+    },
+    {
+      "brand": "피티시모",
+      "total": 2,
+      "areas": {
+        "서울": 2,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "9b07ed41d9c6",
+        "f97f5bff60a6"
+      ]
+    },
+    {
+      "brand": "핏라밸",
+      "total": 2,
+      "areas": {
+        "서울": 2,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "8c041b39363b",
+        "8ad7f48d8ba3"
+      ]
+    },
+    {
+      "brand": "핏슈브",
+      "total": 2,
+      "areas": {
+        "서울": 1,
+        "경기": 1,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "566c0c9a860b",
+        "cca05a22fcf6"
+      ]
+    },
+    {
+      "brand": "핏타운",
+      "total": 2,
+      "areas": {
+        "서울": 1,
+        "경기": 1,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "6bc3fdedf59e",
+        "1290f2662324"
+      ]
+    },
+    {
+      "brand": "핏피티",
+      "total": 2,
+      "areas": {
+        "서울": 2,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "2e7e32afea24",
+        "db0cce0008dd"
+      ]
+    },
+    {
+      "brand": "하데스",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "f6d92f0ea4ca",
+        "45b7354aa971"
+      ]
+    },
+    {
+      "brand": "하데스클럽",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "fea08f69015f",
+        "45aed4d089e8"
+      ]
+    },
+    {
+      "brand": "하루핏",
+      "total": 2,
+      "areas": {
+        "서울": 1,
+        "경기": 1,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "df34bdd67e72",
+        "7a972caff7ad"
+      ]
+    },
+    {
+      "brand": "하와이짐",
+      "total": 2,
+      "areas": {
+        "서울": 1,
+        "경기": 1,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "0f42374ab203",
+        "7311590b45f8"
+      ]
+    },
+    {
+      "brand": "하이랙스",
+      "total": 2,
+      "areas": {
+        "서울": 2,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "e9f10e2ae1de",
+        "50faa0bafe05"
+      ]
+    },
+    {
+      "brand": "하이브",
+      "total": 2,
+      "areas": {
+        "서울": 2,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "3d2b1d68037a",
+        "d22fbecdadee"
+      ]
+    },
+    {
+      "brand": "하이브짐",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 0,
+        "인천": 2
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "7232f01e6bcb",
+        "1e75f573844e"
+      ]
+    },
+    {
+      "brand": "하이블짐",
+      "total": 2,
+      "areas": {
+        "서울": 2,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "0d401d3f5fc4",
+        "3b3b9f299f4a"
+      ]
+    },
+    {
+      "brand": "하프짐휘트니스",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 0,
+        "인천": 2
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "da3f37cc6c0c",
+        "67f4be98bab7"
+      ]
+    },
+    {
+      "brand": "한헬스케어",
+      "total": 2,
+      "areas": {
+        "서울": 2,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "f8217edc4244",
+        "1f3c1f5b390a"
+      ]
+    },
+    {
+      "brand": "해머하우스",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "1cccb746e200",
+        "054c9494fb1e"
+      ]
+    },
+    {
+      "brand": "해빗피트니스",
+      "total": 2,
+      "areas": {
+        "서울": 2,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "1a49f4af1b6b",
+        "264645470d11"
+      ]
+    },
+    {
+      "brand": "핼스랜드",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "45f2154d12f1",
+        "4da168e1e02b"
+      ]
+    },
+    {
+      "brand": "허니짐",
+      "total": 2,
+      "areas": {
+        "서울": 2,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "e666b4c57f7c",
+        "8477d21863cf"
+      ]
+    },
+    {
+      "brand": "허슬짐",
+      "total": 2,
+      "areas": {
+        "서울": 1,
+        "경기": 1,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "6f29d05e22bb",
+        "d4d9dc8bcb2c"
+      ]
+    },
+    {
+      "brand": "헬라테스",
+      "total": 2,
+      "areas": {
+        "서울": 2,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "16577ddd5497",
+        "9a4ffac512a1"
+      ]
+    },
+    {
+      "brand": "헬링짐",
+      "total": 2,
+      "areas": {
+        "서울": 2,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "1635d767ee9f",
+        "39a4dab61570"
+      ]
+    },
+    {
+      "brand": "헬스보충제",
+      "total": 2,
+      "areas": {
+        "서울": 1,
+        "경기": 1,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "d6052ca63572",
+        "ff10e4c5604c"
+      ]
+    },
+    {
+      "brand": "헬스앤뷰티",
+      "total": 2,
+      "areas": {
+        "서울": 1,
+        "경기": 1,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "9e3f961d24cd",
+        "e40e53800cce"
+      ]
+    },
+    {
+      "brand": "홀리핏",
+      "total": 2,
+      "areas": {
+        "서울": 2,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "8f7ba7567994",
+        "050e80220e83"
+      ]
+    },
+    {
+      "brand": "화장실역류변기막혔을",
+      "total": 2,
+      "areas": {
+        "서울": 2,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "0686026091f4",
+        "0a91d2bf24cf"
+      ]
+    },
+    {
+      "brand": "휘트니스캠프",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "dff02d87ae73",
+        "ee70e3f5cf79"
+      ]
+    },
+    {
+      "brand": "휘트니스풀바디",
+      "total": 2,
+      "areas": {
+        "서울": 1,
+        "경기": 1,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "ba3053c8ff68",
+        "b7bd442f03bc"
+      ]
+    },
+    {
+      "brand": "휘트니스플레이스",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "4a9c3a84dc6f",
+        "1c1fe4bedd95"
+      ]
+    },
+    {
+      "brand": "힐링점핑",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "abc832d512a2",
+        "e9c78ec3d347"
+      ]
+    },
+    {
+      "brand": "ATP",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "a770c5821ca3",
+        "eb9d35f8ca87"
+      ]
+    },
+    {
+      "brand": "HJS",
+      "total": 2,
+      "areas": {
+        "서울": 2,
+        "경기": 0,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "fc6d475f90ec",
+        "1af692e998ce"
+      ]
+    },
+    {
+      "brand": "MTO",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "e1749b024379",
+        "222cde31e36a"
+      ]
+    },
+    {
+      "brand": "VVIP",
+      "total": 2,
+      "areas": {
+        "서울": 1,
+        "경기": 0,
+        "인천": 1
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "cdeb290286d7",
+        "a599fb5eec62"
       ]
     }
   ]

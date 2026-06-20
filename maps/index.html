@@ -1044,7 +1044,7 @@
           <input type="search" class="search" id="search" placeholder="업체명, 주소, 동 검색…" autocomplete="off">
           <div class="view-tabs" id="viewTabs">
             <button class="tab active" data-view="leads" type="button">업체</button>
-            <button class="tab" data-view="chains" type="button">체인 (3+)</button>
+            <button class="tab" data-view="chains" type="button">체인 (2+)</button>
           </div>
           <div class="chain-back" id="chainBack">
             <button type="button" id="btnChainBack">← 체인 목록</button>
@@ -2124,7 +2124,10 @@
         el.innerHTML = '<div class="empty">체인 결과가 없습니다.</div>';
         return;
       }
-      el.innerHTML = items.map(c => `
+      const hint = items.length > 40
+        ? `<div class="list-more-hint">${items.length}개 브랜드 · 검색으로 찾아보세요</div>`
+        : '';
+      el.innerHTML = hint + items.map(c => `
         <div class="chain-item" data-brand="${escapeHtml(c.brand)}">
           <div class="chain-name">${escapeHtml(c.brand)}<span class="chain-badge">${c.total}지점</span></div>
           <div class="chain-meta">서울 ${c.areas.서울} · 경기 ${c.areas.경기} · 인천 ${c.areas.인천}${c.crossMetro ? ' · 광역' : ''}</div>
