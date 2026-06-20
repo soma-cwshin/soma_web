@@ -659,6 +659,65 @@
     .hours-line .hours-day { min-width: 1.2em; color: #64748b; }
     .hours-line .hours-note { margin-top: 4px; color: #475569; font-size: 11px; }
 
+    .chain-branches-line {
+      margin: 10px 0;
+      padding: 10px 12px;
+      border-radius: 10px;
+      background: rgba(192, 132, 252, 0.08);
+      border: 1px solid rgba(192, 132, 252, 0.22);
+      font-size: 12px;
+    }
+
+    .chain-branches-title {
+      font-weight: 600;
+      color: #c084fc;
+      margin-bottom: 8px;
+    }
+
+    .chain-branches-list {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      max-height: 168px;
+      overflow-y: auto;
+    }
+
+    .chain-branch-row {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      width: 100%;
+      padding: 7px 8px;
+      border-radius: 8px;
+      border: 1px solid transparent;
+      background: rgba(0, 0, 0, 0.15);
+      color: var(--ink);
+      text-align: left;
+      cursor: pointer;
+      font: inherit;
+      font-size: 11px;
+    }
+
+    .chain-branch-row:hover {
+      border-color: rgba(192, 132, 252, 0.35);
+      background: rgba(192, 132, 252, 0.1);
+    }
+
+    .chain-branch-name {
+      flex: 1;
+      min-width: 0;
+      font-weight: 500;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .chain-branch-meta {
+      color: var(--ink-2);
+      font-size: 10px;
+      white-space: nowrap;
+    }
+
     .soma-line {
       margin: 8px 0 4px;
       padding: 8px 10px;
@@ -1174,6 +1233,7 @@
     let selectedChainBrand = '';
     let chainLeadIdSet = null;
     let multiChainLeadIds = new Set();
+    let leadIdToChain = {};
     let mobileDetailLeadId = null;
     let coordStackIndex = {};
     let markerPositionOffsets = {};
@@ -1196,11 +1256,20 @@
       return leadsById[id] || null;
     }
 
-    function rebuildMultiChainLeadIds() {
+    function rebuildChainIndexes() {
       multiChainLeadIds = new Set();
-      chains.filter(c => c.total >= CHAIN_MARKER_MIN).forEach(c => {
-        (c.leadIds || []).forEach(id => multiChainLeadIds.add(id));
+      leadIdToChain = {};
+      chains.forEach(c => {
+        if (!c.leadIds || c.leadIds.length < 2) return;
+        c.leadIds.forEach(id => { leadIdToChain[id] = c; });
+        if (c.total >= CHAIN_MARKER_MIN) {
+          c.leadIds.forEach(id => multiChainLeadIds.add(id));
+        }
       });
+    }
+
+    function getChainForLead(leadId) {
+      return leadIdToChain[leadId] || null;
     }
 
     function isMultiChainLead(leadId) {
@@ -1660,6 +1729,11 @@
     }
 
     function renderPopupStatusBadgesHtml(leadId) {
+      if (getChainForLead(leadId)) {
+        return isSomaSubscribedLead(leadId)
+          ? '<span class="soma-sub-tag" title="소마 앱 구독 중">구독</span>'
+          : '';
+      }
       const hours = hoursCache[leadId];
       const open = isOpenNow(hours);
       let openClass = 'unk';
@@ -1732,6 +1806,42 @@
       return { visited, face, note, subscribed, conversion };
     }
 
+    function renderChainBranchesHtml(lead) {
+      const chain = getChainForLead(lead.id);
+      if (!chain) return null;
+
+      const others = (chain.leadIds || [])
+        .map(id => getLeadById(id))
+        .filter(l => l && l.id !== lead.id)
+        .sort((a, b) => {
+          const order = { pending: 0, face: 1, note: 2, hold: 3, exclude: 4, refuse: 5 };
+          const stA = order[getStatus(a.id)] ?? 9;
+          const stB = order[getStatus(b.id)] ?? 9;
+          if (stA !== stB) return stA - stB;
+          return `${a.gu}${a.name}`.localeCompare(`${b.gu}${b.name}`, 'ko');
+        });
+
+      if (!others.length) {
+        return `<div class="chain-branches-line">
+          <div class="chain-branches-title">${escapeHtml(chain.brand)} · 단일 등록 지점</div>
+        </div>`;
+      }
+
+      const rows = others.map(l => {
+        const st = getStatus(l.id);
+        return `<button type="button" class="chain-branch-row" data-lead-id="${l.id}">
+          <span class="dot ${st}"></span>
+          <span class="chain-branch-name">${escapeHtml(l.name)}</span>
+          <span class="chain-branch-meta">${escapeHtml(l.gu)} · ${STATUS_LABELS[st]}</span>
+        </button>`;
+      }).join('');
+
+      return `<div class="chain-branches-line" data-chain-branches-id="${lead.id}">
+        <div class="chain-branches-title">${escapeHtml(chain.brand)} · 다른 지점 ${others.length}곳</div>
+        <div class="chain-branches-list">${rows}</div>
+      </div>`;
+    }
+
     function popupContent(lead) {
       const note = getNote(lead.id);
       const phoneHtml = lead.phone
@@ -1739,12 +1849,16 @@
         : '<p>전화번호 없음</p>';
       const addrQuery = encodeURIComponent(lead.address || lead.name);
       const nameQuery = encodeURIComponent(lead.name);
+      const chainBlock = renderChainBranchesHtml(lead);
+      const middleBlock = chainBlock
+        ? chainBlock
+        : `<div class="hours-line loading" data-hours-id="${lead.id}">영업시간 불러오는 중…</div>`;
       return `<div class="kakao-info-wrap popup">
           <h3>${escapeHtml(lead.name)}</h3>
           <p>${escapeHtml(lead.gu)} ${escapeHtml(lead.dong)}</p>
           <p>${escapeHtml(lead.address)}</p>
           ${phoneHtml}
-          <div class="hours-line loading" data-hours-id="${lead.id}">영업시간 불러오는 중…</div>
+          ${middleBlock}
           <div class="popup-status-badges" data-status-badges-id="${lead.id}"></div>
           <div class="soma-line loading" data-soma-id="${lead.id}">소마 데이터 불러오는 중…</div>
           <textarea class="note-input" data-id="${lead.id}" placeholder="메모 (자동 저장)">${escapeHtml(note)}</textarea>
@@ -1796,6 +1910,7 @@
     }
 
     async function fetchHoursForLead(lead) {
+      if (getChainForLead(lead.id)) return;
       const cached = hoursCache[lead.id];
       if (cached) {
         if (cached.ok === false) {
@@ -2706,6 +2821,12 @@
         ta.onchange = () => setLeadStatus(ta.dataset.id, getStatus(ta.dataset.id), ta.value);
         ta.onblur = ta.onchange;
       });
+      document.querySelectorAll('.chain-branch-row').forEach(btn => {
+        btn.onclick = () => {
+          const other = getLeadById(btn.dataset.leadId);
+          if (other) openInfoForLead(other);
+        };
+      });
     }
 
     function refreshUI(focusId, options = {}) {
@@ -2826,7 +2947,7 @@
       if (chainsRes.ok) {
         const chainsData = await chainsRes.json();
         chains = chainsData.chains || [];
-        rebuildMultiChainLeadIds();
+        rebuildChainIndexes();
       }
       rebuildLeadsIndex();
       leads.filter(l => !l.precise && !isGeocodable(l)).forEach(l => geocodeSkipped.add(l.id));
