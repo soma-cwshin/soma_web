@@ -2717,7 +2717,7 @@
         <div class="hero-overlay"></div>
         <div class="hero-inner">
             <div class="hero-badge" id="openVideoModal" style="cursor: pointer;">
-                <span></span> 기능 가이드 영상 보기 ➔
+                <span></span> SoMa 브랜드 영상 보기 ➔
             </div>
             <h1>감(感)이 아닌 <em>데이터</em>로<br>수업을 설계합니다</h1>
             <p class="hero-sub">재등록률 90%를 만드는<br class="mobile-only"> AI 피트니스 매니지먼트</p>
@@ -3346,8 +3346,8 @@
             <div class="youtube-embed">
                 <iframe
                     id="fullVideoYT"
-                    src="https://www.youtube-nocookie.com/embed/P8Ldd_2J4Fc?rel=0&modestbranding=1&playsinline=1"
-                    title="SoMa AI 기능 가이드 (2026)"
+                    src="https://www.youtube-nocookie.com/embed/tKnoJdHVIIk?rel=0&modestbranding=1&playsinline=1"
+                    title="SoMa AI Brand Film"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                     referrerpolicy="strict-origin-when-cross-origin"
                     allowfullscreen></iframe>
@@ -3443,23 +3443,24 @@
             header.classList.toggle('header-scrolled', window.scrollY > 80);
         }, { passive: true });
 
+        const YT_BRAND_FILM = 'https://www.youtube-nocookie.com/embed/tKnoJdHVIIk?rel=0&modestbranding=1&playsinline=1';
+        const YT_BRAND_AUTOPLAY = YT_BRAND_FILM + '&autoplay=1';
         const YT_FEATURE_GUIDE = 'https://www.youtube-nocookie.com/embed/P8Ldd_2J4Fc?rel=0&modestbranding=1&playsinline=1';
-        const YT_FEATURE_AUTOPLAY = YT_FEATURE_GUIDE + '&autoplay=1';
 
         const modal = document.getElementById('videoModal');
         const fullVideoYT = document.getElementById('fullVideoYT');
         document.getElementById('openVideoModal').addEventListener('click', () => {
             modal.classList.add('open');
-            if (fullVideoYT) fullVideoYT.src = YT_FEATURE_AUTOPLAY;
+            if (fullVideoYT) fullVideoYT.src = YT_BRAND_AUTOPLAY;
         });
         document.getElementById('closeVideoModal').addEventListener('click', () => {
             modal.classList.remove('open');
-            if (fullVideoYT) fullVideoYT.src = YT_FEATURE_GUIDE;
+            if (fullVideoYT) fullVideoYT.src = YT_BRAND_FILM;
         });
         modal.addEventListener('click', (e) => {
             if (e.target === modal) {
                 modal.classList.remove('open');
-                if (fullVideoYT) fullVideoYT.src = YT_FEATURE_GUIDE;
+                if (fullVideoYT) fullVideoYT.src = YT_BRAND_FILM;
             }
         });
 
