@@ -642,21 +642,6 @@
             color: #fff;
         }
 
-        .app-feature-yt-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            margin-top: 14px;
-            font-size: 13px;
-            font-weight: 600;
-            color: var(--cyan);
-            text-decoration: none;
-        }
-
-        .app-feature-yt-link:hover {
-            text-decoration: underline;
-        }
-
         .video-points {
             display: flex;
             flex-direction: column;
@@ -1083,6 +1068,69 @@
             line-height: 1.65;
             color: rgba(255, 255, 255, 0.7);
             word-break: keep-all;
+        }
+
+        .payroll-block {
+            margin-bottom: 48px;
+            padding: 40px 44px;
+            border-radius: 20px;
+            background: rgba(18, 40, 71, 0.55);
+            border: 1px solid rgba(95, 205, 249, 0.22);
+            box-shadow: 0 20px 48px rgba(0, 0, 0, 0.28);
+        }
+
+        .payroll-block-header {
+            max-width: 720px;
+            margin-bottom: 28px;
+        }
+
+        .payroll-block-header h3 {
+            font-size: 26px;
+            font-weight: 800;
+            color: var(--white);
+            margin-top: 12px;
+            word-break: keep-all;
+            line-height: 1.35;
+        }
+
+        .payroll-block-header p {
+            margin-top: 14px;
+            font-size: 16px;
+            line-height: 1.7;
+            color: rgba(255, 255, 255, 0.78);
+            word-break: keep-all;
+        }
+
+        .payroll-block-header .payroll-lead {
+            margin-top: 10px;
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--cyan);
+        }
+
+        .payroll-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .payroll-list li {
+            position: relative;
+            padding-left: 28px;
+            font-size: 15px;
+            line-height: 1.7;
+            color: rgba(255, 255, 255, 0.85);
+            word-break: keep-all;
+        }
+
+        .payroll-list li::before {
+            content: '✔';
+            position: absolute;
+            left: 0;
+            top: 0;
+            color: var(--cyan);
+            font-weight: 700;
         }
 
         /* Pricing Plans */
@@ -1978,6 +2026,20 @@
                 font-size: 14px;
             }
 
+            .payroll-block {
+                padding: 28px 22px;
+                margin-bottom: 36px;
+            }
+
+            .payroll-block-header h3 {
+                font-size: 22px;
+            }
+
+            .payroll-block-header p,
+            .payroll-list li {
+                font-size: 14px;
+            }
+
             .tools-header p {
                 font-size: 15px;
             }
@@ -2761,7 +2823,6 @@
                         <button type="button" class="app-feature-chapter" data-start="19">AI 분석 리포트</button>
                         <button type="button" class="app-feature-chapter" data-start="32">퍼포먼스 관리</button>
                     </div>
-                    <a href="https://www.youtube.com/watch?v=P8Ldd_2J4Fc" target="_blank" rel="noopener noreferrer" class="app-feature-yt-link">YouTube에서 전체 보기 ↗</a>
                 </div>
             </div>
             <div class="app-features-grid">
@@ -3160,6 +3221,19 @@
                 <span class="section-label" style="color:var(--blue);">Smart Management</span>
                 <h2 class="section-title">매출에만 집중하세요</h2>
                 <p>운영의 번거로움은 SoMa AI가 모두 해결해드립니다</p>
+            </div>
+            <div class="payroll-block reveal">
+                <div class="payroll-block-header">
+                    <span class="section-label" style="color:var(--cyan);">Payroll Automation</span>
+                    <h3>매달 엑셀 페이롤, 이제 <span class="text-cyan">안 하셔도 됩니다</span></h3>
+                    <p>수업을 하실 때마다 실시간 페이롤 완성 기능이 페이를 자동으로 쌓아 줍니다.</p>
+                    <p class="payroll-lead">센터의 운영 효율 면에 특히 도움이 됩니다.</p>
+                </div>
+                <ul class="payroll-list">
+                    <li>강사별 <strong>진행 수업 / 회당단가 / 발생 페이</strong>가 실시간으로 한 화면에 표시됩니다.</li>
+                    <li>회원 확인(체크)된 수업만 페이에 반영돼 정산이 깔끔합니다.</li>
+                    <li>타임비·성과급·기본급을 설정해 두면 월 페이가 자동 합산되고, PDF 파일을 원클릭으로 생성할 수 있습니다.</li>
+                </ul>
             </div>
             <div class="tools-grid">
                 <div class="tool-item reveal">
