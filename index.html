@@ -588,6 +588,75 @@
             margin-bottom: 14px;
         }
 
+        .app-feature-guide {
+            max-width: 880px;
+            margin: 0 auto 64px;
+        }
+
+        .app-feature-guide-player {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            aspect-ratio: 16 / 9;
+            background: #000;
+            border: 1px solid rgba(95, 205, 249, 0.28);
+            box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+        }
+
+        .app-feature-guide-meta {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .app-feature-guide-meta p {
+            font-size: 15px;
+            line-height: 1.65;
+            color: rgba(255, 255, 255, 0.75);
+            word-break: keep-all;
+        }
+
+        .app-feature-chapters {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 16px;
+        }
+
+        .app-feature-chapter {
+            padding: 7px 14px;
+            border-radius: 999px;
+            border: 1px solid rgba(95, 205, 249, 0.35);
+            background: rgba(95, 205, 249, 0.08);
+            color: rgba(255, 255, 255, 0.88);
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s, border-color 0.2s;
+        }
+
+        .app-feature-chapter:hover,
+        .app-feature-chapter.active {
+            background: rgba(95, 205, 249, 0.2);
+            border-color: rgba(95, 205, 249, 0.6);
+            color: #fff;
+        }
+
+        .app-feature-yt-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 14px;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--cyan);
+            text-decoration: none;
+        }
+
+        .app-feature-yt-link:hover {
+            text-decoration: underline;
+        }
+
         .video-points {
             display: flex;
             flex-direction: column;
@@ -1513,6 +1582,19 @@
                 gap: 48px;
                 max-width: 340px;
                 margin: 0 auto;
+            }
+
+            .app-feature-guide {
+                margin-bottom: 48px;
+            }
+
+            .app-feature-chapters {
+                gap: 6px;
+            }
+
+            .app-feature-chapter {
+                font-size: 11px;
+                padding: 6px 11px;
             }
 
             .video-grid,
@@ -2635,7 +2717,7 @@
         <div class="hero-overlay"></div>
         <div class="hero-inner">
             <div class="hero-badge" id="openVideoModal" style="cursor: pointer;">
-                <span></span> The Masterpiece of Management ➔
+                <span></span> 기능 가이드 영상 보기 ➔
             </div>
             <h1>감(感)이 아닌 <em>데이터</em>로<br>수업을 설계합니다</h1>
             <p class="hero-sub">재등록률 90%를 만드는<br class="mobile-only"> AI 피트니스 매니지먼트</p>
@@ -2657,6 +2739,30 @@
                 <span class="section-label">App Features</span>
                 <h2 class="section-title">앱 속 <span class="text-cyan">핵심 기능</span>을 직접 확인하세요</h2>
                 <p class="section-desc">수업 예약부터 AI 분석 리포트까지, 센터 운영의 핵심 흐름을 한눈에 보여드립니다.</p>
+            </div>
+            <div class="app-feature-guide reveal">
+                <div class="app-feature-guide-player">
+                    <div class="youtube-embed">
+                        <iframe
+                            id="featureGuideYT"
+                            src="https://www.youtube-nocookie.com/embed/P8Ldd_2J4Fc?rel=0&modestbranding=1&playsinline=1"
+                            title="SoMa AI 기능 가이드 (2026)"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            referrerpolicy="strict-origin-when-cross-origin"
+                            allowfullscreen></iframe>
+                    </div>
+                </div>
+                <div class="app-feature-guide-meta">
+                    <p>로그인부터 AI 리포트 발행, 센터 퍼포먼스 관리까지 — 49초 만에 전 과정을 확인하세요.</p>
+                    <div class="app-feature-chapters" id="featureChapters">
+                        <button type="button" class="app-feature-chapter active" data-start="0">소마 메인</button>
+                        <button type="button" class="app-feature-chapter" data-start="6">루틴 기록</button>
+                        <button type="button" class="app-feature-chapter" data-start="12">AI 질문하기</button>
+                        <button type="button" class="app-feature-chapter" data-start="19">AI 분석 리포트</button>
+                        <button type="button" class="app-feature-chapter" data-start="32">퍼포먼스 관리</button>
+                    </div>
+                    <a href="https://www.youtube.com/watch?v=P8Ldd_2J4Fc" target="_blank" rel="noopener noreferrer" class="app-feature-yt-link">YouTube에서 전체 보기 ↗</a>
+                </div>
             </div>
             <div class="app-features-grid">
                 <article class="app-feature-card reveal">
@@ -3240,8 +3346,8 @@
             <div class="youtube-embed">
                 <iframe
                     id="fullVideoYT"
-                    src="https://www.youtube-nocookie.com/embed/tKnoJdHVIIk?rel=0&modestbranding=1&playsinline=1"
-                    title="SoMa AI Brand Film"
+                    src="https://www.youtube-nocookie.com/embed/P8Ldd_2J4Fc?rel=0&modestbranding=1&playsinline=1"
+                    title="SoMa AI 기능 가이드 (2026)"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                     referrerpolicy="strict-origin-when-cross-origin"
                     allowfullscreen></iframe>
@@ -3337,24 +3443,41 @@
             header.classList.toggle('header-scrolled', window.scrollY > 80);
         }, { passive: true });
 
+        const YT_FEATURE_GUIDE = 'https://www.youtube-nocookie.com/embed/P8Ldd_2J4Fc?rel=0&modestbranding=1&playsinline=1';
+        const YT_FEATURE_AUTOPLAY = YT_FEATURE_GUIDE + '&autoplay=1';
+
         const modal = document.getElementById('videoModal');
         const fullVideoYT = document.getElementById('fullVideoYT');
-        const YT_BASE = 'https://www.youtube-nocookie.com/embed/tKnoJdHVIIk?rel=0&modestbranding=1&playsinline=1';
-        const YT_AUTOPLAY = YT_BASE + '&autoplay=1';
         document.getElementById('openVideoModal').addEventListener('click', () => {
             modal.classList.add('open');
-            if (fullVideoYT) fullVideoYT.src = YT_AUTOPLAY;
+            if (fullVideoYT) fullVideoYT.src = YT_FEATURE_AUTOPLAY;
         });
         document.getElementById('closeVideoModal').addEventListener('click', () => {
             modal.classList.remove('open');
-            if (fullVideoYT) fullVideoYT.src = YT_BASE;
+            if (fullVideoYT) fullVideoYT.src = YT_FEATURE_GUIDE;
         });
         modal.addEventListener('click', (e) => {
             if (e.target === modal) {
                 modal.classList.remove('open');
-                if (fullVideoYT) fullVideoYT.src = YT_BASE;
+                if (fullVideoYT) fullVideoYT.src = YT_FEATURE_GUIDE;
             }
         });
+
+        (function initFeatureGuideChapters() {
+            const featureGuideYT = document.getElementById('featureGuideYT');
+            const chapters = document.getElementById('featureChapters');
+            if (!featureGuideYT || !chapters) return;
+
+            const baseSrc = YT_FEATURE_GUIDE;
+            chapters.addEventListener('click', (e) => {
+                const btn = e.target.closest('.app-feature-chapter');
+                if (!btn) return;
+                const start = btn.dataset.start || '0';
+                chapters.querySelectorAll('.app-feature-chapter').forEach((el) => el.classList.remove('active'));
+                btn.classList.add('active');
+                featureGuideYT.src = `${baseSrc}&start=${start}&autoplay=1`;
+            });
+        })();
 
         // Floating Contact Widget Toggle
         const contactBtn = document.getElementById('contactBtn');
