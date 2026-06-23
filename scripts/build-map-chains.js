@@ -7,6 +7,8 @@
 const fs = require('fs');
 const path = require('path');
 
+const { isFoodLead } = require('./lead-filters');
+
 const LEADS_PATH = path.join(__dirname, '..', 'private', 'leads.json');
 const OUT_PATH = path.join(__dirname, '..', 'private', 'chains.json');
 const MIN_LOCATIONS = 2;
@@ -122,6 +124,7 @@ function main() {
   const groups = new Map();
 
   for (const lead of leads) {
+    if (isFoodLead(lead)) continue;
     const area = metroArea(lead.address);
     if (!area) continue;
     if (!isFitnessLead(lead.name)) continue;

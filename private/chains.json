@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-06-20T06:43:54",
+  "updatedAt": "2026-06-23T01:30:08",
   "minLocations": 2,
-  "total": 747,
+  "total": 745,
   "chains": [
     {
       "brand": "스포애니",
@@ -1624,25 +1624,6 @@
         "6fd9beb354e8",
         "5b63e3710552",
         "9e9a8bffcf31"
-      ]
-    },
-    {
-      "brand": "POKE",
-      "total": 7,
-      "areas": {
-        "서울": 5,
-        "경기": 2,
-        "인천": 0
-      },
-      "crossMetro": true,
-      "leadIds": [
-        "c7aebc8aafc3",
-        "e2bba677ede4",
-        "5aa1ac880f14",
-        "7a4f4cdde329",
-        "c30b2caba97e",
-        "1158717a6c6b",
-        "7b1a898a439f"
       ]
     },
     {
@@ -10046,20 +10027,6 @@
       "leadIds": [
         "d5b1911f9fba",
         "698d540deabd"
-      ]
-    },
-    {
-      "brand": "초이스짐",
-      "total": 2,
-      "areas": {
-        "서울": 1,
-        "경기": 1,
-        "인천": 0
-      },
-      "crossMetro": true,
-      "leadIds": [
-        "9b6788ef1f18",
-        "f6657242f93f"
       ]
     },
     {
