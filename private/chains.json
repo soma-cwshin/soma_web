@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-06-24T01:17:37",
+  "updatedAt": "2026-06-24T03:53:37",
   "minLocations": 2,
-  "total": 976,
+  "total": 990,
   "chains": [
     {
       "brand": "스포애니",
@@ -102,7 +102,7 @@
         "b8afd905ebd7",
         "63cb1d6b4f67",
         "53f810137842",
-        "c6e331dd22e1",
+        "04e4ecc84a79",
         "b4d8a75679a6",
         "24db4463bb70",
         "b6153f4fe953",
@@ -130,10 +130,10 @@
     },
     {
       "brand": "커브스",
-      "total": 59,
+      "total": 63,
       "areas": {
         "서울": 47,
-        "경기": 11,
+        "경기": 15,
         "인천": 1
       },
       "crossMetro": true,
@@ -196,7 +196,11 @@
         "41f23b6b872a",
         "f48edd25ac9b",
         "124d757792ea",
-        "054d2324fa46"
+        "054d2324fa46",
+        "9a65edf3940a",
+        "906ac0739516",
+        "42d7ace6f45e",
+        "1862b2ce2ed2"
       ]
     },
     {
@@ -256,7 +260,7 @@
         "b9e2753b2c34",
         "80486c0cc2bc",
         "6add62879e5c",
-        "1d2f8211efc7",
+        "484d23c36416",
         "b17506d89c80",
         "1bb3b1aba93f",
         "789147c407eb",
@@ -270,10 +274,10 @@
     },
     {
       "brand": "프리원핏",
-      "total": 54,
+      "total": 55,
       "areas": {
         "서울": 37,
-        "경기": 17,
+        "경기": 18,
         "인천": 0
       },
       "crossMetro": true,
@@ -306,8 +310,8 @@
         "081d18b96fe3",
         "87d28035df9e",
         "20a32960bb25",
-        "4d89186aa332",
-        "e485e404f120",
+        "ff3c038acd64",
+        "f0d933a8d234",
         "3dec91a08f80",
         "0d2fefd4377f",
         "ecbe2a11c6ec",
@@ -331,7 +335,8 @@
         "2074c4c981e9",
         "82673fc5fe50",
         "2e9a215232dd",
-        "3ca7df425d39"
+        "3ca7df425d39",
+        "983c8550cff6"
       ]
     },
     {
@@ -437,9 +442,9 @@
         "13d2ed54d6b3",
         "2563c285f843",
         "489b347e5c50",
-        "6731fecaeacf",
+        "4af28c222595",
         "adf2cd471b5d",
-        "1abda6c79bca",
+        "5be7980d0a68",
         "fcf47cbbdaaa",
         "6deeb6373fed",
         "f4b7dcf635a1",
@@ -586,10 +591,10 @@
     },
     {
       "brand": "모던필라테스",
-      "total": 42,
+      "total": 44,
       "areas": {
         "서울": 39,
-        "경기": 3,
+        "경기": 5,
         "인천": 0
       },
       "crossMetro": true,
@@ -635,7 +640,9 @@
         "2138f95ea093",
         "4f65ada94e46",
         "f120029004bf",
-        "7b6d67bb8fd4"
+        "7b6d67bb8fd4",
+        "47875a5b7a4c",
+        "d68fc08cbcb9"
       ]
     },
     {
@@ -1174,6 +1181,75 @@
       ]
     },
     {
+      "brand": "원더바레",
+      "total": 11,
+      "areas": {
+        "서울": 8,
+        "경기": 3,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "34f02e095a60",
+        "8ca34275371b",
+        "c3a7de2ee17e",
+        "62688c50ae9c",
+        "fb4529e0a8cb",
+        "a62dabba5988",
+        "ca08f797e5ca",
+        "0993bdb5477a",
+        "172d59a2a9df",
+        "a42901b2b641",
+        "6c608ee2453c"
+      ]
+    },
+    {
+      "brand": "인싸짐",
+      "total": 11,
+      "areas": {
+        "서울": 0,
+        "경기": 7,
+        "인천": 4
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "ce872ac27e40",
+        "c2d76881b0b9",
+        "c31e1591c6cc",
+        "84fe31bb95d9",
+        "56952d6ccdb0",
+        "c418e24892c1",
+        "352b7c809a05",
+        "af56f21505bc",
+        "dd52570cf7f7",
+        "491d8be031b3",
+        "5643f58fd7be"
+      ]
+    },
+    {
+      "brand": "쥬비스",
+      "total": 11,
+      "areas": {
+        "서울": 9,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "dd5538847d10",
+        "845cf7181e4e",
+        "5c363f720347",
+        "d849e3a3fcc1",
+        "25316a2f7ab8",
+        "55f734b62eb3",
+        "1fc5e2351dd8",
+        "bb3a6673bad6",
+        "f9ce16cc6e07",
+        "547b62afe71d",
+        "c89c69fa29c7"
+      ]
+    },
+    {
       "brand": "투엑스휘트니스",
       "total": 11,
       "areas": {
@@ -1243,6 +1319,28 @@
       ]
     },
     {
+      "brand": "무브먼트",
+      "total": 10,
+      "areas": {
+        "서울": 6,
+        "경기": 4,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "81609ed5bb7f",
+        "19b61e344d92",
+        "f5bb6b161377",
+        "f08884cc7cc8",
+        "8937e8ec7510",
+        "a87fc6f6578a",
+        "7326450c2c25",
+        "a89db75f334b",
+        "7cdc73eb2d70",
+        "2987ffda1006"
+      ]
+    },
+    {
       "brand": "엔터핏",
       "total": 10,
       "areas": {
@@ -1265,28 +1363,6 @@
       ]
     },
     {
-      "brand": "인싸짐",
-      "total": 10,
-      "areas": {
-        "서울": 0,
-        "경기": 6,
-        "인천": 4
-      },
-      "crossMetro": true,
-      "leadIds": [
-        "ce872ac27e40",
-        "c2d76881b0b9",
-        "c31e1591c6cc",
-        "84fe31bb95d9",
-        "56952d6ccdb0",
-        "c418e24892c1",
-        "352b7c809a05",
-        "af56f21505bc",
-        "dd52570cf7f7",
-        "491d8be031b3"
-      ]
-    },
-    {
       "brand": "점핑하이",
       "total": 10,
       "areas": {
@@ -1298,7 +1374,7 @@
       "leadIds": [
         "7ede8aef82a6",
         "a2136eac9fe7",
-        "e29c0b892fa3",
+        "b7807e26159d",
         "b8565598008e",
         "f875bee0d197",
         "816679e006eb",
@@ -1306,28 +1382,6 @@
         "70f26e7d0afd",
         "9e89a784f8f9",
         "1fb9ba7f2dc1"
-      ]
-    },
-    {
-      "brand": "쥬비스",
-      "total": 10,
-      "areas": {
-        "서울": 9,
-        "경기": 1,
-        "인천": 0
-      },
-      "crossMetro": true,
-      "leadIds": [
-        "dd5538847d10",
-        "845cf7181e4e",
-        "5c363f720347",
-        "d849e3a3fcc1",
-        "25316a2f7ab8",
-        "55f734b62eb3",
-        "1fc5e2351dd8",
-        "bb3a6673bad6",
-        "f9ce16cc6e07",
-        "547b62afe71d"
       ]
     },
     {
@@ -1373,24 +1427,24 @@
       ]
     },
     {
-      "brand": "무브먼트",
+      "brand": "마이크로스튜디오",
       "total": 9,
       "areas": {
-        "서울": 6,
-        "경기": 3,
+        "서울": 8,
+        "경기": 1,
         "인천": 0
       },
       "crossMetro": true,
       "leadIds": [
-        "81609ed5bb7f",
-        "19b61e344d92",
-        "f5bb6b161377",
-        "f08884cc7cc8",
-        "8937e8ec7510",
-        "a87fc6f6578a",
-        "7326450c2c25",
-        "a89db75f334b",
-        "7cdc73eb2d70"
+        "f400a2f64a94",
+        "71e7c0d00c8a",
+        "defaddce4c17",
+        "a5c4fd8de623",
+        "64bd8279ab58",
+        "cb7b1ab1f98f",
+        "c58e0b1f9c16",
+        "36cd9cd0f23c",
+        "3d30916cafcd"
       ]
     },
     {
@@ -1452,29 +1506,8 @@
         "da342598f7bc",
         "e6efed172570",
         "78165f76259c",
-        "f3ed81deda43",
+        "f34ad76f1455",
         "9c4c25a3d161"
-      ]
-    },
-    {
-      "brand": "원더바레",
-      "total": 9,
-      "areas": {
-        "서울": 8,
-        "경기": 1,
-        "인천": 0
-      },
-      "crossMetro": true,
-      "leadIds": [
-        "34f02e095a60",
-        "8ca34275371b",
-        "c3a7de2ee17e",
-        "62688c50ae9c",
-        "fb4529e0a8cb",
-        "a62dabba5988",
-        "ca08f797e5ca",
-        "0993bdb5477a",
-        "172d59a2a9df"
       ]
     },
     {
@@ -1562,6 +1595,27 @@
       ]
     },
     {
+      "brand": "헬스장",
+      "total": 9,
+      "areas": {
+        "서울": 3,
+        "경기": 5,
+        "인천": 1
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "b9d3d8ff7b76",
+        "aeea05b1bec1",
+        "4ff4b26fce35",
+        "2636ce037496",
+        "87d6dec7f85e",
+        "847449595d91",
+        "a3de3f2ad863",
+        "501006212382",
+        "9feb43787cbb"
+      ]
+    },
+    {
       "brand": "넥스트짐",
       "total": 8,
       "areas": {
@@ -1642,26 +1696,6 @@
       ]
     },
     {
-      "brand": "마이크로스튜디오",
-      "total": 8,
-      "areas": {
-        "서울": 8,
-        "경기": 0,
-        "인천": 0
-      },
-      "crossMetro": false,
-      "leadIds": [
-        "f400a2f64a94",
-        "71e7c0d00c8a",
-        "defaddce4c17",
-        "a5c4fd8de623",
-        "64bd8279ab58",
-        "cb7b1ab1f98f",
-        "c58e0b1f9c16",
-        "36cd9cd0f23c"
-      ]
-    },
-    {
       "brand": "무브짐",
       "total": 8,
       "areas": {
@@ -1679,6 +1713,26 @@
         "609c16cdf823",
         "df3437b2e444",
         "74be5e8ae1e8"
+      ]
+    },
+    {
+      "brand": "바디밸런스",
+      "total": 8,
+      "areas": {
+        "서울": 5,
+        "경기": 3,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "711515525095",
+        "77b8f0715942",
+        "77a329131ee9",
+        "fd1b4e8aa719",
+        "7418ec0694ca",
+        "0e73464e020b",
+        "0f8fbab02e0e",
+        "8fef8a5dd185"
       ]
     },
     {
@@ -1922,6 +1976,26 @@
       ]
     },
     {
+      "brand": "헬스케어",
+      "total": 8,
+      "areas": {
+        "서울": 3,
+        "경기": 4,
+        "인천": 1
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "e5d2e46e7b8a",
+        "df673ca1e17f",
+        "61709d4e44c2",
+        "51eaacb5703a",
+        "aae4aba8e56a",
+        "b0a22a5d25d1",
+        "c38d0b8a1d12",
+        "802b2e15e259"
+      ]
+    },
+    {
       "brand": "SNPE",
       "total": 8,
       "areas": {
@@ -1999,22 +2073,22 @@
       ]
     },
     {
-      "brand": "바디밸런스",
+      "brand": "밀라노짐",
       "total": 7,
       "areas": {
-        "서울": 5,
-        "경기": 2,
+        "서울": 0,
+        "경기": 7,
         "인천": 0
       },
-      "crossMetro": true,
+      "crossMetro": false,
       "leadIds": [
-        "711515525095",
-        "77b8f0715942",
-        "77a329131ee9",
-        "fd1b4e8aa719",
-        "7418ec0694ca",
-        "0e73464e020b",
-        "0f8fbab02e0e"
+        "7fcd72a00160",
+        "6f63b8da69e1",
+        "2d039b78489c",
+        "c05b556ffa0b",
+        "a770cab24178",
+        "58c5c5fd09c2",
+        "d2e4b4a78d83"
       ]
     },
     {
@@ -2246,6 +2320,44 @@
       ]
     },
     {
+      "brand": "자마이카",
+      "total": 7,
+      "areas": {
+        "서울": 6,
+        "경기": 1,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "5c682fd600d0",
+        "8812b83a8144",
+        "a0a434315119",
+        "276f2b46c868",
+        "213caec02847",
+        "8b0bb74e5d27",
+        "efa4285bf53a"
+      ]
+    },
+    {
+      "brand": "젝시믹스",
+      "total": 7,
+      "areas": {
+        "서울": 5,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "2e16b7a12649",
+        "d5b7a31162b4",
+        "fc73e84206df",
+        "0adbac52e0a0",
+        "07df16cfb24e",
+        "c809c2089c84",
+        "e56b7b03a2d4"
+      ]
+    },
+    {
       "brand": "짐구공",
       "total": 7,
       "areas": {
@@ -2379,25 +2491,6 @@
       ]
     },
     {
-      "brand": "헬스케어",
-      "total": 7,
-      "areas": {
-        "서울": 3,
-        "경기": 3,
-        "인천": 1
-      },
-      "crossMetro": true,
-      "leadIds": [
-        "e5d2e46e7b8a",
-        "df673ca1e17f",
-        "61709d4e44c2",
-        "51eaacb5703a",
-        "aae4aba8e56a",
-        "b0a22a5d25d1",
-        "c38d0b8a1d12"
-      ]
-    },
-    {
       "brand": "남스짐",
       "total": 6,
       "areas": {
@@ -2485,24 +2578,6 @@
         "81497643a4cc",
         "f584a629b827",
         "8e47095b943d"
-      ]
-    },
-    {
-      "brand": "밀라노짐",
-      "total": 6,
-      "areas": {
-        "서울": 0,
-        "경기": 6,
-        "인천": 0
-      },
-      "crossMetro": false,
-      "leadIds": [
-        "7fcd72a00160",
-        "6f63b8da69e1",
-        "2d039b78489c",
-        "c05b556ffa0b",
-        "a770cab24178",
-        "58c5c5fd09c2"
       ]
     },
     {
@@ -2740,24 +2815,6 @@
       ]
     },
     {
-      "brand": "자마이카",
-      "total": 6,
-      "areas": {
-        "서울": 6,
-        "경기": 0,
-        "인천": 0
-      },
-      "crossMetro": false,
-      "leadIds": [
-        "5c682fd600d0",
-        "8812b83a8144",
-        "a0a434315119",
-        "276f2b46c868",
-        "213caec02847",
-        "8b0bb74e5d27"
-      ]
-    },
-    {
       "brand": "짐라이트",
       "total": 6,
       "areas": {
@@ -2892,8 +2949,8 @@
       "crossMetro": false,
       "leadIds": [
         "dd40b1e4010d",
-        "d58b1f1b3488",
-        "8ad218aa902a",
+        "e0c18c577754",
+        "d92aa4e1c4ac",
         "4bcc25d1d776",
         "81bf5c234868"
       ]
@@ -3001,6 +3058,23 @@
       ]
     },
     {
+      "brand": "라인짐",
+      "total": 5,
+      "areas": {
+        "서울": 2,
+        "경기": 3,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "19db270047e4",
+        "6af7e8330b86",
+        "7a3d741b889d",
+        "c55eb096dfb1",
+        "072786cc91f1"
+      ]
+    },
+    {
       "brand": "렛츠핏",
       "total": 5,
       "areas": {
@@ -3049,6 +3123,23 @@
         "988f7ddd6046",
         "2940c19c2cc0",
         "d52ead05c6b5"
+      ]
+    },
+    {
+      "brand": "매일피트니스",
+      "total": 5,
+      "areas": {
+        "서울": 4,
+        "경기": 1,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "4b1916b1d95e",
+        "de177b91cc93",
+        "6c6bc5420fc7",
+        "82b4b6803a8a",
+        "8e8a549d9d01"
       ]
     },
     {
@@ -3307,23 +3398,6 @@
       ]
     },
     {
-      "brand": "젝시믹스",
-      "total": 5,
-      "areas": {
-        "서울": 5,
-        "경기": 0,
-        "인천": 0
-      },
-      "crossMetro": false,
-      "leadIds": [
-        "2e16b7a12649",
-        "d5b7a31162b4",
-        "fc73e84206df",
-        "0adbac52e0a0",
-        "07df16cfb24e"
-      ]
-    },
-    {
       "brand": "짐코사트",
       "total": 5,
       "areas": {
@@ -3422,7 +3496,7 @@
         "d7c7961c37e7",
         "c968cc455b49",
         "4a88064d4db8",
-        "e9ba53b47497"
+        "e3d05426f27b"
       ]
     },
     {
@@ -3511,6 +3585,23 @@
       ]
     },
     {
+      "brand": "하이랙스",
+      "total": 5,
+      "areas": {
+        "서울": 4,
+        "경기": 1,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "e9f10e2ae1de",
+        "50faa0bafe05",
+        "8e2581fdd7dd",
+        "20e97b7c1977",
+        "5250a702e4b5"
+      ]
+    },
+    {
       "brand": "하이클래스짐",
       "total": 5,
       "areas": {
@@ -3525,23 +3616,6 @@
         "1b1c266a3aef",
         "403dad83b349",
         "1aa56c621560"
-      ]
-    },
-    {
-      "brand": "헬스장",
-      "total": 5,
-      "areas": {
-        "서울": 3,
-        "경기": 1,
-        "인천": 1
-      },
-      "crossMetro": true,
-      "leadIds": [
-        "b9d3d8ff7b76",
-        "aeea05b1bec1",
-        "4ff4b26fce35",
-        "10989931d6ae",
-        "87d6dec7f85e"
       ]
     },
     {
@@ -3573,9 +3647,9 @@
       "leadIds": [
         "2fbcbf65bfa2",
         "32c7dc7a51a9",
-        "1d4367cd9b20",
+        "20eab9e175bd",
         "37ea3501c766",
-        "76c5153b5bbf"
+        "b1596ba01845"
       ]
     },
     {
@@ -3739,22 +3813,6 @@
       ]
     },
     {
-      "brand": "라인짐",
-      "total": 4,
-      "areas": {
-        "서울": 2,
-        "경기": 2,
-        "인천": 0
-      },
-      "crossMetro": true,
-      "leadIds": [
-        "19db270047e4",
-        "6af7e8330b86",
-        "7a3d741b889d",
-        "c55eb096dfb1"
-      ]
-    },
-    {
       "brand": "레드핏휘트니스",
       "total": 4,
       "areas": {
@@ -3800,22 +3858,6 @@
         "d8deb712a43e",
         "a091a18f0d5f",
         "49fe9f1f113e"
-      ]
-    },
-    {
-      "brand": "매일피트니스",
-      "total": 4,
-      "areas": {
-        "서울": 4,
-        "경기": 0,
-        "인천": 0
-      },
-      "crossMetro": false,
-      "leadIds": [
-        "4b1916b1d95e",
-        "de177b91cc93",
-        "6c6bc5420fc7",
-        "82b4b6803a8a"
       ]
     },
     {
@@ -3925,9 +3967,25 @@
       "crossMetro": true,
       "leadIds": [
         "1012d9882861",
-        "564f7ffbc902",
+        "bf5dea5d1427",
         "d6397c174564",
         "baf5003d0c60"
+      ]
+    },
+    {
+      "brand": "바른몸",
+      "total": 4,
+      "areas": {
+        "서울": 0,
+        "경기": 3,
+        "인천": 1
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "9842414c5e3c",
+        "2360ac9cadd4",
+        "dcf8e3ed2329",
+        "7d62a676293e"
       ]
     },
     {
@@ -4038,7 +4096,7 @@
       "leadIds": [
         "fc140e85c562",
         "1ed36b066f16",
-        "46ca45f9487a",
+        "8caefef32567",
         "8b844fe12e7f"
       ]
     },
@@ -4104,6 +4162,22 @@
         "1d4dda775147",
         "9d190b3ec1ae",
         "a013dc502887"
+      ]
+    },
+    {
+      "brand": "아루카",
+      "total": 4,
+      "areas": {
+        "서울": 0,
+        "경기": 4,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "177aaf75998e",
+        "ea84cff40646",
+        "a3dc065a8658",
+        "08b84720aeb4"
       ]
     },
     {
@@ -4536,22 +4610,6 @@
         "3d3702f171c3",
         "6368c7ff8461",
         "ae6c60069d9e"
-      ]
-    },
-    {
-      "brand": "하이랙스",
-      "total": 4,
-      "areas": {
-        "서울": 4,
-        "경기": 0,
-        "인천": 0
-      },
-      "crossMetro": false,
-      "leadIds": [
-        "e9f10e2ae1de",
-        "50faa0bafe05",
-        "8e2581fdd7dd",
-        "20e97b7c1977"
       ]
     },
     {
@@ -5459,6 +5517,21 @@
       ]
     },
     {
+      "brand": "바디라인",
+      "total": 3,
+      "areas": {
+        "서울": 2,
+        "경기": 1,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "c92ee95b5a3d",
+        "f7c067331f60",
+        "6d88d6bace7e"
+      ]
+    },
+    {
       "brand": "바디쉬휘트니스",
       "total": 3,
       "areas": {
@@ -5564,21 +5637,6 @@
       ]
     },
     {
-      "brand": "바른몸",
-      "total": 3,
-      "areas": {
-        "서울": 0,
-        "경기": 2,
-        "인천": 1
-      },
-      "crossMetro": true,
-      "leadIds": [
-        "9842414c5e3c",
-        "2360ac9cadd4",
-        "dcf8e3ed2329"
-      ]
-    },
-    {
       "brand": "바름핏",
       "total": 3,
       "areas": {
@@ -5606,6 +5664,21 @@
         "cf59387130d2",
         "9a6c52f3f091",
         "12cc2f8bebd0"
+      ]
+    },
+    {
+      "brand": "바오짐",
+      "total": 3,
+      "areas": {
+        "서울": 1,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "58efcebc784d",
+        "6c066368f681",
+        "bc7203dd2e79"
       ]
     },
     {
@@ -5768,9 +5841,9 @@
       },
       "crossMetro": false,
       "leadIds": [
-        "87027dd63bd1",
+        "5ba38248c854",
         "d16661ed9596",
-        "0bc5317a1d85"
+        "f39ef386fded"
       ]
     },
     {
@@ -5889,7 +5962,7 @@
       "crossMetro": false,
       "leadIds": [
         "05ce7d833298",
-        "9f539b3bdbbc",
+        "3e622ce12a22",
         "9c91a3a34bc3"
       ]
     },
@@ -6011,21 +6084,6 @@
         "b0466ef6bafe",
         "6efb50ab9b9d",
         "2eedcd8d893b"
-      ]
-    },
-    {
-      "brand": "아루카",
-      "total": 3,
-      "areas": {
-        "서울": 0,
-        "경기": 3,
-        "인천": 0
-      },
-      "crossMetro": false,
-      "leadIds": [
-        "15246b0b22b1",
-        "ea84cff40646",
-        "a3dc065a8658"
       ]
     },
     {
@@ -6314,6 +6372,21 @@
       ]
     },
     {
+      "brand": "올데이피트니스",
+      "total": 3,
+      "areas": {
+        "서울": 0,
+        "경기": 3,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "418e31d06e76",
+        "f470d3214fec",
+        "e359e5974cf4"
+      ]
+    },
+    {
       "brand": "운동가짐",
       "total": 3,
       "areas": {
@@ -6520,7 +6593,7 @@
       "leadIds": [
         "c53bb5b4b961",
         "65e383d13b33",
-        "4b817afd01bf"
+        "8c928828da0e"
       ]
     },
     {
@@ -6536,6 +6609,21 @@
         "5a736e93ad66",
         "0ed633ea38c8",
         "5c037f0b9746"
+      ]
+    },
+    {
+      "brand": "저스트",
+      "total": 3,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 1
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "6f06aaf9068f",
+        "23c9e27b439b",
+        "a7642d68e263"
       ]
     },
     {
@@ -6734,6 +6822,21 @@
       ]
     },
     {
+      "brand": "코리아",
+      "total": 3,
+      "areas": {
+        "서울": 1,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "f30a595c09e1",
+        "1e7cf0f2374e",
+        "63bcf01c6577"
+      ]
+    },
+    {
       "brand": "쿠타짐",
       "total": 3,
       "areas": {
@@ -6746,6 +6849,21 @@
         "9454bbbd6876",
         "f9965485026d",
         "adc6295d1a45"
+      ]
+    },
+    {
+      "brand": "클래스바디",
+      "total": 3,
+      "areas": {
+        "서울": 2,
+        "경기": 1,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "68e725fc47fe",
+        "5db0eb90f721",
+        "fbef47d1521e"
       ]
     },
     {
@@ -7169,6 +7287,21 @@
       ]
     },
     {
+      "brand": "하데스",
+      "total": 3,
+      "areas": {
+        "서울": 0,
+        "경기": 3,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "f6d92f0ea4ca",
+        "45b7354aa971",
+        "76da58be1be1"
+      ]
+    },
+    {
       "brand": "하와이짐",
       "total": 3,
       "areas": {
@@ -7374,6 +7507,20 @@
       "leadIds": [
         "d967a1eba86f",
         "13e446f0d3d3"
+      ]
+    },
+    {
+      "brand": "거북이",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "589240954293",
+        "0d3beb5af14e"
       ]
     },
     {
@@ -7849,7 +7996,7 @@
       "crossMetro": false,
       "leadIds": [
         "f43d6026ade4",
-        "ff30ad404dbf"
+        "52a13314f02d"
       ]
     },
     {
@@ -8175,6 +8322,20 @@
       ]
     },
     {
+      "brand": "라이프피트니스",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "f7f03132ff83",
+        "8e4d1a06743d"
+      ]
+    },
+    {
       "brand": "라인업",
       "total": 2,
       "areas": {
@@ -8199,7 +8360,7 @@
       "crossMetro": true,
       "leadIds": [
         "945ad315e7f3",
-        "10d48d337085"
+        "bcbe0580af35"
       ]
     },
     {
@@ -8283,7 +8444,7 @@
       "crossMetro": true,
       "leadIds": [
         "c723e4137cba",
-        "55b046aa1adb"
+        "2465e451ed1a"
       ]
     },
     {
@@ -8353,7 +8514,7 @@
       "crossMetro": true,
       "leadIds": [
         "dc6cc8d9043b",
-        "d7885b17af96"
+        "dedb5d716cae"
       ]
     },
     {
@@ -9253,20 +9414,6 @@
       ]
     },
     {
-      "brand": "바디라인",
-      "total": 2,
-      "areas": {
-        "서울": 2,
-        "경기": 0,
-        "인천": 0
-      },
-      "crossMetro": false,
-      "leadIds": [
-        "c92ee95b5a3d",
-        "f7c067331f60"
-      ]
-    },
-    {
       "brand": "바디랩",
       "total": 2,
       "areas": {
@@ -9586,20 +9733,6 @@
       "leadIds": [
         "38d35ad8f2aa",
         "188cde337a31"
-      ]
-    },
-    {
-      "brand": "바오짐",
-      "total": 2,
-      "areas": {
-        "서울": 1,
-        "경기": 1,
-        "인천": 0
-      },
-      "crossMetro": true,
-      "leadIds": [
-        "58efcebc784d",
-        "6c066368f681"
       ]
     },
     {
@@ -9991,7 +10124,7 @@
       "crossMetro": false,
       "leadIds": [
         "c878c0ce99c9",
-        "d5a3140a0c54"
+        "70a15bcace6d"
       ]
     },
     {
@@ -10359,6 +10492,20 @@
       ]
     },
     {
+      "brand": "스컬피그",
+      "total": 2,
+      "areas": {
+        "서울": 1,
+        "경기": 1,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "f1c30d337933",
+        "887eebdb1ec0"
+      ]
+    },
+    {
       "brand": "스타휘트니스",
       "total": 2,
       "areas": {
@@ -10467,7 +10614,7 @@
       "crossMetro": true,
       "leadIds": [
         "f952861f6142",
-        "1a868009bc85"
+        "9dc47abd54a3"
       ]
     },
     {
@@ -11087,6 +11234,20 @@
       ]
     },
     {
+      "brand": "에버핏",
+      "total": 2,
+      "areas": {
+        "서울": 1,
+        "경기": 1,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "636e696bb01d",
+        "33b520ec8625"
+      ]
+    },
+    {
       "brand": "에버휘트니스",
       "total": 2,
       "areas": {
@@ -11098,6 +11259,20 @@
       "leadIds": [
         "ea958094ae3f",
         "5c2cb2883970"
+      ]
+    },
+    {
+      "brand": "에소코핏",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "a2fb1d059942",
+        "00da297b46ea"
       ]
     },
     {
@@ -11395,6 +11570,20 @@
       ]
     },
     {
+      "brand": "열린스포츠센터",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "5d142f9b7588",
+        "687d54327fe6"
+      ]
+    },
+    {
       "brand": "영앤짐",
       "total": 2,
       "areas": {
@@ -11602,20 +11791,6 @@
       "leadIds": [
         "4eb5c725e395",
         "e6c8718c991f"
-      ]
-    },
-    {
-      "brand": "올데이피트니스",
-      "total": 2,
-      "areas": {
-        "서울": 0,
-        "경기": 2,
-        "인천": 0
-      },
-      "crossMetro": false,
-      "leadIds": [
-        "418e31d06e76",
-        "f470d3214fec"
       ]
     },
     {
@@ -12053,6 +12228,20 @@
       ]
     },
     {
+      "brand": "원펀치쓰리칼로리",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "03239716df41",
+        "448c8c1c8834"
+      ]
+    },
+    {
       "brand": "월드짐",
       "total": 2,
       "areas": {
@@ -12232,6 +12421,20 @@
       "leadIds": [
         "8516e1212e76",
         "f757115418e7"
+      ]
+    },
+    {
+      "brand": "유온짐",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "5308608fa91a",
+        "4707a11caa68"
       ]
     },
     {
@@ -12473,20 +12676,6 @@
       ]
     },
     {
-      "brand": "저스트",
-      "total": 2,
-      "areas": {
-        "서울": 0,
-        "경기": 1,
-        "인천": 1
-      },
-      "crossMetro": true,
-      "leadIds": [
-        "6f06aaf9068f",
-        "23c9e27b439b"
-      ]
-    },
-    {
       "brand": "저스트짐",
       "total": 2,
       "areas": {
@@ -12638,6 +12827,20 @@
       "leadIds": [
         "161a7d893634",
         "03a48bba7287"
+      ]
+    },
+    {
+      "brand": "제이제이짐",
+      "total": 2,
+      "areas": {
+        "서울": 1,
+        "경기": 1,
+        "인천": 0
+      },
+      "crossMetro": true,
+      "leadIds": [
+        "82f3047dc969",
+        "45fb51ecfff2"
       ]
     },
     {
@@ -13028,7 +13231,7 @@
       },
       "crossMetro": true,
       "leadIds": [
-        "3c459df51472",
+        "89fb3a276dff",
         "eb9a989e7fc2"
       ]
     },
@@ -13257,17 +13460,17 @@
       ]
     },
     {
-      "brand": "코리아",
+      "brand": "코어바디짐",
       "total": 2,
       "areas": {
-        "서울": 1,
-        "경기": 1,
+        "서울": 0,
+        "경기": 2,
         "인천": 0
       },
-      "crossMetro": true,
+      "crossMetro": false,
       "leadIds": [
-        "f30a595c09e1",
-        "1e7cf0f2374e"
+        "ebec5acf655a",
+        "f44be4599e15"
       ]
     },
     {
@@ -13422,20 +13625,6 @@
       "leadIds": [
         "943fdf708860",
         "e6f1b42b7fff"
-      ]
-    },
-    {
-      "brand": "클래스바디",
-      "total": 2,
-      "areas": {
-        "서울": 2,
-        "경기": 0,
-        "인천": 0
-      },
-      "crossMetro": false,
-      "leadIds": [
-        "68e725fc47fe",
-        "5db0eb90f721"
       ]
     },
     {
@@ -13915,6 +14104,20 @@
       ]
     },
     {
+      "brand": "파이프짐",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "eb0fdb95b44f",
+        "4a9cfa2869bf"
+      ]
+    },
+    {
       "brand": "파인짐",
       "total": 2,
       "areas": {
@@ -13982,6 +14185,20 @@
       "leadIds": [
         "9036382c01f0",
         "0df1ecf784d3"
+      ]
+    },
+    {
+      "brand": "퍼스트",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "2aa7c42469d1",
+        "01e967a6e89b"
       ]
     },
     {
@@ -14080,6 +14297,20 @@
       "leadIds": [
         "3383a8195470",
         "7451097eb8d9"
+      ]
+    },
+    {
+      "brand": "프라이드",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "3a30b4b0c789",
+        "c571c4a4db57"
       ]
     },
     {
@@ -14456,7 +14687,7 @@
       },
       "crossMetro": false,
       "leadIds": [
-        "97ab2359a435",
+        "ea92735ca1b3",
         "0a89b967f36b"
       ]
     },
@@ -14671,20 +14902,6 @@
       ]
     },
     {
-      "brand": "하데스",
-      "total": 2,
-      "areas": {
-        "서울": 0,
-        "경기": 2,
-        "인천": 0
-      },
-      "crossMetro": false,
-      "leadIds": [
-        "f6d92f0ea4ca",
-        "45b7354aa971"
-      ]
-    },
-    {
       "brand": "하데스클럽",
       "total": 2,
       "areas": {
@@ -14752,6 +14969,20 @@
       "leadIds": [
         "0d401d3f5fc4",
         "3b3b9f299f4a"
+      ]
+    },
+    {
+      "brand": "하이얼짐",
+      "total": 2,
+      "areas": {
+        "서울": 0,
+        "경기": 2,
+        "인천": 0
+      },
+      "crossMetro": false,
+      "leadIds": [
+        "f9ce07d527ec",
+        "13ce0dd99cd5"
       ]
     },
     {
