@@ -264,14 +264,29 @@ img { max-width: 100%; display: block; }
   font-size: 15px; color: var(--ink-3); line-height: 1.65;
   word-break: keep-all;
 }
-.video-card .video-note {
-  margin-top: 10px;
-  padding: 10px 12px;
-  border-radius: 10px;
-  border-left: 3px solid rgba(46, 140, 213, 0.55);
-  background: rgba(46, 140, 213, 0.1);
-  font-size: 14px;
-  color: var(--ink-2);
+.video-card .video-skip-callout {
+  margin-top: 12px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 193, 77, 0.45);
+  background: linear-gradient(135deg, rgba(255, 193, 77, 0.18) 0%, rgba(255, 152, 56, 0.1) 100%);
+  box-shadow: 0 4px 20px rgba(255, 152, 56, 0.12);
+}
+.video-card .video-skip-callout .skip-label {
+  display: inline-block;
+  margin-bottom: 6px;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: rgba(255, 193, 77, 0.28);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  color: #ffd98a;
+}
+.video-card .video-skip-callout p {
+  font-size: 15px;
+  font-weight: 700;
+  color: #fff4d6;
   line-height: 1.6;
   word-break: keep-all;
 }
@@ -487,7 +502,7 @@ const GUIDE_VIDEOS = {
         id: 't-center',
         title: '센터 정보 설정',
         desc: '룸 타입, 수강권·취소 정책 등 센터 운영에 필요한 기본 정보를 입력합니다.',
-        note: '관리자가 있는 센터의 경우, 이 설정은 해당 센터의 관리자가 진행해야 하며 강사에게는 해당 사항이 없습니다.',
+        skipNote: '관리자가 있는 센터의 경우, 이 설정은 해당 센터의 관리자가 진행해야 하며 강사에게는 해당 사항이 없습니다.',
         notes: [
           '룸 설정 — 공유형: 해당 공간을 여러 사람이 공유하며 동시에 예약할 수 있습니다.',
           '룸 설정 — 점유형: 한 사람이 예약하면 다른 사람은 같은 시간에 예약할 수 없습니다.',
@@ -611,8 +626,13 @@ function renderVideoCard(item, index, role) {
       '<div class="video-card-head">' +
         '<span class="video-num">' + num + '</span>' +
         '<h3>' + escapeHtml(item.title) + '</h3>' +
+        (item.skipNote
+          ? '<div class="video-skip-callout" role="note">' +
+              '<span class="skip-label">강사는 건너뛰어도 됩니다</span>' +
+              '<p>' + escapeHtml(item.skipNote) + '</p>' +
+            '</div>'
+          : '') +
         '<p class="video-desc">' + escapeHtml(item.desc) + '</p>' +
-        (item.note ? '<p class="video-note">' + escapeHtml(item.note) + '</p>' : '') +
         (item.notes && item.notes.length
           ? '<ul class="video-note-list">' +
               item.notes.map(function(n) { return '<li>' + escapeHtml(n) + '</li>'; }).join('') +
