@@ -32,11 +32,12 @@
   --r-lg: 20px;
   --r-xl: 28px;
   --header-h: 72px;
+  --toc-h: 56px;
   --ease: cubic-bezier(.22,.61,.36,1);
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; scroll-padding-top: calc(var(--header-h) + 80px); }
+html { scroll-behavior: smooth; scroll-padding-top: calc(var(--header-h) + var(--toc-h) + 12px); }
 body {
   font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
   background: #071428;
@@ -138,32 +139,76 @@ img { max-width: 100%; display: block; }
   text-shadow: 0 2px 12px rgba(0, 0, 0, 0.45);
 }
 
-.role-switcher {
+.guide-toc-bar {
   position: sticky; top: var(--header-h); z-index: 90;
-  background: rgba(5, 12, 24, 0.5);
+  background: rgba(5, 12, 24, 0.55);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border-bottom: 1px solid var(--line);
 }
-.role-switcher .inner {
+.guide-toc-bar .inner {
   max-width: 1100px; margin: 0 auto;
-  display: flex; gap: 10px; padding: 12px 20px;
+  display: flex; align-items: center; gap: 8px;
+  padding: 10px 16px;
   overflow-x: auto; -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
 }
-.role-pill {
+.guide-toc-bar .inner::-webkit-scrollbar { display: none; }
+.guide-toc-label {
   flex-shrink: 0;
-  height: 44px; padding: 0 20px; border-radius: 999px;
-  border: 1.5px solid var(--line);
-  font-size: 15px; font-weight: 700; color: var(--ink-2);
+  font-size: 11px; font-weight: 700; letter-spacing: 0.08em;
+  color: var(--ink-3); text-transform: uppercase;
+  padding-right: 4px;
+}
+.guide-toc-btn {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 40px;
+  padding: 8px 14px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--ink-2);
+  text-align: left;
+  white-space: nowrap;
   transition: all .2s var(--ease);
 }
-.role-pill[data-role="trainer"].is-active {
-  background: var(--trainer); border-color: var(--trainer); color: #fff;
-  box-shadow: 0 4px 20px rgba(46, 140, 213, 0.35);
+.guide-toc-num {
+  flex-shrink: 0;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  opacity: 0.9;
 }
-.role-pill[data-role="member"].is-active {
-  background: var(--member); border-color: var(--member); color: #fff;
-  box-shadow: 0 4px 20px rgba(0, 184, 148, 0.3);
+.guide-toc-title {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.3;
+}
+.guide-toc-btn:hover {
+  border-color: rgba(95, 205, 249, 0.35);
+  color: var(--accent);
+}
+.guide-toc-bar[data-role="trainer"] .guide-toc-btn.is-current {
+  background: rgba(46, 140, 213, 0.28);
+  border-color: var(--trainer);
+  box-shadow: 0 2px 12px rgba(46, 140, 213, 0.25);
+}
+.guide-toc-bar[data-role="trainer"] .guide-toc-btn.is-current .guide-toc-num,
+.guide-toc-bar[data-role="trainer"] .guide-toc-btn.is-current .guide-toc-title {
+  color: #b8dcff;
+}
+.guide-toc-bar[data-role="member"] .guide-toc-btn.is-current {
+  background: rgba(0, 184, 148, 0.22);
+  border-color: var(--member);
+  box-shadow: 0 2px 12px rgba(0, 184, 148, 0.2);
+}
+.guide-toc-bar[data-role="member"] .guide-toc-btn.is-current .guide-toc-num,
+.guide-toc-bar[data-role="member"] .guide-toc-btn.is-current .guide-toc-title {
+  color: #8dffe8;
 }
 
 .guide-main { max-width: 1100px; margin: 0 auto; padding: 8px 20px 80px; }
@@ -188,7 +233,7 @@ img { max-width: 100%; display: block; }
 .video-list { display: flex; flex-direction: column; gap: 40px; }
 
 .video-card {
-  scroll-margin-top: calc(var(--header-h) + 80px);
+  scroll-margin-top: calc(var(--header-h) + var(--toc-h) + 12px);
   border-radius: var(--r-xl);
   border: 1px solid rgba(255, 255, 255, 0.12);
   background: rgba(10, 22, 45, 0.58);
@@ -347,12 +392,9 @@ img { max-width: 100%; display: block; }
   <p>강사와 회원 화면을 나눠, 가입·회원 등록·수업 예약까지 핵심만 짧게 정리했습니다. 재생·일시정지·구간 이동은 영상 플레이어에서 바로 할 수 있습니다.</p>
 </section>
 
-<div class="role-switcher" role="tablist" aria-label="역할 선택">
-  <div class="inner">
-    <button type="button" class="role-pill is-active" data-role="trainer" role="tab" aria-selected="true">강사가 보는 화면</button>
-    <button type="button" class="role-pill" data-role="member" role="tab" aria-selected="false">회원이 보는 화면</button>
-  </div>
-</div>
+<nav class="guide-toc-bar" id="guide-toc-bar" aria-label="가이드 목차">
+  <div class="inner" id="guide-toc"></div>
+</nav>
 
 <main class="guide-main" id="guide-main"></main>
 
@@ -502,8 +544,11 @@ const GUIDE_VIDEOS = {
 };
 
 const guideMain = document.getElementById('guide-main');
+const guideToc = document.getElementById('guide-toc');
+const guideTocBar = document.getElementById('guide-toc-bar');
 let activeRole = 'trainer';
 let playingVideo = null;
+let tocObserver = null;
 
 function escapeHtml(s) {
   return String(s)
@@ -561,6 +606,54 @@ function renderRoleSection(role, data) {
   );
 }
 
+function buildToc(role) {
+  const items = GUIDE_VIDEOS[role].items;
+  guideTocBar.dataset.role = role;
+  guideToc.innerHTML =
+    '<span class="guide-toc-label">목차</span>' +
+    items.map(function(item, i) {
+      const num = String(i + 1).padStart(2, '0');
+      return (
+        '<button type="button" class="guide-toc-btn" data-target="' + item.id + '" ' +
+          'aria-label="' + num + '. ' + escapeHtml(item.title) + '">' +
+          '<span class="guide-toc-num">' + num + '</span>' +
+          '<span class="guide-toc-title">' + escapeHtml(item.title) + '</span>' +
+        '</button>'
+      );
+    }).join('');
+}
+
+function bindToc() {
+  guideToc.querySelectorAll('.guide-toc-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      const target = document.getElementById(btn.dataset.target);
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        history.replaceState(null, '', '#' + btn.dataset.target);
+      }
+    });
+  });
+
+  if (tocObserver) tocObserver.disconnect();
+
+  const visibleSection = document.querySelector('.role-section.is-visible');
+  if (!visibleSection) return;
+
+  const cards = visibleSection.querySelectorAll('.video-card');
+  tocObserver = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        const id = entry.target.id;
+        guideToc.querySelectorAll('.guide-toc-btn').forEach(function(btn) {
+          btn.classList.toggle('is-current', btn.dataset.target === id);
+        });
+      }
+    });
+  }, { rootMargin: '-' + (parseInt(getComputedStyle(document.documentElement).getPropertyValue('--header-h')) + parseInt(getComputedStyle(document.documentElement).getPropertyValue('--toc-h')) + 20) + 'px 0px -55% 0px', threshold: 0 });
+
+  cards.forEach(function(card) { tocObserver.observe(card); });
+}
+
 function renderPage() {
   guideMain.innerHTML =
     renderRoleSection('trainer', GUIDE_VIDEOS.trainer) +
@@ -577,22 +670,24 @@ function renderPage() {
       if (playingVideo === video) playingVideo = null;
     });
   });
+
+  buildToc(activeRole);
+  bindToc();
 }
 
 function setActiveRole(role, scrollToSection) {
   activeRole = role;
 
-  document.querySelectorAll('.role-tab, .role-pill').forEach(function(btn) {
-    const isActive = btn.dataset.role === role;
-    btn.classList.toggle('is-active', isActive);
-    if (btn.classList.contains('role-pill')) {
-      btn.setAttribute('aria-selected', isActive ? 'true' : 'false');
-    }
+  document.querySelectorAll('.role-tab').forEach(function(btn) {
+    btn.classList.toggle('is-active', btn.dataset.role === role);
   });
 
   document.querySelectorAll('.role-section').forEach(function(section) {
     section.classList.toggle('is-visible', section.dataset.role === role);
   });
+
+  buildToc(role);
+  bindToc();
 
   if (scrollToSection) {
     const target = document.querySelector('.role-section[data-role="' + role + '"]');
@@ -600,22 +695,58 @@ function setActiveRole(role, scrollToSection) {
   }
 }
 
-document.querySelectorAll('.role-tab, .role-pill').forEach(function(btn) {
+document.querySelectorAll('.role-tab').forEach(function(btn) {
   btn.addEventListener('click', function() {
     setActiveRole(btn.dataset.role, true);
   });
 });
 
+function findRoleForId(id) {
+  if (GUIDE_VIDEOS.trainer.items.some(function(item) { return item.id === id; })) return 'trainer';
+  if (GUIDE_VIDEOS.member.items.some(function(item) { return item.id === id; })) return 'member';
+  return null;
+}
+
 if (location.hash === '#member') {
   activeRole = 'member';
+} else if (location.hash === '#trainer') {
+  activeRole = 'trainer';
+} else if (location.hash) {
+  const initHash = location.hash.replace('#', '');
+  const roleForHash = findRoleForId(initHash);
+  if (roleForHash) activeRole = roleForHash;
 }
 
 renderPage();
 setActiveRole(activeRole, false);
 
+if (location.hash) {
+  const initHash = location.hash.replace('#', '');
+  if (findRoleForId(initHash)) {
+    const card = document.getElementById(initHash);
+    if (card) requestAnimationFrame(function() { card.scrollIntoView({ behavior: 'smooth', block: 'start' }); });
+  }
+}
+
 window.addEventListener('hashchange', function() {
-  if (location.hash === '#member') setActiveRole('member', true);
-  if (location.hash === '#trainer') setActiveRole('trainer', true);
+  const hash = location.hash.replace('#', '');
+  if (hash === 'member') {
+    setActiveRole('member', true);
+    return;
+  }
+  if (hash === 'trainer') {
+    setActiveRole('trainer', true);
+    return;
+  }
+  if (hash && document.getElementById(hash)) {
+    const card = document.getElementById(hash);
+    const section = card.closest('.role-section');
+    if (section) {
+      const role = section.dataset.role;
+      if (role !== activeRole) setActiveRole(role, false);
+      card.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }
 });
 </script>
 
