@@ -8,7 +8,7 @@ const outDir = path.join(root, 'images', 'guide', 'posters');
 
 const videos = [
   { id: 't-signup', src: 'images/강사가 보는 화면/강사 회원가입.mp4' },
-  { id: 't-center', src: 'images/강사가 보는 화면/센터 정보 설정하기.mp4' },
+  { id: 't-center', src: 'images/강사가 보는 화면/센터 정보 설정하기.mp4', at: 3 },
   { id: 't-member-pass', src: 'images/강사가 보는 화면/회원 및 수강권 등록.mp4' },
   { id: 't-invite', src: 'images/강사가 보는 화면/회원 소마로 초대해서 가입시키기.mp4' },
   { id: 't-book-home', src: 'images/강사가 보는 화면/홈에서 수업 예약.mp4' },
@@ -34,7 +34,7 @@ for (const video of videos) {
   }
 
   execFileSync(ff, [
-    '-ss', '1',
+    '-ss', String(video.at || 1),
     '-i', input,
     '-vframes', '1',
     '-q:v', '3',
