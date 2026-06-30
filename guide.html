@@ -319,7 +319,8 @@ img { max-width: 100%; display: block; }
   display: block;
   width: 100%;
   max-height: min(72vh, 780px);
-  background: #000;
+  background: #0a0f18;
+  object-fit: contain;
   vertical-align: middle;
 }
 .video-player-wrap video:focus {
@@ -607,6 +608,10 @@ function escapeHtml(s) {
     .replace(/"/g, '&quot;');
 }
 
+function posterSrc(item) {
+  return 'images/guide/posters/' + item.id + '.jpg';
+}
+
 function renderVideoCard(item, index, role) {
   const num = String(index + 1).padStart(2, '0');
   let followUpHtml = '';
@@ -640,7 +645,7 @@ function renderVideoCard(item, index, role) {
           : '') +
       '</div>' +
       '<div class="video-player-wrap">' +
-        '<video controls playsinline preload="metadata" data-role="' + role + '" title="' + escapeHtml(item.title) + '">' +
+        '<video controls playsinline preload="metadata" poster="' + escapeHtml(posterSrc(item)) + '" data-role="' + role + '" title="' + escapeHtml(item.title) + '">' +
           '<source src="' + escapeHtml(item.src) + '" type="video/mp4">' +
           '브라우저가 동영상 재생을 지원하지 않습니다.' +
         '</video>' +
