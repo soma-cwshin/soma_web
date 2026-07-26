@@ -2,8 +2,9 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1">
   <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#071428">
   <title>SoMa 멤버십 맵 — 충전·차감형 타겟 업장</title>
   <meta name="description" content="서울·경기·인천 금액권 멤버십 타겟 업장 지도 (비공개)">
   <link rel="icon" href="../favicon.ico" type="image/x-icon">
@@ -27,17 +28,19 @@
       --high: #2E8CD5;
       --medium: #94a3b8;
       --sidebar-w: 400px;
+      --header-h: 56px;
+      --safe-b: env(safe-area-inset-bottom, 0px);
+      --safe-t: env(safe-area-inset-top, 0px);
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html, body {
       height: 100%;
+      height: 100dvh;
       font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
-      background:
-        radial-gradient(ellipse 80% 50% at 10% -10%, rgba(95, 205, 249, 0.18), transparent 50%),
-        radial-gradient(ellipse 60% 40% at 100% 0%, rgba(46, 140, 213, 0.22), transparent 45%),
-        var(--bg);
+      background: var(--bg);
       color: var(--ink);
       overflow: hidden;
+      -webkit-tap-highlight-color: transparent;
     }
     .hidden { display: none !important; }
     .login-screen {
@@ -45,7 +48,7 @@
       display: flex; align-items: center; justify-content: center;
       background: radial-gradient(circle at 20% 20%, rgba(46,140,213,.15), transparent 40%),
         radial-gradient(circle at 80% 80%, rgba(95,205,249,.1), transparent 40%), var(--bg);
-      padding: 24px;
+      padding: max(24px, var(--safe-t)) 24px max(24px, var(--safe-b));
     }
     .login-card {
       width: 100%; max-width: 360px; background: var(--panel-2);
@@ -55,36 +58,43 @@
     .login-card h2 { font-size: 20px; margin-bottom: 6px; }
     .login-card p { font-size: 13px; color: var(--ink-3); margin-bottom: 20px; line-height: 1.5; word-break: keep-all; }
     .login-card input[type="password"] {
-      width: 100%; padding: 12px 14px; border-radius: 10px; border: 1px solid var(--line);
-      background: rgba(0,0,0,.25); color: var(--ink); font-size: 15px; outline: none; margin-bottom: 12px;
+      width: 100%; padding: 14px; border-radius: 10px; border: 1px solid var(--line);
+      background: rgba(0,0,0,.25); color: var(--ink); font-size: 16px; outline: none; margin-bottom: 12px;
     }
     .login-card input[type="password"]:focus { border-color: var(--blue); }
     .login-error { color: #f87171; font-size: 12px; min-height: 18px; margin-bottom: 8px; }
     .btn.primary {
-      width: 100%; padding: 12px; font-size: 14px; font-weight: 600; border: 0; border-radius: 10px;
+      width: 100%; padding: 14px; font-size: 15px; font-weight: 600; border: 0; border-radius: 10px;
       background: linear-gradient(135deg, #2E8CD5, #5FCDF9); color: #071428; cursor: pointer;
     }
-    .app { display: grid; grid-template-rows: auto 1fr; height: 100%; }
-    header {
-      display: flex; align-items: center; justify-content: space-between; gap: 16px;
-      padding: 12px 20px; border-bottom: 1px solid var(--line);
-      background: rgba(7,20,40,.85); backdrop-filter: blur(14px); z-index: 20;
+    .app {
+      display: grid; grid-template-rows: auto 1fr;
+      height: 100%; height: 100dvh;
+      padding-top: var(--safe-t);
     }
-    .brand { display: flex; align-items: center; gap: 14px; min-width: 0; }
+    header {
+      display: flex; align-items: center; justify-content: space-between; gap: 12px;
+      min-height: var(--header-h); padding: 10px 16px;
+      border-bottom: 1px solid var(--line);
+      background: rgba(7,20,40,.92); backdrop-filter: blur(14px); z-index: 20;
+    }
+    .brand { display: flex; align-items: center; gap: 12px; min-width: 0; }
     .brand a.logo { color: var(--cyan); font-weight: 800; font-size: 18px; text-decoration: none; }
     .brand-copy h1 { font-size: 15px; font-weight: 700; }
     .brand-copy p { font-size: 12px; color: var(--ink-3); margin-top: 2px; word-break: keep-all; }
-    .header-meta { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; justify-content: flex-end; }
+    .header-meta { display: flex; align-items: center; gap: 6px; flex-wrap: nowrap; justify-content: flex-end; }
     .chip {
-      font-size: 12px; font-weight: 600; padding: 6px 11px; border-radius: 999px;
+      font-size: 12px; font-weight: 600; padding: 6px 10px; border-radius: 999px;
       border: 1px solid var(--line); background: rgba(18,40,71,.8); white-space: nowrap;
     }
     .chip strong { color: var(--cyan); }
-    .main { display: grid; grid-template-columns: var(--sidebar-w) 1fr; min-height: 0; }
+    .main { display: grid; grid-template-columns: var(--sidebar-w) 1fr; min-height: 0; position: relative; }
     .sidebar {
       display: flex; flex-direction: column; min-height: 0;
       background: var(--panel); border-right: 1px solid var(--line);
     }
+    .sheet-handle { display: none; }
+    .sheet-peek { display: none; }
     .intro { padding: 14px 16px 12px; border-bottom: 1px solid var(--line); }
     .intro .label {
       font-size: 11px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
@@ -95,21 +105,31 @@
     .controls { padding: 10px 12px; display: flex; flex-direction: column; gap: 8px; border-bottom: 1px solid var(--line); }
     .controls input, .controls select {
       width: 100%; border: 1px solid var(--line); background: rgba(7,20,40,.6); color: var(--ink);
-      border-radius: 10px; padding: 9px 11px; font: inherit; font-size: 13px; outline: none;
+      border-radius: 10px; padding: 11px 12px; font: inherit; font-size: 16px; outline: none;
     }
     .row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
-    .filters { display: flex; gap: 6px; flex-wrap: wrap; }
+    .filters {
+      display: flex; gap: 6px; flex-wrap: nowrap; overflow-x: auto;
+      -webkit-overflow-scrolling: touch; scrollbar-width: none;
+    }
+    .filters::-webkit-scrollbar { display: none; }
     .filters button {
       appearance: none; border: 1px solid var(--line); background: transparent; color: var(--ink-2);
-      font: inherit; font-size: 12px; font-weight: 600; padding: 6px 10px; border-radius: 999px; cursor: pointer;
+      font: inherit; font-size: 13px; font-weight: 600; padding: 8px 12px; border-radius: 999px;
+      cursor: pointer; white-space: nowrap; flex-shrink: 0; min-height: 36px;
     }
     .filters button.active {
       background: rgba(46,140,213,.25); border-color: rgba(95,205,249,.55); color: var(--cyan);
     }
-    .list { flex: 1; overflow: auto; padding: 10px 12px 24px; display: flex; flex-direction: column; gap: 8px; }
+    .list {
+      flex: 1; overflow: auto; padding: 10px 12px 24px;
+      display: flex; flex-direction: column; gap: 8px;
+      -webkit-overflow-scrolling: touch;
+    }
     .card {
       text-align: left; width: 100%; border: 1px solid var(--line); background: rgba(18,40,71,.55);
       border-radius: 14px; padding: 12px 13px; color: inherit; cursor: pointer; font: inherit;
+      touch-action: manipulation;
     }
     .card:hover { border-color: rgba(95,205,249,.35); }
     .card.active { border-color: rgba(95,205,249,.7); background: rgba(46,140,213,.18); }
@@ -120,9 +140,7 @@
     .badge.high { background: rgba(46,140,213,.22); color: #93c5fd; }
     .badge.medium { background: rgba(148,163,184,.2); color: #cbd5e1; }
     .meta { font-size: 12px; color: var(--ink-3); margin-bottom: 8px; }
-    .score-row {
-      display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 8px; align-items: center;
-    }
+    .score-row { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 8px; align-items: center; }
     .score {
       font-size: 11px; font-weight: 800; color: var(--yellow);
       padding: 2px 7px; border-radius: 6px; background: rgba(255,225,0,.12);
@@ -145,7 +163,7 @@
     .map-wrap { position: relative; min-height: 0; background: #dce6ef; }
     #map { width: 100%; height: 100%; background: #dce6ef; }
     .map-legend {
-      position: absolute; left: 14px; bottom: 18px; z-index: 500; display: flex; gap: 8px; flex-wrap: wrap;
+      position: absolute; left: 12px; bottom: 18px; z-index: 500; display: flex; gap: 8px; flex-wrap: wrap;
       padding: 8px 10px; border-radius: 12px; background: rgba(255,255,255,.92); border: 1px solid rgba(0,0,0,.08);
       font-size: 11px; color: #334155; box-shadow: 0 4px 16px rgba(0,0,0,.12);
     }
@@ -163,12 +181,206 @@
     .leaflet-popup-content a { color: #0284c7; }
     .leaflet-control-zoom a {
       background: #fff !important; color: #0f172a !important; border-color: rgba(0,0,0,.1) !important;
+      width: 36px !important; height: 36px !important; line-height: 36px !important; font-size: 18px !important;
     }
+
+    .mobile-detail-backdrop,
+    .mobile-detail { display: none; }
+
     @media (max-width: 900px) {
-      .main { grid-template-columns: 1fr; grid-template-rows: 42vh 1fr; }
-      .sidebar { border-right: none; border-top: 1px solid var(--line); order: 2; }
-      .map-wrap { order: 1; }
-      .brand-copy p { display: none; }
+      header { padding: 8px 12px; min-height: 48px; }
+      .brand-copy p,
+      .intro,
+      .chip-geo { display: none; }
+      .brand-copy h1 { font-size: 14px; }
+      .chip { font-size: 11px; padding: 5px 8px; }
+      .chip-total { display: none; }
+
+      .main {
+        display: block;
+        position: relative;
+        min-height: 0;
+      }
+      .map-wrap {
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+      }
+      .map-legend {
+        left: 10px;
+        right: 10px;
+        bottom: calc(88px + var(--safe-b));
+        justify-content: center;
+        font-size: 10px;
+        padding: 6px 8px;
+        pointer-events: none;
+      }
+      .leaflet-bottom.leaflet-right {
+        bottom: calc(92px + var(--safe-b)) !important;
+        right: 10px !important;
+      }
+      .map-wrap .leaflet-popup-pane { display: none; }
+
+      .sidebar {
+        position: absolute;
+        left: 0; right: 0; bottom: 0;
+        z-index: 20;
+        height: auto;
+        max-height: min(88dvh, 720px);
+        border: 0;
+        border-radius: 18px 18px 0 0;
+        background: rgba(10, 24, 48, 0.97);
+        backdrop-filter: blur(16px);
+        box-shadow: 0 -10px 40px rgba(0,0,0,.4);
+        transform: translateY(calc(100% - 76px - var(--safe-b)));
+        transition: transform 0.28s cubic-bezier(0.32, 0.72, 0, 1);
+        padding-bottom: var(--safe-b);
+      }
+      .sidebar.sheet-mid {
+        transform: translateY(calc(100% - min(48dvh, 420px)));
+      }
+      .sidebar.sheet-full {
+        transform: translateY(0);
+      }
+
+      .sheet-handle {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 16px 6px;
+        cursor: grab;
+        touch-action: none;
+        user-select: none;
+        flex-shrink: 0;
+      }
+      .sheet-handle::before {
+        content: '';
+        width: 40px; height: 4px; border-radius: 999px;
+        background: rgba(255,255,255,.28);
+      }
+      .sheet-peek {
+        display: flex;
+        width: 100%;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+        font-size: 13px;
+        font-weight: 700;
+        color: var(--ink);
+      }
+      .sheet-peek span { color: var(--ink-3); font-weight: 500; font-size: 12px; }
+      .sheet-peek .chev {
+        color: var(--cyan); font-size: 12px; font-weight: 700;
+      }
+
+      .controls { padding: 4px 12px 10px; gap: 8px; }
+      .controls input, .controls select { font-size: 16px; padding: 12px; min-height: 44px; }
+      .filters button { min-height: 40px; padding: 10px 14px; font-size: 13px; }
+
+      .list {
+        padding: 8px 12px calc(16px + var(--safe-b));
+        gap: 8px;
+        overscroll-behavior: contain;
+      }
+      .card {
+        padding: 14px;
+        min-height: 64px;
+        border-radius: 16px;
+      }
+      .card h3 { font-size: 15px; }
+      .card .traits,
+      .card .tags,
+      .card .fit { display: none; }
+      .card .meta {
+        margin-bottom: 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+      .card .score-row { margin-bottom: 0; margin-top: 6px; }
+
+      .mobile-detail-backdrop {
+        display: block;
+        position: fixed;
+        inset: 0;
+        z-index: 1500;
+        background: rgba(0,0,0,.45);
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.22s ease;
+      }
+      .mobile-detail-backdrop.open {
+        opacity: 1;
+        pointer-events: auto;
+      }
+      .mobile-detail {
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        left: 0; right: 0; bottom: 0;
+        z-index: 1600;
+        max-height: min(78dvh, 560px);
+        background: #0c1f3d;
+        color: #fff;
+        border-radius: 18px 18px 0 0;
+        box-shadow: 0 -8px 32px rgba(0,0,0,.45);
+        transform: translateY(105%);
+        transition: transform 0.28s cubic-bezier(0.32, 0.72, 0, 1);
+        padding-bottom: var(--safe-b);
+      }
+      .mobile-detail.open { transform: translateY(0); }
+      .mobile-detail-handle {
+        flex-shrink: 0;
+        padding: 12px 16px 4px;
+        display: flex;
+        justify-content: center;
+      }
+      .mobile-detail-handle::before {
+        content: '';
+        width: 40px; height: 4px; border-radius: 999px;
+        background: rgba(255,255,255,.28);
+      }
+      .mobile-detail-header {
+        display: flex; align-items: flex-start; justify-content: space-between; gap: 12px;
+        padding: 4px 16px 12px;
+        border-bottom: 1px solid var(--line);
+      }
+      .mobile-detail-header h3 {
+        font-size: 17px; font-weight: 750; line-height: 1.35; word-break: keep-all;
+      }
+      .mobile-detail-close {
+        width: 40px; height: 40px; border: 0; border-radius: 12px;
+        background: rgba(255,255,255,.08); color: #fff; font-size: 22px; line-height: 1;
+        cursor: pointer; flex-shrink: 0;
+      }
+      .mobile-detail-body {
+        overflow: auto;
+        padding: 14px 16px 18px;
+        -webkit-overflow-scrolling: touch;
+      }
+      .mobile-detail-body .meta { margin-bottom: 10px; }
+      .mobile-detail-body .actions {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+        margin: 14px 0 4px;
+      }
+      .mobile-detail-body .actions a,
+      .mobile-detail-body .actions button {
+        display: flex; align-items: center; justify-content: center;
+        min-height: 46px; border-radius: 12px; font: inherit; font-size: 14px; font-weight: 700;
+        text-decoration: none; border: 1px solid var(--line); color: #fff;
+        background: rgba(255,255,255,.06); cursor: pointer;
+      }
+      .mobile-detail-body .actions a.call {
+        grid-column: 1 / -1;
+        background: linear-gradient(135deg, #2E8CD5, #5FCDF9);
+        color: #071428; border: 0;
+      }
+      .mobile-detail-body .actions a.disabled {
+        opacity: .4; pointer-events: none;
+      }
     }
   </style>
 </head>
@@ -178,7 +390,7 @@
       <h2>SoMa 멤버십 맵</h2>
       <p>적립(충전) 후 프로그램별 차감 시그널이 보이는 업장 위주입니다.<br>접속 비밀번호를 입력하세요.</p>
       <div class="login-error" id="loginError"></div>
-      <input type="password" id="loginPassword" placeholder="비밀번호" autocomplete="current-password">
+      <input type="password" id="loginPassword" placeholder="비밀번호" autocomplete="current-password" enterkeyhint="go">
       <button class="btn primary" id="btnLogin" type="button">입장</button>
     </div>
   </div>
@@ -193,14 +405,21 @@
         </div>
       </div>
       <div class="header-meta">
-        <div class="chip">전체 <strong id="stat-total">-</strong></div>
+        <div class="chip chip-total">전체 <strong id="stat-total">-</strong></div>
         <div class="chip">표시 <strong id="stat-shown">-</strong></div>
-        <div class="chip">지도 <strong id="stat-geo">-</strong></div>
+        <div class="chip chip-geo">지도 <strong id="stat-geo">-</strong></div>
       </div>
     </header>
 
     <div class="main">
-      <aside class="sidebar">
+      <aside class="sidebar" id="sheet">
+        <div class="sheet-handle" id="sheetHandle" aria-label="목록 펼치기">
+          <div class="sheet-peek">
+            <div>업장 목록 <span id="sheetCount">-</span></div>
+            <div class="chev" id="sheetChevron">▲ 펼치기</div>
+          </div>
+        </div>
+
         <div class="intro">
           <div class="label">Membership ICP</div>
           <h2>적립 후 차감이 보이는 업장 순</h2>
@@ -208,7 +427,7 @@
         </div>
 
         <div class="controls">
-          <input id="search" type="search" placeholder="업장·시그널·지역 검색" autocomplete="off">
+          <input id="search" type="search" placeholder="업장·시그널·지역 검색" autocomplete="off" enterkeyhint="search">
           <div class="row-2">
             <select id="filterMetro"><option value="">전체 권역</option></select>
             <select id="filterArea"><option value="">전체 구·시</option></select>
@@ -226,18 +445,29 @@
       <div class="map-wrap">
         <div id="map"></div>
         <div class="map-legend">
-          <span><i class="dot customer"></i>확정 금액권</span>
-          <span><i class="dot high"></i>시그널 강함</span>
-          <span><i class="dot medium"></i>확장 후보</span>
+          <span><i class="dot customer"></i>확정</span>
+          <span><i class="dot high"></i>강함</span>
+          <span><i class="dot medium"></i>후보</span>
         </div>
       </div>
     </div>
+  </div>
+
+  <div class="mobile-detail-backdrop" id="mobileDetailBackdrop" aria-hidden="true"></div>
+  <div class="mobile-detail" id="mobileDetail" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="mobile-detail-handle" id="mobileDetailHandle"></div>
+    <div class="mobile-detail-header">
+      <h3 id="mobileDetailTitle"></h3>
+      <button type="button" class="mobile-detail-close" id="mobileDetailClose" aria-label="닫기">×</button>
+    </div>
+    <div class="mobile-detail-body" id="mobileDetailBody"></div>
   </div>
 
   <script>
     const AUTH_FLAG = 'soma_maps_client_auth';
     const PRIORITY_LABEL = { customer: '확정', high: '강함', medium: '후보' };
     const PRIORITY_COLOR = { customer: '#22c55e', high: '#2E8CD5', medium: '#94a3b8' };
+    const MQ = window.matchMedia('(max-width: 900px)');
 
     let venues = [];
     let priorityFilter = 'strong';
@@ -247,6 +477,9 @@
     let map, markersLayer;
     const markerById = {};
     let activeId = null;
+    let sheetMode = 'peek'; // peek | mid | full
+
+    function isMobile() { return MQ.matches; }
 
     async function apiFetch(url, options = {}) {
       return fetch(url, { credentials: 'same-origin', ...options });
@@ -320,13 +553,61 @@
 
     function circleStyle(priority, isActive) {
       const color = PRIORITY_COLOR[priority] || PRIORITY_COLOR.medium;
+      const mobile = isMobile();
       return {
-        radius: isActive ? 9 : (priority === 'customer' ? 8 : priority === 'high' ? 7 : 6),
+        radius: isActive ? (mobile ? 11 : 9) : (priority === 'customer' ? (mobile ? 10 : 8) : priority === 'high' ? (mobile ? 9 : 7) : (mobile ? 8 : 6)),
         color: '#fff',
         weight: isActive ? 3 : 2,
         fillColor: color,
         fillOpacity: 0.95,
       };
+    }
+
+    function setSheetMode(mode) {
+      sheetMode = mode;
+      const sheet = document.getElementById('sheet');
+      sheet.classList.toggle('sheet-mid', mode === 'mid');
+      sheet.classList.toggle('sheet-full', mode === 'full');
+      const chev = document.getElementById('sheetChevron');
+      if (chev) {
+        chev.textContent = mode === 'peek' ? '▲ 펼치기' : mode === 'mid' ? '▲ 더보기' : '▼ 접기';
+      }
+      setTimeout(() => map && map.invalidateSize(), 280);
+    }
+
+    function cycleSheet() {
+      if (sheetMode === 'peek') setSheetMode('mid');
+      else if (sheetMode === 'mid') setSheetMode('full');
+      else setSheetMode('peek');
+    }
+
+    function bindSheetDrag() {
+      const handle = document.getElementById('sheetHandle');
+      let startY = 0;
+      let dragging = false;
+
+      const onStart = (y) => { dragging = true; startY = y; };
+      const onMove = (y) => {
+        if (!dragging) return;
+        const dy = y - startY;
+        if (dy < -36) {
+          if (sheetMode === 'peek') setSheetMode('mid');
+          else if (sheetMode === 'mid') setSheetMode('full');
+          dragging = false;
+        } else if (dy > 36) {
+          if (sheetMode === 'full') setSheetMode('mid');
+          else if (sheetMode === 'mid') setSheetMode('peek');
+          dragging = false;
+        }
+      };
+      const onEnd = () => { dragging = false; };
+
+      handle.addEventListener('touchstart', (e) => onStart(e.touches[0].clientY), { passive: true });
+      handle.addEventListener('touchmove', (e) => onMove(e.touches[0].clientY), { passive: true });
+      handle.addEventListener('touchend', onEnd);
+      handle.addEventListener('click', () => {
+        if (!dragging) cycleSheet();
+      });
     }
 
     function fillAreaOptions() {
@@ -347,13 +628,56 @@
       metroEl.value = metroFilter;
     }
 
+    function openMobileDetail(v) {
+      const panel = document.getElementById('mobileDetail');
+      const backdrop = document.getElementById('mobileDetailBackdrop');
+      const body = document.getElementById('mobileDetailBody');
+      const title = document.getElementById('mobileDetailTitle');
+      title.textContent = v.name;
+      const q = encodeURIComponent(v.address || v.name);
+      const nameQ = encodeURIComponent(v.name);
+      const phoneHref = v.phone ? `tel:${v.phone.replace(/\s+/g, '')}` : '';
+      body.innerHTML = `
+        <div class="meta">${escapeHtml(v.region || v.area || '')}</div>
+        <div class="meta">${escapeHtml(v.address || '')}</div>
+        <div class="score-row">
+          <span class="score">시그널 ${v.creditScore ?? '-'}</span>
+          ${(v.creditSignals || []).slice(0, 4).map((s) => `<span class="sig">${escapeHtml(s)}</span>`).join('')}
+        </div>
+        <div class="tags">${(v.tags || []).map((t) => `<span class="tag">${escapeHtml(t)}</span>`).join('')}</div>
+        <ul class="traits">${(v.traits || []).map((t) => `<li>${escapeHtml(t)}</li>`).join('')}</ul>
+        ${v.fit ? `<div class="fit">${escapeHtml(v.fit)}</div>` : ''}
+        <div class="actions">
+          <a class="call ${phoneHref ? '' : 'disabled'}" href="${phoneHref || '#'}">${v.phone ? `전화 ${escapeHtml(v.phone)}` : '전화 없음'}</a>
+          <a href="https://map.kakao.com/?q=${q}" target="_blank" rel="noopener">카카오맵</a>
+          <a href="https://map.naver.com/v5/search/${nameQ}" target="_blank" rel="noopener">네이버맵</a>
+        </div>
+      `;
+      panel.classList.add('open');
+      backdrop.classList.add('open');
+      panel.setAttribute('aria-hidden', 'false');
+      backdrop.setAttribute('aria-hidden', 'false');
+      if (isMobile()) setSheetMode('peek');
+    }
+
+    function closeMobileDetail() {
+      const panel = document.getElementById('mobileDetail');
+      const backdrop = document.getElementById('mobileDetailBackdrop');
+      panel.classList.remove('open');
+      backdrop.classList.remove('open');
+      panel.setAttribute('aria-hidden', 'true');
+      backdrop.setAttribute('aria-hidden', 'true');
+    }
+
     function renderList() {
       const items = filtered();
       const withGeo = items.filter((v) => v.lat && v.lng);
       document.getElementById('stat-shown').textContent = items.length;
       document.getElementById('stat-geo').textContent = withGeo.length;
+      const sheetCount = document.getElementById('sheetCount');
+      if (sheetCount) sheetCount.textContent = `${items.length}곳 · 시그널순`;
 
-      const MAX = 200;
+      const MAX = isMobile() ? 80 : 200;
       const slice = items.slice(0, MAX);
       const list = document.getElementById('list');
       list.innerHTML = slice.map((v) => `
@@ -372,7 +696,7 @@
           ${v.fit ? `<div class="fit">${escapeHtml(v.fit)}</div>` : ''}
         </button>
       `).join('') + (items.length > MAX
-        ? `<div class="meta" style="padding:8px 4px">리스트는 상위 ${MAX}개 · 지도에는 ${items.length}개</div>`
+        ? `<div class="meta" style="padding:8px 4px">상위 ${MAX}개 표시 · 지도에는 ${items.length}개</div>`
         : '');
 
       list.querySelectorAll('.card').forEach((el) => {
@@ -386,18 +710,20 @@
       const items = filtered().filter((v) => v.lat && v.lng);
       items.forEach((v) => {
         const m = L.circleMarker([v.lat, v.lng], circleStyle(v.priority, activeId === v.id));
-        const phone = v.phone ? `<div><a href="tel:${escapeHtml(v.phone)}">${escapeHtml(v.phone)}</a></div>` : '';
-        const sigs = (v.creditSignals || []).length
-          ? `<div class="popup-sig">${escapeHtml((v.creditSignals || []).slice(0, 3).join(' · '))}</div>`
-          : '';
-        m.bindPopup(`
-          <strong>${escapeHtml(v.name)}</strong>
-          <div>${escapeHtml(v.region || '')}</div>
-          <div>${escapeHtml(v.address || '')}</div>
-          ${phone}
-          ${sigs}
-          ${v.fit ? `<div class="popup-fit">${escapeHtml(v.fit)}</div>` : ''}
-        `);
+        if (!isMobile()) {
+          const phone = v.phone ? `<div><a href="tel:${escapeHtml(v.phone)}">${escapeHtml(v.phone)}</a></div>` : '';
+          const sigs = (v.creditSignals || []).length
+            ? `<div class="popup-sig">${escapeHtml((v.creditSignals || []).slice(0, 3).join(' · '))}</div>`
+            : '';
+          m.bindPopup(`
+            <strong>${escapeHtml(v.name)}</strong>
+            <div>${escapeHtml(v.region || '')}</div>
+            <div>${escapeHtml(v.address || '')}</div>
+            ${phone}
+            ${sigs}
+            ${v.fit ? `<div class="popup-fit">${escapeHtml(v.fit)}</div>` : ''}
+          `);
+        }
         m.on('click', () => selectVenue(v.id, false));
         markersLayer.addLayer(m);
         markerById[v.id] = m;
@@ -410,12 +736,18 @@
       renderMarkers();
       const v = venues.find((x) => x.id === id);
       const marker = markerById[id];
-      if (marker) {
-        marker.openPopup();
-        if (pan && v?.lat) map.setView([v.lat, v.lng], Math.max(map.getZoom(), 14), { animate: true });
+      if (v?.lat && (pan || isMobile())) {
+        const offsetLat = isMobile() ? 0.004 : 0;
+        map.setView([v.lat - offsetLat, v.lng], Math.max(map.getZoom(), isMobile() ? 14 : 14), { animate: true });
       }
-      const card = document.querySelector(`.card[data-id="${CSS.escape(id)}"]`);
-      if (card) card.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+      if (isMobile()) {
+        if (marker) marker.closePopup?.();
+        openMobileDetail(v);
+      } else if (marker) {
+        marker.openPopup();
+        const card = document.querySelector(`.card[data-id="${CSS.escape(id)}"]`);
+        if (card) card.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+      }
     }
 
     function applyFilter(fitBounds) {
@@ -426,7 +758,7 @@
       const items = filtered().filter((v) => v.lat && v.lng);
       if (items.length) {
         const b = L.latLngBounds(items.map((v) => [v.lat, v.lng]));
-        map.fitBounds(b.pad(0.1));
+        map.fitBounds(b.pad(isMobile() ? 0.08 : 0.1));
       }
     }
 
@@ -463,6 +795,7 @@
         zoomAnimation: true,
         fadeAnimation: false,
         zoomControl: false,
+        tapTolerance: 22,
       }).setView([37.548, 126.98], 11);
       L.control.zoom({ position: 'bottomright' }).addTo(map);
       L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -475,6 +808,8 @@
       markersLayer = L.layerGroup().addTo(map);
 
       await loadVenues();
+      bindSheetDrag();
+      setSheetMode(isMobile() ? 'peek' : 'full');
 
       document.getElementById('filters').addEventListener('click', (e) => {
         const btn = e.target.closest('button[data-filter]');
@@ -482,6 +817,7 @@
         priorityFilter = btn.dataset.filter;
         document.querySelectorAll('#filters button').forEach((b) => b.classList.toggle('active', b === btn));
         applyFilter(true);
+        if (isMobile() && sheetMode === 'peek') setSheetMode('mid');
       });
       document.getElementById('filterMetro').addEventListener('change', (e) => {
         metroFilter = e.target.value;
@@ -495,13 +831,27 @@
       document.getElementById('search').addEventListener('input', (e) => {
         query = e.target.value.trim().toLowerCase();
         applyFilter(false);
+        if (isMobile() && query && sheetMode === 'peek') setSheetMode('mid');
+      });
+
+      document.getElementById('mobileDetailClose').addEventListener('click', closeMobileDetail);
+      document.getElementById('mobileDetailBackdrop').addEventListener('click', closeMobileDetail);
+      document.getElementById('mobileDetailHandle').addEventListener('click', closeMobileDetail);
+
+      MQ.addEventListener('change', () => {
+        closeMobileDetail();
+        setSheetMode(isMobile() ? 'peek' : 'full');
+        applyFilter(true);
+        setTimeout(() => map.invalidateSize(), 100);
       });
 
       applyFilter(true);
-      const customer = venues.find((v) => v.priority === 'customer');
-      if (customer) setTimeout(() => selectVenue(customer.id, true), 400);
+      if (!isMobile()) {
+        const customer = venues.find((v) => v.priority === 'customer');
+        if (customer) setTimeout(() => selectVenue(customer.id, true), 400);
+      }
       setTimeout(() => map.invalidateSize(), 80);
-      setTimeout(() => map.invalidateSize(), 300);
+      setTimeout(() => map.invalidateSize(), 320);
     }
 
     async function boot() {
