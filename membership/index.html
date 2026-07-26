@@ -10,10 +10,7 @@
   <link rel="stylesheet" as="style" crossorigin
     href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
-  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" crossorigin="">
-  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" crossorigin="">
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
-  <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js" crossorigin=""></script>
   <style>
     :root {
       --bg: #071428;
@@ -27,7 +24,7 @@
       --cyan: #5FCDF9;
       --yellow: #FFE100;
       --customer: #22c55e;
-      --high: #5FCDF9;
+      --high: #2E8CD5;
       --medium: #94a3b8;
       --sidebar-w: 400px;
     }
@@ -120,9 +117,20 @@
     .card h3 { font-size: 14px; font-weight: 700; line-height: 1.35; word-break: keep-all; }
     .badge { flex-shrink: 0; font-size: 10px; font-weight: 800; padding: 3px 7px; border-radius: 999px; }
     .badge.customer { background: rgba(34,197,94,.2); color: #86efac; }
-    .badge.high { background: rgba(95,205,249,.18); color: var(--cyan); }
+    .badge.high { background: rgba(46,140,213,.22); color: #93c5fd; }
     .badge.medium { background: rgba(148,163,184,.2); color: #cbd5e1; }
     .meta { font-size: 12px; color: var(--ink-3); margin-bottom: 8px; }
+    .score-row {
+      display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 8px; align-items: center;
+    }
+    .score {
+      font-size: 11px; font-weight: 800; color: var(--yellow);
+      padding: 2px 7px; border-radius: 6px; background: rgba(255,225,0,.12);
+    }
+    .sig {
+      font-size: 10px; padding: 2px 6px; border-radius: 6px;
+      background: rgba(95,205,249,.12); color: var(--cyan); font-weight: 600;
+    }
     .tags { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 8px; }
     .tag { font-size: 11px; padding: 2px 7px; border-radius: 6px; background: rgba(255,255,255,.06); color: var(--ink-2); }
     .traits { list-style: none; display: flex; flex-direction: column; gap: 4px; }
@@ -134,30 +142,27 @@
       background: var(--cyan); opacity: .7;
     }
     .fit { margin-top: 8px; font-size: 12px; color: var(--yellow); font-weight: 600; word-break: keep-all; }
-    .map-wrap { position: relative; min-height: 0; }
-    #map { width: 100%; height: 100%; background: #0a1628; }
+    .map-wrap { position: relative; min-height: 0; background: #dce6ef; }
+    #map { width: 100%; height: 100%; background: #dce6ef; }
     .map-legend {
       position: absolute; left: 14px; bottom: 18px; z-index: 500; display: flex; gap: 8px; flex-wrap: wrap;
-      padding: 8px 10px; border-radius: 12px; background: rgba(7,20,40,.9); border: 1px solid var(--line);
-      font-size: 11px; color: var(--ink-2);
+      padding: 8px 10px; border-radius: 12px; background: rgba(255,255,255,.92); border: 1px solid rgba(0,0,0,.08);
+      font-size: 11px; color: #334155; box-shadow: 0 4px 16px rgba(0,0,0,.12);
     }
     .map-legend span { display: inline-flex; align-items: center; gap: 6px; }
-    .dot { width: 9px; height: 9px; border-radius: 50%; display: inline-block; }
+    .dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; border: 2px solid #fff; box-shadow: 0 0 0 1px rgba(0,0,0,.15); }
     .dot.customer { background: var(--customer); }
     .dot.high { background: var(--high); }
     .dot.medium { background: var(--medium); }
-    .marker-pin { width: 16px; height: 16px; border-radius: 50%; border: 2px solid #fff; box-shadow: 0 2px 8px rgba(0,0,0,.35); }
-    .leaflet-popup-content-wrapper { background: #122847; color: #fff; border-radius: 12px; }
-    .leaflet-popup-tip { background: #122847; }
+    .leaflet-popup-content-wrapper { background: #fff; color: #0f172a; border-radius: 12px; box-shadow: 0 8px 28px rgba(0,0,0,.18); }
+    .leaflet-popup-tip { background: #fff; }
     .leaflet-popup-content { margin: 12px 14px; font-size: 13px; line-height: 1.45; }
     .leaflet-popup-content strong { display: block; margin-bottom: 4px; font-size: 14px; }
-    .leaflet-popup-content .popup-fit { color: #FFE100; font-size: 12px; margin-top: 6px; }
-    .leaflet-popup-content a { color: #5FCDF9; }
-    .marker-cluster-small, .marker-cluster-medium, .marker-cluster-large {
-      background: rgba(46,140,213,.35) !important;
-    }
-    .marker-cluster-small div, .marker-cluster-medium div, .marker-cluster-large div {
-      background: #2E8CD5 !important; color: #fff !important; font-weight: 700;
+    .leaflet-popup-content .popup-fit { color: #b45309; font-size: 12px; margin-top: 6px; font-weight: 600; }
+    .leaflet-popup-content .popup-sig { color: #0369a1; font-size: 11px; margin-top: 4px; }
+    .leaflet-popup-content a { color: #0284c7; }
+    .leaflet-control-zoom a {
+      background: #fff !important; color: #0f172a !important; border-color: rgba(0,0,0,.1) !important;
     }
     @media (max-width: 900px) {
       .main { grid-template-columns: 1fr; grid-template-rows: 42vh 1fr; }
@@ -171,7 +176,7 @@
   <div class="login-screen" id="loginScreen">
     <div class="login-card">
       <h2>SoMa 멤버십 맵</h2>
-      <p>서울·경기·인천 금액권(충전·차감) 타겟 업장 지도입니다.<br>접속 비밀번호를 입력하세요.</p>
+      <p>적립(충전) 후 프로그램별 차감 시그널이 보이는 업장 위주입니다.<br>접속 비밀번호를 입력하세요.</p>
       <div class="login-error" id="loginError"></div>
       <input type="password" id="loginPassword" placeholder="비밀번호" autocomplete="current-password">
       <button class="btn primary" id="btnLogin" type="button">입장</button>
@@ -184,7 +189,7 @@
         <a class="logo" href="/">SoMa</a>
         <div class="brand-copy">
           <h1>멤버십 타겟 맵</h1>
-          <p>충전 → 프로그램별 차감 → 회원 직접 예약</p>
+          <p>충전·차감 시그널 강한 순 · 큐레이션·★★★</p>
         </div>
       </div>
       <div class="header-meta">
@@ -198,21 +203,20 @@
       <aside class="sidebar">
         <div class="intro">
           <div class="label">Membership ICP</div>
-          <h2>미용실식 금액권으로 돌릴 수 있는 업장</h2>
-          <p>다프로그램(요가·필라·PT·재활 등) · 회당가 상이 · 예약제 업장을 서울·경기·인천에서 모았습니다.</p>
+          <h2>적립 후 차감이 보이는 업장 순</h2>
+          <p>확정 금액권·회당가·혼합/통합권 단서가 있는 곳을 위로. 키워드만 맞은 업장은 빼 두었습니다.</p>
         </div>
 
         <div class="controls">
-          <input id="search" type="search" placeholder="업장·지역·태그 검색" autocomplete="off">
+          <input id="search" type="search" placeholder="업장·시그널·지역 검색" autocomplete="off">
           <div class="row-2">
             <select id="filterMetro"><option value="">전체 권역</option></select>
             <select id="filterArea"><option value="">전체 구·시</option></select>
           </div>
           <div class="filters" id="filters">
-            <button type="button" data-filter="all" class="active">전체</button>
-            <button type="button" data-filter="customer">첫고객</button>
-            <button type="button" data-filter="high">최우선</button>
-            <button type="button" data-filter="medium">다음</button>
+            <button type="button" data-filter="strong" class="active">시그널 강함</button>
+            <button type="button" data-filter="customer">확정 금액권</button>
+            <button type="button" data-filter="all">전체 후보</button>
           </div>
         </div>
 
@@ -222,9 +226,9 @@
       <div class="map-wrap">
         <div id="map"></div>
         <div class="map-legend">
-          <span><i class="dot customer"></i>첫 고객</span>
-          <span><i class="dot high"></i>최우선</span>
-          <span><i class="dot medium"></i>다음</span>
+          <span><i class="dot customer"></i>확정 금액권</span>
+          <span><i class="dot high"></i>시그널 강함</span>
+          <span><i class="dot medium"></i>확장 후보</span>
         </div>
       </div>
     </div>
@@ -232,15 +236,15 @@
 
   <script>
     const AUTH_FLAG = 'soma_maps_client_auth';
-    const PRIORITY_LABEL = { customer: '첫고객', high: '최우선', medium: '다음' };
-    const PRIORITY_COLOR = { customer: '#22c55e', high: '#5FCDF9', medium: '#94a3b8' };
+    const PRIORITY_LABEL = { customer: '확정', high: '강함', medium: '후보' };
+    const PRIORITY_COLOR = { customer: '#22c55e', high: '#2E8CD5', medium: '#94a3b8' };
 
     let venues = [];
-    let priorityFilter = 'all';
+    let priorityFilter = 'strong';
     let metroFilter = '';
     let areaFilter = '';
     let query = '';
-    let map, cluster;
+    let map, markersLayer;
     const markerById = {};
     let activeId = null;
 
@@ -296,26 +300,33 @@
     }
 
     function matches(v) {
-      if (priorityFilter !== 'all' && v.priority !== priorityFilter) return false;
+      if (priorityFilter === 'customer' && v.priority !== 'customer') return false;
+      if (priorityFilter === 'strong' && v.priority !== 'customer' && v.priority !== 'high') return false;
       if (metroFilter && (v.metro || '').indexOf(metroFilter) !== 0 && !(v.region || '').startsWith(metroFilter)) return false;
       if (areaFilter && v.area !== areaFilter) return false;
       if (!query) return true;
-      const hay = [v.name, v.region, v.area, v.address, v.fit, ...(v.tags || []), ...(v.traits || [])]
+      const hay = [v.name, v.region, v.area, v.address, v.fit, ...(v.tags || []), ...(v.traits || []), ...(v.creditSignals || [])]
         .join(' ').toLowerCase();
       return hay.includes(query);
     }
 
-    function filtered() { return venues.filter(matches); }
-
-    function pinIcon(priority) {
-      const color = PRIORITY_COLOR[priority] || PRIORITY_COLOR.medium;
-      return L.divIcon({
-        className: '',
-        html: `<div class="marker-pin" style="background:${color}"></div>`,
-        iconSize: [16, 16],
-        iconAnchor: [8, 8],
-        popupAnchor: [0, -8],
+    function filtered() {
+      return venues.filter(matches).sort((a, b) => {
+        if (a.priority === 'customer' && b.priority !== 'customer') return -1;
+        if (b.priority === 'customer' && a.priority !== 'customer') return 1;
+        return (b.creditScore || 0) - (a.creditScore || 0);
       });
+    }
+
+    function circleStyle(priority, isActive) {
+      const color = PRIORITY_COLOR[priority] || PRIORITY_COLOR.medium;
+      return {
+        radius: isActive ? 9 : (priority === 'customer' ? 8 : priority === 'high' ? 7 : 6),
+        color: '#fff',
+        weight: isActive ? 3 : 2,
+        fillColor: color,
+        fillOpacity: 0.95,
+      };
     }
 
     function fillAreaOptions() {
@@ -342,7 +353,6 @@
       document.getElementById('stat-shown').textContent = items.length;
       document.getElementById('stat-geo').textContent = withGeo.length;
 
-      // virtual-ish: only first 200 cards for scroll perf, note if truncated
       const MAX = 200;
       const slice = items.slice(0, MAX);
       const list = document.getElementById('list');
@@ -353,12 +363,16 @@
             <span class="badge ${escapeHtml(v.priority)}">${PRIORITY_LABEL[v.priority] || v.priority}</span>
           </div>
           <div class="meta">${escapeHtml(v.region || v.area || '')} · ${escapeHtml(v.address || '')}</div>
+          <div class="score-row">
+            <span class="score">시그널 ${v.creditScore ?? '-'}</span>
+            ${(v.creditSignals || []).slice(0, 3).map((s) => `<span class="sig">${escapeHtml(s)}</span>`).join('')}
+          </div>
           <div class="tags">${(v.tags || []).slice(0, 5).map((t) => `<span class="tag">${escapeHtml(t)}</span>`).join('')}</div>
           <ul class="traits">${(v.traits || []).slice(0, 3).map((t) => `<li>${escapeHtml(t)}</li>`).join('')}</ul>
           ${v.fit ? `<div class="fit">${escapeHtml(v.fit)}</div>` : ''}
         </button>
       `).join('') + (items.length > MAX
-        ? `<div class="meta" style="padding:8px 4px">리스트는 상위 ${MAX}개만 표시 · 지도에는 필터 결과 ${items.length}개 모두 표시</div>`
+        ? `<div class="meta" style="padding:8px 4px">리스트는 상위 ${MAX}개 · 지도에는 ${items.length}개</div>`
         : '');
 
       list.querySelectorAll('.card').forEach((el) => {
@@ -367,21 +381,25 @@
     }
 
     function renderMarkers() {
-      cluster.clearLayers();
+      markersLayer.clearLayers();
       Object.keys(markerById).forEach((k) => delete markerById[k]);
       const items = filtered().filter((v) => v.lat && v.lng);
       items.forEach((v) => {
-        const m = L.marker([v.lat, v.lng], { icon: pinIcon(v.priority) });
+        const m = L.circleMarker([v.lat, v.lng], circleStyle(v.priority, activeId === v.id));
         const phone = v.phone ? `<div><a href="tel:${escapeHtml(v.phone)}">${escapeHtml(v.phone)}</a></div>` : '';
+        const sigs = (v.creditSignals || []).length
+          ? `<div class="popup-sig">${escapeHtml((v.creditSignals || []).slice(0, 3).join(' · '))}</div>`
+          : '';
         m.bindPopup(`
           <strong>${escapeHtml(v.name)}</strong>
           <div>${escapeHtml(v.region || '')}</div>
           <div>${escapeHtml(v.address || '')}</div>
           ${phone}
+          ${sigs}
           ${v.fit ? `<div class="popup-fit">${escapeHtml(v.fit)}</div>` : ''}
         `);
         m.on('click', () => selectVenue(v.id, false));
-        cluster.addLayer(m);
+        markersLayer.addLayer(m);
         markerById[v.id] = m;
       });
     }
@@ -389,10 +407,11 @@
     function selectVenue(id, pan) {
       activeId = id;
       renderList();
+      renderMarkers();
       const v = venues.find((x) => x.id === id);
       const marker = markerById[id];
       if (marker) {
-        cluster.zoomToShowLayer(marker, () => marker.openPopup());
+        marker.openPopup();
         if (pan && v?.lat) map.setView([v.lat, v.lng], Math.max(map.getZoom(), 14), { animate: true });
       }
       const card = document.querySelector(`.card[data-id="${CSS.escape(id)}"]`);
@@ -407,7 +426,7 @@
       const items = filtered().filter((v) => v.lat && v.lng);
       if (items.length) {
         const b = L.latLngBounds(items.map((v) => [v.lat, v.lng]));
-        map.fitBounds(b.pad(0.12));
+        map.fitBounds(b.pad(0.1));
       }
     }
 
@@ -419,7 +438,6 @@
       } catch { /* fallback below */ }
 
       if (!data) {
-        // local static fallback after client auth (vercel private folder)
         if (sessionStorage.getItem(AUTH_FLAG) === '1') {
           const res = await fetch('/private/membership-venues.json');
           if (!res.ok) throw new Error('venues not found');
@@ -432,19 +450,29 @@
       venues = (data.venues || []).map((v, i) => ({
         ...v,
         id: v.id || `v-${i}`,
+        creditScore: v.creditScore || 0,
         metro: v.metro || ((v.region || '').startsWith('인천') ? '인천' : (v.region || '').startsWith('경기') ? '경기' : '서울'),
       }));
+      venues.sort((a, b) => (b.creditScore || 0) - (a.creditScore || 0));
       document.getElementById('stat-total').textContent = venues.length;
     }
 
     async function initMapApp() {
-      map = L.map('map', { zoomControl: true }).setView([37.52, 126.98], 10);
-      L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-        attribution: '&copy; OpenStreetMap &copy; CARTO',
+      map = L.map('map', {
+        preferCanvas: true,
+        zoomAnimation: true,
+        fadeAnimation: false,
+        zoomControl: false,
+      }).setView([37.548, 126.98], 11);
+      L.control.zoom({ position: 'bottomright' }).addTo(map);
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; OpenStreetMap',
         maxZoom: 19,
+        updateWhenZooming: false,
+        updateWhenIdle: true,
+        keepBuffer: 2,
       }).addTo(map);
-      cluster = L.markerClusterGroup({ showCoverageOnHover: false, maxClusterRadius: 48 });
-      map.addLayer(cluster);
+      markersLayer = L.layerGroup().addTo(map);
 
       await loadVenues();
 
@@ -471,8 +499,9 @@
 
       applyFilter(true);
       const customer = venues.find((v) => v.priority === 'customer');
-      if (customer) setTimeout(() => selectVenue(customer.id, true), 500);
-      setTimeout(() => map.invalidateSize(), 100);
+      if (customer) setTimeout(() => selectVenue(customer.id, true), 400);
+      setTimeout(() => map.invalidateSize(), 80);
+      setTimeout(() => map.invalidateSize(), 300);
     }
 
     async function boot() {
@@ -495,11 +524,8 @@
           await login(loginPassword.value);
           await tryStart();
         } catch (err) {
-          if (err.message && err.message.includes('비밀')) loginError.textContent = err.message;
-          else {
-            console.error(err);
-            loginError.textContent = err.message || '로그인 실패';
-          }
+          console.error(err);
+          loginError.textContent = err.message || '로그인 실패';
         }
       });
       loginPassword.addEventListener('keydown', (e) => {
