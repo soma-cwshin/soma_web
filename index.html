@@ -883,9 +883,8 @@
         }
 
         .why-values-header {
-            text-align: center;
-            max-width: 720px;
-            margin: 0 auto 48px;
+            max-width: 760px;
+            margin: 0 0 40px;
         }
 
         .why-values-header .section-title {
@@ -894,54 +893,108 @@
         }
 
         .why-values-header .section-desc-dark {
-            margin-top: 16px;
-            font-size: 17px;
-            color: rgba(255, 255, 255, 0.75);
+            margin-top: 14px;
+            font-size: 16px;
+            line-height: 1.7;
+            color: rgba(255, 255, 255, 0.72);
             word-break: keep-all;
         }
 
-        .pillars-grid {
+        .soma-thread {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+
+        .soma-thread-row {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
+            grid-template-columns: 220px 1fr;
+            gap: 32px;
+            padding: 36px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            align-items: start;
         }
 
-        .pillar-card {
-            padding: 28px 24px;
-            border-radius: 16px;
-            background: rgba(18, 40, 71, 0.55);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(95, 205, 249, 0.15);
-            transition: box-shadow 0.3s, transform 0.3s;
+        .soma-thread-row:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
         }
 
-        .pillar-card:hover {
-            box-shadow: 0 12px 32px rgba(95, 205, 249, 0.18);
-            transform: translateY(-4px);
+        .soma-thread-row:first-child {
+            padding-top: 8px;
         }
 
-        .pillar-num {
-            font-size: 13px;
+        .soma-thread-meta {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            position: sticky;
+            top: 100px;
+        }
+
+        .soma-thread-index {
+            font-size: 12px;
             font-weight: 800;
+            letter-spacing: 0.12em;
             color: var(--cyan);
-            letter-spacing: 0.08em;
-            margin-bottom: 12px;
         }
 
-        .pillar-card h3 {
-            font-size: 18px;
+        .soma-thread-layer {
+            font-size: 13px;
             font-weight: 700;
-            line-height: 1.4;
-            color: var(--white);
-            margin-bottom: 10px;
+            color: rgba(255, 255, 255, 0.55);
             word-break: keep-all;
         }
 
-        .pillar-card p {
+        .soma-thread-title {
+            font-size: 22px;
+            font-weight: 800;
+            color: var(--white);
+            line-height: 1.35;
+            letter-spacing: -0.02em;
+            word-break: keep-all;
+        }
+
+        .soma-thread-title span {
+            color: var(--cyan-bright);
+        }
+
+        .soma-thread-points {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 28px 36px;
+        }
+
+        .soma-thread-point {
+            position: relative;
+            padding-left: 18px;
+        }
+
+        .soma-thread-point::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0.55em;
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--cyan);
+            box-shadow: 0 0 12px rgba(95, 205, 249, 0.55);
+        }
+
+        .soma-thread-point h4 {
+            font-size: 17px;
+            font-weight: 800;
+            color: var(--white);
+            margin-bottom: 8px;
+            line-height: 1.4;
+            word-break: keep-all;
+        }
+
+        .soma-thread-point p {
             font-size: 14px;
-            line-height: 1.65;
-            color: rgba(255, 255, 255, 0.75);
+            line-height: 1.7;
+            color: rgba(255, 255, 255, 0.7);
             word-break: keep-all;
         }
 
@@ -1958,7 +2011,6 @@
         /* Responsive */
         @media (max-width: 1024px) {
             .connection-cards,
-            .pillars-grid,
             .app-features-grid {
                 grid-template-columns: 1fr;
             }
@@ -2168,30 +2220,41 @@
                 font-size: 14px;
             }
 
-            .pillars-grid {
-                gap: 14px;
-            }
-
             .why-values {
                 margin-top: 48px;
                 padding-top: 40px;
             }
 
             .why-values-header {
-                margin-bottom: 28px;
+                margin-bottom: 20px;
             }
 
-            .pillar-card {
-                padding: 22px 20px;
+            .soma-thread-row {
+                grid-template-columns: 1fr;
+                gap: 18px;
+                padding: 28px 0;
             }
 
-            .pillar-card h3 {
-                font-size: 17px;
-                margin-bottom: 10px;
+            .soma-thread-meta {
+                position: static;
+                gap: 6px;
             }
 
-            .pillar-card p {
-                font-size: 14px;
+            .soma-thread-title {
+                font-size: 20px;
+            }
+
+            .soma-thread-points {
+                grid-template-columns: 1fr;
+                gap: 18px;
+            }
+
+            .soma-thread-point h4 {
+                font-size: 16px;
+            }
+
+            .soma-thread-point p {
+                font-size: 13.5px;
             }
 
             /* Posture Simulator on mobile */
@@ -3514,41 +3577,62 @@
 
             <div class="why-values">
                 <div class="why-values-header reveal">
-                    <span class="section-label">Core Value</span>
-                    <h2 class="section-title">데이터가 만드는 <span class="text-cyan">6가지 가치</span></h2>
-                    <p class="section-desc-dark">회원의 몸과 마음을 연결하는 SoMa AI만의 핵심 기능</p>
+                    <span class="section-label">SoMa Meaning</span>
+                    <h2 class="section-title">세 가지 연결이<br><span class="text-cyan">몸과 마음</span>을 하나로 만듭니다</h2>
+                    <p class="section-desc-dark">위의 세 레이어는 이름에 담긴 철학입니다. 그 철학이 센터에서 어떻게 작동하는지, 연결마다 두 가지로 풀어냅니다.</p>
                 </div>
-                <div class="pillars-grid">
-                    <div class="pillar-card reveal">
-                        <div class="pillar-num">01</div>
-                        <h3>초정밀 분석 충성도</h3>
-                        <p>관절 0.1° 영상 분석과 식단 최적화로, "나를 가장 잘 아는 센터"가 됩니다.</p>
-                    </div>
-                    <div class="pillar-card reveal">
-                        <div class="pillar-num">02</div>
-                        <h3>24시간 밀착 관리</h3>
-                        <p>홈워크와 맞춤 영양 전략으로 케어가 회원의 일상까지 닿습니다.</p>
-                    </div>
-                    <div class="pillar-card reveal">
-                        <div class="pillar-num">03</div>
-                        <h3>데이터로 증명하는 신뢰</h3>
-                        <p>주관적 평가 대신, AI 종합 점수와 세부 지표로 변화를 시각화합니다.</p>
-                    </div>
-                    <div class="pillar-card reveal">
-                        <div class="pillar-num">04</div>
-                        <h3>재등록률 90%의 과학</h3>
-                        <p>AI가 신체 변화를 진단하고 다음 수업을 자동 설계해, 강사와 무관하게 일관된 품질을 보장합니다.</p>
-                    </div>
-                    <div class="pillar-card reveal">
-                        <div class="pillar-num">05</div>
-                        <h3>상담 전환율 혁신</h3>
-                        <p>초정밀 AI 리포트만으로, 경쟁 센터와 차별화된 프리미엄 이미지를 각인시킵니다.</p>
-                    </div>
-                    <div class="pillar-card reveal">
-                        <div class="pillar-num">06</div>
-                        <h3>강사 역량의 시스템화</h3>
-                        <p>기능해부학과 임상적 추론이 내장된 AI로, 신입 강사도 베테랑 수준의 맞춤형 교정·재활 수업을 즉시 구현합니다.</p>
-                    </div>
+                <div class="soma-thread">
+                    <article class="soma-thread-row reveal">
+                        <div class="soma-thread-meta">
+                            <span class="soma-thread-index">LAYER 01</span>
+                            <span class="soma-thread-layer">Business · 운영의 본질</span>
+                            <h3 class="soma-thread-title">센터에 <span>두뇌</span>를 심다</h3>
+                        </div>
+                        <div class="soma-thread-points">
+                            <div class="soma-thread-point">
+                                <h4>오프라인 센터 × AI 운영</h4>
+                                <p>예약·회원·급여가 한 흐름으로 움직이게 해, 센터 운영에 지능을 이식합니다.</p>
+                            </div>
+                            <div class="soma-thread-point">
+                                <h4>강사 전문성의 표준화</h4>
+                                <p>기능해부학과 임상 추론이 담긴 AI로, 신입도 베테랑 수준의 맞춤 수업을 바로 설계합니다.</p>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="soma-thread-row reveal">
+                        <div class="soma-thread-meta">
+                            <span class="soma-thread-index">LAYER 02</span>
+                            <span class="soma-thread-layer">Service · 데이터 기반 수업</span>
+                            <h3 class="soma-thread-title">몸의 변화를 <span>데이터</span>로 증명하다</h3>
+                        </div>
+                        <div class="soma-thread-points">
+                            <div class="soma-thread-point">
+                                <h4>0.1°까지 읽는 초정밀 분석</h4>
+                                <p>관절·자세를 영상으로 읽어, 감이 아닌 수치로 수업 피드백을 구체화합니다.</p>
+                            </div>
+                            <div class="soma-thread-point">
+                                <h4>눈에 보이는 신뢰</h4>
+                                <p>AI 점수와 세부 지표로 변화를 시각화해, 회원과 센터가 같은 근거를 보게 합니다.</p>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="soma-thread-row reveal">
+                        <div class="soma-thread-meta">
+                            <span class="soma-thread-index">LAYER 03</span>
+                            <span class="soma-thread-layer">Philosophy · 소마틱스</span>
+                            <h3 class="soma-thread-title">전문성이 <span>일상</span>까지 이어지다</h3>
+                        </div>
+                        <div class="soma-thread-points">
+                            <div class="soma-thread-point">
+                                <h4>수업 밖의 24시간 케어</h4>
+                                <p>홈워크와 맞춤 영양 전략으로, 레슨이 끝난 뒤에도 회원의 하루에 연결됩니다.</p>
+                            </div>
+                            <div class="soma-thread-point">
+                                <h4>몸과 마음의 통합 여정</h4>
+                                <p>센터·강사·회원을 하나의 케어 루프로 묶어, "나를 가장 잘 아는 센터"를 만듭니다.</p>
+                            </div>
+                        </div>
+                    </article>
                 </div>
             </div>
         </div>
