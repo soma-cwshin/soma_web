@@ -773,7 +773,7 @@
             word-break: keep-all;
         }
 
-        /* Why SoMa */
+        /* Why SoMa + Core Value */
         .why-section {
             background: linear-gradient(180deg, rgba(8, 20, 38, 0.62) 0%, rgba(10, 28, 55, 0.58) 100%), 
                         url('images/video/frame_20.jpg') center/cover no-repeat;
@@ -783,7 +783,7 @@
 
         .why-intro {
             max-width: 780px;
-            margin-bottom: 64px;
+            margin-bottom: 48px;
         }
 
         .why-intro .section-desc {
@@ -876,38 +876,38 @@
             word-break: keep-all;
         }
 
-        /* Pillars */
-        .pillars-section {
-            background: linear-gradient(180deg, rgba(10, 28, 55, 0.60) 0%, rgba(8, 20, 38, 0.58) 100%), 
-                        url('images/video/frame_score.jpg') center/cover no-repeat;
-            background-blend-mode: multiply;
-            padding: 120px 0;
+        .why-values {
+            margin-top: 72px;
+            padding-top: 64px;
+            border-top: 1px solid rgba(95, 205, 249, 0.18);
         }
 
-        .pillars-header {
+        .why-values-header {
             text-align: center;
             max-width: 720px;
-            margin: 0 auto 64px;
+            margin: 0 auto 48px;
         }
 
-        .pillars-header .section-title {
+        .why-values-header .section-title {
             color: var(--white);
+            font-size: clamp(26px, 3.2vw, 36px);
         }
 
-        .pillars-header .section-desc-dark {
+        .why-values-header .section-desc-dark {
             margin-top: 16px;
-            font-size: 18px;
+            font-size: 17px;
             color: rgba(255, 255, 255, 0.75);
+            word-break: keep-all;
         }
 
         .pillars-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 24px;
+            gap: 20px;
         }
 
         .pillar-card {
-            padding: 32px 28px;
+            padding: 28px 24px;
             border-radius: 16px;
             background: rgba(18, 40, 71, 0.55);
             backdrop-filter: blur(12px);
@@ -930,16 +930,16 @@
         }
 
         .pillar-card h3 {
-            font-size: 19px;
+            font-size: 18px;
             font-weight: 700;
             line-height: 1.4;
             color: var(--white);
-            margin-bottom: 12px;
+            margin-bottom: 10px;
             word-break: keep-all;
         }
 
         .pillar-card p {
-            font-size: 15px;
+            font-size: 14px;
             line-height: 1.65;
             color: rgba(255, 255, 255, 0.75);
             word-break: keep-all;
@@ -2099,7 +2099,6 @@
             .body-analysis-section,
             .posture-scan-section,
             .why-section,
-            .pillars-section,
             .data-section,
             .tools-section {
                 padding: 64px 0;
@@ -2169,12 +2168,17 @@
                 font-size: 14px;
             }
 
-            .pillars-header {
-                margin-bottom: 36px;
-            }
-
             .pillars-grid {
                 gap: 14px;
+            }
+
+            .why-values {
+                margin-top: 48px;
+                padding-top: 40px;
+            }
+
+            .why-values-header {
+                margin-bottom: 28px;
             }
 
             .pillar-card {
@@ -3286,49 +3290,6 @@
         </div>
     </section>
 
-    <!-- 6 Pillars -->
-    <section class="pillars-section">
-        <div class="container">
-            <div class="pillars-header reveal">
-                <span class="section-label" style="color:var(--blue);">Core Value</span>
-                <h2 class="section-title">데이터가 만드는 <span class="text-blue">6가지 가치</span></h2>
-                <p class="section-desc-dark">회원의 몸과 마음을 연결하는 SoMa AI만의 핵심 기능</p>
-            </div>
-            <div class="pillars-grid">
-                <div class="pillar-card reveal">
-                    <div class="pillar-num">01</div>
-                    <h3>초정밀 분석 충성도</h3>
-                    <p>관절 0.1° 영상 분석과 식단 최적화로, "나를 가장 잘 아는 센터"가 됩니다.</p>
-                </div>
-                <div class="pillar-card reveal">
-                    <div class="pillar-num">02</div>
-                    <h3>24시간 밀착 관리</h3>
-                    <p>홈워크와 맞춤 영양 전략으로 케어가 회원의 일상까지 닿습니다.</p>
-                </div>
-                <div class="pillar-card reveal">
-                    <div class="pillar-num">03</div>
-                    <h3>데이터로 증명하는 신뢰</h3>
-                    <p>주관적 평가 대신, AI 종합 점수와 세부 지표로 변화를 시각화합니다.</p>
-                </div>
-                <div class="pillar-card reveal">
-                    <div class="pillar-num">04</div>
-                    <h3>재등록률 90%의 과학</h3>
-                    <p>AI가 신체 변화를 진단하고 다음 수업을 자동 설계해, 강사와 무관하게 일관된 품질을 보장합니다.</p>
-                </div>
-                <div class="pillar-card reveal">
-                    <div class="pillar-num">05</div>
-                    <h3>상담 전환율 혁신</h3>
-                    <p>초정밀 AI 리포트만으로, 경쟁 센터와 차별화된 프리미엄 이미지를 각인시킵니다.</p>
-                </div>
-                <div class="pillar-card reveal">
-                    <div class="pillar-num">06</div>
-                    <h3>강사 역량의 시스템화</h3>
-                    <p>기능해부학과 임상적 추론이 내장된 AI로, 신입 강사도 베테랑 수준의 맞춤형 교정·재활 수업을 즉시 구현합니다.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- Data Analysis -->
     <section class="data-section">
         <div class="container">
@@ -3519,8 +3480,8 @@
         </div>
     </section>
 
-    <!-- Why SoMa -->
-    <section class="why-section">
+    <!-- Why SoMa + Core Value -->
+    <section class="why-section" id="why-soma">
         <div class="container">
             <div class="why-intro reveal">
                 <span class="section-label">Why SoMa AI</span>
@@ -3548,6 +3509,46 @@
                     <h3>전문성 + 일상</h3>
                     <div class="formula">강사 노하우 × 24시간 케어</div>
                     <p>수업 후 식단과 홈워크까지 함께해, "나를 가장 잘 아는 센터"라는 신뢰를 만듭니다.</p>
+                </div>
+            </div>
+
+            <div class="why-values">
+                <div class="why-values-header reveal">
+                    <span class="section-label">Core Value</span>
+                    <h2 class="section-title">데이터가 만드는 <span class="text-cyan">6가지 가치</span></h2>
+                    <p class="section-desc-dark">회원의 몸과 마음을 연결하는 SoMa AI만의 핵심 기능</p>
+                </div>
+                <div class="pillars-grid">
+                    <div class="pillar-card reveal">
+                        <div class="pillar-num">01</div>
+                        <h3>초정밀 분석 충성도</h3>
+                        <p>관절 0.1° 영상 분석과 식단 최적화로, "나를 가장 잘 아는 센터"가 됩니다.</p>
+                    </div>
+                    <div class="pillar-card reveal">
+                        <div class="pillar-num">02</div>
+                        <h3>24시간 밀착 관리</h3>
+                        <p>홈워크와 맞춤 영양 전략으로 케어가 회원의 일상까지 닿습니다.</p>
+                    </div>
+                    <div class="pillar-card reveal">
+                        <div class="pillar-num">03</div>
+                        <h3>데이터로 증명하는 신뢰</h3>
+                        <p>주관적 평가 대신, AI 종합 점수와 세부 지표로 변화를 시각화합니다.</p>
+                    </div>
+                    <div class="pillar-card reveal">
+                        <div class="pillar-num">04</div>
+                        <h3>재등록률 90%의 과학</h3>
+                        <p>AI가 신체 변화를 진단하고 다음 수업을 자동 설계해, 강사와 무관하게 일관된 품질을 보장합니다.</p>
+                    </div>
+                    <div class="pillar-card reveal">
+                        <div class="pillar-num">05</div>
+                        <h3>상담 전환율 혁신</h3>
+                        <p>초정밀 AI 리포트만으로, 경쟁 센터와 차별화된 프리미엄 이미지를 각인시킵니다.</p>
+                    </div>
+                    <div class="pillar-card reveal">
+                        <div class="pillar-num">06</div>
+                        <h3>강사 역량의 시스템화</h3>
+                        <p>기능해부학과 임상적 추론이 내장된 AI로, 신입 강사도 베테랑 수준의 맞춤형 교정·재활 수업을 즉시 구현합니다.</p>
+                    </div>
                 </div>
             </div>
         </div>
