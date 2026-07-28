@@ -483,10 +483,28 @@
             content: '';
             position: absolute;
             inset: 0;
-            background: linear-gradient(180deg,
-                    rgba(7, 20, 40, 0.72) 0%,
-                    rgba(10, 28, 55, 0.55) 45%,
-                    rgba(7, 20, 40, 0.78) 100%);
+            background:
+                radial-gradient(ellipse at 15% 20%, rgba(95, 205, 249, 0.18) 0%, transparent 45%),
+                radial-gradient(ellipse at 85% 25%, rgba(46, 140, 213, 0.22) 0%, transparent 42%),
+                linear-gradient(180deg,
+                    rgba(7, 20, 40, 0.78) 0%,
+                    rgba(10, 28, 55, 0.62) 45%,
+                    rgba(7, 20, 40, 0.84) 100%);
+        }
+
+        .app-features-header {
+            text-align: center;
+            max-width: 760px;
+            margin: 0 auto 48px;
+        }
+
+        .app-features-header .section-desc {
+            max-width: 640px;
+            margin-left: auto;
+            margin-right: auto;
+            font-size: 16px;
+            line-height: 1.7;
+            color: rgba(255, 255, 255, 0.7);
         }
 
         .app-features-section .container {
@@ -494,45 +512,78 @@
             z-index: 1;
         }
 
-        .app-features-header {
-            text-align: center;
-            max-width: 720px;
-            margin: 0 auto 56px;
-        }
-
-        .app-features-header .section-desc {
-            max-width: 560px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
         .app-features-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 28px;
-            align-items: start;
+            gap: 22px;
+            align-items: stretch;
         }
 
         .app-feature-card {
+            position: relative;
             display: flex;
             flex-direction: column;
-            align-items: center;
-            text-align: center;
+            gap: 18px;
+            text-align: left;
+            padding: 18px 18px 24px;
+            border-radius: 24px;
+            background:
+                linear-gradient(160deg, rgba(22, 48, 84, 0.88) 0%, rgba(10, 24, 48, 0.92) 100%);
+            border: 1px solid rgba(95, 205, 249, 0.22);
+            box-shadow:
+                0 24px 60px rgba(0, 0, 0, 0.35),
+                inset 0 1px 0 rgba(255, 255, 255, 0.06);
+            overflow: hidden;
+            transition: transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.15),
+                        border-color 0.3s,
+                        box-shadow 0.35s;
+        }
+
+        .app-feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--cyan), transparent);
+            opacity: 0.85;
+            z-index: 1;
+        }
+
+        .app-feature-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(95, 205, 249, 0.55);
+            box-shadow:
+                0 28px 70px rgba(0, 0, 0, 0.45),
+                0 0 40px rgba(95, 205, 249, 0.18);
+        }
+
+        .app-feature-card.is-featured {
+            border-color: rgba(95, 205, 249, 0.45);
+            background:
+                linear-gradient(160deg, rgba(28, 68, 118, 0.95) 0%, rgba(12, 32, 62, 0.96) 100%);
+            box-shadow:
+                0 28px 70px rgba(0, 0, 0, 0.4),
+                0 0 0 1px rgba(95, 205, 249, 0.15),
+                0 0 50px rgba(95, 205, 249, 0.12);
         }
 
         .app-feature-video-wrap {
             width: 100%;
-            max-width: 300px;
+            max-width: 240px;
+            margin: 8px auto 0;
             aspect-ratio: 9 / 19.5;
             border-radius: 28px;
             overflow: hidden;
             background: #000;
             border: 1px solid rgba(95, 205, 249, 0.28);
             box-shadow:
-                0 24px 48px rgba(0, 0, 0, 0.45),
+                0 18px 40px rgba(0, 0, 0, 0.45),
                 0 0 0 1px rgba(255, 255, 255, 0.06) inset,
-                0 0 40px rgba(95, 205, 249, 0.08);
+                0 0 32px rgba(95, 205, 249, 0.1);
             position: relative;
+            flex-shrink: 0;
         }
 
         .app-feature-video-wrap::before {
@@ -556,36 +607,89 @@
             object-position: top center;
         }
 
-        .app-feature-card h3 {
-            margin-top: 22px;
-            font-size: 18px;
-            font-weight: 700;
-            color: var(--white);
-            word-break: keep-all;
-            line-height: 1.35;
+        .app-feature-copy {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            padding: 4px 8px 0;
+            flex: 1;
         }
 
-        .app-feature-card p {
-            margin-top: 10px;
-            font-size: 14px;
-            line-height: 1.65;
-            color: rgba(255, 255, 255, 0.72);
-            word-break: keep-all;
-            max-width: 280px;
+        .app-feature-card-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
         }
 
         .app-feature-num {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 28px;
-            height: 28px;
-            border-radius: 50%;
-            background: rgba(95, 205, 249, 0.15);
-            color: var(--cyan);
-            font-size: 12px;
+            font-size: 13px;
             font-weight: 800;
-            margin-bottom: 14px;
+            letter-spacing: 0.08em;
+            color: rgba(126, 232, 255, 0.75);
+            width: auto;
+            height: auto;
+            border-radius: 0;
+            background: none;
+            margin-bottom: 0;
+            display: inline;
+        }
+
+        .app-feature-badge {
+            display: inline-flex;
+            align-self: flex-start;
+            padding: 5px 11px;
+            border-radius: 999px;
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--navy-deep);
+            background: var(--cyan);
+            word-break: keep-all;
+        }
+
+        .app-feature-card h3 {
+            margin-top: 0;
+            font-size: clamp(22px, 2.2vw, 28px);
+            font-weight: 800;
+            color: var(--white);
+            word-break: keep-all;
+            line-height: 1.3;
+            letter-spacing: -0.03em;
+            max-width: none;
+        }
+
+        .app-feature-card h3 span {
+            color: var(--cyan-bright);
+            text-shadow: 0 0 24px rgba(95, 205, 249, 0.45);
+        }
+
+        .app-feature-card p {
+            margin-top: 0;
+            font-size: 14px;
+            line-height: 1.7;
+            color: rgba(255, 255, 255, 0.72);
+            word-break: keep-all;
+            max-width: none;
+        }
+
+        .app-feature-tag {
+            margin-top: auto;
+            display: inline-flex;
+            align-self: flex-start;
+            padding: 8px 12px;
+            border-radius: 12px;
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--cyan-bright);
+            background: rgba(95, 205, 249, 0.1);
+            border: 1px solid rgba(95, 205, 249, 0.28);
+            word-break: keep-all;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .app-feature-card:hover {
+                transform: none;
+            }
         }
 
         .app-feature-guide {
@@ -934,224 +1038,6 @@
             font-size: 16px;
             line-height: 1.7;
             color: rgba(255, 255, 255, 0.72);
-            word-break: keep-all;
-        }
-
-        /* Stats / Advantage */
-        .stats-section {
-            position: relative;
-            padding: 120px 0;
-            background: linear-gradient(180deg, rgba(8, 20, 38, 0.94) 0%, rgba(7, 18, 33, 0.96) 100%),
-                        url('images/video/frame_commute.jpg') center/cover no-repeat;
-            background-blend-mode: multiply;
-            overflow: hidden;
-        }
-
-        .stats-section::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background:
-                radial-gradient(ellipse at 15% 20%, rgba(95, 205, 249, 0.22) 0%, transparent 45%),
-                radial-gradient(ellipse at 85% 30%, rgba(46, 140, 213, 0.28) 0%, transparent 42%),
-                radial-gradient(ellipse at 50% 100%, rgba(46, 140, 213, 0.3) 0%, transparent 55%);
-            pointer-events: none;
-        }
-
-        .stats-section::after {
-            content: '';
-            position: absolute;
-            width: 420px;
-            height: 420px;
-            top: 8%;
-            left: 50%;
-            transform: translateX(-50%);
-            background: radial-gradient(circle, rgba(126, 232, 255, 0.16) 0%, transparent 70%);
-            filter: blur(8px);
-            pointer-events: none;
-            animation: statsGlowPulse 5.5s ease-in-out infinite;
-        }
-
-        @keyframes statsGlowPulse {
-            0%, 100% { opacity: 0.55; transform: translateX(-50%) scale(0.92); }
-            50% { opacity: 1; transform: translateX(-50%) scale(1.08); }
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-            .stats-section::after {
-                animation: none;
-            }
-
-            .stat-card:hover {
-                transform: none;
-            }
-        }
-
-        .stats-header {
-            text-align: center;
-            margin-bottom: 56px;
-            position: relative;
-            z-index: 1;
-        }
-
-        .stats-note {
-            margin-top: 16px;
-            max-width: 640px;
-            margin-left: auto;
-            margin-right: auto;
-            font-size: 16px;
-            line-height: 1.7;
-            color: rgba(255, 255, 255, 0.7);
-            word-break: keep-all;
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 22px;
-            position: relative;
-            z-index: 1;
-        }
-
-        .stat-card {
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            gap: 18px;
-            text-align: left;
-            padding: 28px 26px 30px;
-            border-radius: 24px;
-            background:
-                linear-gradient(160deg, rgba(22, 48, 84, 0.88) 0%, rgba(10, 24, 48, 0.92) 100%);
-            border: 1px solid rgba(95, 205, 249, 0.22);
-            box-shadow:
-                0 24px 60px rgba(0, 0, 0, 0.35),
-                inset 0 1px 0 rgba(255, 255, 255, 0.06);
-            overflow: hidden;
-            transition: transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.15),
-                        border-color 0.3s,
-                        box-shadow 0.35s;
-        }
-
-        .stat-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, transparent, var(--cyan), transparent);
-            opacity: 0.85;
-        }
-
-        .stat-card::after {
-            content: '';
-            position: absolute;
-            width: 180px;
-            height: 180px;
-            right: -40px;
-            bottom: -50px;
-            border-radius: 50%;
-            background: radial-gradient(circle, rgba(95, 205, 249, 0.18) 0%, transparent 70%);
-            pointer-events: none;
-        }
-
-        .stat-card:hover {
-            transform: translateY(-8px);
-            border-color: rgba(95, 205, 249, 0.55);
-            box-shadow:
-                0 28px 70px rgba(0, 0, 0, 0.45),
-                0 0 40px rgba(95, 205, 249, 0.18);
-        }
-
-        .stat-card.is-featured {
-            border-color: rgba(95, 205, 249, 0.45);
-            background:
-                linear-gradient(160deg, rgba(28, 68, 118, 0.95) 0%, rgba(12, 32, 62, 0.96) 100%);
-            box-shadow:
-                0 28px 70px rgba(0, 0, 0, 0.4),
-                0 0 0 1px rgba(95, 205, 249, 0.15),
-                0 0 50px rgba(95, 205, 249, 0.12);
-        }
-
-        .stat-card-top {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 12px;
-        }
-
-        .stat-index {
-            font-size: 13px;
-            font-weight: 800;
-            letter-spacing: 0.08em;
-            color: rgba(126, 232, 255, 0.75);
-        }
-
-        .stat-icon {
-            width: 48px;
-            height: 48px;
-            border-radius: 16px;
-            display: grid;
-            place-items: center;
-            background: linear-gradient(145deg, rgba(95, 205, 249, 0.28), rgba(46, 140, 213, 0.12));
-            border: 1px solid rgba(95, 205, 249, 0.35);
-            color: var(--cyan-bright);
-            box-shadow: 0 0 24px rgba(95, 205, 249, 0.2);
-            flex-shrink: 0;
-        }
-
-        .stat-icon svg {
-            width: 24px;
-            height: 24px;
-        }
-
-        .stat-label {
-            display: inline-flex;
-            align-self: flex-start;
-            padding: 5px 11px;
-            border-radius: 999px;
-            font-size: 12px;
-            font-weight: 700;
-            color: var(--navy-deep);
-            background: var(--cyan);
-            margin-bottom: 0;
-            word-break: keep-all;
-        }
-
-        .stat-value {
-            font-size: clamp(26px, 2.8vw, 34px);
-            font-weight: 800;
-            color: var(--white);
-            line-height: 1.25;
-            margin-bottom: 0;
-            word-break: keep-all;
-            letter-spacing: -0.03em;
-        }
-
-        .stat-value span {
-            color: var(--cyan-bright);
-            text-shadow: 0 0 24px rgba(95, 205, 249, 0.45);
-        }
-
-        .stat-desc {
-            font-size: 15px;
-            line-height: 1.7;
-            color: rgba(255, 255, 255, 0.72);
-            word-break: keep-all;
-        }
-
-        .stat-tag {
-            margin-top: auto;
-            display: inline-flex;
-            align-self: flex-start;
-            padding: 8px 12px;
-            border-radius: 12px;
-            font-size: 13px;
-            font-weight: 700;
-            color: var(--cyan-bright);
-            background: rgba(95, 205, 249, 0.1);
-            border: 1px solid rgba(95, 205, 249, 0.28);
             word-break: keep-all;
         }
 
@@ -2073,15 +1959,18 @@
         @media (max-width: 1024px) {
             .connection-cards,
             .pillars-grid,
-            .stats-grid,
             .app-features-grid {
                 grid-template-columns: 1fr;
             }
 
             .app-features-grid {
-                gap: 48px;
-                max-width: 340px;
+                gap: 16px;
+                max-width: 420px;
                 margin: 0 auto;
+            }
+
+            .app-feature-video-wrap {
+                max-width: 220px;
             }
 
             .app-feature-guide {
@@ -2212,17 +2101,12 @@
             .why-section,
             .pillars-section,
             .data-section,
-            .stats-section,
             .tools-section {
                 padding: 64px 0;
             }
 
             .app-features-header {
                 margin-bottom: 36px;
-            }
-
-            .app-feature-card h3 {
-                font-size: 17px;
             }
 
             .app-feature-card p {
@@ -2397,36 +2281,16 @@
                 padding: 11px 14px;
             }
 
-            /* Stats on mobile */
-            .stats-grid {
+            .app-feature-card {
+                padding: 14px 14px 20px;
                 gap: 14px;
             }
 
-            .stat-card {
-                padding: 22px 20px 24px;
-                gap: 14px;
+            .app-feature-card h3 {
+                font-size: clamp(20px, 5.5vw, 24px);
             }
 
-            .stat-icon {
-                width: 42px;
-                height: 42px;
-                border-radius: 14px;
-            }
-
-            .stat-icon svg {
-                width: 20px;
-                height: 20px;
-            }
-
-            .stat-value {
-                font-size: clamp(22px, 6vw, 28px);
-            }
-
-            .stat-desc {
-                font-size: 14px;
-            }
-
-            .stat-tag {
+            .app-feature-tag {
                 font-size: 12px;
                 padding: 7px 10px;
             }
@@ -3148,14 +3012,14 @@
         </button>
     </section>
 
-    <!-- App Features -->
+    <!-- App Features + Center Advantage -->
     <section class="app-features-section" id="app-features">
         <div class="app-features-bg" aria-hidden="true"></div>
         <div class="container">
             <div class="app-features-header reveal">
-                <span class="section-label">App Features</span>
-                <h2 class="section-title">앱 속 <span class="text-cyan">핵심 기능</span>을 직접 확인하세요</h2>
-                <p class="section-desc">수업 예약부터 AI 분석 리포트까지, 센터 운영의 핵심 흐름을 한눈에 보여드립니다.</p>
+                <span class="section-label">Center Advantage</span>
+                <h2 class="section-title">AI 리포트 하나로<br><span class="text-cyan">센터의 경쟁력이 바뀝니다</span></h2>
+                <p class="section-desc">기존 회원 수업은 더 정밀하게, 신규 상담은 더 설득력 있게 — 데이터로 증명되는 케어가 센터만의 차별성이 됩니다.</p>
             </div>
             <div class="app-feature-guide reveal">
                 <div class="app-feature-guide-player">
@@ -3182,29 +3046,23 @@
             </div>
             <div class="app-features-grid">
                 <article class="app-feature-card reveal">
-                    <span class="app-feature-num">01</span>
-                    <div class="app-feature-video-wrap">
-                        <video class="feature-demo-video" muted playsinline preload="metadata"
-                            data-end="37"
-                            src="수업예약.mp4"
-                            title="회원과의 수업 예약"></video>
-                    </div>
-                    <h3>회원과의 수업 예약</h3>
-                    <p>캘린더에서 일정을 잡고 회원과 바로 연결되는 간편한 예약 흐름입니다.</p>
-                </article>
-                <article class="app-feature-card reveal">
-                    <span class="app-feature-num">02</span>
                     <div class="app-feature-video-wrap">
                         <video class="feature-demo-video" muted playsinline preload="metadata"
                             data-max-auto="33"
                             src="videos/feature-lesson-report.mp4"
                             title="지난 수업 AI 분석 리포트"></video>
                     </div>
-                    <h3>지난 수업 AI 분석 리포트</h3>
-                    <p>수업 직후 AI가 관절·자세 데이터를 정리해 회원에게 전달하는 리포트입니다.</p>
+                    <div class="app-feature-copy">
+                        <div class="app-feature-card-top">
+                            <span class="app-feature-num">01</span>
+                        </div>
+                        <span class="app-feature-badge">기존 회원</span>
+                        <h3>수업이 <span>한 단계</span> 달라집니다</h3>
+                        <p>운동 동작 분석 영상 리포트로 레슨 피드백을 구체화하고, 회원이 체감하는 수업 퀄리티를 끌어올립니다.</p>
+                        <span class="app-feature-tag">운동 동작 분석 영상 리포트</span>
+                    </div>
                 </article>
-                <article class="app-feature-card reveal">
-                    <span class="app-feature-num">03</span>
+                <article class="app-feature-card is-featured reveal">
                     <div class="app-feature-video-wrap">
                         <video class="feature-demo-video" muted playsinline preload="metadata"
                             data-start="8"
@@ -3212,8 +3070,32 @@
                             src="videos/feature-body-report.mp4"
                             title="나의 몸변화 AI 분석 리포트"></video>
                     </div>
-                    <h3>나의 몸변화 AI 분석 리포트</h3>
-                    <p>체형 변화와 핵심 지표를 시각화해, 데이터로 증명하는 몸의 변화를 보여줍니다.</p>
+                    <div class="app-feature-copy">
+                        <div class="app-feature-card-top">
+                            <span class="app-feature-num">02</span>
+                        </div>
+                        <span class="app-feature-badge">신규 회원</span>
+                        <h3>상담이 <span>등록</span>으로 이어집니다</h3>
+                        <p>체형 분석 리포트로 전문성을 한눈에 보여주고, 신규 회원의 등록 결정을 자연스럽게 이끌어냅니다.</p>
+                        <span class="app-feature-tag">체형 분석 리포트</span>
+                    </div>
+                </article>
+                <article class="app-feature-card reveal">
+                    <div class="app-feature-video-wrap">
+                        <video class="feature-demo-video" muted playsinline preload="metadata"
+                            data-end="37"
+                            src="수업예약.mp4"
+                            title="회원과의 수업 예약"></video>
+                    </div>
+                    <div class="app-feature-copy">
+                        <div class="app-feature-card-top">
+                            <span class="app-feature-num">03</span>
+                        </div>
+                        <span class="app-feature-badge">센터 경쟁력</span>
+                        <h3>따라올 수 없는 <span>차별성</span></h3>
+                        <p>예약부터 리포트까지 한 흐름으로 운영하며, 데이터로 증명되는 케어로 센터만의 고유한 경쟁력을 확보합니다.</p>
+                        <span class="app-feature-tag">통합 예약 · 센터만의 경쟁력</span>
+                    </div>
                 </article>
             </div>
         </div>
@@ -3633,64 +3515,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Stats -->
-    <section class="stats-section">
-        <div class="container">
-            <div class="stats-header reveal">
-                <span class="section-label">Center Advantage</span>
-                <h2 class="section-title">AI 리포트 하나로<br><span class="text-cyan">센터의 경쟁력이 바뀝니다</span></h2>
-                <p class="stats-note">기존 회원 수업은 더 정밀하게, 신규 상담은 더 설득력 있게 — 데이터로 증명되는 케어가 센터만의 차별성이 됩니다.</p>
-            </div>
-            <div class="stats-grid">
-                <article class="stat-card reveal">
-                    <div class="stat-card-top">
-                        <span class="stat-index">01</span>
-                        <div class="stat-icon" aria-hidden="true">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M15 10l4.55-2.38A1 1 0 0121 8.5v7a1 1 0 01-1.45.89L15 14"/>
-                                <rect x="3" y="6" width="12" height="12" rx="2"/>
-                            </svg>
-                        </div>
-                    </div>
-                    <span class="stat-label">기존 회원</span>
-                    <h3 class="stat-value">수업이 <span>한 단계</span> 달라집니다</h3>
-                    <p class="stat-desc">운동 동작 분석 영상 리포트로 레슨 피드백을 구체화하고, 회원이 체감하는 수업 퀄리티를 끌어올립니다.</p>
-                    <span class="stat-tag">운동 동작 분석 영상 리포트</span>
-                </article>
-                <article class="stat-card is-featured reveal">
-                    <div class="stat-card-top">
-                        <span class="stat-index">02</span>
-                        <div class="stat-icon" aria-hidden="true">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="12" cy="8" r="3.2"/>
-                                <path d="M5.5 20c1.2-3.2 3.5-4.8 6.5-4.8s5.3 1.6 6.5 4.8"/>
-                                <path d="M16.5 4.5l1.2-1.2M19.8 7.8L21 6.6M4.5 7.8L3.3 6.6M7.5 4.5L6.3 3.3"/>
-                            </svg>
-                        </div>
-                    </div>
-                    <span class="stat-label">신규 회원</span>
-                    <h3 class="stat-value">상담이 <span>등록</span>으로 이어집니다</h3>
-                    <p class="stat-desc">체형 분석 리포트로 전문성을 한눈에 보여주고, 신규 회원의 등록 결정을 자연스럽게 이끌어냅니다.</p>
-                    <span class="stat-tag">체형 분석 리포트</span>
-                </article>
-                <article class="stat-card reveal">
-                    <div class="stat-card-top">
-                        <span class="stat-index">03</span>
-                        <div class="stat-icon" aria-hidden="true">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M12 3l2.4 4.9 5.4.8-3.9 3.8.9 5.4L12 15.9 7.2 18l.9-5.4L4.2 8.7l5.4-.8L12 3z"/>
-                            </svg>
-                        </div>
-                    </div>
-                    <span class="stat-label">센터 경쟁력</span>
-                    <h3 class="stat-value">따라올 수 없는 <span>차별성</span></h3>
-                    <p class="stat-desc">데이터로 증명되는 케어로 주변 센터와 분명한 차이를 만들고, 센터만의 고유한 경쟁력을 확보합니다.</p>
-                    <span class="stat-tag">센터만의 고유 경쟁력</span>
-                </article>
             </div>
         </div>
     </section>
