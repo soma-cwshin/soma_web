@@ -14,6 +14,8 @@
     { "source": "/pay/invoice", "destination": "/pay/invoice/index.html" },
     { "source": "/pay/invoice/", "destination": "/pay/invoice/index.html" },
     { "source": "/membership", "destination": "/membership/index.html" },
-    { "source": "/membership/", "destination": "/membership/index.html" }
+    { "source": "/membership/", "destination": "/membership/index.html" },
+    { "source": "/subs", "destination": "/subs/index.html" },
+    { "source": "/subs/", "destination": "/subs/index.html" }
   ]
 }
