@@ -1,3 +1,6 @@
 .env.local
 .env
 kakao_rest_api_key.txt
+
+# Local-only marketing site snapshot (do not deploy — competitors)
+RESTORE_ME__soma-marketing-site-2026-08-21/
