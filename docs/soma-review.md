@@ -2,6 +2,8 @@
 
 `POST /api/soma-review` connects the standalone library HTML to the MAPS Supabase already configured on this deployment with `SUPABASE_URL` and `SUPABASE_SERVICE_ROLE_KEY`. The client contains neither key. It sends only expert review fields, never member assessment values.
 
+Modern keys can instead be provided as `SUPABASE_SECRET_KEY`; they are sent only in the `apikey` header. Legacy JWT service-role keys also use the Authorization header. The URL and key are trimmed before use. Authentication failures report only an upstream status/code, key type and public project hostname, never the key itself.
+
 The endpoint uses a separate high-entropy review code, verified against a server-side SHA-256 digest. `SOMA_REVIEW_CODE_SHA256` can override the provisioned digest for rotation. The plaintext code is delivered privately to the owner, outside this repository. The MAPS password and cookie are not accepted. Origin `null` supports a local HTML file; permitted web origins are explicitly listed. No cross-origin cookies are enabled.
 
 ## Storage

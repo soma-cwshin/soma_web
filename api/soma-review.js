@@ -30,15 +30,15 @@ function text(value, max) {
 }
 
 async function database(query, options = {}) {
-  const url = process.env.SUPABASE_URL;
-  const secret = process.env.SUPABASE_SERVICE_ROLE_KEY;
+  const url = (process.env.SUPABASE_URL || '').trim();
+  const secret = (process.env.SUPABASE_SECRET_KEY || process.env.SUPABASE_SERVICE_ROLE_KEY || '').trim();
   if (!url || !secret) throw new Error('NOT_CONFIGURED');
   const response = await fetch(`${url.replace(/\/$/, '')}/rest/v1/maps_sales_sync?${query}`, {
     ...options,
     signal: AbortSignal.timeout(12000),
     headers: {
       apikey: secret,
-      Authorization: `Bearer ${secret}`,
+      ...(secret.startsWith('sb_secret_') ? {} : { Authorization: `Bearer ${secret}` }),
       'Content-Type': 'application/json',
       Prefer: options.method === 'POST' ? 'resolution=ignore-duplicates,return=representation' : 'return=representation',
     },
@@ -46,7 +46,8 @@ async function database(query, options = {}) {
   if (!response.ok) {
     let details; try { details = await response.clone().json(); } catch {}
     const error = new Error('MAPS_DATABASE');
-    error.diagnostic = { httpStatus: response.status, code: /^[A-Z0-9_]{1,30}$/.test(details?.code || '') ? details.code : 'DATABASE_HTTP_ERROR' };
+    error.diagnostic = { httpStatus: response.status, code: /^[A-Z0-9_]{1,30}$/.test(details?.code || '') ? details.code : 'DATABASE_HTTP_ERROR', keyType: secret.startsWith('sb_secret_') ? 'secret' : 'legacy', projectHost: new URL(url).hostname };
+    if (['Invalid API key', 'Invalid JWT', 'JWT expired', 'No API key found'].includes(details?.message)) error.diagnostic.reason = details.message;
     throw error;
   }
   return response;
@@ -75,7 +76,7 @@ module.exports = async function handler(req, res) {
     return res.status(405).json({ error: '지원하지 않는 요청입니다.' });
   }
   if (!authorized(req)) return res.status(401).json({ error: '검토 코드가 올바르지 않습니다. 전달받은 코드를 확인해 주세요.' });
-  if (!process.env.SUPABASE_URL || !process.env.SUPABASE_SERVICE_ROLE_KEY) return res.status(503).json({ error: 'MAPS 저장소 연결 설정을 확인해야 합니다.' });
+  if (!process.env.SUPABASE_URL || !(process.env.SUPABASE_SECRET_KEY || process.env.SUPABASE_SERVICE_ROLE_KEY)) return res.status(503).json({ error: 'MAPS 저장소 연결 설정을 확인해야 합니다.' });
 
   let body;
   try {
