@@ -7,7 +7,6 @@ const catalog = {"test":{"U01":{"name":"누워서 팔 올리기","hash":"6fbf846
 const DEFAULT_CODE_HASH = 'f6dcc5b57688b432a40b89121e4e1d4e401c544b95b070327dc954c10d2f8469';
 const PREFIX = 'soma-review-v1:';
 const AREAS = new Set(['general', 'name', 'image', 'instruction', 'coaching', 'dosage', 'safety', 'reference']);
-const PRIORITIES = new Set(['normal', 'important', 'urgent']);
 const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/;
 
 function authorized(req) {
@@ -56,7 +55,8 @@ async function database(query, options = {}) {
 function publicRecord(row) {
   const value = row.visit_state;
   if (!row.id?.startsWith(PREFIX) || !value || value.schemaVersion !== 1) return null;
-  return value;
+  // Historic attribution stays in existing rows, but is no longer returned.
+  return Object.fromEntries(['schemaVersion', 'reviewId', 'library', 'cardId', 'cardName', 'contentHash', 'area', 'stage', 'proposal', 'createdAt'].map(key => [key, value[key]]));
 }
 
 module.exports = async function handler(req, res) {
@@ -75,7 +75,8 @@ module.exports = async function handler(req, res) {
     res.setHeader('Allow', 'POST, OPTIONS');
     return res.status(405).json({ error: '지원하지 않는 요청입니다.' });
   }
-  if (!authorized(req)) return res.status(401).json({ error: '검토 코드가 올바르지 않습니다. 전달받은 코드를 확인해 주세요.' });
+  // The distributed local library supplies its review-only credential automatically.
+  if (!authorized(req)) return res.status(401).json({ error: '자료의 연결 파일을 확인해 주세요. 최신 통합 폴더를 다시 열어 주세요.' });
   if (!process.env.SUPABASE_URL || !(process.env.SUPABASE_SECRET_KEY || process.env.SUPABASE_SERVICE_ROLE_KEY)) return res.status(503).json({ error: 'MAPS 저장소 연결 설정을 확인해야 합니다.' });
 
   let body;
@@ -122,15 +123,14 @@ module.exports = async function handler(req, res) {
     }
 
     if (body.action !== 'submit') return res.status(400).json({ error: '지원하지 않는 작업입니다.' });
-    const reviewer = text(body.reviewer, 80);
     const proposal = text(body.proposal, 5000);
-    if (!reviewer || !proposal || !UUID.test(body.requestId || '') || !AREAS.has(body.area) || !PRIORITIES.has(body.priority) || !['all', '1', '2', '3'].includes(body.stage)) return res.status(400).json({ error: '검토자 이름과 수정 제안 내용을 확인해 주세요.' });
+    if (!proposal || !UUID.test(body.requestId || '') || !AREAS.has(body.area) || !['all', '1', '2', '3'].includes(body.stage)) return res.status(400).json({ error: '수정 제안 내용과 해당 항목을 확인해 주세요.' });
     if (body.contentHash !== item.hash) return res.status(409).json({ error: '검토 자료의 버전이 달라졌습니다. 최신 HTML을 열어 주세요. 작성 중인 내용은 임시저장되어 있습니다.' });
 
     // One immutable row per request avoids overwriting map state or other reviewers.
     // The fixed request UUID also makes retry after a lost response idempotent.
     const id = itemPrefix + body.requestId;
-    const record = { schemaVersion: 1, reviewId: body.requestId, library: body.library, cardId: body.cardId, cardName: item.name, contentHash: item.hash, reviewer, area: body.area, stage: body.stage, priority: body.priority, proposal, createdAt: new Date().toISOString() };
+    const record = { schemaVersion: 1, reviewId: body.requestId, library: body.library, cardId: body.cardId, cardName: item.name, contentHash: item.hash, area: body.area, stage: body.stage, proposal, createdAt: new Date().toISOString() };
     const saved = await database(new URLSearchParams({ on_conflict: 'id' }), {
       method: 'POST', body: JSON.stringify({ id, visit_state: record, updated_at: record.createdAt }),
     });
@@ -140,7 +140,7 @@ module.exports = async function handler(req, res) {
     const row = (await confirmed.json())[0];
     const stored = row && publicRecord(row);
     if (!stored) throw new Error('DATABASE');
-    if (['reviewer', 'area', 'stage', 'priority', 'proposal', 'contentHash'].some(key => stored[key] !== record[key])) return res.status(409).json({ error: '같은 저장 요청에 다른 내용이 있습니다. 내용을 별도 의견으로 다시 작성해 주세요.' });
+    if (['area', 'stage', 'proposal', 'contentHash'].some(key => stored[key] !== record[key])) return res.status(409).json({ error: '같은 저장 요청에 다른 내용이 있습니다. 내용을 별도 의견으로 다시 작성해 주세요.' });
     return res.status(200).json({ ok: true, record: stored });
   } catch (error) {
     const networkCode = error.cause?.code || error.code || error.name;
