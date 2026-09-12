@@ -56,7 +56,7 @@ function publicRecord(row) {
   const value = row.visit_state;
   if (!row.id?.startsWith(PREFIX) || !value || value.schemaVersion !== 1) return null;
   // Historic attribution stays in existing rows, but is no longer returned.
-  return Object.fromEntries(['schemaVersion', 'reviewId', 'library', 'cardId', 'cardName', 'contentHash', 'area', 'stage', 'proposal', 'createdAt'].map(key => [key, value[key]]));
+  return { ...Object.fromEntries(['schemaVersion', 'reviewId', 'library', 'cardId', 'cardName', 'contentHash', 'area', 'stage', 'proposal', 'createdAt'].map(key => [key, value[key]])), updatedAt: row.updated_at || value.updatedAt || value.createdAt };
 }
 
 module.exports = async function handler(req, res) {
@@ -122,12 +122,45 @@ module.exports = async function handler(req, res) {
       return res.status(200).json({ records: visible.map(publicRecord).filter(Boolean), next: rows.length > 50 ? { id: visible.at(-1).id, at: visible.at(-1).updated_at } : null });
     }
 
+    if (body.action === 'update') {
+      const proposal = text(body.proposal, 5000);
+      const expected = body.expectedUpdatedAt;
+      if (!proposal || !UUID.test(body.reviewId || '') || !AREAS.has(body.area) || !['all', '1', '2', '3'].includes(body.stage) || typeof expected !== 'string' || expected.length > 50 || !/^\d{4}-\d{2}-\d{2}T[\d:.]+(?:Z|\+00:00)$/.test(expected) || !Number.isFinite(Date.parse(expected))) return res.status(400).json({ error: '수정할 의견과 내용을 확인해 주세요.' });
+      const id = itemPrefix + body.reviewId;
+      const query = new URLSearchParams({ id: `eq.${id}`, select: 'id,visit_state,updated_at', limit: '1' });
+      const readCurrent = async () => (await (await database(query)).json())[0];
+      const row = await readCurrent();
+      const current = row && publicRecord(row);
+      if (!current || current.library !== body.library || current.cardId !== body.cardId || current.reviewId !== body.reviewId) return res.status(404).json({ error: '수정할 의견을 찾지 못했습니다. 목록을 새로고침해 주세요.' });
+      const matches = record => record && record.area === body.area && record.stage === body.stage && record.proposal === proposal;
+      // A retry after a lost response must not duplicate an edit or advance its time.
+      if (matches(current)) return res.status(200).json({ ok: true, record: current });
+      const conflict = record => res.status(409).json({ error: '다른 검토자가 이 의견을 수정했습니다. 작성 중인 내용은 유지됩니다. 최신 내용을 확인하고 다시 저장해 주세요.', current: record });
+      if (current.updatedAt !== expected) return conflict(current);
+      const updatedAt = new Date(Math.max(Date.now(), Date.parse(current.updatedAt) + 1)).toISOString();
+      const edited = { ...row.visit_state, area: body.area, stage: body.stage, proposal, updatedAt };
+      // Atomic compare-and-set: another team's edit between read and write is preserved.
+      const changed = await database(new URLSearchParams({ id: `eq.${id}`, updated_at: `eq.${expected}`, select: 'id,visit_state,updated_at' }), {
+        method: 'PATCH', body: JSON.stringify({ visit_state: edited, updated_at: updatedAt }),
+      });
+      const updated = (await changed.json())[0];
+      if (!updated) {
+        const newestRow = await readCurrent();
+        const newest = newestRow && publicRecord(newestRow);
+        if (matches(newest)) return res.status(200).json({ ok: true, record: newest });
+        return conflict(newest || null);
+      }
+      const record = publicRecord(updated);
+      if (!record || !matches(record) || record.reviewId !== body.reviewId) throw new Error('EDIT_CONFIRMATION_FAILED');
+      return res.status(200).json({ ok: true, record });
+    }
+
     if (body.action !== 'submit') return res.status(400).json({ error: '지원하지 않는 작업입니다.' });
     const proposal = text(body.proposal, 5000);
     if (!proposal || !UUID.test(body.requestId || '') || !AREAS.has(body.area) || !['all', '1', '2', '3'].includes(body.stage)) return res.status(400).json({ error: '수정 제안 내용과 해당 항목을 확인해 주세요.' });
     if (body.contentHash !== item.hash) return res.status(409).json({ error: '검토 자료의 버전이 달라졌습니다. 최신 HTML을 열어 주세요. 작성 중인 내용은 임시저장되어 있습니다.' });
 
-    // One immutable row per request avoids overwriting map state or other reviewers.
+    // A stable row per create request avoids duplicate comments and map-state writes.
     // The fixed request UUID also makes retry after a lost response idempotent.
     const id = itemPrefix + body.requestId;
     const record = { schemaVersion: 1, reviewId: body.requestId, library: body.library, cardId: body.cardId, cardName: item.name, contentHash: item.hash, area: body.area, stage: body.stage, proposal, createdAt: new Date().toISOString() };
@@ -135,7 +168,7 @@ module.exports = async function handler(req, res) {
       method: 'POST', body: JSON.stringify({ id, visit_state: record, updated_at: record.createdAt }),
     });
     if (!saved.ok) throw new Error('DATABASE');
-    const confirmed = await database(new URLSearchParams({ id: `eq.${id}`, select: 'id,visit_state', limit: '1' }));
+    const confirmed = await database(new URLSearchParams({ id: `eq.${id}`, select: 'id,visit_state,updated_at', limit: '1' }));
     if (!confirmed.ok) throw new Error('DATABASE');
     const row = (await confirmed.json())[0];
     const stored = row && publicRecord(row);

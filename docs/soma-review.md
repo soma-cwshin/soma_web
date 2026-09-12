@@ -8,7 +8,7 @@ The review UI has no code entry, login, reviewer name or priority field. The pri
 
 ## Storage
 
-Reviews are independent, immutable rows in the existing `maps_sales_sync` document store. Row IDs are `soma-review-v1:<library>:<cardId>:<requestUuid>`. The `visit_state` JSON contains the review schema, canonical card identity, content digest, area, stage, proposal and server timestamp. New records do not contain a reviewer name or priority. Historic rows are retained, but their names and priorities are omitted from responses. `default`, its map data and its update timestamp are never changed by a review. No database migration is needed.
+Reviews are independent rows in the existing `maps_sales_sync` document store. Row IDs are `soma-review-v1:<library>:<cardId>:<requestUuid>`. The `visit_state` JSON contains the review schema, canonical card identity, content digest, area, stage, proposal and server timestamp. Anyone using the existing review bundle can edit any review; there are no author-specific permissions. Edits preserve the row ID and `createdAt`, and set a server `updatedAt`. New records do not contain a reviewer name or priority. Historic names and priorities are omitted from responses. `default`, its map data and its update timestamp are never changed by a review. No database migration is needed.
 
 The canonical item catalog contains all 833 library cards. Shared IDs across the base and Pilates libraries remain distinguishable by library. The content digest ties feedback to the exact reviewed card version. Each submission receives a server timestamp; client timestamps and removed form fields are ignored.
 
@@ -34,8 +34,11 @@ Normal POST requests send JSON and the bundle's review-only Bearer credential au
 - `action: session` checks MAPS connectivity.
 - `action: list`, `library`, `cardId`, optional `before: {id,at}` returns 50 reviews plus a cursor, newest first.
 - `action: submit` accepts `requestId` (UUID v4), `library`, `cardId`, `contentHash`, `area`, `stage`, `proposal`. A repeated UUID is idempotent. Different content under the same UUID is rejected. Successful submission is read back before acknowledgment.
+- `action: update` accepts `library`, `cardId`, `reviewId`, `expectedUpdatedAt`, `area`, `stage`, `proposal`. `expectedUpdatedAt` must come from the listed record. A conditional database PATCH changes only that exact review if the version still matches. A concurrent edit returns 409 and the latest record in `current`. An identical retry returns the saved result without advancing the timestamp. Item identity, content hash and original creation time are preserved.
 - `action: session, verifyWrite: true` requires the private maintenance code as a Bearer credential. It checks persistence with one temporary `soma-review-check-v1:<uuid>` row and deletes only that exact row. This action is not part of the review UI.
 
 The browser distinguishes drafts from server-confirmed saves. Failed requests preserve the draft and its UUID; late responses cannot erase a draft for a different card. HTML rendering uses text nodes for returned review content.
 
-There is no public arbitrary table access, review deletion, role modification or map-state mutation in this endpoint. The existing MAPS service's deployment environment and table access controls are retained.
+The already distributed HTML continues to use `submit` and `list` unchanged and can keep adding comments. Adding an edit button requires the newer local `review.js` and `review.css`: an independently downloaded ZIP cannot be remotely changed by this API. Old HTML safely renders updated proposals as text.
+
+There is no arbitrary table access, review deletion, role modification or map-state mutation in this endpoint. The existing MAPS service's deployment environment and table access controls are retained.

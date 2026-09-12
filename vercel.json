@@ -2,6 +2,9 @@
   "functions": {
     "api/prefetch-hours-batch.js": {
       "maxDuration": 60
+    },
+    "api/soma-review.js": {
+      "maxDuration": 30
     }
   },
   "rewrites": [
